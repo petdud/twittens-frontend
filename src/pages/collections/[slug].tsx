@@ -1,8 +1,13 @@
 import Head from 'next/head';
-import { CollectionList } from '../components/collection-list/collection-list';
-import { MainSlot } from '../layouts/main-slot';
+import { useRouter } from "next/router";
+import { CollectionView } from '../../components/collection-view/collection-view';
+import { MainSlot } from "../../layouts/main-slot";
 
-export default function Home() {
+
+export default function Collection() {
+  const router = useRouter();
+  const slug = router.query.slug as string;
+
   return (
     <div>
       <Head>
@@ -11,9 +16,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="bg-gray-100 h-full">
-
         <MainSlot>
-          <CollectionList />
+          <CollectionView slug={slug} />
         </MainSlot>
       </div>
     </div>

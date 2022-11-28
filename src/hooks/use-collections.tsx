@@ -9,10 +9,7 @@ export const useCollections = () => {
   const fetchCollections = useCallback(async () => {
     try {
       const { data } = await axios.get("/api/collections");
-      console.log("collections", data);
-      if (data?.data) {
-        setData(data.data);
-      }
+      data && setData(data);
       setIsLoading(false);
     } catch(err) {
       setIsLoading(false);
