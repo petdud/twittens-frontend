@@ -2,11 +2,12 @@ interface ICollectionHeader {
   name: string | JSX.Element;
   image: string;
   description?: string | JSX.Element;
+  imageAlt?: string;
   rightButtons?: JSX.Element;
   social: JSX.Element;
 }
 
-export const CollectionHeader = ({name, image, description, rightButtons}: ICollectionHeader) => (
+export const CollectionHeader = ({name, description, image, imageAlt, rightButtons}: ICollectionHeader) => (
   <div className="md:flex md:items-center md:justify-between md:space-x-5">
     <div className="flex items-start space-x-5">
       <div className="flex-shrink-0">
@@ -14,7 +15,7 @@ export const CollectionHeader = ({name, image, description, rightButtons}: IColl
           <img
             className="h-24 w-24 rounded-full"
             src={image}
-            alt={name}
+            alt={imageAlt}
           />
           <span className="absolute inset-0 rounded-full shadow-inner" aria-hidden="true" />
         </div>

@@ -61,7 +61,8 @@ export const CollectionView = ({slug}: ICollectionView) =>  {
         {collection?.name && collection?.image && 
           <CollectionHeader 
             name={<>{collection?.name} <span className="font-normal">on</span> <span className="text-blue-400">Twitter</span>!</>} 
-            image={`/collections/${collection?.image}`} 
+            image={`/collections/${collection?.image}`}
+            imageAlt={collection.name} 
             description={<>Items: {collection?.supply} | Owners: {collection?.owners} ({Math.round((collection.owners / collection.supply) * 100)}%) | Owners with ENS: {usersWithNamesCount} ({Math.round((usersWithNamesCount / collection.owners) * 100)}%) | ENS with Twitter: {usersWithTwitterCount} ({Math.round((usersWithTwitterCount / usersWithNamesCount) * 100)}%)</>}
             social={<>dasdd</>}
           />
