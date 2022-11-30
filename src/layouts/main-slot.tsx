@@ -190,7 +190,7 @@ export const MainSlot = ({children}: IMainSlot) => {
                     <div className="font-semibold">Join our community:</div>
                     <div className="mt-2">
                       <Link
-                        href="https://www.twitter.com"
+                        href="https://www.twitter.com/twittensxyz"
                         target="_blank"
                       >
                         <button className="flex items-center gap-2 bg-white px-2 py-1 rounded-md border-solid border-2 border-sky-500 text-sky-600 hover:bg-sky-500 hover:text-white">
