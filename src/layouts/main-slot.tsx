@@ -1,20 +1,22 @@
-import { Fragment, useState } from 'react'
-import { Dialog, Transition } from '@headlessui/react'
+import { Fragment, useState } from 'react';
+import { Dialog, Transition } from '@headlessui/react';
 import {
   HomeIcon, 
   UsersIcon,
   XMarkIcon,
-} from '@heroicons/react/24/outline'
-import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
-import { classNames } from '../utils'
-import Link from 'next/link'
+} from '@heroicons/react/24/outline';
+import { classNames } from '../utils';
+import Link from 'next/link';
 import Image from 'next/image';
+import { SearchBar } from '../components/search-bar/search-bar';
+import { AiOutlineRight } from 'react-icons/ai';
+import { BsTwitter } from 'react-icons/bs';
+BsTwitter
 
 const navigation = [
-  { name: 'Home', href: '#', icon: HomeIcon, current: true },
-  { name: 'FAQ', href: '#', icon: UsersIcon, current: false },
-  // { name: 'Projects', href: '#', icon: FolderIcon, current: false },
-]
+  { name: 'Home', href: '/', icon: HomeIcon },
+  { name: 'FAQ', href: '/faq', icon: UsersIcon },
+];
 
 interface IMainSlot {
   children: JSX.Element;
@@ -35,7 +37,7 @@ export const MainSlot = ({children}: IMainSlot) => {
         <body class="h-full">
         ```
       */}
-      <div>
+      <div className='bg-gray-100 h-screen'>
         <Transition.Root show={sidebarOpen} as={Fragment}>
           <Dialog as="div" className="relative z-40 md:hidden" onClose={setSidebarOpen}>
             <Transition.Child
@@ -95,15 +97,13 @@ export const MainSlot = ({children}: IMainSlot) => {
                           key={item.name}
                           href={item.href}
                           className={classNames(
-                            item.current
-                              ? 'bg-gray-100 text-gray-900'
-                              : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
+                            'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
                             'group flex items-center px-2 py-2 text-base font-medium rounded-md'
                           )}
                         >
                           <item.icon
                             className={classNames(
-                              item.current ? 'text-gray-500' : 'text-gray-400 group-hover:text-gray-500',
+                              'text-gray-400 group-hover:text-gray-500',
                               'mr-4 flex-shrink-0 h-6 w-6'
                             )}
                             aria-hidden="true"
@@ -125,8 +125,8 @@ export const MainSlot = ({children}: IMainSlot) => {
         {/* Static sidebar for desktop */}
         <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col">
           {/* Sidebar component, swap this element with another sidebar if you like */}
-          <div className="flex flex-grow flex-col overflow-y-auto border-r border-gray-200 bg-white pt-5">
-            <div className="flex flex-shrink-0 items-center px-4">
+          <div className="flex flex-grow flex-col overflow-y-auto border-r border-gray-200 bg-white pt-5 px-4">
+            <div className="flex flex-shrink-0 items-center justify-center px-4">
               <Link href={"/"}>
                 <Image
                   className=""
@@ -137,62 +137,71 @@ export const MainSlot = ({children}: IMainSlot) => {
                 />
               </Link>
             </div>
+            <div className="border-t border-gray-200 mt-4 "/>
 
-            <div className="mt-5 px-3">
-              <label htmlFor="search" className="sr-only">
-                Search
-              </label>
-              <div className="relative mt-1 rounded-md shadow-sm">
-                <div
-                  className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"
-                  aria-hidden="true"
+
+
+              {/* <div className="mt-2 px-3">
+                <button
+                  disabled
+                  type="button"
+                  style={{background: "#1da1f2"}}
+                  className="inline-flex w-full justify-center items-center rounded-md border border-transparent px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                 >
-                  <MagnifyingGlassIcon className="mr-3 h-4 w-4 text-gray-400" aria-hidden="true" />
+                  Connect Twitter
+                </button>
+              </div> */}
+
+              <div className="mt-5 flex flex-grow flex-col"> 
+                <div>
+                  <nav className="flex-1 space-y-1 px-2 pb-4">
+                    {navigation.map((item) => (
+                      <Link
+                        key={item.name} 
+                        href={item.href}
+                        className={classNames(
+                          'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
+                          'group flex items-center px-2 py-2 text-sm font-medium rounded-md hover:bg-gray-50 hover:text-gray-900'
+                      )}>
+                        <item.icon
+                          className={classNames(
+                            'text-gray-400 group-hover:text-gray-500',
+                            'mr-3 flex-shrink-0 h-6 w-6 text-gray-400'
+                          )}
+                          aria-hidden="true"
+                        />
+                        {item.name}
+                        </Link>
+                    ))}
+                    <div className="pt-4">
+                      <button
+                        type="button"
+                        className="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-3 py-2 text-sm font-medium leading-4 text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                      >
+                        Get listed
+                        <AiOutlineRight className="ml-2" />
+                      </button>
+                    </div>
+                  </nav>
+                  <div className="border-t border-gray-200 mt-3" />
+                  <SearchBar />
+                  <div className="border-t border-gray-200 my-6"/>
+                  <div className="px-3">
+                    <div className="font-semibold">Join our community:</div>
+                    <div className="mt-2">
+                      <Link
+                        href="https://www.twitter.com"
+                        target="_blank"
+                      >
+                        <button className="flex items-center gap-2 bg-white px-2 py-1 rounded-md border-solid border-2 border-sky-500 text-sky-600 hover:bg-sky-500 hover:text-white">
+                        <BsTwitter /> Twitter
+                        </button>
+                      </Link>
+                    </div>
+                  </div>
                 </div>
-                <input
-                  type="text"
-                  name="search"
-                  id="search"
-                  className="block w-full rounded-md border-gray-300 pl-9 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                  placeholder="Search"
-                />
               </div>
-            </div>
 
-            <div className="mt-2 px-3">
-              <button
-                disabled
-                type="button"
-                style={{background: "#1da1f2"}}
-                className="inline-flex w-full justify-center items-center rounded-md border border-transparent px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-              >
-                Connect Twitter
-              </button>
-            </div>
-
-            <div className="mt-5 flex flex-grow flex-col">
-              <nav className="flex-1 space-y-1 px-2 pb-4">
-                {navigation.map((item) => (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    className={classNames(
-                      item.current ? 'bg-gray-100 text-gray-900' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
-                      'group flex items-center px-2 py-2 text-sm font-medium rounded-md'
-                    )}
-                  >
-                    <item.icon
-                      className={classNames(
-                        item.current ? 'text-gray-500' : 'text-gray-400 group-hover:text-gray-500',
-                        'mr-3 flex-shrink-0 h-6 w-6'
-                      )}
-                      aria-hidden="true"
-                    />
-                    {item.name}
-                  </a>
-                ))}
-              </nav>
-            </div>
           </div>
         </div>
         <div className="flex flex-1 flex-col md:pl-64">
