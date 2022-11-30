@@ -1,0 +1,1 @@
+export const TEST = "can be deleted, just for build";
