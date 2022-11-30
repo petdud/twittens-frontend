@@ -7,6 +7,7 @@ const API = `${BASE_API_URL}/${API_PATHS.COLLECTIONS}`;
 const collections = async (req: NextApiRequest, res: NextApiResponse<any>) => {
   try {
     const apiResponse = await axios.get(API);
+    console.log("API", API);
     res.status(200).json(apiResponse.data)
   } catch(err: AxiosError | any) {
     err.statusCode
