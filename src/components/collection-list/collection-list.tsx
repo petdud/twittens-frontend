@@ -9,7 +9,7 @@ export const CollectionList = () =>  {
   return (
     <div className="py-6">
       <div className="pb-4">
-        <MainViewHeader title={<div>Find your <span className="text-blue-400">Twitter</span> frENS!</div>} />
+        <MainViewHeader title={<div>Find your <span className="text-blue-400">Twitter</span> frens!</div>} />
       </div>
       <div className="max-w-full px-4 sm:px-6 md:px-8 mx-5">
         <ul role="list" className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6">

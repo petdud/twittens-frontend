@@ -7,7 +7,7 @@ interface ICollectionHeader {
   social: JSX.Element;
 }
 
-export const CollectionHeader = ({name, description, image, imageAlt, rightButtons}: ICollectionHeader) => (
+export const CollectionHeader = ({name, description, image, imageAlt, rightButtons, social}: ICollectionHeader) => (
   <div className="md:flex md:items-center md:justify-between md:space-x-5">
     <div className="flex items-start space-x-5">
       <div className="flex-shrink-0">
@@ -24,11 +24,14 @@ export const CollectionHeader = ({name, description, image, imageAlt, rightButto
         Use vertical padding to simulate center alignment when both lines of text are one line,
         but preserve the same layout if the text wraps without making the image jump around.
       */}
-      <div className="pt-1.5">
-        <h1 className="text-2xl font-bold text-gray-900">{name}</h1>
-        {description && <p className="text-sm font-medium text-gray-500">
-          {description}
-        </p>}
+      <div className="pt-1.5 flex justify-between items-between flex-col grow">
+        <div>
+          <h1 className="text-2xl font-bold text-gray-900">{name}</h1>
+          {description && <p className="text-sm font-medium text-gray-500">
+            {description}
+          </p>}
+        </div>
+        {social}
       </div>
     </div>
     {rightButtons && <div className="justify-stretch mt-6 flex flex-col-reverse space-y-4 space-y-reverse sm:flex-row-reverse sm:justify-end sm:space-y-0 sm:space-x-3 sm:space-x-reverse md:mt-0 md:flex-row md:space-x-3">

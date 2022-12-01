@@ -3,7 +3,7 @@ import { useCollection } from "../../hooks/use-collection";
 import { CollectionHeader } from "../collection-header/collection-header";
 import { MainViewHeader } from "../main-view-header/main-view-header";
 import { AiFillLock } from 'react-icons/ai';
-import { FaWallet } from 'react-icons/fa';
+import { FaDiscord, FaWallet } from 'react-icons/fa';
 import { GoVerified } from 'react-icons/go';
 import { shortenedAddress } from "../../utils";
 import { MdOutlineArrowBackIosNew } from "react-icons/md";
@@ -11,6 +11,7 @@ import { useHistory } from "../../core/history-manager-provider";
 import { useRouter } from "next/router";
 import React from "react";
 import { AvatarsWithPlaceholder } from "../avatars-with-placeholder/avatars-with-placeholder";
+import { BsTwitter } from "react-icons/bs";
 
 interface ICollectionView {
   slug: string;
@@ -42,9 +43,10 @@ export const CollectionView = ({slug}: ICollectionView) =>  {
   const usersWithTwitterCount = collection?.users?.filter(user => user.twitter).length || 0;
 
   return (
-    <div className="py-6 max-w-4xl">
+    <div className="py-6 max-w-4xl m-auto">
       <div className="max-w-full px-4 sm:px-6 md:px-8 mx-5">
 
+        {/* <div className="py-6 fixed h-68 bg-gray-100 z-10 w-full"> */}
         <nav aria-label="Breadcrumb" className="max-w-7xl mb-2">
           <ol role="list" className="flex items-center space-x-4">
             <li className="text-sm">
@@ -63,12 +65,25 @@ export const CollectionView = ({slug}: ICollectionView) =>  {
             name={<>{collection?.name} <span className="font-normal">on</span> <span className="text-blue-400">Twitter</span>!</>} 
             image={`/collections/${collection?.image}`}
             imageAlt={collection.name} 
-            description={<>Items: {collection?.supply} | Owners: {collection?.owners} ({Math.round((collection.owners / collection.supply) * 100)}%) | Owners with ENS: {usersWithNamesCount} ({Math.round((usersWithNamesCount / collection.owners) * 100)}%) | ENS with Twitter: {usersWithTwitterCount} ({Math.round((usersWithTwitterCount / usersWithNamesCount) * 100)}%)</>}
-            social={<>dasdd</>}
+            // description={<>Items: {collection?.supply} | Owners: {collection?.owners} ({Math.round((collection.owners / collection.supply) * 100)}%) | Owners with ENS: {usersWithNamesCount} ({Math.round((usersWithNamesCount / collection.owners) * 100)}%) | ENS with Twitter: {usersWithTwitterCount} ({Math.round((usersWithTwitterCount / usersWithNamesCount) * 100)}%)</>}
+            description={<>Items: {collection?.supply} | Owners: {collection?.owners} ({Math.round((collection.owners / collection.supply) * 100)}%)</>}
+            social={
+              <div className="flex gap-2 mt-4">
+                {collection.twitter && <Link href={`https://www.twitter.com/${collection.twitter}`} target="_blank">
+                  <BsTwitter className="text-sky-500" />
+                </Link> 
+                }
+                {collection.discord && <Link href={collection.discord} target="_blank">
+                  <FaDiscord className="text-indigo-800"/>
+                </Link> 
+                }
+              </div>
+            }
           />
         }
+        {/* </div> */}
 
-        <ul role="list" className="space-y-3 pt-8">
+        <ul role="list" className="space-y-8 py-12">
 
 
         {collection && collection.users?.map(({address, collections, name, twitter}) => {
