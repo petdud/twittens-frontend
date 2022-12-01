@@ -2,7 +2,7 @@ import { Fragment, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import {
   HomeIcon, 
-  UsersIcon,
+  QuestionMarkCircleIcon, 
   XMarkIcon,
 } from '@heroicons/react/24/outline';
 import { classNames } from '../utils';
@@ -11,11 +11,12 @@ import Image from 'next/image';
 import { SearchBar } from '../components/search-bar/search-bar';
 import { AiOutlineRight } from 'react-icons/ai';
 import { BsTwitter } from 'react-icons/bs';
+import { GOOGLE_FORM_GET_LISTED, TWITTENS_TWITTER_URL } from '../core/constants';
 BsTwitter
 
 const navigation = [
   { name: 'Home', href: '/', icon: HomeIcon },
-  { name: 'FAQ', href: '/faq', icon: UsersIcon },
+  { name: 'FAQ', href: '/faq', icon: QuestionMarkCircleIcon },
 ];
 
 interface IMainSlot {
@@ -37,7 +38,7 @@ export const MainSlot = ({children}: IMainSlot) => {
         <body class="h-full">
         ```
       */}
-      <div className='bg-gray-100 h-screen'>
+      <div className='bg-gray-100 min-h-screen'>
         <Transition.Root show={sidebarOpen} as={Fragment}>
           <Dialog as="div" className="relative z-40 md:hidden" onClose={setSidebarOpen}>
             <Transition.Child
@@ -174,13 +175,15 @@ export const MainSlot = ({children}: IMainSlot) => {
                         </Link>
                     ))}
                     <div className="pt-4">
-                      <button
-                        type="button"
-                        className="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-3 py-2 text-sm font-medium leading-4 text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                      >
-                        Get listed
-                        <AiOutlineRight className="ml-2" />
-                      </button>
+                      <Link href={GOOGLE_FORM_GET_LISTED} target="_blank">
+                        <button
+                          type="button"
+                          className="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-3 py-2 text-sm font-medium leading-4 text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                        >
+                          Get listed
+                          <AiOutlineRight className="ml-2" />
+                        </button>
+                      </Link>
                     </div>
                   </nav>
                   <div className="border-t border-gray-200 mt-3" />
@@ -190,7 +193,7 @@ export const MainSlot = ({children}: IMainSlot) => {
                     <div className="font-semibold">Join our community:</div>
                     <div className="mt-2">
                       <Link
-                        href="https://www.twitter.com/twittensxyz"
+                        href={TWITTENS_TWITTER_URL}
                         target="_blank"
                       >
                         <button className="flex items-center gap-2 bg-white px-2 py-1 rounded-md border-solid border-2 border-sky-500 text-sky-600 hover:bg-sky-500 hover:text-white">
