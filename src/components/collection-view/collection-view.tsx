@@ -43,7 +43,7 @@ export const CollectionView = ({slug}: ICollectionView) =>  {
   const usersWithTwitterCount = collection?.users?.filter(user => user.twitter).length || 0;
 
   return (
-    <div className="py-6 max-w-5xl m-auto">
+    <div className="md:py-6 py-2 max-w-5xl m-auto">
       <div className="max-w-full px-4 sm:px-6 md:px-8 mx-5">
 
         {/* <div className="py-6 fixed h-68 bg-gray-100 z-10 w-full"> */}

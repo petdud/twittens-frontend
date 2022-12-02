@@ -187,7 +187,6 @@ export const MainSlot = ({children}: IMainSlot) => {
               <span className="sr-only">Open sidebar</span>
               <Bars3Icon className="h-6 w-6" aria-hidden="true" />
             </button>
-            <SearchBar />
           </div>
 
           <main className="flex-1">
