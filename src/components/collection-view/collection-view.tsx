@@ -50,11 +50,11 @@ export const CollectionView = ({slug}: ICollectionView) =>  {
         <nav aria-label="Breadcrumb" className="max-w-7xl mb-2">
           <ol role="list" className="flex items-center space-x-4">
             <li className="text-sm">
-              <a onClick={onNavigationClick}  aria-current="page" className="font-medium text-gray-500 hover:text-gray-600 cursor-pointer hover:underline">
-                <div className="flex items-center gap-1">
+              <button onClick={onNavigationClick} aria-current="page" className="font-medium text-gray-500 hover:text-gray-600 cursor-pointer hover:underline">
+                <div className="flex items-center gap-1 p-1">
                   <MdOutlineArrowBackIosNew /> {canGoBack ? "Back" : "All collections"}
                 </div>
-              </a>
+              </button>
             </li>
           </ol>
         </nav>
@@ -68,12 +68,12 @@ export const CollectionView = ({slug}: ICollectionView) =>  {
             // description={<>Items: {collection?.supply} | Owners: {collection?.owners} ({Math.round((collection.owners / collection.supply) * 100)}%) | Owners with ENS: {usersWithNamesCount} ({Math.round((usersWithNamesCount / collection.owners) * 100)}%) | ENS with Twitter: {usersWithTwitterCount} ({Math.round((usersWithTwitterCount / usersWithNamesCount) * 100)}%)</>}
             description={<>Items: {collection?.supply} | Owners: {collection?.owners} ({Math.round((collection.owners / collection.supply) * 100)}%)</>}
             social={
-              <div className="flex gap-2 mt-4">
-                {collection.twitter && <Link href={`https://www.twitter.com/${collection.twitter}`} target="_blank">
+              <div className="flex gap-1 mt-2">
+                {collection.twitter && <Link href={`https://www.twitter.com/${collection.twitter}`} target="_blank" className="p-1">
                   <BsTwitter className="text-sky-500" />
                 </Link> 
                 }
-                {collection.discord && <Link href={collection.discord} target="_blank">
+                {collection.discord && <Link href={collection.discord} target="_blank" className="p-1">
                   <FaDiscord className="text-indigo-800"/>
                 </Link> 
                 }
@@ -129,7 +129,7 @@ export const CollectionView = ({slug}: ICollectionView) =>  {
                       <div className="flex gap-4 text-sm items-center">
                         <div><span className="font-semibold">{twitter?.following.toLocaleString()}</span> <span className="text-gray-500 text-sm font-normal">Following</span></div>
                         <div><span className="font-semibold">{twitter?.followers.toLocaleString()}</span> <span className="text-gray-500 text-sm font-normal">Followers</span></div>
-                        {userCollections.length > 0 && <div className="flex items-center gap-1">
+                        {userCollections.length > 0 && <div className="flex items-center gap-1 w-full">
                           <AvatarsWithPlaceholder collections={userCollections}/> <span className="text-gray-500 text-sm font-normal">Communities</span>
                         </div>}
                       </div>

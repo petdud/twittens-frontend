@@ -24,9 +24,9 @@ export const CollectionHeader = ({name, description, image, imageAlt, rightButto
         Use vertical padding to simulate center alignment when both lines of text are one line,
         but preserve the same layout if the text wraps without making the image jump around.
       */}
-      <div className="pt-1.5 flex justify-between items-between flex-col grow">
+      <div className="pt-1 flex justify-between items-between flex-col grow">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">{name}</h1>
+          <h1 className="text-3xl font-bold text-gray-900">{name}</h1>
           {description && <p className="text-sm font-medium text-gray-500">
             {description}
           </p>}
