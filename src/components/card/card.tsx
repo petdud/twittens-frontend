@@ -5,11 +5,11 @@ interface ICard {
 }
 
 export const Card = ({image, name, description}: ICard) => (
-  <div className="rounded-lg shadow-lg bg-white max-w-sm">
+  <div className="rounded-lg shadow-lg bg-white max-w-sm dark:bg-neutral-800">
     <img className="rounded-t-lg" src={`collections/${image}`} alt={name} />
     <div className="p-4">
-      <h5 className="text-gray-900 text-lg font-medium mb-1">{name}</h5>
-      <p className="text-gray-500 text-sm flex items-center">
+      <h5 className="text-gray-900 text-lg font-medium mb-1 dark:text-white">{name}</h5>
+      <p className="text-gray-500 text-sm flex items-center dark:text-neutral-200">
         {description}
       </p>
     </div>

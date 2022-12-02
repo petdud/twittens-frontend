@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import React from "react";
 import { BsTwitter } from "react-icons/bs";
 import { TwitterList, TwitterListSkeleton } from "../twitter-list/twitter-list";
+import { Divider } from "../../layouts/main-slot";
 
 interface ICollectionView {
   slug: string;
@@ -70,12 +71,12 @@ interface ISocialLinks {
 
 const SocialLinks = ({discord, twitter}: ISocialLinks) => (
   <div className="flex mt-1">
-    {twitter && <Link href={`https://www.twitter.com/${twitter}`} target="_blank" className="p-2 hover:bg-gray-200 rounded-md">
-      <BsTwitter className="text-sky-500" />
+    {twitter && <Link href={`https://www.twitter.com/${twitter}`} target="_blank" className="p-2 hover:bg-gray-200 rounded-md dark:hover:bg-gray-700">
+      <BsTwitter className="text-sky-500 dark:text-sky-300" />
     </Link> 
     }
-    {discord && <Link href={discord} target="_blank" className="p-2 hover:bg-gray-200 rounded-md">
-      <FaDiscord className="text-indigo-800"/>
+    {discord && <Link href={discord} target="_blank" className="p-2 hover:bg-gray-200 rounded-md dark:hover:bg-gray-700">
+      <FaDiscord className="text-indigo-800 dark:text-indigo-500"/>
     </Link> 
   }
   </div>
@@ -95,7 +96,7 @@ const BreadCrumbNavigation = () => {
       <nav aria-label="Breadcrumb" className="mb-2">
         <ol role="list" className="flex items-center space-x-4">
           <li className="text-sm">
-            <button onClick={onNavigationClick} aria-current="page" className="font-medium text-gray-500 hover:text-gray-600 cursor-pointer hover:underline">
+            <button onClick={onNavigationClick} aria-current="page" className="font-medium text-gray-500 dark:text-neutral-300 hover:text-gray-600 dark:hover:text-white cursor-pointer hover:underline">
               <div className="flex items-center gap-1 p-1">
                 <MdOutlineArrowBackIosNew /> {canGoBack ? "Back" : "All collections"}
               </div>
@@ -103,7 +104,7 @@ const BreadCrumbNavigation = () => {
           </li>
         </ol>
       </nav>
-      <div className="flex-grow border-t border-gray-200 mb-4"></div>
+      <Divider wrapperClass="mb-4" />
     </>
   )
 }

@@ -1,5 +1,6 @@
+import React from 'react';
 import { Fragment, useState } from 'react';
-import { Dialog, Transition } from '@headlessui/react';
+import { Dialog, Switch, Transition } from '@headlessui/react';
 import {
   Bars3Icon,
   HomeIcon, 
@@ -12,7 +13,9 @@ import Image from 'next/image';
 import { SearchBar } from '../components/search-bar/search-bar';
 import { AiOutlineRight } from 'react-icons/ai';
 import { BsTwitter } from 'react-icons/bs';
+import { ImContrast } from 'react-icons/im';
 import { GOOGLE_FORM_GET_LISTED, TWITTENS_TWITTER_URL } from '../core/constants';
+import { useThemeContext } from '../core/theme-provider';
 
 const navigation = [
   { name: 'Home', href: '/', icon: HomeIcon },
@@ -28,7 +31,7 @@ export const MainSlot = ({children}: IMainSlot) => {
 
   return (
     <>
-      <div className='bg-gray-100 min-h-screen h-full'>
+      <div className='bg-gray-100 min-h-screen h-full dark:bg-zinc-900'>
         <Transition.Root show={sidebarOpen} as={Fragment}>
           <Dialog as="div" className="relative z-40 md:hidden" onClose={setSidebarOpen}>
             <Transition.Child
@@ -53,7 +56,7 @@ export const MainSlot = ({children}: IMainSlot) => {
                 leaveFrom="translate-x-0"
                 leaveTo="-translate-x-full"
               >
-                <Dialog.Panel className="relative flex w-full max-w-xs flex-1 flex-col bg-white pt-5 pb-4">
+                <Dialog.Panel className="relative flex w-full max-w-xs flex-1 flex-col bg-white pt-5 pb-4 dark:bg-neutral-800 ">
                   <Transition.Child
                     as={Fragment}
                     enter="ease-in-out duration-300"
@@ -93,7 +96,7 @@ export const MainSlot = ({children}: IMainSlot) => {
                           key={item.name}
                           href={item.href}
                           className={classNames(
-                            'text-gray-600 hover:bg-gray-100 hover:text-gray-900',
+                            'text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-neutral-200 hover:dark:text-neutral-100 hover:dark:bg-neutral-900',
                             'group flex items-center px-2 py-2 text-base font-medium rounded-md'
                           )}
                         >
@@ -111,6 +114,8 @@ export const MainSlot = ({children}: IMainSlot) => {
                     </nav>
                     <Divider wrapperClass="my-6" />
                     <JoinCommunitySection />
+                    <Divider wrapperClass="my-6" />
+                    <ThemeSettings />
                   </div>
 
                   {/* <FooterMenu /> */}
@@ -128,7 +133,7 @@ export const MainSlot = ({children}: IMainSlot) => {
         {/* Static sidebar for desktop */}
         <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col">
           {/* Sidebar component, swap this element with another sidebar if you like */}
-          <div className="flex flex-grow flex-col overflow-y-auto border-r border-gray-200 bg-white pt-5 px-4">
+          <div className="flex flex-grow flex-col overflow-y-auto border-r border-gray-200 bg-white pt-5 px-4 dark:bg-neutral-800 dark:border-neutral-700">
             <div className="flex flex-shrink-0 items-center justify-center px-4">
               <Link href={"/"}>
                 <Image
@@ -149,13 +154,13 @@ export const MainSlot = ({children}: IMainSlot) => {
                       key={item.name} 
                       href={item.href}
                       className={classNames(
-                        'text-gray-600 hover:bg-gray-100 hover:text-gray-900',
-                        'group flex items-center px-2 py-2 text-sm font-medium rounded-md hover:bg-gray-50 hover:text-gray-900'
+                        'text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-neutral-200',
+                        'group flex items-center px-2 py-2 text-sm font-medium rounded-md hover:bg-gray-50 hover:text-gray-900 hover:dark:bg-neutral-900 hover:dark:text-neutral-100'
                     )}>
                       <item.icon
                         className={classNames(
-                          'text-gray-400 group-hover:text-gray-500',
-                          'mr-3 flex-shrink-0 h-6 w-6 text-gray-400'
+                          'text-gray-400 group-hover:text-gray-500 dark:group-hover:text-gray-200',
+                          'mr-3 flex-shrink-0 h-6 w-6 text-gray-400 dark:text-neutral-200'
                         )}
                         aria-hidden="true"
                       />
@@ -170,6 +175,8 @@ export const MainSlot = ({children}: IMainSlot) => {
                 </div>
                 <Divider wrapperClass="my-6" />
                 <JoinCommunitySection />
+                <Divider wrapperClass="my-6" />
+                <ThemeSettings />
               </div>
             </div>
             {/* <FooterMenu /> */}
@@ -177,7 +184,7 @@ export const MainSlot = ({children}: IMainSlot) => {
           </div>
         </div>
         <div className="flex flex-1 flex-col md:pl-64">
-          <div className="sticky top-0 z-10 bg-gray-100 pl-1 pt-1 sm:pl-3 sm:pt-3 md:hidden">
+          <div className="sticky top-0 z-10 bg-gray-100 pl-1 pt-1 sm:pl-3 sm:pt-3 md:hidden dark:bg-zinc-900">
             <div className="flex justify-around items-center">
               <div className="justify-start flex-1 ">
                 <button
@@ -186,12 +193,11 @@ export const MainSlot = ({children}: IMainSlot) => {
                   onClick={() => setSidebarOpen(true)}
                 >
                   <span className="sr-only">Open sidebar</span>
-                  <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+                  <Bars3Icon className="h-6 w-6 dark:text-white" aria-hidden="true" />
                 </button>
               </div>
               <Link href={"/"}>
                 <img
-                  className=""
                   width="100"
                   src="/twittens_logo.png"
                   alt="Twittens"
@@ -212,14 +218,14 @@ export const MainSlot = ({children}: IMainSlot) => {
 
 const JoinCommunitySection = () => (
   <div className="px-3">
-    <div className="font-semibold">Join our community:</div>
+    <div className="font-semibold dark:text-neutral-200">Join our community:</div>
     <div className="mt-2">
       <Link
         href={TWITTENS_TWITTER_URL}
         target="_blank"
       >
-        <button className="flex items-center gap-2 bg-white px-2 py-1 rounded-md border-solid border-2 border-sky-500 text-sky-600 hover:bg-sky-500 hover:text-white">
-        <BsTwitter /> Twitter
+        <button className="flex items-center gap-2 bg-white dark:bg-neutral-900 px-2 py-1 rounded-md border-solid border-2 border-sky-500 text-sky-600 hover:bg-sky-500 hover:text-white">
+          <BsTwitter /> Twitter
         </button>
       </Link>
     </div>
@@ -231,7 +237,7 @@ const GetListedButton = () => (
     <Link href={GOOGLE_FORM_GET_LISTED} target="_blank">
       <button
         type="button"
-        className="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-3 py-2 text-sm font-medium leading-4 text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+        className="inline-flex items-center rounded-md border border-transparent bg-indigo-600 dark:bg-indigo-800 px-3 py-2 text-sm font-medium leading-4 text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
       >
         Get listed
         <AiOutlineRight className="ml-2" />
@@ -260,6 +266,53 @@ const GetListedButton = () => (
 //   </div>
 // )
 
-const Divider = ({wrapperClass}: {wrapperClass?: string}) => (
-  <div className={`border-t border-gray-200 ${wrapperClass}`} />
+export const Divider = ({wrapperClass}: {wrapperClass?: string}) => (
+  <div className={`border-t border-gray-200 dark:border-neutral-700 ${wrapperClass}`} />
 )
+
+const ThemeSettings = () => {
+  const { setTheme, theme } = useThemeContext();
+  // const [enabled, setEnabled] = useState(theme === "dark" ? true : false);
+  const isEnabled = theme === "dark" ? true : false;
+
+  const onChange = React.useCallback((val: boolean) => {
+    const theme = val ? "dark" : "light";
+    setTheme(theme);
+  }, [setTheme])
+
+  return (
+    <Switch.Group as="div" className="cursor-pointer">
+      <div className="flex items-center justify-around grow">
+        <Switch.Label as="span" className="ml-3">
+          <div className="flex items-center gap-2">
+          <span className="pr-4 text-white dark:text-neutral-200"><ImContrast className="text-black dark:text-white" /></span>
+            <span className="text-sm font-medium text-gray-900 dark:text-neutral-200">DARK MODE</span>
+          </div>
+        </Switch.Label>
+        <Switch
+          checked={isEnabled}
+          onChange={onChange}
+          className="group relative inline-flex h-5 w-10 flex-shrink-0 cursor-pointer items-center justify-center rounded-full focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+        >
+          <span className="sr-only">Use setting</span>
+          {/* // this */}
+          <span aria-hidden="true" className="pointer-events-none absolute h-full w-full rounded-md bg-white dark:bg-neutral-800" /> 
+          <span
+            aria-hidden="true"
+            className={classNames(
+              isEnabled ? 'bg-indigo-600' : 'bg-gray-200 dark:bg-neutral-700',
+              'pointer-events-none absolute mx-auto h-4 w-9 rounded-full transition-colors duration-200 ease-in-out'
+            )}
+          />
+          <span
+            aria-hidden="true"
+            className={classNames(
+              isEnabled ? 'translate-x-5' : 'translate-x-0',
+              'pointer-events-none absolute left-0 inline-block h-5 w-5 transform rounded-full border border-gray-200 bg-white dark:border-neutral-800 dark:border-neutral-800 shadow ring-0 transition-transform duration-200 ease-in-out'
+            )}
+          />
+        </Switch>
+      </div>
+    </Switch.Group>
+  )
+}
