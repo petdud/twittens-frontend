@@ -16,9 +16,11 @@ export default function Collection() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="bg-gray-100 h-full">
-        <MainSlot>
-          <CollectionView slug={slug} />
-        </MainSlot>
+        {slug && 
+          <MainSlot>
+            <CollectionView slug={slug} />
+          </MainSlot>
+        }
       </div>
     </div>
   );

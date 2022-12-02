@@ -27,7 +27,7 @@ export const CollectionList = () =>  {
       <div className="max-w-full px-2 sm:px-6 md:px-8 mx-2 md:mx-5">
         <ul role="list" className="grid grid-cols-2 gap-6 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6">
           {isLoading ? 
-            Array.from(Array(10)).map(i =>  (
+            ["1a", "2a", "3a", "4a", "5a", "6a", "7a", "8a", "9a"].map(i =>  (
               <li key={i} className="flex justify-center relative top-0">
                 <CardSkeleton />
               </li>

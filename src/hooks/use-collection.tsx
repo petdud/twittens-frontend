@@ -13,13 +13,14 @@ export const useCollection = (slug: string): {data?: ICollection, isLoading: boo
       data && setData(data);
       setIsLoading(false);
     } catch(err) {
+      console.log(`Error fetching collection ${slug}:`, err);
       setIsLoading(false);
       setError(true);
     }
   }, [slug])
 
   useEffect(() => {
-      fetchCollection();
+    fetchCollection();
   }, [fetchCollection]);
 
   return {

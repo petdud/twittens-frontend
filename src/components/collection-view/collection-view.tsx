@@ -8,7 +8,7 @@ import { useHistory } from "../../core/history-manager-provider";
 import { useRouter } from "next/router";
 import React from "react";
 import { BsTwitter } from "react-icons/bs";
-import { TwitterList } from "../twitter-list/twitter-list";
+import { TwitterList, TwitterListSkeleton } from "../twitter-list/twitter-list";
 
 interface ICollectionView {
   slug: string;
@@ -58,7 +58,7 @@ const Collection = ({slug}: {slug: string}) => {
             social={<SocialLinks twitter={collection?.twitter} discord={collection?.discord} />}
           />
       }
-      {!isLoading && <TwitterList collection={collection} />}
+      {isLoading ? <TwitterListSkeleton /> : <TwitterList collection={collection} />}
     </>
   )
 }
