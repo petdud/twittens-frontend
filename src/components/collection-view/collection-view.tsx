@@ -43,11 +43,11 @@ export const CollectionView = ({slug}: ICollectionView) =>  {
   const usersWithTwitterCount = collection?.users?.filter(user => user.twitter).length || 0;
 
   return (
-    <div className="py-6 max-w-4xl m-auto">
+    <div className="py-6 max-w-5xl m-auto">
       <div className="max-w-full px-4 sm:px-6 md:px-8 mx-5">
 
         {/* <div className="py-6 fixed h-68 bg-gray-100 z-10 w-full"> */}
-        <nav aria-label="Breadcrumb" className="max-w-7xl mb-2">
+        <nav aria-label="Breadcrumb" className="mb-2">
           <ol role="list" className="flex items-center space-x-4">
             <li className="text-sm">
               <button onClick={onNavigationClick} aria-current="page" className="font-medium text-gray-500 hover:text-gray-600 cursor-pointer hover:underline">
@@ -83,64 +83,63 @@ export const CollectionView = ({slug}: ICollectionView) =>  {
         }
         {/* </div> */}
 
-        <ul role="list" className="space-y-8 py-12">
-
-
-        {collection && collection.users?.map(({address, collections, name, twitter}) => {
-          const userCollections = collections.filter(col => col.slug !== collection?.slug);
-          return (
-            twitter?.name && (<li
-              key={address}
-              className="overflow-hidden bg-white shadow sm:rounded-md"
-            >
-              <div className="px-4 py-1 bg-slate-50 border-b-2 border-slate-100 flex items-center gap-3 justify-between">
-                <div className="flex items-center gap-2">
-                  <FaWallet className="text-gray-400" /> {name} <span className="text-xs text-gray-500">({shortenedAddress(address)})</span>
+        <ul role="list" className="space-y-8 py-12 max-w-2xl">
+          {collection && collection.users?.map(({address, collections, name, twitter}) => {
+            const userCollections = collections.filter(col => col.slug !== collection?.slug);
+            return (
+              twitter?.name && (<li
+                key={address}
+                className="overflow-hidden bg-white shadow sm:rounded-md"
+              >
+                <div className="px-4 py-1 bg-slate-50 border-b-2 border-slate-100 flex items-center gap-3 justify-between">
+                  <div className="flex items-center gap-2">
+                    <FaWallet className="text-gray-400" /> {name} <span className="text-xs text-gray-500">({shortenedAddress(address)})</span>
+                  </div>
                 </div>
-              </div>
-              <div className="px-4 py-4 sm:px-6 focus-within:ring-indigo-500 hover:bg-gray-50 focus-within:ring-inset">
-                  <a
-                    href={`https://www.twitter.com/${twitter.username}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                  <div className="relative flex items-start">
-                    <div className="flex-shrink-0 flex">
-                      <img className="h-16 w-16 rounded-full mr-4" src={twitter?.avatar} alt="" />
-                    </div>
-                    <div className="min-w-0 flex-1 flex gap-2 flex-col">
-                      <div>
+                <div className="px-4 py-4 sm:px-6 focus-within:ring-indigo-500 hover:bg-gray-50 focus-within:ring-inset">
+                    <a
+                      href={`https://www.twitter.com/${twitter.username}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                    <div className="relative flex items-start">
+                      <div className="flex-shrink-0 flex">
+                        {/* external image will not work with Image next/image */}
+                        <img className="h-16 w-16 rounded-full mr-4" src={twitter?.avatar} alt={twitter.name} aria-hidden="true" />
+                      </div>
+                      <div className="min-w-0 flex-1 flex gap-2 flex-col">
+                        <div>
 
-                        <div className="flex items-center">
-                          <h3 className="text-base font-medium text-gray-900">{twitter?.name}</h3>
-                          {twitter?.verified && <span className="inline-block flex-shrink-0 text-sky-400 pl-1.5">
-                            <GoVerified aria-label="Twitter verified" />
-                          </span>}
-                          {twitter?.protected && <span className="inline-block flex-shrink-0 text-yellow-600 pl-1.5">
-                            <AiFillLock aria-label="Twitter private account" />
-                          </span>}
+                          <div className="flex items-center">
+                            <h3 className="text-base font-medium text-gray-900">{twitter?.name}</h3>
+                            {twitter?.verified && <span className="inline-block flex-shrink-0 text-sky-400 pl-1.5">
+                              <GoVerified aria-label="Twitter verified" />
+                            </span>}
+                            {twitter?.protected && <span className="inline-block flex-shrink-0 text-yellow-600 pl-1.5">
+                              <AiFillLock aria-label="Twitter private account" />
+                            </span>}
+                          </div>
+
+                          <p className="text-sm text-gray-500">@{twitter?.username}</p>
                         </div>
-
-                        <p className="text-sm text-gray-500">@{twitter?.username}</p>
+                        <div>
+                          <p className="text-sm text-gray-700">{twitter?.description}</p>
+                        </div>
+                        <div className="flex gap-4 text-sm items-center">
+                          <div className="flex flex-col md:flex-row md:gap-1"><span className="font-semibold">{twitter?.following.toLocaleString()}</span> <span className="text-gray-500 text-sm font-normal">Following</span></div>
+                          <div className="flex flex-col md:flex-row md:gap-1"><span className="font-semibold">{twitter?.followers.toLocaleString()}</span> <span className="text-gray-500 text-sm font-normal">Followers</span></div>
+                          {userCollections.length > 0 && <div className="flex items-center flex-col md:flex-row gap-1">
+                            <AvatarsWithPlaceholder collections={userCollections}/> <span className="text-gray-500 text-sm font-normal">Communities</span>
+                          </div>}
+                        </div>
                       </div>
-                      <div>
-                        <p className="text-sm text-gray-700 text-gray-600">{twitter?.description}</p>
-                      </div>
-                      <div className="flex gap-4 text-sm items-center">
-                        <div className="flex flex-col md:flex-row md:gap-1"><span className="font-semibold">{twitter?.following.toLocaleString()}</span> <span className="text-gray-500 text-sm font-normal">Following</span></div>
-                        <div className="flex flex-col md:flex-row md:gap-1"><span className="font-semibold">{twitter?.followers.toLocaleString()}</span> <span className="text-gray-500 text-sm font-normal">Followers</span></div>
-                        {userCollections.length > 0 && <div className="flex items-center flex-col md:flex-row gap-1">
-                          <AvatarsWithPlaceholder collections={userCollections}/> <span className="text-gray-500 text-sm font-normal">Communities</span>
-                        </div>}
-                      </div>
-                    </div>
+                  </div>
+                    </a>
                 </div>
-                  </a>
-              </div>
-            </li>
+              </li>
+              )
             )
-          )
-        })}
+          })}
         </ul>
 
       </div>
