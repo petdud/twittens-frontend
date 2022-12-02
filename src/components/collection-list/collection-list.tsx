@@ -24,7 +24,7 @@ export const CollectionList = () =>  {
           <SearchBar />
         </div>
       </div>
-      <div className="max-w-full px-4 sm:px-6 md:px-8 mx-5">
+      <div className="max-w-full px-2 sm:px-6 md:px-8 mx-2 md:mx-5">
         <ul role="list" className="grid grid-cols-2 gap-6 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6">
           {isLoading ? 
             Array.from(Array(10)).map(i =>  (

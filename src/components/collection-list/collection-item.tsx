@@ -11,7 +11,7 @@ interface ICollectionItem {
 
 export const CollectionItem = ({ description, image, name, path}: ICollectionItem) => (
   <li
-    className="flex justify-center relative top-0 hover:-top-2 transition top-ease delay-200"
+    className="flex justify-center relative top-0 hover:-top-1 transition top-ease delay-200"
   >
     <Link href={path}>
       <Card description={description} image={image} name={name} />
