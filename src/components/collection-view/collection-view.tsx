@@ -69,11 +69,11 @@ export const CollectionView = ({slug}: ICollectionView) =>  {
             description={<>Items: {collection?.supply} | Owners: {collection?.owners} ({Math.round((collection.owners / collection.supply) * 100)}%)</>}
             social={
               <div className="flex gap-1 mt-2">
-                {collection.twitter && <Link href={`https://www.twitter.com/${collection.twitter}`} target="_blank" className="p-1">
+                {collection.twitter && <Link href={`https://www.twitter.com/${collection.twitter}`} target="_blank" className="p-1 hover:bg-gray-200 rounded-md">
                   <BsTwitter className="text-sky-500" />
                 </Link> 
                 }
-                {collection.discord && <Link href={collection.discord} target="_blank" className="p-1">
+                {collection.discord && <Link href={collection.discord} target="_blank" className="p-1 hover:bg-gray-200 rounded-md">
                   <FaDiscord className="text-indigo-800"/>
                 </Link> 
                 }
