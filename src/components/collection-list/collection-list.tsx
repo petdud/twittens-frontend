@@ -20,7 +20,7 @@ export const CollectionList = () =>  {
           {collections && collections?.map(({image, name, users, slug}) => {
             const userTwitterCount = users.filter(user => user.twitter).length;
             return ( 
-              <CollectionItem key={slug} description={`${userTwitterCount} members are on Twitter`} image={image} name={name} path={`/collections/${slug}`} />
+              <CollectionItem key={slug} description={`${userTwitterCount} members on Twitter`} image={image} name={name} path={`/collections/${slug}`} />
             )
           })}
         </ul>

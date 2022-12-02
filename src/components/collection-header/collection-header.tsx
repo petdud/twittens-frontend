@@ -1,8 +1,10 @@
+
+import Image from "next/image";
 interface ICollectionHeader {
   name: string | JSX.Element;
   image: string;
   description?: string | JSX.Element;
-  imageAlt?: string;
+  imageAlt: string;
   rightButtons?: JSX.Element;
   social: JSX.Element;
 }
@@ -12,9 +14,11 @@ export const CollectionHeader = ({name, description, image, imageAlt, rightButto
     <div className="flex items-start space-x-5">
       <div className="flex-shrink-0">
         <div className="relative">
-          <img
-            className="h-24 w-24 rounded-full"
+          <Image
+            className="rounded-full"
             src={image}
+            width={96}
+            height={96}
             alt={imageAlt}
           />
           <span className="absolute inset-0 rounded-full shadow-inner" aria-hidden="true" />
@@ -26,7 +30,7 @@ export const CollectionHeader = ({name, description, image, imageAlt, rightButto
       */}
       <div className="pt-1 flex justify-between items-between flex-col grow">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">{name}</h1>
+          <h1 className="text-2xl md:text-3xl font-bold text-gray-900">{name}</h1>
           {description && <p className="text-sm font-medium text-gray-500">
             {description}
           </p>}

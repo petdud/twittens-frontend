@@ -66,7 +66,7 @@ export const CollectionView = ({slug}: ICollectionView) =>  {
             image={`/collections/${collection?.image}`}
             imageAlt={collection.name} 
             // description={<>Items: {collection?.supply} | Owners: {collection?.owners} ({Math.round((collection.owners / collection.supply) * 100)}%) | Owners with ENS: {usersWithNamesCount} ({Math.round((usersWithNamesCount / collection.owners) * 100)}%) | ENS with Twitter: {usersWithTwitterCount} ({Math.round((usersWithTwitterCount / usersWithNamesCount) * 100)}%)</>}
-            description={<>Items: {collection?.supply} | Owners: {collection?.owners} ({Math.round((collection.owners / collection.supply) * 100)}%)</>}
+            description={<>Items: {collection?.supply} | Owners: {collection?.owners}</>}
             social={
               <div className="flex gap-1 mt-1">
                 {collection.twitter && <Link href={`https://www.twitter.com/${collection.twitter}`} target="_blank" className="p-2 hover:bg-gray-200 rounded-md">
@@ -106,7 +106,7 @@ export const CollectionView = ({slug}: ICollectionView) =>  {
                       {twitter?.avatar && 
                         <div className="flex-shrink-0 flex">
                           {/* external image will not work with Image next/image */}
-                          <img className="h-16 w-16 rounded-full mr-4" src={twitter?.avatar} alt={twitter.username} aria-hidden="true" />
+                          <img className="h-12 w-12 md:h-16 md:w-16 rounded-full mr-4" src={twitter?.avatar} alt={twitter.username} aria-hidden="true" />
                         </div>}
                       <div className="min-w-0 flex-1 flex gap-2 flex-col">
                         <div>
@@ -124,7 +124,7 @@ export const CollectionView = ({slug}: ICollectionView) =>  {
                           <p className="text-sm text-gray-500">@{twitter?.username}</p>
                         </div>
                         <div>
-                          <p className="text-sm text-gray-700">{twitter?.description}</p>
+                          <p className="text-sm text-gray-600">{twitter?.description}</p>
                         </div>
                         <div className="flex gap-4 text-sm items-center">
                           <div className="flex flex-col-reverse md:flex-row md:gap-1"><span className="font-semibold">{twitter?.following.toLocaleString()}</span> <span className="text-gray-500 text-sm font-normal">Following</span></div>
