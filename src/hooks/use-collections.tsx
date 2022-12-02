@@ -1,8 +1,9 @@
 import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
+import { ICollection } from "../core/collection.interface";
 
 export const useCollections = () => {
-  const [data, setData] = useState<any[]>();
+  const [data, setData] = useState<ICollection[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
 

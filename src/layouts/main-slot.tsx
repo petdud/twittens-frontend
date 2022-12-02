@@ -12,7 +12,6 @@ import { SearchBar } from '../components/search-bar/search-bar';
 import { AiOutlineRight } from 'react-icons/ai';
 import { BsTwitter } from 'react-icons/bs';
 import { GOOGLE_FORM_GET_LISTED, TWITTENS_TWITTER_URL } from '../core/constants';
-BsTwitter
 
 const navigation = [
   { name: 'Home', href: '/', icon: HomeIcon },
@@ -98,7 +97,7 @@ export const MainSlot = ({children}: IMainSlot) => {
                           key={item.name}
                           href={item.href}
                           className={classNames(
-                            'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
+                            'text-gray-600 hover:bg-gray-100 hover:text-gray-900',
                             'group flex items-center px-2 py-2 text-base font-medium rounded-md'
                           )}
                         >
@@ -161,7 +160,7 @@ export const MainSlot = ({children}: IMainSlot) => {
                         key={item.name} 
                         href={item.href}
                         className={classNames(
-                          'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
+                          'text-gray-600 hover:bg-gray-100 hover:text-gray-900',
                           'group flex items-center px-2 py-2 text-sm font-medium rounded-md hover:bg-gray-50 hover:text-gray-900'
                       )}>
                         <item.icon
