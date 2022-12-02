@@ -127,9 +127,9 @@ export const CollectionView = ({slug}: ICollectionView) =>  {
                         <p className="text-sm text-gray-700 text-gray-600">{twitter?.description}</p>
                       </div>
                       <div className="flex gap-4 text-sm items-center">
-                        <div><span className="font-semibold">{twitter?.following.toLocaleString()}</span> <span className="text-gray-500 text-sm font-normal">Following</span></div>
-                        <div><span className="font-semibold">{twitter?.followers.toLocaleString()}</span> <span className="text-gray-500 text-sm font-normal">Followers</span></div>
-                        {userCollections.length > 0 && <div className="flex items-center gap-1 w-full">
+                        <div className="flex flex-col md:flex-row md:gap-1"><span className="font-semibold">{twitter?.following.toLocaleString()}</span> <span className="text-gray-500 text-sm font-normal">Following</span></div>
+                        <div className="flex flex-col md:flex-row md:gap-1"><span className="font-semibold">{twitter?.followers.toLocaleString()}</span> <span className="text-gray-500 text-sm font-normal">Followers</span></div>
+                        {userCollections.length > 0 && <div className="flex items-center flex-col md:flex-row gap-1">
                           <AvatarsWithPlaceholder collections={userCollections}/> <span className="text-gray-500 text-sm font-normal">Communities</span>
                         </div>}
                       </div>

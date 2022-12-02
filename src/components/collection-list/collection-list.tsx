@@ -12,8 +12,7 @@ export const CollectionList = () =>  {
         <MainViewHeader title={<div>Find your <span className="text-blue-400">Twitter</span> frens!</div>} />
       </div>
       <div className="max-w-full px-4 sm:px-6 md:px-8 mx-5">
-        <ul role="list" className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6">
-
+        <ul role="list" className="grid grid-cols-2 gap-6 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6">
           {collections && collections?.map(({image, name, users, slug}) => {
             const userTwitterCount = users.filter(user => user.twitter).length;
             return ( 

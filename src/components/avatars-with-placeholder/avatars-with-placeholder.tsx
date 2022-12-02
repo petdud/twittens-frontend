@@ -1,4 +1,5 @@
 import { ICollection } from "../../core/collection.interface";
+import Image from "next/image";
 
 const SHOW_MAX_MUTUAL_COMMUNITIES = 4;
 
@@ -19,13 +20,14 @@ export const AvatarsWithPlaceholder = ({collections}: IAvatarsWithPlaceholder) =
     <div className="flex items-center">
       <div className="isolate flex -space-x-2 overflow-hidden">
         {collections?.slice(0, SHOW_MAX_MUTUAL_COMMUNITIES).map(({name, image}) => (
-          <img
+          <Image
             key={name}
-            className={`relative inline-block h-6 w-6 rounded-full ring-2 ring-white`}
+            className={`relative bg-white inline-block rounded-full ring-2 ring-white`}
             src={`/collections/${image}`}
             alt={name}
             loading="lazy"
-            style={{backgroundColor: "white" }}
+            width="24"
+            height="24"
           />
         ))}
         {placeholderNumber > 0 &&                         

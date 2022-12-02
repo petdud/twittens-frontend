@@ -28,7 +28,7 @@ export const SearchBar = () => {
         })
 
   return (
-    <div className="mt-6 px-3">
+    <div className="px-3">
       <Combobox as="div" value={selectedCollection} onChange={onChange}>
         <div className="relative mt-1">
           <div
