@@ -8,7 +8,7 @@ export const CollectionList = () =>  {
   const { data: collections, isLoading } = useCollections();
 
   return (
-    <div className="md:py-6 py-2">
+    <div className="md:py-6 py-2 mb-12">
       <div className="pb-4">
         <MainViewHeader title={<div>Find your <span className="text-blue-400">Twitter</span> frens!</div>} />
         <div className="md:hidden px-6 mt-4 mb-3">

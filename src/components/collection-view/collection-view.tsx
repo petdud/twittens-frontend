@@ -68,12 +68,12 @@ export const CollectionView = ({slug}: ICollectionView) =>  {
             // description={<>Items: {collection?.supply} | Owners: {collection?.owners} ({Math.round((collection.owners / collection.supply) * 100)}%) | Owners with ENS: {usersWithNamesCount} ({Math.round((usersWithNamesCount / collection.owners) * 100)}%) | ENS with Twitter: {usersWithTwitterCount} ({Math.round((usersWithTwitterCount / usersWithNamesCount) * 100)}%)</>}
             description={<>Items: {collection?.supply} | Owners: {collection?.owners} ({Math.round((collection.owners / collection.supply) * 100)}%)</>}
             social={
-              <div className="flex gap-1 mt-2">
-                {collection.twitter && <Link href={`https://www.twitter.com/${collection.twitter}`} target="_blank" className="p-1 hover:bg-gray-200 rounded-md">
+              <div className="flex gap-1 mt-1">
+                {collection.twitter && <Link href={`https://www.twitter.com/${collection.twitter}`} target="_blank" className="p-2 hover:bg-gray-200 rounded-md">
                   <BsTwitter className="text-sky-500" />
                 </Link> 
                 }
-                {collection.discord && <Link href={collection.discord} target="_blank" className="p-1 hover:bg-gray-200 rounded-md">
+                {collection.discord && <Link href={collection.discord} target="_blank" className="p-2 hover:bg-gray-200 rounded-md">
                   <FaDiscord className="text-indigo-800"/>
                 </Link> 
                 }
@@ -103,10 +103,11 @@ export const CollectionView = ({slug}: ICollectionView) =>  {
                       rel="noopener noreferrer"
                     >
                     <div className="relative flex items-start">
-                      <div className="flex-shrink-0 flex">
-                        {/* external image will not work with Image next/image */}
-                        <img className="h-16 w-16 rounded-full mr-4" src={twitter?.avatar} alt={twitter.name} aria-hidden="true" />
-                      </div>
+                      {twitter?.avatar && 
+                        <div className="flex-shrink-0 flex">
+                          {/* external image will not work with Image next/image */}
+                          <img className="h-16 w-16 rounded-full mr-4" src={twitter?.avatar} alt={twitter.username} aria-hidden="true" />
+                        </div>}
                       <div className="min-w-0 flex-1 flex gap-2 flex-col">
                         <div>
 
@@ -126,9 +127,9 @@ export const CollectionView = ({slug}: ICollectionView) =>  {
                           <p className="text-sm text-gray-700">{twitter?.description}</p>
                         </div>
                         <div className="flex gap-4 text-sm items-center">
-                          <div className="flex flex-col md:flex-row md:gap-1"><span className="font-semibold">{twitter?.following.toLocaleString()}</span> <span className="text-gray-500 text-sm font-normal">Following</span></div>
-                          <div className="flex flex-col md:flex-row md:gap-1"><span className="font-semibold">{twitter?.followers.toLocaleString()}</span> <span className="text-gray-500 text-sm font-normal">Followers</span></div>
-                          {userCollections.length > 0 && <div className="flex items-center flex-col md:flex-row gap-1">
+                          <div className="flex flex-col-reverse md:flex-row md:gap-1"><span className="font-semibold">{twitter?.following.toLocaleString()}</span> <span className="text-gray-500 text-sm font-normal">Following</span></div>
+                          <div className="flex flex-col-reverse md:flex-row md:gap-1"><span className="font-semibold">{twitter?.followers.toLocaleString()}</span> <span className="text-gray-500 text-sm font-normal">Followers</span></div>
+                          {userCollections.length > 0 && <div className="flex items-center flex-col-reverse md:flex-row gap-1">
                             <AvatarsWithPlaceholder collections={userCollections}/> <span className="text-gray-500 text-sm font-normal">Communities</span>
                           </div>}
                         </div>
