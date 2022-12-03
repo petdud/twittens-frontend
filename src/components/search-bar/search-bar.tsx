@@ -38,7 +38,7 @@ export const SearchBar = () => {
             <MagnifyingGlassIcon className="mr-3 h-4 w-4 text-gray-800 dark:text-slate-100" aria-hidden="true" />
           </div>
           <Combobox.Input
-            className="pl-8 w-full rounded-md border border-gray-300 dark:text-white dark:border-neutral-500 shadow-md bg-white dark:bg-zinc-700 py-2 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm"
+            className="pl-8 w-full rounded-md border border-gray-300 dark:text-white dark:border-neutral-500 shadow-md bg-white dark:bg-neutral-900 py-2 focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm"
             onChange={(event) => setQuery(event.target.value)}
             // displayValue={(collection) => collection?.name}
             placeholder="Search collections"

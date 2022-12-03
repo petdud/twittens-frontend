@@ -31,8 +31,8 @@ export const AvatarsWithPlaceholder = ({collections}: IAvatarsWithPlaceholder) =
           />
         ))}
         {placeholderNumber > 0 &&                         
-          <span className="relative z-100 inline-flex h-6 w-6 items-center justify-center rounded-full bg-gray-100 dark:bg-neutral-900 border-2 border-white p-2">
-            <span className="font-medium text-sm leading-none text-gray-800">+{placeholderNumber}</span>
+          <span className="relative z-100 inline-flex h-6 w-6 items-center justify-center rounded-full bg-gray-100 dark:bg-neutral-900 border-2 border-white dark:border-neutral-700 p-2">
+            <span className="font-medium text-sm leading-none text-gray-800 dark:text-neutral-200">+{placeholderNumber}</span>
           </span>
         }
       </div>
