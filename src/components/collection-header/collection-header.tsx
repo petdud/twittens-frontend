@@ -32,7 +32,7 @@ export const CollectionHeader = ({name, description, image, imageAlt, rightButto
       <div className="pt-1 flex justify-between items-between flex-col grow">
         <div>
           <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-neutral-200">{name}</h1>
-          {description && <p className="text-sm font-medium text-gray-500 dark:text-slate-300">
+          {description && <p className="text-sm font-medium text-gray-500 dark:text-neutral-400 pt-1">
             {description}
           </p>}
         </div>

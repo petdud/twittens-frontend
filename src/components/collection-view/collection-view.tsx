@@ -10,6 +10,7 @@ import React from "react";
 import { BsTwitter } from "react-icons/bs";
 import { TwitterList, TwitterListSkeleton } from "../twitter-list/twitter-list";
 import { Divider } from "../../layouts/main-slot";
+import { ICollection } from "../../core/collection.interface";
 
 interface ICollectionView {
   slug: string;
@@ -55,7 +56,7 @@ const Collection = ({slug}: {slug: string}) => {
             image={`/collections/${collection?.image}`}
             imageAlt={collection?.name || ""} 
             // description={<>Items: {collection?.supply} | Owners: {collection?.owners} ({Math.round((collection.owners / collection.supply) * 100)}%) | Owners with ENS: {usersWithNamesCount} ({Math.round((usersWithNamesCount / collection.owners) * 100)}%) | ENS with Twitter: {usersWithTwitterCount} ({Math.round((usersWithTwitterCount / usersWithNamesCount) * 100)}%)</>}
-            description={<>Items: {collection?.supply} | Owners: {collection?.owners}</>}
+            description={<CollectionDescription collection={collection} />}
             social={<SocialLinks twitter={collection?.twitter} discord={collection?.discord} />}
           />
       }
@@ -67,6 +68,20 @@ const Collection = ({slug}: {slug: string}) => {
 interface ISocialLinks {
   discord?: string;
   twitter?: string;
+}
+
+const CollectionDescription = ({collection}: {collection: ICollection | undefined}) => {
+  const userTwitterCount = collection?.users.filter(user => user.twitter).length;
+  if (!collection) {
+    return <></>
+  }
+  return (
+    <div className="flex gap-3">
+      <div>Items: <span className="dark:text-slate-200 text-neutral-700 font-semibold">{collection?.supply}</span></div>
+      <div>Owners: <span className="dark:text-slate-200 text-neutral-700 font-semibold">{collection?.owners}</span></div>
+      <div>Twitter members: <span className="dark:text-slate-200 text-neutral-700 font-semibold">{userTwitterCount}</span></div>
+    </div>
+  )
 }
 
 const SocialLinks = ({discord, twitter}: ISocialLinks) => (
