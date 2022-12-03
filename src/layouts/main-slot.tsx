@@ -224,9 +224,9 @@ const JoinCommunitySection = () => (
         href={TWITTENS_TWITTER_URL}
         target="_blank"
       >
-        <button className="flex items-center gap-2 bg-white dark:bg-neutral-900 px-2 py-1 rounded-md border-solid border-2 border-sky-500 text-sky-600 hover:bg-sky-500 hover:text-white">
+        <div className="inline-flex items-center gap-2 px-1 py-1 rounded-md text-sky-500 hover:text-sky-600">
           <BsTwitter /> Twitter
-        </button>
+        </div>
       </Link>
     </div>
   </div>
@@ -271,8 +271,7 @@ export const Divider = ({wrapperClass}: {wrapperClass?: string}) => (
 )
 
 const ThemeSettings = () => {
-  const { setTheme, theme } = useThemeContext();
-  // const [enabled, setEnabled] = useState(theme === "dark" ? true : false);
+  const { theme, setTheme } = useThemeContext();
   const isEnabled = theme === "dark" ? true : false;
 
   const onChange = React.useCallback((val: boolean) => {
@@ -294,13 +293,13 @@ const ThemeSettings = () => {
           onChange={onChange}
           className="group relative inline-flex h-5 w-10 flex-shrink-0 cursor-pointer items-center justify-center rounded-full focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
         >
-          <span className="sr-only">Use setting</span>
+          <span className="sr-only">Use dark mode</span>
           {/* // this */}
-          <span aria-hidden="true" className="pointer-events-none absolute h-full w-full rounded-md bg-white dark:bg-neutral-800" /> 
+          <span aria-hidden="true" className="pointer-events-none absolute h-full w-full rounded-md " /> 
           <span
             aria-hidden="true"
             className={classNames(
-              isEnabled ? 'bg-indigo-600' : 'bg-gray-200 dark:bg-neutral-700',
+              isEnabled ? 'bg-black' : 'bg-gray-200',
               'pointer-events-none absolute mx-auto h-4 w-9 rounded-full transition-colors duration-200 ease-in-out'
             )}
           />
@@ -308,7 +307,7 @@ const ThemeSettings = () => {
             aria-hidden="true"
             className={classNames(
               isEnabled ? 'translate-x-5' : 'translate-x-0',
-              'pointer-events-none absolute left-0 inline-block h-5 w-5 transform rounded-full border border-gray-200 bg-white dark:border-neutral-800 dark:border-neutral-800 shadow ring-0 transition-transform duration-200 ease-in-out'
+              'pointer-events-none absolute left-0 inline-block h-5 w-5 transform rounded-full border border-gray-200 bg-white dark:border-neutral-800 shadow ring-0 transition-transform duration-200 ease-in-out'
             )}
           />
         </Switch>

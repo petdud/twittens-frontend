@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 interface IThemeProviderProps {
   children: JSX.Element;
@@ -9,30 +9,28 @@ type ThemeType = {
   setTheme: (theme: string) => void;
 };
 
+const updateDocumentClass = (theme: string) => {
+  theme === "dark" ? document.documentElement.classList.add('dark') : document.documentElement.classList.remove('dark');
+}
+
 const ThemeContext = React.createContext({} as ThemeType);
 ThemeContext.displayName = 'ThemeContext';
 
 export const ThemeProvider = ({ children }: IThemeProviderProps) => {
-  const defaultDark = typeof window !== 'undefined'  && (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches));
-  const [theme, setTheme] = useState<string>(defaultDark ? "dark" : "light");
-
-  if (typeof window !== 'undefined') {
-    if (defaultDark) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }
+  const [theme, setTheme] = useState<string>("light");
   
   const changeTheme = React.useCallback((theme: string) => {
     setTheme(theme);
-    if (theme === "light") {
-      localStorage.theme = 'light'
-    } else {
-      localStorage.theme = 'dark'
-    }
+    localStorage.theme = theme;
+    updateDocumentClass(theme);
   }, []);
 
+  useEffect(() => {
+    const isDarkTheme = localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    const theme = isDarkTheme ? "dark" : "light";
+    setTheme(theme);
+    updateDocumentClass(theme);
+  }, [])
 
   return (
     <ThemeContext.Provider value={{
