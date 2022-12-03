@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { AiFillLock } from 'react-icons/ai';
 import { FaWallet } from 'react-icons/fa';
 import { GoVerified } from 'react-icons/go';
@@ -18,13 +19,15 @@ export const TwitterItem = ({address, collections, name, displayedCollectionSlug
 
   return (
     <li className="overflow-hidden bg-white shadow sm:rounded-md dark:bg-neutral-800">
-      <div className="px-4 py-1 bg-slate-50 dark:bg-neutral-700 border-b-2 border-slate-100 dark:border-neutral-600 flex items-center gap-3 justify-between">
-        <div className="flex items-center gap-2 dark:text-gray-200">
-          <FaWallet className="text-gray-400 dark:text-neutral-300" /> {name} 
-          <span className="text-xs text-gray-500 dark:text-neutral-300">({shortenedAddress(address)})</span>
+      <Link href={`https://www.opensea.io/${address}`} target="_blank">
+        <div className="px-4 py-1 bg-slate-50 hover:bg-slate-100 dark:bg-neutral-700 hover:dark:bg-gray-800 border-b-2 border-slate-100 dark:border-neutral-600 flex items-center gap-3 justify-between">
+          <div className="flex items-center gap-2 dark:text-gray-200">
+            <FaWallet className="text-gray-400 dark:text-neutral-300" /> {name} 
+            <span className="text-xs text-gray-500 dark:text-neutral-300">({shortenedAddress(address)})</span>
+          </div>
         </div>
-      </div>
-      <div className="px-4 py-4 sm:px-6 focus-within:ring-indigo-500 hover:bg-gray-50 dark:hover:bg-neutral-700 focus-within:ring-inset">
+      </Link>
+      <div className="px-4 py-4 sm:px-6 focus-within:ring-indigo-500 hover:bg-gray-50 dark:hover:bg-gray-800 focus-within:ring-inset">
           <a
             href={`https://www.twitter.com/${twitter.username}`}
             target="_blank"

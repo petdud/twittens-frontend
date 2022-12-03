@@ -234,14 +234,13 @@ const JoinCommunitySection = () => (
 
 const GetListedButton = () => (
   <div className="pt-4">
-    <Link href={GOOGLE_FORM_GET_LISTED} target="_blank">
-      <button
-        type="button"
+    <Link href={GOOGLE_FORM_GET_LISTED} target="_blank" type="button">
+      <div
         className="inline-flex items-center rounded-md border border-transparent bg-indigo-600 dark:bg-indigo-800 px-3 py-2 text-sm font-medium leading-4 text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
       >
         Get listed
         <AiOutlineRight className="ml-2" />
-      </button>
+      </div>
     </Link>
   </div>
 )
