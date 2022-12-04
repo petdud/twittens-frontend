@@ -6,8 +6,8 @@ export interface IUserEns {
 }
 
 export interface IUser {
-  _id: string;
-  address: string;
+  _id: string,
+  address: string,
   name: string | undefined,
   ens: IUserEns,
   collections: ICollection[],
@@ -18,18 +18,20 @@ export interface IUser {
 }
 
 export interface ICollection {
-  _id: string;
-  slug: string;
-  address: string;
-  name: string;
-  description: string;
-  image: string, 
+  _id: string,
+  slug: string,
+  address: string,
+  name: string,
+  description: string,
+  image: string,
   supply: number,
   owners: number,
   twitter: string,
   url: string,
   discord: string,
   isReady: boolean,
+  isFeatured: string,
+  status: string,
   createdAt: string,
   updatedAt: string,
   users: IUser[]

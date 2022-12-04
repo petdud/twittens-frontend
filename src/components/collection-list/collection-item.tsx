@@ -7,14 +7,15 @@ interface ICollectionItem {
   image: string;
   name: string;
   path: string;
+  isFeatured: boolean;
 }
 
-export const CollectionItem = ({ description, image, name, path}: ICollectionItem) => (
+export const CollectionItem = ({ description, isFeatured, image, name, path}: ICollectionItem) => (
   <li
     className="flex justify-center relative top-0 hover:-top-1 transition top-ease delay-200"
   >
     <Link href={path}>
-      <Card description={description} image={image} name={name} />
+      <Card description={description} image={image} name={name} isFeatured={isFeatured} />
     </Link>
   </li>
 )

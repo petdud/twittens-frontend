@@ -10,8 +10,8 @@ export const CollectionList = () =>  {
 
   if (error || (!isLoading && collections.length === 0)) {
     return (
-      <div className="md:py-6 py-2 mb-12">
-        <div className="pb-4">Sorry, something went wrong 🫣</div>
+      <div className="py-6">
+        <MainViewHeader title="Sorry, something went wrong 🫣" />
       </div>
     )
   }
@@ -33,10 +33,17 @@ export const CollectionList = () =>  {
               </li>
             ))
           :           
-            collections && collections?.map(({image, name, users, slug}) => {
+            collections && collections?.map(({isFeatured, image, name, users, slug}) => {
               const userTwitterCount = users.filter(user => user.twitter).length;
               return ( 
-                <CollectionItem key={slug} description={`${userTwitterCount} members on Twitter`} image={image} name={name} path={`/collections/${slug}`} />
+                <CollectionItem 
+                  key={slug}
+                  description={`${userTwitterCount} members on Twitter`}
+                  isFeatured={!!isFeatured}
+                  image={image}
+                  name={name}
+                  path={`/collections/${slug}`} 
+                />
               )
             })
           }
