@@ -1,8 +1,8 @@
 interface ICard {
-  description: string;
   isFeatured: boolean;
   image: string;
   name: string;
+  description?: string;
 }
 
 export const Card = ({image, name, description, isFeatured}: ICard) => (
@@ -13,9 +13,9 @@ export const Card = ({image, name, description, isFeatured}: ICard) => (
     <img className="rounded-t-lg" src={`collections/${image}`} alt={name} />
     <div className="p-4">
       <h5 className="text-gray-900 text-lg font-medium mb-1 dark:text-white">{name}</h5>
-      <p className="text-gray-500 text-sm flex items-center dark:text-neutral-200">
+      {description && <p className="text-gray-500 text-sm flex items-center dark:text-neutral-200">
         {description}
-      </p>
+      </p>}
     </div>
   </div>
 )

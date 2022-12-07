@@ -3,11 +3,11 @@ import { Card } from "../card/card";
 
 
 interface ICollectionItem {
-  description: string;
   image: string;
   name: string;
   path: string;
   isFeatured: boolean;
+  description?: string;
 }
 
 export const CollectionItem = ({ description, isFeatured, image, name, path}: ICollectionItem) => (

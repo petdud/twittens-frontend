@@ -3,6 +3,7 @@ export const DEV_API = process.env.NEXT_PUBLIC_API_BACKEND_DEV;
 
 export const API_PATHS = {
   COLLECTIONS: "collections",
+  COLLECTIONS_TWITTER_COUNTS: "collections/twitter-counts",
   USERS: "users"
 }
 
