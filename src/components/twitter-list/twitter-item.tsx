@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { AiFillLock } from 'react-icons/ai';
 import { FaWallet } from 'react-icons/fa';
 import { GoVerified } from 'react-icons/go';
-import { ICollection, ITwitter } from '../../core/collection.interface';
+import { ITwitter } from '../../core/collection.interface';
 import { shortenedAddress } from "../../utils";
 import { AvatarsWithPlaceholder } from "../avatars-with-placeholder/avatars-with-placeholder";
 
@@ -15,7 +15,7 @@ interface ITwitterItem {
 // const userCollections = collections.filter(col => col.slug !== displayedCollectionSlug);
 export const TwitterItem = ({address, name, twitter }: ITwitterItem) => (
   <li className="overflow-hidden bg-white shadow sm:rounded-md dark:bg-neutral-800">
-    <Link href={`https://www.opensea.io/${address}`} target="_blank">
+    <Link href={`https://opensea.io/${address}`} target="_blank">
       <div className="px-4 py-1 bg-slate-50 hover:bg-slate-100 dark:bg-neutral-700 hover:dark:bg-gray-800 border-b-2 border-slate-100 dark:border-neutral-600 flex items-center gap-3 justify-between">
         <div className="flex items-center gap-2 dark:text-gray-200">
           <FaWallet className="text-gray-400 dark:text-neutral-300" /> {name} 
