@@ -10,7 +10,6 @@ import React from "react";
 import { BsTwitter } from "react-icons/bs";
 import { TwitterList, TwitterListSkeleton } from "../twitter-list/twitter-list";
 import { Divider } from "../../layouts/main-slot";
-import { ICollection } from "../../core/collection.interface";
 
 interface ICollectionView {
   slug: string;
@@ -28,7 +27,7 @@ export const CollectionView = ({slug}: ICollectionView) =>  {
 }
 
 const Collection = ({slug}: {slug: string}) => {
-  const { data: collection, isLoading, error } = useCollection(slug);
+  const { data, isLoading, error } = useCollection(slug);
 
   if (error) {
     return (
@@ -38,7 +37,7 @@ const Collection = ({slug}: {slug: string}) => {
     )
   }
 
-  if (!collection && !isLoading) {
+  if (!data && !isLoading) {
     return (
       <div className="py-6">
         <MainViewHeader title={<div>Sorry, we didn&apos;t find a collection called {slug} 🫣.</div>} />
@@ -46,42 +45,49 @@ const Collection = ({slug}: {slug: string}) => {
     )
   }
 
+  if (isLoading || !data) {
+    return (
+      <>
+        <CollectionHeaderSkeleton /> 
+        <TwitterListSkeleton />
+      </>
+    )
+  }
+
+  const { collection, users } = data;
+  const twitterAccountsCount = users.filter(user => user.twitter).length;
+
   return (
     <>
-      {isLoading ? 
-          <CollectionHeaderSkeleton /> 
-        :
-          <CollectionHeader 
-            name={<>{collection?.name} <span className="font-normal">on</span> <span className="text-blue-400">Twitter</span>!</>} 
-            image={`/collections/${collection?.image}`}
-            imageAlt={collection?.name || ""} 
-            // description={<>Items: {collection?.supply} | Owners: {collection?.owners} ({Math.round((collection.owners / collection.supply) * 100)}%) | Owners with ENS: {usersWithNamesCount} ({Math.round((usersWithNamesCount / collection.owners) * 100)}%) | ENS with Twitter: {usersWithTwitterCount} ({Math.round((usersWithTwitterCount / usersWithNamesCount) * 100)}%)</>}
-            description={<CollectionDescription collection={collection} />}
-            social={<SocialLinks twitter={collection?.twitter} discord={collection?.discord} />}
-          />
-      }
-      {isLoading ? <TwitterListSkeleton /> : <TwitterList collection={collection} />}
+      <CollectionHeader 
+        name={<>{collection?.name} <span className="font-normal">on</span> <span className="text-blue-400">Twitter</span>!</>} 
+        image={`/collections/${collection?.image}`}
+        imageAlt={collection?.name || ""} 
+        description={<CollectionDescription owners={collection?.owners} supply={collection?.supply} twitterAccountsCount={twitterAccountsCount} />}
+        social={<SocialLinks twitter={collection?.twitter} discord={collection?.discord} />}
+      />
+      <TwitterList users={users} />
     </>
   )
 }
 
+interface ICollectionDescription {
+  owners?: number,
+  supply?: number,
+  twitterAccountsCount: number
+}
+
+const CollectionDescription = ({owners, supply, twitterAccountsCount}: ICollectionDescription) => (
+  <div className="flex gap-3">
+    <div>Items: <span className="dark:text-slate-200 text-neutral-700 font-semibold">{supply}</span></div>
+    <div>Owners: <span className="dark:text-slate-200 text-neutral-700 font-semibold">{owners}</span></div>
+    <div>Twitter members: <span className="dark:text-slate-200 text-neutral-700 font-semibold">{twitterAccountsCount}</span></div>
+  </div>
+)
+
 interface ISocialLinks {
   discord?: string;
   twitter?: string;
-}
-
-const CollectionDescription = ({collection}: {collection: ICollection | undefined}) => {
-  const userTwitterCount = collection?.users.filter(user => user.twitter).length;
-  if (!collection) {
-    return <></>
-  }
-  return (
-    <div className="flex gap-3">
-      <div>Items: <span className="dark:text-slate-200 text-neutral-700 font-semibold">{collection?.supply}</span></div>
-      <div>Owners: <span className="dark:text-slate-200 text-neutral-700 font-semibold">{collection?.owners}</span></div>
-      <div>Twitter members: <span className="dark:text-slate-200 text-neutral-700 font-semibold">{userTwitterCount}</span></div>
-    </div>
-  )
 }
 
 const SocialLinks = ({discord, twitter}: ISocialLinks) => (

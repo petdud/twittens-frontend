@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
-import { ICollection } from "../core/collection.interface";
+import { ICollectionApiData } from "../core/collection.interface";
 
-export const useCollection = (slug: string): {data?: ICollection, isLoading: boolean, error: boolean} => {
-  const [data, setData] = useState<ICollection>();
+export const useCollection = (slug: string): {data?: ICollectionApiData, isLoading: boolean, error: boolean} => {
+  const [data, setData] = useState<ICollectionApiData>();
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
 

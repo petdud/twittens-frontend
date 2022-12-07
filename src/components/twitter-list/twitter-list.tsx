@@ -1,23 +1,21 @@
 import React from "react";
-import { ICollection } from "../../core/collection.interface";
+import { IUser } from "../../core/collection.interface";
 import { TwitterItem } from "./twitter-item";
 
 interface ITwitterList {
-  collection?: ICollection;
+  users: IUser[];
 }
 
-export const TwitterList = ({collection}: ITwitterList) => {
+export const TwitterList = ({users}: ITwitterList) => {
   return (
     <ul role="list" className="space-y-8 py-12 max-w-2xl">
-      {collection && collection.users?.map(({address, collections, name, twitter}) => {
+      {users.map(({address, name, twitter}) => {
         return (
           twitter && <TwitterItem 
             key={address} 
             address={address}
-            collections={collections}
             name={name}
             twitter={twitter}
-            displayedCollectionSlug={collection.slug}
           />
         )
       })}

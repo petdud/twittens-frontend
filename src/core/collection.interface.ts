@@ -1,4 +1,3 @@
-
 export interface IUserEns {
   avatar: string,
   twitter: string,
@@ -10,8 +9,6 @@ export interface IUser {
   address: string,
   name: string | undefined,
   ens: IUserEns,
-  collections: ICollection[],
-  exCollections: ICollection[],
   twitter: ITwitter,
   createdAt: string,
   updatedAt: string
@@ -34,7 +31,11 @@ export interface ICollection {
   status: string,
   createdAt: string,
   updatedAt: string,
-  users: IUser[]
+}
+
+export interface ICollectionApiData {
+  collection: ICollection,
+  users: IUser[],
 }
 
 export interface ITwitter {
