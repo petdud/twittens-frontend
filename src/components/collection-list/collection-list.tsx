@@ -35,7 +35,7 @@ export const CollectionList = () =>  {
               </li>
             ))
           :           
-            collections && collections?.map(({isFeatured, image, name, users, slug}) => {
+            collections && collections?.map(({isFeatured, image, name, slug}) => {
               const collectionDetails = collectionsTwitterCounts.find(collectionCounts => collectionCounts.slug === slug);
               return ( 
                 <CollectionItem 
