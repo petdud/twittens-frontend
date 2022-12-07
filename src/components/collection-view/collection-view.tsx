@@ -63,7 +63,7 @@ const Collection = ({slug}: {slug: string}) => {
         name={<>{collection?.name} <span className="font-normal">on</span> <span className="text-blue-400">Twitter</span>!</>} 
         image={`/collections/${collection?.image}`}
         imageAlt={collection?.name || ""} 
-        description={<CollectionDescription owners={collection?.owners} supply={collection?.supply} twitterAccountsCount={twitterAccountsCount} />}
+        description={<CollectionDescription owners={collection.owners} supply={collection.supply} twitterAccountsCount={twitterAccountsCount} />}
         social={<SocialLinks twitter={collection?.twitter} discord={collection?.discord} />}
       />
       <TwitterList users={users} />
@@ -79,8 +79,8 @@ interface ICollectionDescription {
 
 const CollectionDescription = ({owners, supply, twitterAccountsCount}: ICollectionDescription) => (
   <div className="flex gap-3">
-    <div>Items: <span className="dark:text-slate-200 text-neutral-700 font-semibold">{supply}</span></div>
-    <div>Owners: <span className="dark:text-slate-200 text-neutral-700 font-semibold">{owners}</span></div>
+    {supply && <div>Items: <span className="dark:text-slate-200 text-neutral-700 font-semibold">{supply}</span></div>}
+    {owners && <div>Owners: <span className="dark:text-slate-200 text-neutral-700 font-semibold">{owners}</span></div>}
     <div>Twitter members: <span className="dark:text-slate-200 text-neutral-700 font-semibold">{twitterAccountsCount}</span></div>
   </div>
 )

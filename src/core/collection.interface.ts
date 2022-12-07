@@ -21,7 +21,7 @@ export interface ICollection {
   name: string,
   description: string,
   image: string,
-  supply: number,
+  supply?: number, // can be dynamic, e.g. events
   owners: number,
   twitter: string,
   url: string,
