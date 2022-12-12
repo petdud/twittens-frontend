@@ -1,15 +1,17 @@
+type chainTypes = "eth-mainnet" | "polygon-mainnet";
+type statusTypes = "initiated" | "created" | "updating" | "error" | "ready" | "hidden" | "active";
+
 export interface IUserEns {
   avatar: string,
   twitter: string,
-  createdAt: string,
 }
 
 export interface IUser {
   _id: string,
   address: string,
   name: string | undefined,
-  ens: IUserEns,
-  twitter: ITwitter,
+  ens: IUserEns | null,
+  twitter: ITwitter | null,
   createdAt: string,
   updatedAt: string
 }
@@ -26,9 +28,9 @@ export interface ICollection {
   twitter: string,
   url: string,
   discord: string,
-  isReady: boolean,
   isFeatured: string,
-  status: string,
+  status: statusTypes,
+  chain: chainTypes,
   createdAt: string,
   updatedAt: string,
 }
@@ -52,7 +54,5 @@ export interface ITwitter {
   following: number,
   tweetCount: number,
   listedCount: number,
-  createdAt: string,
-  updatedAt: string
   creationDate: string,
 }

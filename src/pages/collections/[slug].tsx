@@ -9,13 +9,13 @@ export default function Collection() {
   const router = useRouter();
   const slug = router.query.slug as string;
 
-  const collectionName = capitalizeFirstLetter(slug);
+  const collectionName = slug && capitalizeFirstLetter(slug);
 
   return (
     <div>
       <HeadPage 
-        title={`${collectionName} frens on Twittens` }
-        description={`Find and connect with your ${collectionName} frens on Twitter thanks to Twittens and ENS.`}
+        title={`${collectionName || "NFT"} frens on Twittens` }
+        description={`Find and connect with your ${collectionName || "NFT"} frens on Twitter thanks to Twittens and ENS.`}
       />
       <div className="bg-gray-100 h-full">
         {slug && 
