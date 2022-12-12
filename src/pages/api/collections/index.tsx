@@ -2,7 +2,7 @@ import axios, { AxiosError } from "axios";
 import { NextApiRequest, NextApiResponse } from "next";
 import { API_PATHS, BASE_API_URL } from "../../../core/constants";
 
-const API = `${BASE_API_URL}/${API_PATHS.COLLECTIONS}`;
+const API = `${BASE_API_URL}${API_PATHS.COLLECTIONS}`;
 
 const collections = async (req: NextApiRequest, res: NextApiResponse<any>) => {
   try {
