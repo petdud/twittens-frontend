@@ -9,7 +9,8 @@ export const useCollections = () => {
 
   const fetchCollections = useCallback(async () => {
     try {
-      const { data } = await axios.get("/api/collections");
+      const { data } = await axios.get("https://api.twittens.xyz/collections");
+      console.log("data", data)
       data && setData(data);
       setIsLoading(false);
     } catch(err) {
