@@ -4,12 +4,15 @@ import { API_PATHS, BASE_API_URL } from "../../../core/constants";
 
 const API = `${BASE_API_URL}${API_PATHS.COLLECTIONS}`;
 
-const collections = async (req: NextApiRequest, res: NextApiResponse<any>) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse<any>) => {
+  const body = req.body;
   try {
-    const status = req.query.status; 
-    const params = status ? `?status=${status}` : '';
-    const apiResponse = await axios.get(API + params);
-    res.status(200).json(apiResponse.data)
+    if (body) {
+      const apiResponse = await axios.post(`${API}`, body);
+      res.status(200).json(apiResponse.data)
+    } else {
+      res.status(500).json({ error: `Wrong ID` });
+    }
   } catch(err: AxiosError | any) {
     err.statusCode
     if (axios.isAxiosError(err)) {
@@ -20,4 +23,4 @@ const collections = async (req: NextApiRequest, res: NextApiResponse<any>) => {
   }
 };
 
-export default collections;
+export default handler;

@@ -1,15 +1,16 @@
 import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
-import { ICollection } from "../core/collection.interface";
+import { ICollection, statusTypes } from "../core/collection.interface";
 
-export const useCollections = () => {
+export const useCollections = (status?: statusTypes) => {
   const [data, setData] = useState<ICollection[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
 
   const fetchCollections = useCallback(async () => {
     try {
-      const { data } = await axios.get("/api/collections");
+      const params = status ? `?status=${status}` : '';
+      const { data } = await axios.get(`/api/collections${params}`);
       data && setData(data);
       setIsLoading(false);
     } catch(err) {

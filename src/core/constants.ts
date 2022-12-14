@@ -1,4 +1,4 @@
-export const BASE_API_URL = process.env.NEXT_PUBLIC_API_BACKEND_PROD;
+export const BASE_API_URL = process.env.NEXT_PUBLIC_API_BACKEND_PROD; // "http://localhost:3333/";
 
 export const API_PATHS = {
   COLLECTIONS: "collections",

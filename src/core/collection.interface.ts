@@ -1,5 +1,5 @@
 type chainTypes = "eth-mainnet" | "polygon-mainnet";
-type statusTypes = "initiated" | "created" | "updating" | "error" | "ready" | "hidden" | "active";
+export type statusTypes = "initiated" | "created" | "updating" | "error" | "ready" | "hidden" | "active";
 
 export interface IUserEns {
   avatar: string,

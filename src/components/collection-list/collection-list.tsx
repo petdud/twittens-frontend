@@ -7,7 +7,7 @@ import { CollectionItem } from "./collection-item";
 
 
 export const CollectionList = () =>  {
-  const { data: collections, isLoading, error } = useCollections();
+  const { data: collections, isLoading, error } = useCollections("active");
   const { data: collectionsTwitterCounts } = useCollectionsTwitterCounts();
 
   if (error || (!isLoading && collections.length === 0)) {
