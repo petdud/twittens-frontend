@@ -1,5 +1,5 @@
 type chainTypes = "eth-mainnet" | "polygon-mainnet";
-export type statusTypes = "initiated" | "created" | "updating" | "error" | "ready" | "hidden" | "active";
+export type statusTypes = "initiated" | "creating" | "error" | "ready" | "hidden" | "active";
 
 export interface IUserEns {
   avatar: string,
@@ -22,12 +22,12 @@ export interface ICollection {
   address: string,
   name: string,
   description: string,
-  image: string,
-  supply?: number, // can be dynamic, e.g. events
-  owners: number,
-  twitter: string,
-  url: string,
-  discord: string,
+  imageUrl: string,
+  totalSupply?: number, // can be dynamic, e.g. events
+  numberOfOwners: number,
+  twitterUsername: string,
+  externalUrl: string,
+  discordUrl: string,
   isFeatured: string,
   status: statusTypes,
   chain: chainTypes,

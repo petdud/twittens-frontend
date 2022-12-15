@@ -19,11 +19,11 @@ export const AvatarsWithPlaceholder = ({collections}: IAvatarsWithPlaceholder) =
   return (
     <div className="flex items-center">
       <div className="isolate flex -space-x-2 overflow-hidden">
-        {collections?.slice(0, SHOW_MAX_MUTUAL_COMMUNITIES).map(({name, image}) => (
+        {collections?.slice(0, SHOW_MAX_MUTUAL_COMMUNITIES).map(({name, imageUrl}) => (
           <Image
             key={name}
             className={`relative bg-white dark:bg-neutral-900 inline-block rounded-full ring-2 ring-white dark:ring-neutral-800`}
-            src={`/collections/${image}`}
+            src={imageUrl}
             alt={name}
             loading="lazy"
             width="24"

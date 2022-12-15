@@ -62,7 +62,8 @@ export const SearchBar = () => {
                   {({ active, selected }) => (
                     <>
                       <div className="flex items-center">
-                        <img src={`/collections/${collection.image}`} alt={collection.name} className="h-6 w-6 flex-shrink-0 rounded-full" />
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src={collection.imageUrl} alt={collection.name} className="h-6 w-6 flex-shrink-0 rounded-full" />
                         <span className={classNames('ml-3 truncate', selected ? 'font-semibold' : '')}>{collection.name}</span>
                       </div>
                     </>

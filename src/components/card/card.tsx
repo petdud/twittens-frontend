@@ -1,16 +1,17 @@
 interface ICard {
   isFeatured: boolean;
-  image: string;
+  imageUrl: string;
   name: string;
   description?: string;
 }
 
-export const Card = ({image, name, description, isFeatured}: ICard) => (
+export const Card = ({imageUrl, name, description, isFeatured}: ICard) => (
   <div className="rounded-lg shadow-lg bg-white max-w-sm dark:bg-neutral-800">
     {isFeatured && <span className="absolute top-2 left-2 items-center rounded-md bg-yellow-100 px-2.5 py-0.5 text-sm font-medium text-yellow-800">
       ❤️ FEATURED
     </span>}
-    <img className="rounded-t-lg" src={`collections/${image}`} alt={name} />
+    {/* eslint-disable-next-line @next/next/no-img-element */}
+    <img className="rounded-t-lg" src={imageUrl} alt={name} />
     <div className="p-4">
       <h5 className="text-gray-900 text-lg font-medium mb-1 dark:text-white">{name}</h5>
       {description && <p className="text-gray-500 text-sm flex items-center dark:text-neutral-200">

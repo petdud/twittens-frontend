@@ -61,10 +61,10 @@ const Collection = ({slug}: {slug: string}) => {
     <>
       <CollectionHeader 
         name={<>{collection?.name} <span className="font-normal">on</span> <span className="text-blue-400">Twitter</span>!</>} 
-        image={`/collections/${collection?.image}`}
+        imageUrl={collection?.imageUrl}
         imageAlt={collection?.name || ""} 
-        description={<CollectionDescription owners={collection.owners} supply={collection.supply} twitterAccountsCount={twitterAccountsCount} />}
-        social={<SocialLinks twitter={collection?.twitter} discord={collection?.discord} />}
+        description={<CollectionDescription owners={collection.numberOfOwners} supply={collection.totalSupply} twitterAccountsCount={twitterAccountsCount} />}
+        social={<SocialLinks twitter={collection?.twitterUsername} discord={collection?.discordUrl} />}
       />
       <TwitterList users={users} />
     </>

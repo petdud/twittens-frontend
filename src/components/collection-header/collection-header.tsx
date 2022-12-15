@@ -3,21 +3,21 @@ import Image from "next/image";
 
 interface ICollectionHeader {
   name: string | JSX.Element;
-  image: string;
+  imageUrl: string;
   description?: string | JSX.Element;
   imageAlt: string;
   rightButtons?: JSX.Element;
   social: JSX.Element;
 }
 
-export const CollectionHeader = ({name, description, image, imageAlt, rightButtons, social}: ICollectionHeader) => (
+export const CollectionHeader = ({name, description, imageUrl, imageAlt, rightButtons, social}: ICollectionHeader) => (
   <div className="md:flex md:items-center md:justify-between md:space-x-5">
     <div className="flex items-start space-x-5">
       <div className="flex-shrink-0">
         <div className="relative">
           <Image
             className="rounded-full"
-            src={image}
+            src={imageUrl}
             width={96}
             height={96}
             alt={imageAlt}
