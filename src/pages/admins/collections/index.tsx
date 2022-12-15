@@ -12,12 +12,12 @@ export default function Home() {
   const { data: collections } = useCollections();
   const [text, setText] = React.useState("");
   const [open, setOpen] = React.useState(false);
-  const [data, setData] = React.useState<any>(null);
+  const [data, setData] = React.useState<Pick<ICollection, "name" | "slug" | "address" | "description" | "imageUrl" | "totalSupply" | "twitterUsername" | "discordUrl" | "externalUrl"> | null>(null);
 
   const submit = React.useCallback(async () => {
     if (data) {
       console.log("DATA SUBMITTED", data)
-      // const resData = await axios.post(`/api/collections/create`, data);
+      const resData = await axios.post(`/api/collections/create`, data);
       setOpen(false);
       setData(null);
     }
@@ -47,7 +47,7 @@ export default function Home() {
           twitterUsername: twitter_username,
           discordUrl: discord_url,
           externalUrl: external_url,
-        } as Pick<ICollection, "name" | "slug" | "address" | "description" | "imageUrl" | "totalSupply" | "twitterUsername" | "discordUrl" | "externalUrl" >
+        }
         setData(dataToSubmit)
 
       }
