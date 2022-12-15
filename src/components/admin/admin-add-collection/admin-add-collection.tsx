@@ -162,8 +162,8 @@ const PreviewContent = ({contractAddress, chain, data}: IPreviewContent) => {
         <span className={dataItemClassName}>Owners: </span>
         {isLoading && <span className="text-yellow-700 font-semibold">Loading... please wait</span>}
         {!isLoading && (!owners || owners.length === 0) && <span className="text-red-700 font-semibold">Something wrong, no owners found on API</span>}
-        {owners && owners.length > 10000 && <span className="text-red-700 font-semibold">{owners.length} - is that correct?</span>}
-        {owners && owners.length <= 10000 && <span className="text-green-700 font-semibold">{owners.length}</span>}
+        {owners && owners.length > 0 && owners.length > 10000 && <span className="text-red-700 font-semibold">{owners.length} - is that correct?</span>}
+        {owners && owners.length > 0 && owners.length <= 10000 && <span className="text-green-700 font-semibold">{owners.length}</span>}
       </div>
       <div>
         <div className={dataItemClassName}>Contract: </div>

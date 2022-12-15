@@ -18,7 +18,7 @@ export const useCollections = (status?: statusTypes) => {
       setIsLoading(false);
       setError(true);
     }
-  }, [])
+  }, [status])
 
   useEffect(() => {
       fetchCollections();
