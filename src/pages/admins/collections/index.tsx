@@ -66,22 +66,22 @@ export default function Home() {
           </div>
           <div className="">
             <div className="pt-2 font-semibold text-grey-700 dark:text-white">Twitter username: </div>
-            {data.twitter}
+            {data.twitterUsername}
           </div>
           <div className="">
             <div className="pt-2 font-semibold text-grey-700 dark:text-white">Discord URL: </div>
-            <span>{data.discord}</span>
+            <span>{data.discordUrl}</span>
           </div>
           <div className="">
             <div className="pt-2 font-semibold text-grey-700 dark:text-white">External URL: </div>
-            <span>{data.url}</span>
+            <span>{data.externalUrl}</span>
           </div>
           <div className="">
             <div className="pt-2 font-semibold text-grey-700 dark:text-white">Total supply: </div>
-            <span>{data.supply}</span>
+            <span>{data.totalSupply}</span>
           </div>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={data.image_url} alt={data.name} className="pt-2 m-auto"/>
+          <img src={data.imageUrl} alt={data.name} className="pt-2 m-auto"/>
         </div>
       )
     }
