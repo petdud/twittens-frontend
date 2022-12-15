@@ -1,7 +1,7 @@
 import { HeadPage } from '../../../layouts/head-page';
 import { MainSlot } from '../../../layouts/main-slot';
 import { AdminCollectionList } from '../../../components/admin/admin-collection-list/admin-collection-list';
-import { AdminAddCollection } from '../../../components/admin/add-collection/admin-add-collection';
+import { AdminAddCollection } from '../../../components/admin/admin-add-collection/admin-add-collection';
 
 export default function Home() {
   return (

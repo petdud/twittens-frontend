@@ -1,4 +1,4 @@
-import React, { FormEvent } from 'react';
+import React, { FormEvent, useCallback, useState } from 'react';
 import axios from 'axios';
 import { IOpenSea } from '../../../core/opensea.interface';
 import { Modal } from '../../modal/modal';
@@ -7,12 +7,12 @@ import { ICollection, chainTypes } from '../../../core/collection.interface';
 type AddCollectionProps = Pick<ICollection, "name" | "slug" | "address" | "description" | "imageUrl" | "totalSupply" | "twitterUsername" | "discordUrl" | "externalUrl" | "chain"> | null;
 
 export const AdminAddCollection = () => {
-  const [text, setText] = React.useState("");
-  const [open, setOpen] = React.useState(false);
-  const [chain, setChain] = React.useState<chainTypes>("eth-mainnet");
-  const [data, setData] = React.useState<AddCollectionProps>(null);
+  const [text, setText] = useState("");
+  const [open, setOpen] = useState(false);
+  const [chain, setChain] = useState<chainTypes>("eth-mainnet");
+  const [data, setData] = useState<AddCollectionProps>(null);
 
-  const submit = React.useCallback(async () => {
+  const submit = useCallback(async () => {
     if (data) {
       await axios.post(`/api/collections/create`, data);
       setOpen(false);
@@ -20,14 +20,13 @@ export const AdminAddCollection = () => {
     }
   }, [data]);
 
-  const onChange = React.useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setText(e.target.value);
     setData(null);
   }, []);
 
-  const handleSubmit = React.useCallback(async (e: FormEvent) => {
+  const handleSubmit = useCallback(async (e: FormEvent) => {
     e.preventDefault();
-    console.log("e", e)
     setOpen(true);
     if (text) {
       const { data } = await axios.get(`https://api.opensea.io/api/v1/collection/${text}`)
@@ -48,14 +47,13 @@ export const AdminAddCollection = () => {
           chain
         }
         setData(dataToSubmit)
-
       }
     }
   }, [chain, text]);
 
   return (
     <div className="dark:bg-neutral-800 bg-white p-4 rounded-md shadow-lg">
-      <form onSubmit={async (e) => await handleSubmit(e)} className="">
+      <form onSubmit={handleSubmit}>
         <label htmlFor="text" className="block text-sm font-medium text-gray-700 dark:text-gray-400 pb-2">
           Add collection:
         </label>
@@ -64,7 +62,7 @@ export const AdminAddCollection = () => {
           name="text"
           id="text"
           placeholder="Add a collection by slug"
-          className="dark:bg-gray-800 dark:text-white dark:border-gray-700 dark:focus:ring-gray-500 dark:focus:border-gray-500 dark:placeholder-gray-500 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+          className="dark:bg-neutral-900 dark:text-white dark:border-neutral-500 dark:focus:ring-gray-500 dark:focus:border-gray-500 dark:placeholder-gray-500 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
           autoFocus
           onChange={onChange}
         />
@@ -93,7 +91,7 @@ interface IChainOptions {
 }
 
 const ChainOptions = ({chain, setChain}: IChainOptions) => {
-  const onChange = React.useCallback((e: React.ChangeEvent<HTMLInputElement>) => 
+  const onChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => 
     setChain(e.target.value as chainTypes), [setChain]);
 
   return (
@@ -101,7 +99,7 @@ const ChainOptions = ({chain, setChain}: IChainOptions) => {
       <label className="text-base font-medium text-gray-900 dark:text-neutral-300">Select chain: </label> 
       <fieldset>
         <legend className="sr-only">Chain types</legend>
-        <div className="space-y-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-10">
+        <div className="space-y-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-5">
           {chainOptions.map(({name, value}) => (
             <div key={name} className="flex items-center">
               <input
@@ -111,9 +109,9 @@ const ChainOptions = ({chain, setChain}: IChainOptions) => {
                 type="radio"
                 value={value}
                 defaultChecked={chain === value}
-                className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500 cursor-pointer"
               />
-              <label htmlFor={name} className="ml-3 block text-sm font-medium text-gray-700 dark:text-neutral-200">
+              <label htmlFor={name} className="ml-2 block text-sm font-medium text-gray-700 dark:text-neutral-200 cursor-pointer">
                 {name}
               </label>
             </div>
