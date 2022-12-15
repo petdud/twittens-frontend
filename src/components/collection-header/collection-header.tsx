@@ -15,7 +15,8 @@ export const CollectionHeader = ({name, description, imageUrl, imageAlt, rightBu
     <div className="flex items-start space-x-5">
       <div className="flex-shrink-0">
         <div className="relative">
-          <Image
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
             className="rounded-full"
             src={imageUrl}
             width={96}
