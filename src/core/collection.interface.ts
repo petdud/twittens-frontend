@@ -1,4 +1,4 @@
-type chainTypes = "eth-mainnet" | "polygon-mainnet";
+export type chainTypes = "eth-mainnet" | "polygon-mainnet";
 export type statusTypes = "initiated" | "creating" | "error" | "ready" | "hidden" | "active";
 
 export interface IUserEns {
