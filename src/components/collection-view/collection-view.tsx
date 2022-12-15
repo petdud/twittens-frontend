@@ -86,8 +86,8 @@ const CollectionDescription = ({owners, supply, twitterAccountsCount}: ICollecti
 )
 
 interface ISocialLinks {
-  discord?: string;
-  twitter?: string;
+  discord?: string | null;
+  twitter?: string | null;
 }
 
 const SocialLinks = ({discord, twitter}: ISocialLinks) => (
