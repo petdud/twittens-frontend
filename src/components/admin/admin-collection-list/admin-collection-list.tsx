@@ -13,7 +13,7 @@ export const AdminCollectionList = () => {
   return (
     <ul role="list" className="divide-y divide-gray-200 dark:divide-gray-700 mt-8">
       {collections?.map(({imageUrl, slug, name, status}) => (
-        <li key={slug} className="py-2 px-3 dark:text-white flex justify-between hover:bg-gray-800">
+        <li key={slug} className="py-2 px-3 dark:text-white flex justify-between hover:bg-gray-200 hover:dark:bg-gray-800">
           <div className="flex items-center gap-4">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={imageUrl} alt={name} className="inline-block h-6 w-6 rounded-full" />
