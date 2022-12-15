@@ -3,6 +3,7 @@ import axios from 'axios';
 import { IOpenSea } from '../../../core/opensea.interface';
 import { Modal } from '../../modal/modal';
 import { ICollection, chainTypes } from '../../../core/collection.interface';
+import { useGetCollectionOwners } from '../../../hooks/use-get-collection-owners';
 
 type AddCollectionProps = Pick<ICollection, "name" | "slug" | "address" | "description" | "imageUrl" | "totalSupply" | "twitterUsername" | "discordUrl" | "externalUrl" | "chain"> | null;
 
@@ -30,8 +31,8 @@ export const AdminAddCollection = () => {
     setOpen(true);
     if (text) {
       const { data } = await axios.get(`https://api.opensea.io/api/v1/collection/${text}`)
-      if (data?.collection as IOpenSea) {
-        const {name, slug, description, external_url, image_url, primary_asset_contracts, stats, twitter_username, discord_url } = data.collection;
+      if (data?.collection) {
+        const {name, slug, description, external_url, image_url, primary_asset_contracts, stats, twitter_username, discord_url } = data.collection as IOpenSea;
         const contractAddress = primary_asset_contracts[0].address
 
         const dataToSubmit = {
@@ -75,7 +76,7 @@ export const AdminAddCollection = () => {
           Preview collection
         </button>
       </form>
-      <Modal content={<PreviewContent data={data} chain={chain} />} actionButtonContent='Add collection' actionCallback={submit} open={open} setOpen={setOpen} />
+      <Modal content={data && <PreviewContent contractAddress={data.address} data={data} chain={chain} />} actionButtonContent='Add collection' actionCallback={submit} open={open} setOpen={setOpen} />
     </div>
   );
 }
@@ -124,11 +125,14 @@ const ChainOptions = ({chain, setChain}: IChainOptions) => {
 
 
 interface IPreviewContent {
+  contractAddress: string;
   chain: chainTypes;
   data: AddCollectionProps;
 }
 
-const PreviewContent = ({chain, data}: IPreviewContent) => {
+const PreviewContent = ({contractAddress, chain, data}: IPreviewContent) => {
+  const { data: owners, isLoading } = useGetCollectionOwners(contractAddress, chain);
+  
   if (!data) {
     return null;
   }
@@ -151,6 +155,17 @@ const PreviewContent = ({chain, data}: IPreviewContent) => {
       <h2 className="text-2xl font-bold text-black  dark:text-white">{name}</h2>
       <div className="truncate ... pt-2">{description}</div>
       <div>
+        <span className={dataItemClassName}>Total supply: </span>
+        <span>{totalSupply}</span>
+      </div>
+      <div>
+        <span className={dataItemClassName}>Owners: </span>
+        {isLoading && <span className="text-yellow-700 font-semibold">Loading... please wait</span>}
+        {!isLoading && (!owners || owners.length === 0) && <span className="text-red-700 font-semibold">Something wrong, no owners found on API</span>}
+        {owners && owners.length > 10000 && <span className="text-red-700 font-semibold">{owners.length} - is that correct?</span>}
+        {owners && owners.length <= 10000 && <span className="text-green-700 font-semibold">{owners.length}</span>}
+      </div>
+      <div>
         <div className={dataItemClassName}>Contract: </div>
         <span>{address}</span>
       </div>
@@ -165,10 +180,6 @@ const PreviewContent = ({chain, data}: IPreviewContent) => {
       <div>
         <span className={dataItemClassName}>Discord URL: </span>
         <span>{discordUrl}</span>
-      </div>
-      <div>
-        <span className={dataItemClassName}>Total supply: </span>
-        <span>{totalSupply}</span>
       </div>
       <div>
         <span className={dataItemClassName}>Chain: </span>

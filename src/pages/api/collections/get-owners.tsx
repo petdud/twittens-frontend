@@ -1,17 +1,18 @@
 import axios, { AxiosError } from "axios";
 import { NextApiRequest, NextApiResponse } from "next";
-import { API_PATHS, BASE_API_URL } from "../../../core/constants";
+import { BASE_API_URL, API_PATHS } from "../../../core/constants";
 
-const API = `${BASE_API_URL}${API_PATHS.UPDATE_COLLECTION_STATUS}`;
+const API = `${BASE_API_URL}${API_PATHS.GET_COLLECTION_OWNERS}`;
 
 const handler = async (req: NextApiRequest, res: NextApiResponse<any>) => {
-  const { slug, status }= req.query;
+  const { contractAddress, chain }= req.query;
+  console.log(contractAddress, chain)
   try {
-    if (slug && status) {
-      const apiResponse = await axios.patch(`${API}/${slug}?status=${status}`);
+    if (contractAddress) {
+      const apiResponse = await axios.get(`${API}/${contractAddress}?chain=${chain}`);
       res.status(200).json(apiResponse.data)
     } else {
-      res.status(409).json({ error: `Wrong slug: ${slug}, or status: ${status}` });
+      res.status(409).json({ error: `Wrong contract address provided: ${contractAddress}` });
     }
   } catch(err: AxiosError | any) {
     err.statusCode

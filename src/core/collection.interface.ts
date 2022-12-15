@@ -25,9 +25,9 @@ export interface ICollection {
   imageUrl: string,
   totalSupply?: number, // can be dynamic, e.g. events
   numberOfOwners: number,
-  twitterUsername: string,
-  externalUrl: string,
-  discordUrl: string,
+  twitterUsername: string | null,
+  externalUrl: string | null,
+  discordUrl: string | null,
   isFeatured: string,
   status: statusTypes,
   chain: chainTypes,

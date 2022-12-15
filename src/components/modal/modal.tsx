@@ -1,6 +1,5 @@
 import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import { CheckIcon } from '@heroicons/react/24/outline'
 
 interface IModal {
   actionButtonContent: string;
@@ -50,9 +49,9 @@ export const Modal = ({actionButtonContent, actionCallback, content, icon, title
                       {title}
                     </Dialog.Title>}
                     {content && <div className="mt-2">
-                      <p className="text-sm text-gray-500">
+                      <div className="text-sm text-gray-500">
                         {content}
-                      </p>
+                      </div>
                     </div>}
                   </div>
                 </div>

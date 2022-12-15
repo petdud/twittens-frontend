@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
 import { ICollectionApiData } from "../core/collection.interface";
+import { LOCAL_API_PATHS } from "../core/constants";
 
 export const useCollection = (slug: string): {data?: ICollectionApiData, isLoading: boolean, error: boolean} => {
   const [data, setData] = useState<ICollectionApiData>();
@@ -9,7 +10,7 @@ export const useCollection = (slug: string): {data?: ICollectionApiData, isLoadi
 
   const fetchCollection = useCallback(async () => {
     try {
-      const { data } = await axios.get(`/api/collections/${slug}`);
+      const { data } = await axios.get(`${LOCAL_API_PATHS.GET_COLLECTION}/${slug}`);
       data && setData(data);
       setIsLoading(false);
     } catch(err) {
