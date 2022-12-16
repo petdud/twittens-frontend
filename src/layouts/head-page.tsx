@@ -11,7 +11,7 @@ export const HeadPage = ({title, description}: IHeadPageProps) => {
       <title>{title}</title>
       <meta name="description" content={description} />
       <link rel="icon" href="/favicon.ico" />
-      <script async defer data-website-id="71f3f4a6-7fc8-4af2-b7c0-2b0e3ecbd5fd" src="https://twittens-lytics.up.railway.app/umami.js"></script>
+      <script async defer data-website-id="91db11b4-a01b-4b14-a4ad-e5175b609163" src="https://umammprod.up.railway.app/umami.js"></script>
     </Head>
   )
 }
