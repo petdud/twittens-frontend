@@ -227,7 +227,7 @@ const JoinCommunitySection = () => (
         target="_blank"
         className="cursor-pointer"
       >
-        <div className="inline-flex items-center gap-2 px-1 py-1 rounded-md text-sm text-sky-600 dark:text-sky-500 dark:hover:text-sky-600 hover:text-sky-700">
+        <div className="inline-flex items-center gap-2 px-1 py-1 rounded-md text-sm text-gray-600 hover:text-black dark:text-neutral-200 hover:dark:text-white">
           <BsTwitter /> Twitter
         </div>
       </Link>
@@ -236,7 +236,7 @@ const JoinCommunitySection = () => (
         target="_blank"
         className="cursor-pointer"
       >
-        <div className="inline-flex items-center gap-2 px-1 py-1 rounded-md text-sm text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-500">
+        <div className="inline-flex items-center gap-2 px-1 py-1 rounded-md text-sm text-gray-600 hover:text-black dark:text-neutral-200 hover:dark:text-white">
           <BsDiscord /> Discord
         </div>
       </Link>
