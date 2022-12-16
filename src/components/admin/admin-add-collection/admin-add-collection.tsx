@@ -18,6 +18,7 @@ export const AdminAddCollection = () => {
       await axios.post(`/api/collections/create`, data);
       setOpen(false);
       setData(null);
+      setText("");
     }
   }, [data]);
 
