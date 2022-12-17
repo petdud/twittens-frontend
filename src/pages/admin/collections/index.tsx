@@ -3,7 +3,7 @@ import { MainSlot } from '../../../layouts/main-slot';
 import { AdminCollectionList } from '../../../components/admin/admin-collection-list/admin-collection-list';
 import { AdminAddCollection } from '../../../components/admin/admin-add-collection/admin-add-collection';
 
-export default function Home() {
+export default function Admin() {
   return (
     <div>
       <HeadPage 

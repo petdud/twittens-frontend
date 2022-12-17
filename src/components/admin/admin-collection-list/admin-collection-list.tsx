@@ -6,19 +6,22 @@ import { ChevronUpDownIcon } from '@heroicons/react/20/solid'
 import { classNames } from '../../../utils';
 import axios from 'axios';
 import { LOCAL_API_PATHS } from '../../../core/constants';
+import Link from 'next/link';
 
 export const AdminCollectionList = () => {
   const { data: collections } = useCollections();
 
   return (
-    <ul role="list" className="divide-y divide-gray-200 dark:divide-gray-700 mt-8">
+    <ul role="list" className="divide-y divide-gray-200 dark:divide-gray-700 mt-8 max-h-96 overflow-auto">
       {collections?.map(({imageUrl, slug, name, status}) => (
-        <li key={slug} className="py-2 px-3 dark:text-white flex justify-between hover:bg-gray-200 hover:dark:bg-gray-800">
-          <div className="flex items-center gap-4">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={imageUrl} alt={name} className="inline-block h-6 w-6 rounded-full" />
-            <span>{name}</span>
-          </div>
+        <li key={slug} className=" dark:text-white flex justify-between hover:bg-gray-200 hover:dark:bg-gray-800">
+          <Link href={`/collections/${slug}`} className="cursor-pointer py-2 px-3" target="_blank">
+            <div className="flex items-center gap-4">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={imageUrl} alt={name} className="inline-block h-6 w-6 rounded-full" />
+              <span>{name}</span>
+            </div>
+          </Link>
           <StatusDropdown slug={slug} status={status} />
         </li>
       ))}
@@ -26,7 +29,7 @@ export const AdminCollectionList = () => {
   )
 }
 
-const types: statusTypes[] = ["error", "ready", "hidden", "active"];
+const types: statusTypes[] = ["ready", "hidden", "active"];
 
 const StatusDropdown = ({slug, status}: {slug: string, status: statusTypes}) => {
   const [selectedStatus, setSelectedStatus] = useState(status);

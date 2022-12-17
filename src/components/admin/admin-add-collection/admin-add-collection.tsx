@@ -27,7 +27,7 @@ export const AdminAddCollection = () => {
     setData(null);
   }, []);
 
-  const handleSubmit = useCallback(async (e: FormEvent) => {
+  const openPreviewDialog = useCallback(async (e: FormEvent) => {
     e.preventDefault();
     setOpen(true);
     if (text) {
@@ -55,7 +55,7 @@ export const AdminAddCollection = () => {
 
   return (
     <div className="dark:bg-neutral-800 bg-white p-4 rounded-md shadow-lg">
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={openPreviewDialog}>
         <label htmlFor="text" className="block text-sm font-medium text-gray-700 dark:text-gray-400 pb-2">
           Add collection:
         </label>
