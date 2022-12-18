@@ -2,10 +2,11 @@ import React, { FormEvent, useCallback, useState } from 'react';
 import axios from 'axios';
 import { IOpenSea } from '../../../core/opensea.interface';
 import { Modal } from '../../modal/modal';
-import { ICollection, chainTypes } from '../../../core/collection.interface';
+import { ICollection, chainTypes, IImage } from '../../../core/collection.interface';
 import { PreviewCollectionContent } from './preview-collection-content';
+import { ICloudinary } from './upload-widget';
 
-export type AddCollectionProps = Pick<ICollection, "name" | "slug" | "address" | "description" | "imageUrl" | "totalSupply" | "twitterUsername" | "discordUrl" | "externalUrl" | "chain"> | null;
+export type AddCollectionProps = Pick<ICollection, "name" | "slug" | "address" | "description" | "totalSupply" | "twitterUsername" | "discordUrl" | "image" | "externalUrl" | "chain"> | null;
 
 export const AdminAddCollection = () => {
   const [text, setText] = useState("");
@@ -27,6 +28,26 @@ export const AdminAddCollection = () => {
     setData(null);
   }, []);
 
+  const onImageUploaded = useCallback((info: ICloudinary) => {
+    data && setData((prevState: any) => {
+      const { format, public_id, asset_id, width, height, url, thumbnail_url } = info;
+
+      return {
+        ...prevState,
+        image: {
+          ...prevState.image,
+          url, 
+          thumbnailUrl: thumbnail_url,
+          extension: format,
+          publicId: public_id,
+          id: asset_id,
+          width,
+          height,
+        }
+      }
+    });
+  }, [data]);
+
   const openPreviewDialog = useCallback(async (e: FormEvent) => {
     e.preventDefault();
     setOpen(true);
@@ -41,7 +62,7 @@ export const AdminAddCollection = () => {
           slug,
           address: contractAddress, 
           description,
-          imageUrl: image_url,
+          image: { externalUrl: image_url} as IImage, // other properties will be added on upload
           totalSupply: stats.total_supply,
           twitterUsername: twitter_username,
           discordUrl: discord_url,
@@ -78,7 +99,7 @@ export const AdminAddCollection = () => {
         </button>
       </form>
       <Modal content={data &&
-         <PreviewCollectionContent contractAddress={data.address} data={data} chain={chain} />
+         <PreviewCollectionContent onImageUploaded={onImageUploaded} contractAddress={data.address} data={data} chain={chain} />
       } actionButtonContent='Add collection' actionCallback={submit} open={open} setOpen={setOpen} />
     </div>
   );

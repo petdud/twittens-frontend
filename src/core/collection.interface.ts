@@ -6,6 +6,17 @@ export interface IUserEns {
   twitter: string,
 }
 
+export interface IImage {
+  url: string;
+  thumbnailUrl: string;
+  extension: string;
+  publicId: string;
+  id: string;
+  width: number;
+  height: number;
+  externalUrl: string;
+}
+
 export interface IUser {
   _id: string,
   address: string,
@@ -22,7 +33,7 @@ export interface ICollection {
   address: string,
   name: string,
   description: string,
-  imageUrl: string,
+  image: IImage,
   totalSupply?: number, // can be dynamic, e.g. events
   numberOfOwners: number,
   twitterUsername: string | null,

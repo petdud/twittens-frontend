@@ -1,22 +1,26 @@
+import { CheckIcon } from "@heroicons/react/20/solid";
 import { chainTypes } from "../../../core/collection.interface";
 import { useGetCollectionOwners } from "../../../hooks/use-get-collection-owners";
 import { AddCollectionProps } from "./admin-add-collection";
+import { ICloudinary, UploadWidget } from "./upload-widget";
 
 
 interface IPreviewCollectionContentProps {
   contractAddress: string;
   chain: chainTypes;
   data: AddCollectionProps;
+  onImageUploaded: (info: ICloudinary) => void;
 }
 
-export const PreviewCollectionContent = ({contractAddress, chain, data}: IPreviewCollectionContentProps) => {
+export const PreviewCollectionContent = ({contractAddress, chain, data, onImageUploaded}: IPreviewCollectionContentProps) => {
   const { data: owners, isLoading } = useGetCollectionOwners(contractAddress, chain);
-  
+
   if (!data) {
     return null;
   }
 
   const {
+    slug,
     name,
     description,
     address,
@@ -24,7 +28,7 @@ export const PreviewCollectionContent = ({contractAddress, chain, data}: IPrevie
     discordUrl,
     externalUrl,
     totalSupply,
-    imageUrl
+    image,
   } = data;
 
   const dataItemClassName = "pt-2 font-semibold text-grey-700 dark:text-white";
@@ -64,8 +68,12 @@ export const PreviewCollectionContent = ({contractAddress, chain, data}: IPrevie
         <span className={dataItemClassName}>Chain: </span>
         <span>{chain}</span>
       </div>
+      {!data.image.id && <UploadWidget publicId={slug} folder="collections" onSuccess={onImageUploaded} />}
+      {data.image.id && <div className="flex items-center gap-2">
+      <CheckIcon className="text-green-700 w-6" /> Image uploaded
+      </div>}
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={imageUrl} alt={name} className="pt-2 m-auto"/>
+      <img src={image.externalUrl} alt={name} className="pt-2 m-auto"/>
     </div>
   )
 }
