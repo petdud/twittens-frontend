@@ -40,7 +40,7 @@ export function useHistoryManager() {
 		return () => {
 			router.events.off('routeChangeStart', handleRouteChange);
 		};
-	}, []);
+	}, [router]);
 
 	return { history, canGoBack: () => history.length > 1 };
 }
