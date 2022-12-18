@@ -7,6 +7,8 @@ import { classNames } from '../../../utils';
 import axios from 'axios';
 import { LOCAL_API_PATHS } from '../../../core/constants';
 import Link from 'next/link';
+import { MdModeEditOutline } from 'react-icons/md';
+import { ImCross } from 'react-icons/im';
 
 export const AdminCollectionList = () => {
   const { data: collections } = useCollections();
@@ -14,7 +16,7 @@ export const AdminCollectionList = () => {
   return (
     <ul role="list" className="divide-y divide-gray-200 dark:divide-gray-700 mt-8 max-h-96 overflow-auto">
       {collections?.map(({image, slug, name, status}) => (
-        <AdminCollectionItem key={slug} imageUrl={image.url} slug={slug} name={name} status={status} />
+        <AdminCollectionItem key={slug} imageUrl={image?.url} slug={slug} name={name} status={status} />
       ))}
     </ul>
   )
@@ -27,9 +29,9 @@ interface IAdminCollectionItemProps {
   status: statusTypes;
 }
 const AdminCollectionItem = ({imageUrl, slug, name, status}: IAdminCollectionItemProps) => {
-  
-  const onEdit = useCallback(() => {
-  }, []);
+  const onDelete = useCallback(async () => {
+    await axios.delete(`/api/collections/${slug}/delete`);
+  }, [slug]);
 
   return (
     <li key={slug} className=" dark:text-white flex justify-between hover:bg-gray-200 hover:dark:bg-gray-800">
@@ -40,8 +42,17 @@ const AdminCollectionItem = ({imageUrl, slug, name, status}: IAdminCollectionIte
           <span>{name}</span>
         </div>
       </Link>
-      <button className="" onClick={onEdit}>Edit</button>
-      <StatusDropdown slug={slug} status={status} />
+      <div className="flex items-center gap-2">
+        <StatusDropdown slug={slug} status={status} />
+        <Link href={`/admin/collections/${slug}/edit`}>
+          <button className="px-2 py-1 border-gray-300 dark:border-gray-700 border rounded-md">
+            <MdModeEditOutline />
+          </button>
+        </Link>
+        <button onClick={onDelete} className="px-2 py-1 border-gray-300 dark:border-gray-700 border rounded-md">
+          <ImCross className="text-red-500" />
+        </button>
+      </div>
     </li>
   )
 }

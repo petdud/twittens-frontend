@@ -5,6 +5,7 @@ export const LOCAL_API_PATHS = {
   UPDATE_COLLECTION_STATUS: "/api/collections/update-status", // provide collection's slug and new status
   GET_COLLECTIONS: "/api/collections", // get all collections; provide status in query (active, hidden)
   GET_COLLECTION: "/api/collections", // provide collection's slug
+  // DELETE_COLLECTION: "/api/collections/:slug/delete", // delete a collection by providing its slug
   GET_COLLECTION_OWNERS: "/api/collections/get-owners", // provide collection's contract address
 }
 

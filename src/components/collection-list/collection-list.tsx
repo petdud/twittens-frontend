@@ -42,7 +42,7 @@ export const CollectionList = () =>  {
                   key={slug}
                   description={collectionDetails?.twitterCount ? `${collectionDetails.twitterCount} members on Twitter` : undefined}
                   isFeatured={!!isFeatured}
-                  imageUrl={image.url}
+                  imageUrl={image?.url}
                   name={name}
                   path={`/collections/${slug}`} 
                 />

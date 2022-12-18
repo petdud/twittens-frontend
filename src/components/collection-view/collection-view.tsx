@@ -61,7 +61,7 @@ const Collection = ({slug}: {slug: string}) => {
     <>
       <CollectionHeader 
         name={<>{collection?.name} <span className="font-normal">on</span> <span className="text-blue-400">Twitter</span>!</>} 
-        imageUrl={collection?.image.url}
+        imageUrl={collection?.image?.url}
         imageAlt={collection?.name || ""} 
         description={<CollectionDescription owners={collection.numberOfOwners} supply={collection.totalSupply} twitterAccountsCount={twitterAccountsCount} />}
         social={<SocialLinks twitter={collection?.twitterUsername} discord={collection?.discordUrl} />}

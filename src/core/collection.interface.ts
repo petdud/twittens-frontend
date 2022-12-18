@@ -37,8 +37,8 @@ export interface ICollection {
   totalSupply?: number, // can be dynamic, e.g. events
   numberOfOwners: number,
   twitterUsername: string | null,
-  externalUrl: string | null,
   discordUrl: string | null,
+  externalUrl: string | null,
   isFeatured: string,
   status: statusTypes,
   chain: chainTypes,
