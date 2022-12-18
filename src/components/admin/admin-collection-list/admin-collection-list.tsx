@@ -13,19 +13,36 @@ export const AdminCollectionList = () => {
 
   return (
     <ul role="list" className="divide-y divide-gray-200 dark:divide-gray-700 mt-8 max-h-96 overflow-auto">
-      {collections?.map(({imageUrl, slug, name, status}) => (
-        <li key={slug} className=" dark:text-white flex justify-between hover:bg-gray-200 hover:dark:bg-gray-800">
-          <Link href={`/collections/${slug}`} className="cursor-pointer py-2 px-3" target="_blank">
-            <div className="flex items-center gap-4">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={imageUrl} alt={name} className="inline-block h-6 w-6 rounded-full" />
-              <span>{name}</span>
-            </div>
-          </Link>
-          <StatusDropdown slug={slug} status={status} />
-        </li>
+      {collections?.map(({image, slug, name, status}) => (
+        <AdminCollectionItem key={slug} imageUrl={image.url} slug={slug} name={name} status={status} />
       ))}
     </ul>
+  )
+}
+
+interface IAdminCollectionItemProps {
+  imageUrl: string;
+  slug: string;
+  name: string;
+  status: statusTypes;
+}
+const AdminCollectionItem = ({imageUrl, slug, name, status}: IAdminCollectionItemProps) => {
+  
+  const onEdit = useCallback(() => {
+  }, []);
+
+  return (
+    <li key={slug} className=" dark:text-white flex justify-between hover:bg-gray-200 hover:dark:bg-gray-800">
+      <Link href={`/collections/${slug}`} className="cursor-pointer py-2 px-3" target="_blank">
+        <div className="flex items-center gap-4">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={imageUrl} alt={name} className="inline-block h-6 w-6 rounded-full" />
+          <span>{name}</span>
+        </div>
+      </Link>
+      <button className="" onClick={onEdit}>Edit</button>
+      <StatusDropdown slug={slug} status={status} />
+    </li>
   )
 }
 

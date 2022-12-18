@@ -4,7 +4,7 @@ import { API_PATHS, BASE_API_URL } from "../../../core/constants";
 
 const API = `${BASE_API_URL}${API_PATHS.USERS}`;
 
-const users = async (req: NextApiRequest, res: NextApiResponse<any>) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse<any>) => {
   try {
     const apiResponse = await axios.get(API);
     res.status(200).json(apiResponse.data)
@@ -18,4 +18,4 @@ const users = async (req: NextApiRequest, res: NextApiResponse<any>) => {
   }
 };
 
-export default users;
+export default handler;
