@@ -63,7 +63,7 @@ export const SearchBar = () => {
                     <>
                       <div className="flex items-center">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src={collection.imageUrl} alt={collection.name} className="h-6 w-6 flex-shrink-0 rounded-full" />
+                        <img src={collection.image?.thumbnailUrl} alt={collection.name} className="h-6 w-6 flex-shrink-0 rounded-full" />
                         <span className={classNames('ml-3 truncate', selected ? 'font-semibold' : '')}>{collection.name}</span>
                       </div>
                     </>
