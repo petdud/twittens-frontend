@@ -69,7 +69,7 @@ export const PreviewCollectionContent = ({contractAddress, chain, data, onImageU
         <span className={dataItemClassName}>Chain: </span>
         <span>{chain}</span>
       </div>
-      {!data.image.id && <UploadWidget publicId={slug} folder={CLOUDINARY_COLLECTION_FOUNDER} onSuccess={onImageUploaded} />}
+      {!data.image.id && <UploadWidget folder={CLOUDINARY_COLLECTION_FOUNDER} onSuccess={onImageUploaded} />}
       {data.image.id && <div className="flex items-center gap-2">
       <CheckIcon className="text-green-700 w-6" /> Image uploaded
       </div>}
