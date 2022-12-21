@@ -179,13 +179,13 @@ export const AdminCollectionEdit = () => {
           <div className="text-black dark:text-white">
             Cloudinary:
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={collectionFields.image.url || collection.image.thumbnailUrl} alt={collection.name} width={150} />
+            <img src={collectionFields.image?.url || collection.image?.thumbnailUrl} alt={collection.name} width={150} />
           </div>
 
           <div className="text-black dark:text-white">
             External Image:
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={collection.image.externalUrl} alt={collection.name} width={150}/>
+            <img src={collection.image?.externalUrl} alt={collection.name} width={150}/>
           </div>
         </div>
 
