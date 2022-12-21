@@ -3,11 +3,12 @@ interface IInputProps {
   label: string;
   type?: "text" | "number";
   placeholder?: string;
-  value?: string | number;
+  value: string | number;
   disabled?: boolean;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export const Input = ({id, disabled, type = "text", label, placeholder, value}: IInputProps) => (
+export const Input = ({id, disabled, type = "text", label, placeholder, value, onChange}: IInputProps) => (
   <>
     <label htmlFor={id} className="block text-sm font-medium text-gray-700 dark:text-gray-400 pb-2">
       {label}
@@ -18,7 +19,8 @@ export const Input = ({id, disabled, type = "text", label, placeholder, value}: 
       placeholder={placeholder}
       disabled={disabled}
       value={value}
+      onChange={onChange}
       className="dark:bg-neutral-900 dark:text-white dark:border-neutral-500 dark:focus:ring-gray-500 dark:focus:border-gray-500 dark:placeholder-gray-500 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
     />
   </>
-)
+);

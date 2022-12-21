@@ -5,6 +5,7 @@ import { Modal } from '../../modal/modal';
 import { ICollection, chainTypes, IImage } from '../../../core/collection.interface';
 import { PreviewCollectionContent } from './preview-collection-content';
 import { ICloudinary } from './upload-widget';
+import { LOCAL_API_PATHS } from '../../../core/constants';
 
 export type AddCollectionProps = Pick<ICollection, "name" | "slug" | "address" | "description" | "totalSupply" | "twitterUsername" | "discordUrl" | "image" | "externalUrl" | "chain"> | null;
 
@@ -16,7 +17,7 @@ export const AdminAddCollection = () => {
 
   const submit = useCallback(async () => {
     if (data) {
-      await axios.post(`/api/collections/create`, data);
+      await axios.post(LOCAL_API_PATHS.CREATE_COLLECTION, data);
       setOpen(false);
       setData(null);
       setText("");

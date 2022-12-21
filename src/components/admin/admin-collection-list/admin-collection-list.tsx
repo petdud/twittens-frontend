@@ -8,7 +8,6 @@ import axios from 'axios';
 import { LOCAL_API_PATHS } from '../../../core/constants';
 import Link from 'next/link';
 import { MdModeEditOutline } from 'react-icons/md';
-import { ImCross } from 'react-icons/im';
 
 export const AdminCollectionList = () => {
   const { data: collections } = useCollections();
@@ -28,34 +27,26 @@ interface IAdminCollectionItemProps {
   name: string;
   status: statusTypes;
 }
-const AdminCollectionItem = ({imageUrl, slug, name, status}: IAdminCollectionItemProps) => {
-  const onDelete = useCallback(async () => {
-    await axios.delete(`/api/collections/${slug}/delete`);
-  }, [slug]);
 
-  return (
-    <li key={slug} className=" dark:text-white flex justify-between hover:bg-gray-200 hover:dark:bg-gray-800">
-      <Link href={`/collections/${slug}`} className="cursor-pointer py-2 px-3" target="_blank">
-        <div className="flex items-center gap-4">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={imageUrl} alt={name} className="inline-block h-6 w-6 rounded-full" />
-          <span>{name}</span>
-        </div>
-      </Link>
-      <div className="flex items-center gap-2">
-        <StatusDropdown slug={slug} status={status} />
-        <Link href={`/admin/collections/${slug}/edit`}>
-          <button className="px-2 py-1 border-gray-300 dark:border-gray-700 border rounded-md">
-            <MdModeEditOutline />
-          </button>
-        </Link>
-        <button onClick={onDelete} className="px-2 py-1 border-gray-300 dark:border-gray-700 border rounded-md">
-          <ImCross className="text-red-500" />
-        </button>
+const AdminCollectionItem = ({imageUrl, slug, name, status}: IAdminCollectionItemProps) => (
+  <li key={slug} className=" dark:text-white flex justify-between hover:bg-gray-200 hover:dark:bg-gray-800">
+    <Link href={`/collections/${slug}`} className="cursor-pointer py-2 px-3" target="_blank">
+      <div className="flex items-center gap-4">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={imageUrl} alt={name} className="inline-block h-6 w-6 rounded-full" />
+        <span>{name}</span>
       </div>
-    </li>
-  )
-}
+    </Link>
+    <div className="flex items-center gap-2">
+      <StatusDropdown slug={slug} status={status} />
+      <Link href={`/admin/collections/${slug}/edit`}>
+        <button className="p-1.5 mr-2 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-neutral-900 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">
+          <MdModeEditOutline />
+        </button>
+      </Link>
+    </div>
+  </li>
+);
 
 const types: statusTypes[] = ["ready", "hidden", "active"];
 
@@ -63,7 +54,6 @@ const StatusDropdown = ({slug, status}: {slug: string, status: statusTypes}) => 
   const [selectedStatus, setSelectedStatus] = useState(status);
   const onStatusChange = useCallback(async (status: statusTypes) => {
     if (status !== selectedStatus) {
-      console.log(status);
       const response = await axios.get(`${LOCAL_API_PATHS.UPDATE_COLLECTION_STATUS}?status=${status}&slug=${slug}`);
       if (response.status === 200 || response.status === 201) {
         setSelectedStatus(status);
@@ -76,7 +66,7 @@ const StatusDropdown = ({slug, status}: {slug: string, status: statusTypes}) => 
       {({ open }) => (
         <>
           {/* <Listbox.Label className="block text-sm font-medium text-gray-700">Status</Listbox.Label> */}
-          <div className="relative mt-1">
+          <div className="relative">
             <Listbox.Button className="relative w-full cursor-pointer rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-neutral-900 py-1 pl-2 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
               <span className="block truncate">{selectedStatus}</span>
               <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">

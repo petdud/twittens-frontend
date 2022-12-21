@@ -7,6 +7,8 @@ export const LOCAL_API_PATHS = {
   GET_COLLECTION: "/api/collections", // provide collection's slug
   // DELETE_COLLECTION: "/api/collections/:slug/delete", // delete a collection by providing its slug
   GET_COLLECTION_OWNERS: "/api/collections/get-owners", // provide collection's contract address
+  EDIT_COLLECTION: "/api/collections/edit", // provide collection's slug and new data
+  CREATE_COLLECTION: "/api/collections/create" // create a new collection
 }
 
 // paths outside of this application (api.twittens.xyz)
@@ -23,3 +25,5 @@ export const GOOGLE_FEEDBACK_FORM = "https://forms.gle/QkXy6dr1oGqxJxCP6";
 export const HOW_TO_ADD_TWITTER_TO_ENS = "https://dudis.notion.site/How-to-add-your-Twitter-df8b2389dd664d08a85eb333b32f076d";
 export const TWITTENS_TWITTER_URL = "https://www.twitter.com/twittensxyz";
 export const TWITTENS_DISCORD_URL = "https://discord.gg/txXEVWckAV";
+
+export const CLOUDINARY_COLLECTION_FOUNDER = process.env.NODE_ENV === "production" ? "collections" : "test";

@@ -21,8 +21,8 @@ export const useCollection = (slug: string): {data?: ICollectionApiData, isLoadi
   }, [slug])
 
   useEffect(() => {
-    fetchCollection();
-  }, [fetchCollection]);
+    slug && fetchCollection();
+  }, [fetchCollection, slug]);
 
   return {
     data,
