@@ -4,7 +4,7 @@ import { AdminCollectionEdit } from '../../../../components/admin/admin-collecti
 
 export default function Admin() {
   return (
-    <div>
+    <>
       <HeadPage 
         title="Twitten - Admin panel" 
         description="Twittens helps you to find your twitter frens in your favorite NFT collections."
@@ -17,6 +17,6 @@ export default function Admin() {
           <AdminCollectionEdit />
         </div>
       </MainSlot>
-    </div>
+    </>
   );
 }
