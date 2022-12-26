@@ -17,6 +17,7 @@ import { ImContrast } from 'react-icons/im';
 import { GOOGLE_FEEDBACK_FORM, GOOGLE_FORM_GET_LISTED, TWITTENS_DISCORD_URL, TWITTENS_TWITTER_URL } from '../core/constants';
 import { useThemeContext } from '../core/theme-provider';
 import { MdOutlineFeedback } from 'react-icons/md';
+import { useSession, signOut } from 'next-auth/react';
 
 const navigation = [
   { name: 'Home', href: '/', icon: HomeIcon },
@@ -117,6 +118,7 @@ export const MainSlot = ({children}: IMainSlot) => {
                     <JoinCommunitySection />
                     <Divider wrapperClass="my-6" />
                     <ThemeSettings />
+                    <AdminMenu />
                   </div>
 
                   <Footer />
@@ -178,6 +180,7 @@ export const MainSlot = ({children}: IMainSlot) => {
                 <JoinCommunitySection />
                 <Divider wrapperClass="my-6" />
                 <ThemeSettings />
+                <AdminMenu />
               </div>
             </div>
             <Footer />
@@ -316,5 +319,40 @@ const ThemeSettings = () => {
         </Switch>
       </div>
     </Switch.Group>
+  )
+}
+
+const AdminMenu = () => {
+  const { data: session } = useSession();
+
+  if (!session) {
+    return null;
+  }
+
+  return (
+    <div className="mt-5">
+      <Divider />
+      <div className="px-3 mt-5 flex items-center">
+        <div className="font-semibold dark:text-neutral-200">
+          <Link
+            href="/admin/collections"
+            target="_blank"
+            className="cursor-pointer"
+          >
+            Admin panel
+          </Link>
+        </div>
+        <div>
+          <button
+            onClick={() => signOut()}
+            className="cursor-pointer"
+          >
+            <div className="inline-flex items-center gap-2 px-1 py-1 rounded-md text-sm text-gray-600 hover:text-black dark:text-neutral-400 hover:dark:text-neutral-200">
+              (Sign Out)
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
   )
 }
