@@ -6,6 +6,7 @@ import { FormEventHandler, useCallback, useState } from "react";
 import { Input } from "../../components/controllers/input/input";
 import axios from "axios";
 import { signIn } from "next-auth/react";
+import { useRouter } from "next/router";
 
 export default function Login() {
   return (
@@ -26,13 +27,14 @@ export default function Login() {
 }
 
 const LoginWidget = () => {
+  const router = useRouter();
+  const error = router.query.error as string;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const onSubmit = useCallback(async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const res = await signIn("credentials", { email, password, redirect: false });
-    console.log(res);
+    await signIn("credentials", { email, password, callbackUrl: '/admin/collections' });
   }, [email, password]);
 
   return (
@@ -82,6 +84,9 @@ const LoginWidget = () => {
                   />
                 </div>
               </div>
+              {error && <div className="text-red-500">
+                {`Something wrong: ${error}`}
+              </div>}
               <div>
                 <button
                   type="submit"

@@ -336,7 +336,6 @@ const AdminMenu = () => {
         <div className="font-semibold dark:text-neutral-200">
           <Link
             href="/admin/collections"
-            target="_blank"
             className="cursor-pointer"
           >
             Admin panel
