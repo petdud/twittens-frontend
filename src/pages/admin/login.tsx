@@ -2,21 +2,18 @@ import Link from "next/link";
 import Image from 'next/image';
 import { MainSlot } from "../../layouts/main-slot";
 import { HeadPage } from "../../layouts/head-page";
-import { FormEventHandler, useCallback, useState } from "react";
+import { useCallback, useState } from "react";
 import { Input } from "../../components/controllers/input/input";
-import axios from "axios";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/router";
 
 export default function Login() {
   return (
-
     <>
       <HeadPage 
         title="Twitten - Login panel" 
         description="Twittens helps you to find your twitter frens in your favorite NFT collections."
       />
-
       <MainSlot>
         <div className="mx-auto max-w-3xl sm:px-6 lg:px-8 my-12 px-4">
         <LoginWidget />

@@ -14,7 +14,7 @@ const authOptions: NextAuthOptions = {
           email: string, 
           password: string 
         };
-        if (email !== "hi@twittens.xyz" || password !== "12345") {
+        if (email !== process.env.NEXTAUTH_ADMN_EMAIL || password !== process.env.NEXTAUTH_ADMN_PW) {
           return null;
         }
 

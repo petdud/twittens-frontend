@@ -346,7 +346,7 @@ const AdminMenu = () => {
             onClick={() => signOut()}
             className="cursor-pointer"
           >
-            <div className="inline-flex items-center gap-2 px-1 py-1 rounded-md text-sm text-gray-600 hover:text-black dark:text-neutral-400 hover:dark:text-neutral-200">
+            <div className="inline-flex items-center gap-2 px-1 py-1 rounded-md text-sm text-gray-600 hover:text-black dark:text-neutral-400 hover:dark:text-neutral-300">
               (Sign Out)
             </div>
           </button>
