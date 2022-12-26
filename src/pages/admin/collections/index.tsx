@@ -17,14 +17,6 @@ export default function Admin() {
 
   const isLoading = status === "loading";
 
-  if (status === "loading") {
-    return <MainViewHeader title="Loading..." />
-  }
-
-  if (!data) {
-    return 
-  }
-
   return (
     <div>
       <HeadPage 
