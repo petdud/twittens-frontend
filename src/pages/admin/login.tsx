@@ -11,7 +11,7 @@ export default function Login() {
   return (
     <>
       <HeadPage 
-        title="Twitten - Login panel" 
+        title="Twittens - Login panel" 
         description="Twittens helps you to find your twitter frens in your favorite NFT collections."
       />
       <MainSlot>

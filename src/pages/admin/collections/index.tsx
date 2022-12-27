@@ -20,7 +20,7 @@ export default function Admin() {
   return (
     <div>
       <HeadPage 
-        title="Twitten - Admin panel" 
+        title="Twittens - Admin panel" 
         description="Twittens helps you to find your twitter frens in your favorite NFT collections."
       >
         <script src="https://upload-widget.cloudinary.com/global/all.js" async type="text/javascript" />
