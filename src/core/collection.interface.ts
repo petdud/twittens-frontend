@@ -1,3 +1,5 @@
+import { IOpenSeaStats } from "./opensea.interface";
+
 export type chainTypes = "eth-mainnet" | "polygon-mainnet";
 export type statusTypes = "initiated" | "creating" | "error" | "ready" | "hidden" | "active";
 
@@ -41,6 +43,8 @@ export interface ICollection {
   externalUrl: string | null,
   isFeatured: string,
   status: statusTypes,
+  twitter: ITwitter | null,
+  stats: IOpenSeaStats | null,
   chain: chainTypes,
   createdAt: string,
   updatedAt: string,

@@ -29,7 +29,7 @@ interface IPrimaryAssetContract {
   total_supply: string; // "0"
 }
 
-interface IOpenSeaStats {
+export interface IOpenSeaStats {
   average_price: number; // 2.782542008245617
   count: number; // 555
   floor_price: number; // 0
