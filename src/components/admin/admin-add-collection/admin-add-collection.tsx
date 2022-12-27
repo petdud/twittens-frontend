@@ -5,7 +5,7 @@ import { Modal } from '../../modal/modal';
 import { ICollection, chainTypes, IImage } from '../../../core/collection.interface';
 import { PreviewCollectionContent } from './preview-collection-content';
 import { ICloudinary } from './upload-widget';
-import { LOCAL_API_PATHS } from '../../../core/constants';
+import { LOCAL_API_PATHS, OPENSEA_API_ENDPOINT } from '../../../core/constants';
 
 export type AddCollectionProps = Pick<ICollection, "name" | "slug" | "address" | "description" | "totalSupply" | "twitterUsername" | "discordUrl" | "image" | "externalUrl" | "chain"> | null;
 
@@ -53,7 +53,7 @@ export const AdminAddCollection = () => {
     e.preventDefault();
     setOpen(true);
     if (text) {
-      const { data } = await axios.get(`https://api.opensea.io/api/v1/collection/${text}`)
+      const { data } = await axios.get(`${OPENSEA_API_ENDPOINT}collection/${text}`)
       if (data?.collection) {
         const {name, slug, description, external_url, image_url, primary_asset_contracts, stats, twitter_username, discord_url } = data.collection as IOpenSea;
         const contractAddress = primary_asset_contracts[0].address

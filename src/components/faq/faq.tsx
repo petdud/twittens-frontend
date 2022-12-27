@@ -19,16 +19,16 @@ const faqs = [
       <>If you would like to have your NFT collection listed on Twittens, please <a href={GOOGLE_FORM_GET_LISTED} className={LINK_CLASSNAME} rel="noreferrer" target="_blank">fill out this form</a>. We will review your submission and add your collection to our website as soon as possible. If you have any questions or need assistance, please don&apos;t hesitate to contact us at <a href="mailto:hi@twittens.xyz" className={LINK_CLASSNAME}>hi@twittens.xyz</a>.</>
   },
   {
+    id: "4",
+    question: "How can I add my Twitter account",
+    answer:
+      <>If you&apos;re the owner of a collection and you don&apos;t see your Twitter handle on Twittens, please check that your Twitter handle is included in the ENS name associated with your collection. You can easily add your Twitter handle to your ENS name using our website <a href="https://set.twittens.xyz" className={LINK_CLASSNAME} rel="noreferrer" target="_blank">set.twittens.xyz</a>. <br/><br/>Once you&apos;ve added your Twitter handle to your ENS name, it may take up to 48 hours for it to appear on our website. If you need help or have questions, please contact us: <a href="mailto:hi@twittens.xyz" className={LINK_CLASSNAME}>hi@twittens.xyz</a>.</>
+  },
+  {
     id: "3",
     question: "Twitter accounts are missing in a collection",
     answer:
       <>If you notice that some Twitter accounts are missing from a collection on Twittens, please check that the corresponding collection owner has added their Twitter handle to the ENS name associated with their collection.<br/><br/>We regularly update our data from ENS text records, so if your Twitter handle is not included in your ENS name, it will not appear on our website. If you need help adding your Twitter handle to your ENS name, you can <a href={HOW_TO_ADD_TWITTER_TO_ENS} className={LINK_CLASSNAME} rel="noreferrer" target="_blank">refer to this guide</a>.</>
-  },
-  {
-    id: "4",
-    question: "I don't see my Twitter in a collection that I own",
-    answer:
-      <>If you&apos;re the owner of a collection and you don&apos;t see your Twitter handle on Twittens, please check that your Twitter handle is included in the ENS name associated with your collection. You can easily add your Twitter handle to your ENS name using the our website <a href="https://set.twittens.xyz" className={LINK_CLASSNAME} rel="noreferrer" target="_blank">set.twittens.xyz</a>. <br/><br/>Once you&apos;ve added your Twitter handle to your ENS name, it may take up to 24 hours for it to appear on our website. If you need help or have any questions, please contact us: <a href="mailto:hi@twittens.xyz" className={LINK_CLASSNAME}>hi@twittens.xyz</a>.</>
   },
   {
     id: "5",
