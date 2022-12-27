@@ -13,7 +13,7 @@ export const AdminCollectionList = () => {
   const { data: collections } = useCollections();
 
   return (
-    <ul role="list" className="divide-y divide-gray-200 dark:divide-gray-700 mt-8 max-h-96 overflow-auto">
+    <ul role="list" className="divide-y divide-gray-200 dark:divide-gray-700 mt-8 max-h-96 overflow-auto pb-40">
       {collections?.map(({image, slug, name, status}) => (
         <AdminCollectionItem key={slug} imageUrl={image?.url} slug={slug} name={name} status={status} />
       ))}
@@ -40,7 +40,7 @@ const AdminCollectionItem = ({imageUrl, slug, name, status}: IAdminCollectionIte
     <div className="flex items-center gap-2">
       <StatusDropdown slug={slug} status={status} />
       <Link href={`/admin/collections/${slug}/edit`}>
-        <button className="p-1.5 mr-2 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-neutral-900 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">
+        <button className="p-1.5 r-2 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-neutral-900 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">
           <MdModeEditOutline />
         </button>
       </Link>

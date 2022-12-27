@@ -8,8 +8,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<any>) => {
   const body = req.body;
   try {
     if (body) {
-      const apiResponse = await axios.post(`${API}`, {
-        data: body,
+      const apiResponse = await axios.post(`${API}`, body, {
         headers: {
           'Authorization': `Basic ${process.env.NEXT_PUBLIC_API_AUTHORIZATION_TOKEN}` 
         }

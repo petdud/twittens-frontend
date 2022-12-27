@@ -8,7 +8,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<any>) => {
   const { slug, status }= req.query;
   try {
     if (slug && status) {
-      const apiResponse = await axios.patch(`${API}/${slug}?status=${status}`, {
+      const apiResponse = await axios.patch(`${API}/${slug}?status=${status}`, {}, {
         headers: {
           'Authorization': `Basic ${process.env.NEXT_PUBLIC_API_AUTHORIZATION_TOKEN}` 
         }
