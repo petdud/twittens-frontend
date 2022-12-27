@@ -1,4 +1,5 @@
-export const BASE_API_URL = process.env.NEXT_PUBLIC_API_BACKEND_PROD; // "http://localhost:3333/";
+// export const BASE_API_URL = process.env.NEXT_PUBLIC_API_BACKEND_PROD;
+export const BASE_API_URL = "http://localhost:3333/";
 
 // paths in this application (twittens.xyz)
 export const LOCAL_API_PATHS = {
@@ -25,5 +26,6 @@ export const GOOGLE_FEEDBACK_FORM = "https://forms.gle/QkXy6dr1oGqxJxCP6";
 export const HOW_TO_ADD_TWITTER_TO_ENS = "https://dudis.notion.site/How-to-add-your-Twitter-df8b2389dd664d08a85eb333b32f076d";
 export const TWITTENS_TWITTER_URL = "https://www.twitter.com/twittensxyz";
 export const TWITTENS_DISCORD_URL = "https://discord.gg/txXEVWckAV";
+export const OPENSEA_API_ENDPOINT = "https://api.opensea.io/api/v1/"; 
 
 export const CLOUDINARY_COLLECTION_FOUNDER = process.env.NODE_ENV === "production" ? "collections" : "test";
