@@ -9,7 +9,12 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<any>) => {
   const data = req.body;
   try {
     if (slug && data) {
-      const apiResponse = await axios.patch(`${API}/${slug}`, data);
+      const apiResponse = await axios.patch(`${API}/${slug}`, { 
+        data,
+        headers: {
+          'Authorization': `Basic ${process.env.NEXT_PUBLIC_API_AUTHORIZATION_TOKEN}` 
+        }
+      });
       res.status(200).json(apiResponse.data)
     } else {
       res.status(409).json({ error: `Wrong slug: ${slug}, or status: ${status}` });

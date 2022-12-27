@@ -8,7 +8,12 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<any>) => {
   const body = req.body;
   try {
     if (body) {
-      const apiResponse = await axios.post(`${API}`, body);
+      const apiResponse = await axios.post(`${API}`, {
+        data: body,
+        headers: {
+          'Authorization': `Basic ${process.env.NEXT_PUBLIC_API_AUTHORIZATION_TOKEN}` 
+        }
+      });
       res.status(200).json(apiResponse.data)
     } else {
       res.status(500).json({ error: `Wrong ID` });

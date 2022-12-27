@@ -8,7 +8,11 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<any>) => {
   const slug = req.query.slug;
   try {
     if (slug) {
-      const apiResponse = await axios.delete(`${API}/${slug}`);
+      const apiResponse = await axios.delete(`${API}/${slug}`, {
+        headers: {
+          'Authorization': `Basic ${process.env.NEXT_PUBLIC_API_AUTHORIZATION_TOKEN}` 
+        }
+      });
       res.status(200).json(apiResponse);
     } else {
       res.status(500).json({ error: `No slug provided` });
