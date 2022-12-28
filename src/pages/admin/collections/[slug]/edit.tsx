@@ -22,7 +22,10 @@ export default function Admin() {
         title="Twittens - Admin panel" 
         description="Twittens helps you to find your twitter frens in your favorite NFT collections."
       >
-        <script src="https://upload-widget.cloudinary.com/global/all.js" async type="text/javascript" />
+        <>
+          <meta name="robots" content="noindex,follow" />
+          <script src="https://upload-widget.cloudinary.com/global/all.js" async type="text/javascript" />
+        </>
       </HeadPage>
 
       <MainSlot>

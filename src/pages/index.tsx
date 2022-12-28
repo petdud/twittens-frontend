@@ -6,8 +6,8 @@ export default function Home() {
   return (
     <div>
       <HeadPage 
-        title="Twittens - Find your twitter frens" 
-        description="Twittens helps you to find your twitter frens in your favorite NFT collections."
+        title="Find twitter frens in NFT collections | Twittens.xyz" 
+        description="Twittens helps you to find twitter frens in your favorite NFT collections."
       />
 
       <MainSlot>

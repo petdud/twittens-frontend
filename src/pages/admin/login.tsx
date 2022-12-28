@@ -11,9 +11,11 @@ export default function Login() {
   return (
     <>
       <HeadPage 
-        title="Twittens - Login panel" 
+        title="Twittens - Admin Login panel" 
         description="Twittens helps you to find your twitter frens in your favorite NFT collections."
-      />
+      >
+        <meta name="robots" content="noindex,follow" />
+      </HeadPage>
       <MainSlot>
         <div className="mx-auto max-w-3xl sm:px-6 lg:px-8 my-12 px-4">
         <LoginWidget />
