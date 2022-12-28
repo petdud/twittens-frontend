@@ -30,29 +30,44 @@ interface IPrimaryAssetContract {
 }
 
 export interface IOpenSeaStats {
-  average_price: number; // 2.782542008245617
-  count: number; // 555
-  floor_price: number; // 0
-  market_cap: number; // 521.922
-  num_owners: number; // 486
-  num_reports: number; // 1
-  one_day_average_price: number; // 0.846
-  one_day_change: number; // -0.03863636363636355
-  one_day_sales: number; // 2
-  one_day_volume: number; // 1.692
-  seven_day_average_price: number; // 0.9404
-  seven_day_change: number; // 4.077753779697624
-  seven_day_sales: number; // 5
-  seven_day_volume: number; // 4.702
-  thirty_day_average_price: number; // 1.5608214285714284
-  thirty_day_change: number; // -0.6416612003935717
-  thirty_day_sales: number; // 14
-  thirty_day_volume: number; // 21.851499999999998
-  total_sales: number; // 228
-  total_supply: number; // 555
-  total_volume: number; // 634.4195778800007
+  one_hour_volume: number,
+  one_hour_change: number,
+  one_hour_sales: number,
+  one_hour_sales_change: number,
+  one_hour_average_price: number,
+  one_hour_difference: number,
+  six_hour_volume: number,
+  six_hour_change: number,
+  six_hour_sales: number,
+  six_hour_sales_change: number,
+  six_hour_average_price: number,
+  six_hour_difference: number,
+  one_day_volume: number,
+  one_day_change: number,
+  one_day_sales: number,
+  one_day_sales_change: number,
+  one_day_average_price: number,
+  one_day_difference: number,
+  seven_day_volume: number,
+  seven_day_change: number,
+  seven_day_sales: number,
+  seven_day_average_price: number,
+  seven_day_difference: number,
+  thirty_day_volume: number,
+  thirty_day_change: number,
+  thirty_day_sales: number,
+  thirty_day_average_price: number,
+  thirty_day_difference: number,
+  total_volume: number,
+  total_sales: number,
+  total_supply: number,
+  count: number,
+  num_owners: number,
+  average_price: number,
+  num_reports: number,
+  market_cap: number,
+  floor_price: number,
 }
-
 
 export interface IOpenSea {
   banner_image_url: string; 

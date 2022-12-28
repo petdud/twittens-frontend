@@ -1,11 +1,34 @@
-import { IOpenSeaStats } from "./opensea.interface";
-
 export type chainTypes = "eth-mainnet" | "polygon-mainnet";
 export type statusTypes = "initiated" | "creating" | "error" | "ready" | "hidden" | "active";
 
 export interface IUserEns {
   avatar: string,
   twitter: string,
+}
+
+interface IStats {
+  oneDayVolume: number,
+  oneDayChange: number,
+  oneDaySales: number,
+  oneDaySalesChange: number,
+  oneDayAveragePrice: number,
+  oneDayDifference: number,
+  sevenDayVolume: number,
+  sevenDayChange: number,
+  sevenDaySales: number,
+  sevenDayAveragePrice: number,
+  sevenDayDifference: number,
+  thirtyDayVolume: number,
+  thirtyDayChange: number,
+  thirtyDaySales: number,
+  thirtyDayAveragePrice: number,
+  thirtyDayDifference: number,
+  totalVolume: number,
+  totalSales: number,
+  averagePrice: number,
+  numReports: number,
+  marketCap: number,
+  floorPrice: number,
 }
 
 export interface IImage {
@@ -44,7 +67,7 @@ export interface ICollection {
   isFeatured: string,
   status: statusTypes,
   twitter: ITwitter | null,
-  stats: IOpenSeaStats | null,
+  stats: IStats | null,
   chain: chainTypes,
   createdAt: string,
   updatedAt: string,
