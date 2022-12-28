@@ -4,7 +4,6 @@ import { HeadPage } from "../layouts/head-page";
 
 export default function FaqPage() {
 
-
   return (
     <div>
       <HeadPage 

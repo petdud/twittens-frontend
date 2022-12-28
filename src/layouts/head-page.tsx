@@ -14,16 +14,32 @@ export const HeadPage = ({children, title, description}: IHeadPageProps) => {
       <meta property="og:title" content="Find twitter frens in NFT communities" />
       <meta
         property="og:description"
-          content={description}
+          content="Twittens helps you to find twitter frens in your favorite NFT collections."
       />
       <meta
         property="og:image"
         content="https://twittens.xyz/sharing.jpg"
       />
-      <meta property="twitter:creator" content="@twittensxyz" />
+      <meta property="twitter:creator" content="twittensxyz" />
       <meta
         property="twitter:card"
+        content="summary_large_image"
+      />
+      <meta
+        property="twitter:image"
         content="https://twittens.xyz/sharing.jpg"
+      />
+      <meta
+        property="twitter:image:alt"
+        content="Twittens image logo"
+      />
+      <meta
+        property="twitter:title"
+          content="Find twitter frens in NFT communities."
+      />
+      <meta
+        property="twitter:description"
+          content="Twittens helps you to find twitter frens in your favorite NFT collections."
       />
       <link rel="icon" href="/favicon.ico" />
       <script async defer data-website-id="91db11b4-a01b-4b14-a4ad-e5175b609163" src="https://umammprod.up.railway.app/umami.js"></script>
