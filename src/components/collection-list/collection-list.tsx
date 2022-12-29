@@ -1,5 +1,4 @@
 import { useCollections } from "../../hooks/use-collections";
-import { useCollectionsTwitterCounts } from "../../hooks/use-collections-twitter-count";
 import { CardSkeleton } from "../card/card";
 import { MainViewHeader } from "../main-view-header/main-view-header";
 import { SearchBar } from "../search-bar/search-bar";
@@ -8,7 +7,6 @@ import { CollectionItem } from "./collection-item";
 
 export const CollectionList = () =>  {
   const { data: collections, isLoading, error } = useCollections("active");
-  const { data: collectionsTwitterCounts } = useCollectionsTwitterCounts();
 
   if (error || (!isLoading && collections.length === 0)) {
     return (
@@ -35,19 +33,16 @@ export const CollectionList = () =>  {
               </li>
             ))
           :           
-            collections && collections?.map(({isFeatured, image, name, slug}) => {
-              const collectionDetails = collectionsTwitterCounts.find(collectionCounts => collectionCounts.slug === slug);
-              return ( 
-                <CollectionItem 
-                  key={slug}
-                  description={collectionDetails?.twitterCount ? `${collectionDetails.twitterCount} members on Twitter` : undefined}
-                  isFeatured={!!isFeatured}
-                  imageUrl={image?.url}
-                  name={name}
-                  path={`/collections/${slug}`} 
-                />
-              )
-            })
+            collections && collections?.map(({isFeatured, image, name, slug, ownersWithTwitterCount}) => ( 
+              <CollectionItem 
+                key={slug}
+                description={ownersWithTwitterCount ? `${ownersWithTwitterCount} members on Twitter` : undefined}
+                isFeatured={!!isFeatured}
+                imageUrl={image?.url}
+                name={name}
+                path={`/collections/${slug}`} 
+              />
+            ))
           }
         </ul>
       </div>

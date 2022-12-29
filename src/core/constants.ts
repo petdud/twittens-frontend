@@ -16,7 +16,6 @@ export const API_PATHS = {
   UPDATE_COLLECTION_STATUS: "collections/update-status", // provide collection's slug and new status
   GET_COLLECTION_OWNERS: "collections/get-owners", // provide collection's contract address
   COLLECTIONS: "collections",
-  COLLECTIONS_TWITTER_COUNTS: "collections/twitter-counts",
   USERS: "users",
 }
 
