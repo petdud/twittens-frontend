@@ -61,6 +61,7 @@ export interface ICollection {
   image: IImage,
   totalSupply?: number, // can be dynamic, e.g. events
   numberOfOwners: number,
+  ownersWithTwitterCount: number,
   twitterUsername: string | null,
   discordUrl: string | null,
   externalUrl: string | null,

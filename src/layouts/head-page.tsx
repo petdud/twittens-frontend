@@ -11,23 +11,25 @@ export const HeadPage = ({children, title, description}: IHeadPageProps) => {
     <Head>
       <title>{title}</title>
       <meta name="description" content={description} />
-      <meta property="og:title" content="Find twitter frens in NFT communities" />
+      <meta property="og:title" content="Find twitter frens in NFT collections" />
       <meta
         property="og:description"
           content="Twittens helps you to find twitter frens in your favorite NFT collections."
       />
+      <meta property="og:site_name" content="Twittens" />
       <meta
         property="og:image"
-        content="https://twittens.xyz/sharing.jpg"
+        content="/sharing.jpg"
       />
-      <meta property="twitter:creator" content="twittensxyz" />
+      <meta property="twitter:site" content="@twittensxyz" />
       <meta
         property="twitter:card"
         content="summary_large_image"
       />
+      <meta property="og:type" content="product" />
       <meta
         property="twitter:image"
-        content="https://twittens.xyz/sharing.jpg"
+        content="/sharing.jpg"
       />
       <meta
         property="twitter:image:alt"
