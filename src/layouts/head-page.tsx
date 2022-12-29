@@ -19,7 +19,7 @@ export const HeadPage = ({children, title, description}: IHeadPageProps) => {
       <meta property="og:site_name" content="Twittens" />
       <meta
         property="og:image"
-        content="/sharing.jpg"
+        content="https://twittens.xyz/sharing.jpg"
       />
       <meta property="twitter:site" content="@twittensxyz" />
       <meta
@@ -29,11 +29,7 @@ export const HeadPage = ({children, title, description}: IHeadPageProps) => {
       <meta property="og:type" content="product" />
       <meta
         property="twitter:image"
-        content="/sharing.jpg"
-      />
-      <meta
-        property="twitter:image:alt"
-        content="Twittens image logo"
+        content="https://twittens.xyz/sharing.jpg"
       />
       <meta
         property="twitter:title"
