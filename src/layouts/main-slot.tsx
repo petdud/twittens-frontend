@@ -12,12 +12,13 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { SearchBar } from '../components/search-bar/search-bar';
 import { AiOutlineRight } from 'react-icons/ai';
-import { BsDiscord, BsTwitter } from 'react-icons/bs';
+import { BsTwitter } from 'react-icons/bs';
 import { ImContrast } from 'react-icons/im';
 import { GOOGLE_FEEDBACK_FORM, GOOGLE_FORM_GET_LISTED, TWITTENS_DISCORD_URL, TWITTENS_TWITTER_URL } from '../core/constants';
 import { useThemeContext } from '../core/theme-provider';
 import { MdOutlineFeedback } from 'react-icons/md';
 import { useSession, signOut } from 'next-auth/react';
+import { FaDiscord } from 'react-icons/fa';
 
 const navigation = [
   { name: 'Home', href: '/', icon: HomeIcon },
@@ -240,7 +241,7 @@ const JoinCommunitySection = () => (
         className="cursor-pointer"
       >
         <div className="inline-flex items-center gap-2 px-1 py-1 rounded-md text-sm text-gray-600 hover:text-black dark:text-neutral-200 hover:dark:text-white">
-          <BsDiscord /> Discord
+          <FaDiscord /> Discord
         </div>
       </Link>
     </div>
