@@ -1,6 +1,3 @@
-
-import Image from "next/image";
-
 interface ICollectionHeader {
   name: string | JSX.Element;
   imageUrl: string;

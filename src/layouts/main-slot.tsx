@@ -16,12 +16,13 @@ import { BsTwitter } from 'react-icons/bs';
 import { ImContrast } from 'react-icons/im';
 import { GOOGLE_FEEDBACK_FORM, GOOGLE_FORM_GET_LISTED, TWITTENS_DISCORD_URL, TWITTENS_TWITTER_URL } from '../core/constants';
 import { useThemeContext } from '../core/theme-provider';
-import { MdOutlineFeedback } from 'react-icons/md';
+import { MdLeaderboard, MdOutlineFeedback } from 'react-icons/md';
 import { useSession, signOut } from 'next-auth/react';
 import { FaDiscord } from 'react-icons/fa';
 
 const navigation = [
   { name: 'Home', href: '/', icon: HomeIcon },
+  { name: "Leaderboard", href: "/leaderboard", icon: MdLeaderboard },
   { name: 'FAQ', href: '/faq', icon: QuestionMarkCircleIcon },
 ];
 
@@ -163,7 +164,7 @@ export const MainSlot = ({children}: IMainSlot) => {
                     )}>
                       <item.icon
                         className={classNames(
-                          'text-gray-400 group-hover:text-gray-500 dark:group-hover:text-gray-200',
+                          'text-gray-400 group-hover:text-indigo-700 dark:group-hover:text-indigo-400',
                           'mr-3 flex-shrink-0 h-6 w-6 text-gray-400 dark:text-neutral-200'
                         )}
                         aria-hidden="true"
@@ -224,15 +225,15 @@ export const MainSlot = ({children}: IMainSlot) => {
 
 const JoinCommunitySection = () => (
   <div className="px-3">
-    <div className="font-semibold dark:text-neutral-200">Join our community:</div>
+    <div className="font-semibold text-neutral-700 dark:text-neutral-200">Join our community:</div>
     <div className="mt-2 flex flex-col">
       <Link
         href={TWITTENS_TWITTER_URL}
         target="_blank"
         className="cursor-pointer"
       >
-        <div className="inline-flex items-center gap-2 px-1 py-1 rounded-md text-sm text-gray-600 hover:text-black dark:text-neutral-200 hover:dark:text-white">
-          <BsTwitter /> Twitter
+        <div className="inline-flex items-center gap-2 px-1 py-1 rounded-md text-sm text-gray-500 hover:text-gray-600 dark:text-neutral-200 hover:dark:text-neutral-50 group">
+          <BsTwitter className="group-hover:text-sky-700 dark:group-hover:text-sky-400" /> Twitter
         </div>
       </Link>
       <Link
@@ -240,8 +241,8 @@ const JoinCommunitySection = () => (
         target="_blank"
         className="cursor-pointer"
       >
-        <div className="inline-flex items-center gap-2 px-1 py-1 rounded-md text-sm text-gray-600 hover:text-black dark:text-neutral-200 hover:dark:text-white">
-          <FaDiscord /> Discord
+        <div className="inline-flex items-center gap-2 px-1 py-1 rounded-md text-sm text-gray-500 hover:text-gray-600 dark:text-neutral-200 hover:dark:text-neutral-50 group">
+          <FaDiscord className="group-hover:text-indigo-700 dark:group-hover:text-indigo-400" /> Discord
         </div>
       </Link>
     </div>

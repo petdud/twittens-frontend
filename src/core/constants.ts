@@ -8,15 +8,19 @@ export const LOCAL_API_PATHS = {
   // DELETE_COLLECTION: "/api/collections/:slug/delete", // delete a collection by providing its slug
   GET_COLLECTION_OWNERS: "/api/collections/get-owners", // provide collection's contract address
   EDIT_COLLECTION: "/api/collections/edit", // provide collection's slug and new data
-  CREATE_COLLECTION: "/api/collections/create" // create a new collection
+  CREATE_COLLECTION: "/api/collections/create", // create a new collection
+  GET_MOST_FOLLOWED_USERS: "/api/users/most-followed",
+  GET_MOST_FOLLOWED_COLLECTIONS: "/api/collections/most-followed",
 }
 
 // paths outside of this application (api.twittens.xyz)
 export const API_PATHS = {
   UPDATE_COLLECTION_STATUS: "collections/update-status", // provide collection's slug and new status
   GET_COLLECTION_OWNERS: "collections/get-owners", // provide collection's contract address
+  GET_MOST_FOLLOWED_COLLECTIONS: "collections/most-followed",
   COLLECTIONS: "collections",
   USERS: "users",
+  GET_MOST_FOLLOWED_USERS: "users/most-followed",
 }
 
 export const GOOGLE_FORM_GET_LISTED = "https://forms.gle/ytsimNMo8LiDRbjN8";
