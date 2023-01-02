@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import { IUser } from "../../core/collection.interface";
+import { ProfilePreviewModal } from "../profile-preview-modal/profile-preview-modal";
 import { TwitterItem } from "./twitter-item";
 
 interface ITwitterList {
@@ -7,19 +8,32 @@ interface ITwitterList {
 }
 
 export const TwitterList = ({users}: ITwitterList) => {
+  const [selectedUser, setSelectedUser] = useState<IUser | undefined>(undefined);
+  const [openProfile, setOpenProfile] = useState(false);
+
+  const onUserClick = useCallback((address: string) => {
+    const user = users.find(user => user.address === address);
+    setSelectedUser(user);
+    setOpenProfile(true);
+  }, [users]);
+  
   return (
-    <ul role="list" className="space-y-8 py-12 max-w-2xl">
-      {users.map(({address, name, twitter}) => {
-        return (
-          twitter && <TwitterItem 
-            key={address} 
-            address={address}
-            name={name}
-            twitter={twitter}
-          />
-        )
-      })}
-    </ul>
+    <>
+      <ul role="list" className="space-y-8 py-12 max-w-2xl">
+        {users.map(({address, name, twitter}) => {
+          return (
+            twitter && <TwitterItem 
+              key={address}
+              onUserClick={onUserClick}
+              address={address}
+              name={name}
+              twitter={twitter}
+            />
+          )
+        })}
+      </ul>
+      {selectedUser && <ProfilePreviewModal open={openProfile} setOpen={setOpenProfile} user={selectedUser} />}
+    </>
   )
 }
 

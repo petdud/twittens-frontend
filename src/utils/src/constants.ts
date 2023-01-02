@@ -1,1 +1,1 @@
-export const TEST = "can be deleted, just for build";
+export const ENS_CONTRACT_ADDRESS = '0x57f1887a8bf19b14fc0df6fd9b2acc9af147ea85';

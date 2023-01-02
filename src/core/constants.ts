@@ -11,6 +11,7 @@ export const LOCAL_API_PATHS = {
   CREATE_COLLECTION: "/api/collections/create", // create a new collection
   GET_MOST_FOLLOWED_USERS: "/api/users/most-followed",
   GET_MOST_FOLLOWED_COLLECTIONS: "/api/collections/most-followed",
+  // GET_USER_NFTS: "/api/users/:address/nfts", // provide address
 }
 
 // paths outside of this application (api.twittens.xyz)
