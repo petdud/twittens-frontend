@@ -38,7 +38,7 @@ export const ProfilePreviewModal = ({open, setOpen, user}: IProfilePreviewModalP
         </Transition.Child>
 
         <div className="fixed inset-0 z-10 overflow-y-auto">
-          <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+          <div className="flex min-h-full items-center justify-center p-4 text-center sm:items-center sm:p-0">
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -64,7 +64,7 @@ export const ProfilePreviewModal = ({open, setOpen, user}: IProfilePreviewModalP
                       </div>}
                     <div className="min-w-0 flex-1 flex flex-col">
                       <div className="flex items-center">
-                        <h3 className="text-xl font-medium text-gray-900 dark:text-white sm:text-2xl">{name}</h3>
+                        <h3 className="text-2xl font-medium text-gray-900 dark:text-white">{name}</h3>
                       </div>
                       <div className="text-xs text-gray-500 dark:text-gray-400 flex items-center">
                         {shortenedAddress(address)}

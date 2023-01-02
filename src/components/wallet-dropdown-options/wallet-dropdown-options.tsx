@@ -48,5 +48,14 @@ export const WalletDropdownOptions = ({ address }: IWalletDropdownOptionsProps) 
       }
       link={`https://dappradar.com/hub/wallet/${address}`}
     />
+    <DropdownMenuItem 
+      name={
+        <div className="flex items-center gap-2">
+          <Image src="/marketplaces/coinbase.png" alt="Coinbase" width={20} height={20} />
+          <span>Coinbase</span>
+        </div>
+      }
+      link={`https://nft.coinbase.com/${address}`}
+    />
   </Dropdown>
 )

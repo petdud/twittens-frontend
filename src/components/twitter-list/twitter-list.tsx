@@ -39,7 +39,7 @@ export const TwitterList = ({users}: ITwitterList) => {
 
 export const TwitterListSkeleton = () => (
   <ul role="list" className="space-y-8 py-2 max-w-2xl">
-    <div role="status" className="p-4 space-y-8 w-full rounded animate-pulse dark:divide-gray-700 md:p-6 dark:border-gray-700">
+    <div role="status" className="py-2 space-y-8 w-full rounded animate-pulse dark:divide-gray-700 md:p-6 dark:border-gray-700">
       {["a", "b", "c", "d"].map(alp => (
         <div key={alp} className="shadow bg-white rounded-md dark:bg-black">
           <div className="px-4 py-1 bg-slate-50 dark:bg-gray-600 border-b-2 border-slate-100 dark:border-neutral-700 flex items-center gap-3 justify-between">
