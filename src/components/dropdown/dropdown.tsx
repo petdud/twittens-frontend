@@ -2,6 +2,7 @@ import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { classNames } from '../../utils'
+import { FiExternalLink } from 'react-icons/fi';
 
 export type AppearanceType = "button" | "transparent";
 
@@ -47,9 +48,10 @@ export const Dropdown = ({name, children, appearance = "button"}: IDropdownProps
 interface IDropdownMenuItemProps {
   name: JSX.Element | string;
   link: string;
+  isExternal?: boolean;
 }
 
-export const DropdownMenuItem = ({name, link}: IDropdownMenuItemProps) => (
+export const DropdownMenuItem = ({name, link, isExternal}: IDropdownMenuItemProps) => (
   <Menu.Item>
     {({ active }) => (
       <a
@@ -61,7 +63,11 @@ export const DropdownMenuItem = ({name, link}: IDropdownMenuItemProps) => (
           'block px-4 py-2 text-sm'
         )}
       >
-        {name}
+        <div className="flex items-center">
+          <span>{name}</span>
+          {active && isExternal && <FiExternalLink className="ml-auto text-gray-400" />}
+        </div>
+
       </a>
     )}
   </Menu.Item>

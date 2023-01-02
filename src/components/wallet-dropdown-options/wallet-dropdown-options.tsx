@@ -52,6 +52,7 @@ export const WalletDropdownOptions = ({ address, name, appearance, isMarketplace
           </div>
         }
         link={`${link}${address}`}
+        isExternal={true}
       />
     ))}
   </Dropdown>
