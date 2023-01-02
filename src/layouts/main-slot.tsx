@@ -22,7 +22,7 @@ import { FaDiscord } from 'react-icons/fa';
 
 const navigation = [
   { name: 'Home', href: '/', icon: HomeIcon },
-  { name: "Leaderboard", href: "/leaderboard", icon: MdLeaderboard },
+  // { name: "Leaderboard", href: "/leaderboard", icon: MdLeaderboard },
   { name: 'FAQ', href: '/faq', icon: QuestionMarkCircleIcon },
 ];
 

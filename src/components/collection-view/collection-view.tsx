@@ -10,6 +10,7 @@ import React from "react";
 import { BsTwitter } from "react-icons/bs";
 import { TwitterList, TwitterListSkeleton } from "../twitter-list/twitter-list";
 import { Divider } from "../../layouts/main-slot";
+import { AiOutlineLink } from "react-icons/ai";
 
 interface ICollectionView {
   slug: string;
@@ -63,7 +64,7 @@ const Collection = ({slug}: {slug: string}) => {
         imageUrl={collection?.image?.url}
         imageAlt={collection?.name || ""} 
         description={<CollectionDescription owners={collection.numberOfOwners} supply={collection.totalSupply} twitterAccountsCount={collection.ownersWithTwitterCount} />}
-        social={<SocialLinks twitter={collection?.twitterUsername} discord={collection?.discordUrl} />}
+        social={<SocialLinks twitter={collection?.twitterUsername} discord={collection?.discordUrl} externalUrl={collection.externalUrl} />}
       />
       <TwitterList users={users} />
     </>
@@ -86,19 +87,27 @@ const CollectionDescription = ({owners, supply, twitterAccountsCount}: ICollecti
 
 interface ISocialLinks {
   discord?: string | null;
+  externalUrl?: string | null;
   twitter?: string | null;
 }
 
-const SocialLinks = ({discord, twitter}: ISocialLinks) => (
+const SocialLinks = ({discord, externalUrl, twitter}: ISocialLinks) => (
   <div className="flex mt-1">
-    {twitter && <Link href={`https://www.twitter.com/${twitter}`} target="_blank" className="p-2 hover:bg-gray-200 rounded-md dark:hover:bg-gray-700">
-      <BsTwitter className="text-sky-500 dark:text-sky-300" />
-    </Link> 
+    {twitter && 
+      <Link href={`https://www.twitter.com/${twitter}`} target="_blank" className="p-2 hover:bg-gray-200 rounded-md dark:hover:bg-gray-700">
+        <BsTwitter className="text-sky-500 dark:text-sky-300" />
+      </Link> 
     }
-    {discord && <Link href={discord} target="_blank" className="p-2 hover:bg-gray-200 rounded-md dark:hover:bg-gray-700">
-      <FaDiscord className="text-indigo-800 dark:text-indigo-500"/>
-    </Link> 
-  }
+    {discord && 
+      <Link href={discord} target="_blank" className="p-2 hover:bg-gray-200 rounded-md dark:hover:bg-gray-700">
+        <FaDiscord className="text-indigo-800 dark:text-indigo-500"/>
+      </Link>
+    }
+    {externalUrl && 
+      <Link href={externalUrl} target="_blank" className="p-2 hover:bg-gray-200 rounded-md dark:hover:bg-gray-700">
+        <AiOutlineLink className="text-gray-700 dark:text-gray-300"/>
+      </Link>
+    }
   </div>
 )
 
