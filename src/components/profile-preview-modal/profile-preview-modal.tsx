@@ -122,8 +122,6 @@ const UserNfts = ({nfts, isLoading}: IUserNfts) => (
   </ul>
 )
 
-
-
 const NftPreview = ({nft}: {nft: INft}) => {
  const image = getImage(nft);
  const { title } = nft;
