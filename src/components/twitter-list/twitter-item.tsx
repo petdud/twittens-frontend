@@ -18,7 +18,7 @@ export const TwitterItem = ({address, name, twitter, onUserClick }: ITwitterItem
 
   return (
     <li className="overflow-hidden bg-white shadow sm:rounded-md dark:bg-neutral-800">
-      <button onClick={onClick} className="block w-full text-left focus-within:ring-indigo-500 focus-within:ring-inset group cursor-pointer">
+      <button onClick={onClick} className="block text-left focus-within:ring-indigo-500 focus-within:ring-inset group cursor-pointer">
         <div className="px-4 py-1 bg-slate-50 dark:bg-neutral-700 border-b-2 border-slate-100 dark:border-neutral-600 flex items-center gap-3 justify-between">
           <div className="flex items-center gap-2 dark:text-gray-200">
             <FaWallet className="text-gray-400 dark:text-neutral-300" /> {name} 

@@ -9,6 +9,7 @@ import { CopyButton } from '../copy-button/copy-button';
 import Link from 'next/link';
 import { FiExternalLink } from 'react-icons/fi';
 import { WalletDropdownOptions } from '../wallet-dropdown-options/wallet-dropdown-options';
+import { FaWallet } from 'react-icons/fa';
 
 interface IProfilePreviewModalProps {
   open: boolean;
@@ -76,7 +77,6 @@ export const ProfilePreviewModal = ({open, setOpen, user}: IProfilePreviewModalP
                       </div>}
                       {/* Buttons */}
                       <div className="mt-5 sm:mt-4 flex gap-2">
-                        <WalletDropdownOptions address={address} />
                         <Link
                           href={`https://www.twitter.com/${twitter?.username}`}
                           target="_blank"
@@ -85,6 +85,7 @@ export const ProfilePreviewModal = ({open, setOpen, user}: IProfilePreviewModalP
                         >
                           <span>View Twitter</span> <FiExternalLink />
                         </Link>
+                        <WalletDropdownOptions name={<><FaWallet /> View Wallet</>} address={address} />
                       </div>
                     </div>
                   </div>
