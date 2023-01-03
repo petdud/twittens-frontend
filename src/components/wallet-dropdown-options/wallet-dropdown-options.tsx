@@ -44,6 +44,11 @@ const marketplaceProviders = [
     logo: `${PREFIX_IMAGE_PATH}/dappradar.png`,
     getLink: (_address: string, slug: string) => `https://dappradar.com/hub/nft-collection/${slug}`,
   },
+  {
+    name: "Zerion",
+    logo: `${PREFIX_IMAGE_PATH}/zerion.png`,
+    getLink: (_address: string, slug: string) => `https://app.zerion.io/collections/${slug}`,
+  },
 ];
 
 const walletProviders = [
@@ -61,6 +66,11 @@ const walletProviders = [
     name: "DappRadar",
     logo: `${PREFIX_IMAGE_PATH}/dappradar.png`,
     link: "https://dappradar.com/hub/wallet/" // + address
+  },
+  {
+    name: "Zerion",
+    logo: `${PREFIX_IMAGE_PATH}/zerion.png`,
+    link: "https://app.zerion.io/" // + address
   },
   {
     name: "LooksRare",

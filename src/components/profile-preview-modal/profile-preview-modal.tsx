@@ -85,7 +85,7 @@ export const ProfilePreviewModal = ({open, setOpen, user}: IProfilePreviewModalP
                         >
                           <span>View Twitter</span> <FiExternalLink />
                         </Link>
-                        <WalletDropdownOptions name={<><FaWallet /> View Wallet</>} address={address} />
+                        <WalletDropdownOptions name={<><FaWallet /> View wallet</>} address={address} />
                       </div>
                     </div>
                   </div>
