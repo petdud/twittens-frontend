@@ -6,6 +6,7 @@ export const LOCAL_API_PATHS = {
   GET_COLLECTIONS: "/api/collections", // get all collections; provide status in query (active, hidden)
   GET_COLLECTION: "/api/collections", // provide collection's slug
   // DELETE_COLLECTION: "/api/collections/:slug/delete", // delete a collection by providing its slug
+  // UPDATE_COLLECTION: "/api/collections/:slug/update", // update a collection data (users/details) by providing its slug
   GET_COLLECTION_OWNERS: "/api/collections/get-owners", // provide collection's contract address
   EDIT_COLLECTION: "/api/collections/edit", // provide collection's slug and new data
   CREATE_COLLECTION: "/api/collections/create", // create a new collection
@@ -22,6 +23,7 @@ export const API_PATHS = {
   COLLECTIONS: "collections",
   USERS: "users",
   GET_MOST_FOLLOWED_USERS: "users/most-followed",
+  UPDATE_COLLECTION: "collections/update" // provide collection's slug - update collection data (details and members)
 }
 
 export const GOOGLE_FORM_GET_LISTED = "https://forms.gle/ytsimNMo8LiDRbjN8";

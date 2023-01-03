@@ -8,6 +8,7 @@ import axios from 'axios';
 import { LOCAL_API_PATHS } from '../../../core/constants';
 import Link from 'next/link';
 import { MdModeEditOutline } from 'react-icons/md';
+import { BiRefresh } from 'react-icons/bi';
 
 export const AdminCollectionList = () => {
   const { data: collections } = useCollections();
@@ -28,25 +29,35 @@ interface IAdminCollectionItemProps {
   status: statusTypes;
 }
 
-const AdminCollectionItem = ({imageUrl, slug, name, status}: IAdminCollectionItemProps) => (
-  <li key={slug} className=" dark:text-white flex justify-between hover:bg-gray-200 hover:dark:bg-gray-800">
-    <Link href={`/collections/${slug}`} className="cursor-pointer py-2 px-3" target="_blank">
-      <div className="flex items-center gap-4">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={imageUrl} alt={name} className="inline-block h-6 w-6 rounded-full" />
-        <span>{name}</span>
-      </div>
-    </Link>
-    <div className="flex items-center gap-2">
-      <StatusDropdown slug={slug} status={status} />
-      <Link href={`/admin/collections/${slug}/edit`}>
-        <button className="p-1.5 r-2 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-neutral-900 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">
-          <MdModeEditOutline />
-        </button>
+const AdminCollectionItem = ({imageUrl, slug, name, status}: IAdminCollectionItemProps) => {
+
+  const updateCollection = useCallback(async () => {
+    const response = await axios.patch(`/api/collections/${slug}/update`);
+  }, [slug]);
+
+  return (
+    <li key={slug} className=" dark:text-white flex justify-between hover:bg-gray-200 hover:dark:bg-gray-800">
+      <Link href={`/collections/${slug}`} className="cursor-pointer py-2 px-3" target="_blank">
+        <div className="flex items-center gap-4">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={imageUrl} alt={name} className="inline-block h-6 w-6 rounded-full" />
+          <span>{name}</span>
+        </div>
       </Link>
-    </div>
-  </li>
-);
+      <div className="flex items-center gap-2">
+        <StatusDropdown slug={slug} status={status} />
+        <Link href={`/admin/collections/${slug}/edit`}>
+          <button className="p-1.5 r-2 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-neutral-900 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">
+            <MdModeEditOutline />
+          </button>
+        </Link>
+        <button onClick={updateCollection} className="p-1.5 r-2 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-neutral-900 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500">
+          <BiRefresh />
+        </button>
+      </div>
+    </li>
+  )
+};
 
 const types: statusTypes[] = ["ready", "hidden", "active"];
 
