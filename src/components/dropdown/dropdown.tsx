@@ -18,8 +18,8 @@ export const Dropdown = ({name, children, appearance = "button"}: IDropdownProps
       <div>
         <Menu.Button className={
           classNames(
-            "inline-flex w-full justify-center rounded-md px-2.5 py-1.5 text-sm font-medium text-neutral-800 dark:text-slate-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100",
-            appearance === "button" ? "border border-gray-300 dark:border-gray-600 bg-white dark:bg-neutral-800 hover:bg-gray-50 shadow-sm" : "bg-transparent hover:text-underline"
+            "inline-flex w-full justify-center rounded-md text-sm font-medium text-neutral-800 dark:text-slate-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100",
+            appearance === "button" ? "px-2.5 py-1.5 border border-gray-300 dark:border-gray-600 bg-white dark:bg-neutral-800 hover:bg-gray-50 shadow-sm" : "bg-transparent hover:text-underline py-0.5"
           )}>
           {name}
           <ChevronDownIcon className="-mr-1 ml-2 h-5 w-5" aria-hidden="true" />
