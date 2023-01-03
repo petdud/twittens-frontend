@@ -19,7 +19,7 @@ interface ICollectionView {
 export const CollectionView = ({slug}: ICollectionView) =>  {
   return (
     <div className="md:py-6 py-2 max-w-5xl m-auto">
-      <div className="max-w-full px-4 sm:px-6 md:px-8 mx-5">
+      <div className="max-w-full px-2 mx-2">
         <BreadCrumbNavigation />
         <Collection slug={slug}/>
       </div>

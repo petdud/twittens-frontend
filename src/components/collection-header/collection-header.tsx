@@ -40,7 +40,7 @@ export const CollectionHeader = ({address, name, description, imageUrl, imageAlt
         </div>
         <div className="flex items-center gap-2 mt-1">
           {social}
-          <MarketplaceDropdownOptions name="View on marketplaces" address={address} appearance="transparent" slug={slug} />
+          <MarketplaceDropdownOptions name="Marketplaces" address={address} appearance="transparent" slug={slug} />
         </div>
       </div>
     </div>
