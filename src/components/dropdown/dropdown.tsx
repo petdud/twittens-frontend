@@ -35,7 +35,7 @@ export const Dropdown = ({name, children, appearance = "button"}: IDropdownProps
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items style={{zIndex: "10"}} className="absolute overflow-visible right-0 z-10 mt-2 w-44 origin-top-right border border-neutral-600 rounded-md bg-white dark:bg-neutral-800 shadow-sm ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <Menu.Items style={{zIndex: "10"}} className="absolute overflow-visible right-0 z-10 mt-2 w-44 origin-top-right border border-neutral-400 dark:border-neutral-600 rounded-md bg-white dark:bg-neutral-800 shadow-sm ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="py-1">
             {children}
           </div>
