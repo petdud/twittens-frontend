@@ -1,15 +1,17 @@
-import { WalletDropdownOptions } from "../wallet-dropdown-options/wallet-dropdown-options";
+import { MarketplaceDropdownOptions } from "../wallet-dropdown-options/wallet-dropdown-options";
 
 interface ICollectionHeader {
+  address: string;
   name: string | JSX.Element;
   imageUrl: string;
   description?: string | JSX.Element;
   imageAlt: string;
+  slug: string;
   rightButtons?: JSX.Element;
   social: JSX.Element;
 }
 
-export const CollectionHeader = ({name, description, imageUrl, imageAlt, rightButtons, social}: ICollectionHeader) => (
+export const CollectionHeader = ({address, name, description, imageUrl, imageAlt, slug, rightButtons, social}: ICollectionHeader) => (
   <div className="md:flex md:items-center md:justify-between md:space-x-5">
     <div className="flex items-start space-x-5">
       <div className="flex-shrink-0">
@@ -36,9 +38,9 @@ export const CollectionHeader = ({name, description, imageUrl, imageAlt, rightBu
             {description}
           </div>}
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 mt-1">
           {social}
-          {false && <WalletDropdownOptions name="View on marketplaces" address={""} appearance="transparent" isMarketplace={true} />}
+          <MarketplaceDropdownOptions name="View on marketplaces" address={address} appearance="transparent" slug={slug} />
         </div>
       </div>
     </div>
