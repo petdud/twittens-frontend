@@ -21,7 +21,7 @@ export const ProfilePreviewModal = ({open, setOpen, user}: IProfilePreviewModalP
   const {address, name, twitter} = user;
   const onClose = useCallback(() => setOpen(false), [setOpen]);
 
-  const { data, isLoading } = useUserNfts(address);
+  const { data, isLoading, error } = useUserNfts(address);
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -49,7 +49,7 @@ export const ProfilePreviewModal = ({open, setOpen, user}: IProfilePreviewModalP
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white dark:bg-neutral-900 px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6">
+              <Dialog.Panel className="relative transform overflow-auto rounded-lg bg-white dark:bg-neutral-900 px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6">
                 {/* Close Button */}
                 <div className="absolute top-0 right-0 text-lg p-2">
                   <button onClick={onClose} className="p-2 text-gray-800 dark:text-gray-300 hover:dark:text-white hover:bg-neutral-100 hover:dark:bg-neutral-700 rounded-md">
@@ -72,7 +72,7 @@ export const ProfilePreviewModal = ({open, setOpen, user}: IProfilePreviewModalP
                         <CopyButton value={address} />
                       </div>
                       {/* Badges */}
-                      {data && data.totalCount && <div className="mt-2 flex items-center self-start rounded-full bg-gray-200 dark:bg-neutral-800 px-1.5 py-0.5 text-xs font-medium text-gray-800 dark:text-slate-200">
+                      {data?.totalCount && <div className="mt-2 flex items-center self-start rounded-full bg-gray-200 dark:bg-neutral-800 px-1.5 py-0.5 text-xs font-medium text-gray-800 dark:text-slate-200">
                         Total NFTs: {data.totalCount}
                       </div>}
                       {/* Buttons */}
@@ -91,7 +91,11 @@ export const ProfilePreviewModal = ({open, setOpen, user}: IProfilePreviewModalP
                   </div>
                   {/* NFTs */}
                   <div className="mt-8">
-                    <UserNfts nfts={data?.ownedNfts} isLoading={isLoading} />
+                    {error ? 
+                      <p className="text-gray-700 dark:text-white text-sm">Sorry, we&apos;re not able to load NFTs for this user...</p> 
+                        :
+                      <UserNfts nfts={data?.ownedNfts} isLoading={isLoading} />
+                    }
                   </div>
                 </div>
               </Dialog.Panel>

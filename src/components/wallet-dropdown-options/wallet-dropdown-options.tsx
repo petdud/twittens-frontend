@@ -35,6 +35,11 @@ const marketplaceProviders = [
     getLink: (address: string, _slug: string) => `https://blur.io/collection/${address}`,
   },
   {
+    name: "Gem",
+    logo: `${PREFIX_IMAGE_PATH}/gem.png`,
+    getLink: (address: string, _slug: string) => `https://www.gem.xyz/collection/${address}`,
+  },
+  {
     name: "DappRadar",
     logo: `${PREFIX_IMAGE_PATH}/dappradar.png`,
     getLink: (_address: string, slug: string) => `https://dappradar.com/hub/nft-collection/${slug}`,
@@ -66,6 +71,11 @@ const walletProviders = [
     name: "Coinbase",
     logo: `${PREFIX_IMAGE_PATH}/coinbase.png`,
     link: "https://nft.coinbase.com/" // + address
+  },
+  {
+    name: "Gem",
+    logo: `${PREFIX_IMAGE_PATH}/gem.png`,
+    link: "https://www.gem.xyz/profile/" // + address
   },
   {
     name: "Rarible",
