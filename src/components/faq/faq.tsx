@@ -1,6 +1,6 @@
 import { Disclosure } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/24/outline'
-import { GOOGLE_FORM_GET_LISTED, HOW_TO_ADD_TWITTER_TO_ENS, TWITTENS_TWITTER_URL } from '../../core/constants'
+import { ROUTES } from '../../core/constants'
 import { classNames } from '../../utils'
 
 const LINK_CLASSNAME = "underline text-sky-600 dark:text-sky-500";
@@ -16,7 +16,7 @@ const faqs = [
     id: "2",
     question: "Can I get my NFT collection listed",
     answer:
-      <>If you would like to have your NFT collection listed on Twittens, please <a href={GOOGLE_FORM_GET_LISTED} className={LINK_CLASSNAME} rel="noreferrer" target="_blank">fill out this form</a>. We will review your submission and add your collection to our website as soon as possible. If you have any questions or need assistance, please don&apos;t hesitate to contact us at <a href="mailto:hi@twittens.xyz" className={LINK_CLASSNAME}>hi@twittens.xyz</a>.</>
+      <>If you would like to have your NFT collection listed on Twittens, please <a href={ROUTES.GET_LISTED} className={LINK_CLASSNAME} rel="noreferrer" target="_blank">fill out this form</a>. We will review your submission and add your collection to our website as soon as possible. If you have any questions or need assistance, please don&apos;t hesitate to contact us at <a href="mailto:hi@twittens.xyz" className={LINK_CLASSNAME}>hi@twittens.xyz</a>.</>
   },
   {
     id: "4",
@@ -28,13 +28,13 @@ const faqs = [
     id: "3",
     question: "Twitter accounts are missing in a collection",
     answer:
-      <>If you notice that some Twitter accounts are missing from a collection on Twittens, please check that the corresponding collection owner has added their Twitter handle to the ENS name associated with their collection.<br/><br/>We regularly update our data from ENS text records, so if your Twitter handle is not included in your ENS name, it will not appear on our website. If you need help adding your Twitter handle to your ENS name, you can <a href={HOW_TO_ADD_TWITTER_TO_ENS} className={LINK_CLASSNAME} rel="noreferrer" target="_blank">refer to this guide</a>.</>
+      <>If you notice that some Twitter accounts are missing from a collection on Twittens, please check that the corresponding collection owner has added their Twitter handle to the ENS name associated with their collection.<br/><br/>We regularly update our data from ENS text records, so if your Twitter handle is not included in your ENS name, it will not appear on our website. If you need help adding your Twitter handle to your ENS name, you can <a href={ROUTES.HOW_TO_ADD_TWITTER} className={LINK_CLASSNAME} rel="noreferrer" target="_blank">refer to this guide</a>.</>
   },
   {
     id: "5",
     question: "How can I contact you",
     answer:
-      <>Discord, <a href={TWITTENS_TWITTER_URL} className={LINK_CLASSNAME} rel="noreferrer" target="_blank">Twitter</a>, or drop us an email on <a href="mailto:hi@twittens.xyz" className={LINK_CLASSNAME}>hi@twittens.xyz</a></>
+      <><a href={ROUTES.DISCORD} className={LINK_CLASSNAME} rel="noreferrer" target="_blank">Discord</a>, <a href={ROUTES.TWITTER} className={LINK_CLASSNAME} rel="noreferrer" target="_blank">Twitter</a>, or drop us an email on <a href="mailto:hi@twittens.xyz" className={LINK_CLASSNAME}>hi@twittens.xyz</a></>
   },
 ]
 

@@ -14,7 +14,7 @@ import { SearchBar } from '../components/search-bar/search-bar';
 import { AiOutlineRight } from 'react-icons/ai';
 import { BsTwitter } from 'react-icons/bs';
 import { ImContrast } from 'react-icons/im';
-import { GOOGLE_FEEDBACK_FORM, GOOGLE_FORM_GET_LISTED, TWITTENS_DISCORD_URL, TWITTENS_TWITTER_URL } from '../core/constants';
+import { ROUTES } from '../core/constants';
 import { useThemeContext } from '../core/theme-provider';
 import { MdLeaderboard, MdOutlineFeedback } from 'react-icons/md';
 import { useSession, signOut } from 'next-auth/react';
@@ -228,7 +228,7 @@ const JoinCommunitySection = () => (
     <div className="font-semibold text-neutral-700 dark:text-neutral-200">Join our community:</div>
     <div className="mt-2 flex flex-col">
       <Link
-        href={TWITTENS_TWITTER_URL}
+        href={ROUTES.TWITTER}
         target="_blank"
         className="cursor-pointer"
       >
@@ -237,7 +237,7 @@ const JoinCommunitySection = () => (
         </div>
       </Link>
       <Link
-        href={TWITTENS_DISCORD_URL}
+        href={ROUTES.DISCORD}
         target="_blank"
         className="cursor-pointer"
       >
@@ -251,7 +251,7 @@ const JoinCommunitySection = () => (
 
 const GetListedButton = () => (
   <div className="pt-4">
-    <Link href={GOOGLE_FORM_GET_LISTED} target="_blank" type="button">
+    <Link href={ROUTES.GET_LISTED} target="_blank" type="button">
       <div
         className="inline-flex items-center rounded-md border border-transparent bg-indigo-600 dark:bg-indigo-800 px-3 py-2 text-sm font-medium leading-4 text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
       >
@@ -266,7 +266,7 @@ const Footer = () => (
   <>
     <Divider/>
     <div className="p-4">
-      <Link href={GOOGLE_FEEDBACK_FORM} className="flex items-center gap-2 text-gray-500 dark:text-gray-400 text-sm mb-2" target="_blank"><MdOutlineFeedback /> Send feedback</Link>
+      <Link href={ROUTES.FEEDBACK} className="flex items-center gap-2 text-gray-500 dark:text-gray-400 text-sm mb-2" target="_blank"><MdOutlineFeedback /> Send feedback</Link>
       <div className="block text-gray-500 dark:text-gray-400 text-xs">
         By <a href="https://www.twitter.com/petrdu" className="cursor-pointer text-gray-600 dark:text-gray-300 underline hover:dark:text-gray-50" target="_blank" rel="noreferrer">petrdu</a> and <a href="https://www.twitter.com/tuanphung_" className="cursor-pointer text-gray-600 dark:text-gray-300 underline hover:dark:text-gray-50" target="_blank" rel="noreferrer">tuanphung</a>
       </div>
