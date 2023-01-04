@@ -47,7 +47,7 @@ export const SearchBar = () => {
           />
 
           {filteredCollections && filteredCollections.length > 0 && (
-            <Combobox.Options className="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white dark:bg-zinc-900 py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+            <Combobox.Options className="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white dark:bg-zinc-900 py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm border border-gray-300 dark:border-gray-600">
               {filteredCollections?.map((collection) => (
                 <Combobox.Option
                   key={collection.slug}

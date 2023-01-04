@@ -59,13 +59,13 @@ export const DropdownMenuItem = ({name, link, isExternal}: IDropdownMenuItemProp
         target="_blank"
         rel="noreferrer"
         className={classNames(
-          active ? 'bg-gray-100 text-gray-900 dark:bg-neutral-900 dark:text-white rounded-md border-2 border-indigo-500' : 'text-gray-700 dark:text-slate-100',
+          active ? 'bg-indigo-600 text-white font-semibold' : 'text-gray-900 dark:text-neutral-200',
           'block px-4 py-2 text-sm'
         )}
       >
         <div className="flex items-center">
           <span>{name}</span>
-          {active && isExternal && <FiExternalLink className="ml-auto text-gray-400" />}
+          {active && isExternal && <FiExternalLink className={classNames("ml-auto text-gray-200")} />}
         </div>
 
       </a>
