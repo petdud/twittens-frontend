@@ -14,7 +14,7 @@ export default function Collection() {
   return (
     <div>
       <HeadPage 
-        title={`${collectionName + " NFT" || "NFT"} frens on Twitter | Twittens.xyz` }
+        title={`${collectionName ? collectionName + " NFT" : "NFT"} frens on Twitter | Twittens.xyz` }
         description={`Find and connect with your ${collectionName + " NFT" || "NFT"} frens on Twitter thanks to ENS and Twittens.xyz.`}
       />
       <div className="bg-gray-100 h-full">
