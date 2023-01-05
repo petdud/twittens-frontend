@@ -19,7 +19,13 @@ export const CollectionList = () =>  {
   return (
     <div className="md:py-6 py-2 mb-12">
       <div className="pb-4">
-        <MainViewHeader title={<div>Find your <span className="text-blue-400">Twitter</span> frens!</div>} />
+        <div className="flex justify-between">
+          <MainViewHeader title={<div>Find your <span className="text-blue-400">Twitter</span> frens!</div>} />
+          <div className="hidden text-right md:block px-2 sm:px-6 md:px-8 mx-5 mt-1 text-base text-gray-500 dark:text-neutral-300">
+            Collections: <span className="font-semibold">{collections.length}</span>
+            {/* TODO: Sort it by list and not grid */}
+          </div>
+        </div>
         <div className="md:hidden px-6 mt-4 mb-3">
           <SearchBar />
         </div>
