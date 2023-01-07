@@ -12,17 +12,16 @@ import { GoVerified } from 'react-icons/go';
 
 interface IProfilePreviewModalProps {
   open: boolean;
-  setOpen: (open: boolean) => void;
+  onClose: () => void;
   user: IUser;
 }
 
-export const ProfilePreviewModal = ({open, setOpen, user}: IProfilePreviewModalProps) => {
+export const ProfilePreviewModal = ({open, onClose, user}: IProfilePreviewModalProps) => {
   const {address, name, twitter} = user;
-  const onClose = useCallback(() => setOpen(false), [setOpen]);
 
   return (
     <Transition.Root show={open} as={Fragment}>
-      <Dialog as="div" className="relative z-10" onClose={setOpen}>
+      <Dialog as="div" className="relative z-10" onClose={onClose}>
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"

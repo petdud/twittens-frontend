@@ -16,6 +16,10 @@ export const TwitterList = ({users}: ITwitterList) => {
     setSelectedUser(user);
     setOpenProfile(true);
   }, [users]);
+
+  const onClose = useCallback(() => {
+    setOpenProfile(false);
+  }, []);
   
   return (
     <>
@@ -32,7 +36,7 @@ export const TwitterList = ({users}: ITwitterList) => {
           )
         })}
       </ul>
-      {selectedUser && <ProfilePreviewModal open={openProfile} setOpen={setOpenProfile} user={selectedUser} />}
+      {selectedUser && <ProfilePreviewModal open={openProfile} onClose={onClose} user={selectedUser} />}
     </>
   )
 }

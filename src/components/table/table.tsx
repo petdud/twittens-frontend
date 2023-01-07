@@ -2,6 +2,7 @@ import { classNames } from "../../utils";
 
 interface IChildrenProps {
   children: JSX.Element | JSX.Element[];
+  onClick?: () => void;
 }
 
 interface ITableHeaderItemProps {
@@ -58,8 +59,8 @@ export const TableBody = ({children}: IChildrenProps) => (
 );
 
 
-export const TableRow = ({children}: IChildrenProps) => (
-  <tr className="bg-white hover:bg-slate-100 dark:bg-neutral-800 dark:hover:bg-neutral-900 cursor-pointer">
+export const TableRow = ({children, onClick}: IChildrenProps) => (
+  <tr className="bg-white hover:bg-slate-100 dark:bg-neutral-800 dark:hover:bg-neutral-900 cursor-pointer" onClick={onClick}>
     {children}
   </tr>
 );
