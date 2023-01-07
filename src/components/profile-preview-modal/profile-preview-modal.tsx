@@ -1,10 +1,11 @@
-import { Fragment, useCallback } from 'react'
+import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { IUser } from '../../core/collection.interface';
 import { shortenedAddress } from '../../utils';
 import { AiFillLock, AiOutlineClose } from 'react-icons/ai';
 import { CopyButton } from '../copy-button/copy-button';
 import Link from 'next/link';
+import { BsTwitter } from "react-icons/bs";
 import { FiExternalLink } from 'react-icons/fi';
 import { WalletDropdownOptions } from '../wallet-dropdown-options/wallet-dropdown-options';
 import { FaWallet } from 'react-icons/fa';
@@ -118,7 +119,7 @@ const FooterButtons = ({address, twitterUsername}: {address: string, twitterUser
       style={{background: "#1DA1F2"}}
       className="inline-flex gap-2 items-center rounded-md border border-transparent px-2.5 py-1.5 text-sm font-medium text-white shadow-sm hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
     >
-      <span>Twitter</span> <FiExternalLink />
+      <BsTwitter /><span>Twitter</span>
     </Link>
     <WalletDropdownOptions name={<><FaWallet /> Wallet</>} address={address} />
   </div>
