@@ -76,10 +76,10 @@ const LeaderboardRow = ({user, position, onClick}: ILeaderboardRow) => {
       <TableColumn>
         <div className="flex items-center">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className="h-10 w-10 rounded-full mr-2" src={twitter?.avatar} alt={twitter?.username} aria-hidden="true" />
+          <img className="h-10 w-10 rounded-full mr-2" src={twitter.avatar} alt={twitter.username} aria-hidden="true" />
           <div>
-            <div className="font-semibold text-gray-600 dark:text-slate-50">{twitter?.name}</div>
-            <div className="text-xs text-gray-400">@{twitter?.username}</div>
+            <div className="font-semibold text-gray-600 dark:text-slate-50">{twitter.name}</div>
+            <div className="text-xs text-gray-400">@{twitter.username}</div>
           </div>
         </div>
       </TableColumn>

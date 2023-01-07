@@ -1,4 +1,6 @@
+import { useRouter } from "next/router";
 import React from "react";
+import { ICollection } from "../../core/collection.interface";
 import { useMostFollowedCollections } from "../../hooks/use-most-followed-collections";
 import { Spinner } from '../spinner/spinner';
 import { Table, TableBody, TableColumn, TableHeader, TableHeaderItem, TableRow } from '../table/table';
@@ -20,38 +22,56 @@ export const LeaderboardCollections = () => {
       </TableHeader>
 
       <TableBody>
-        {collections.map(({address, image, name, twitter}, index) => (
-          <React.Fragment key={address}>
-            {twitter && <TableRow key={address}>
-              <TableColumn isFirst={true}>
-                <div className="font-medium text-gray-900 dark:text-gray-50">{index + 1}</div>
-              </TableColumn>
-              <TableColumn>
-                <div className="flex items-center">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={image.thumbnailUrl} className="rounded-full mr-2 h-8 w-8" alt={name || address} aria-hidden="true" />
-                  <div className="font-semibold text-gray-600 dark:text-slate-50">{name}</div>
-                </div>
-              </TableColumn>
-              <TableColumn>
-                <div className="flex items-center">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img className="h-10 w-10 rounded-full mr-2" src={twitter?.avatar} alt={twitter?.username} aria-hidden="true" />
-                  <div>
-                    <div className="font-semibold text-gray-600 dark:text-slate-50">{twitter?.name}</div>
-                    <div className="text-xs text-gray-400">@{twitter?.username}</div>
-                  </div>
-                </div>
-              </TableColumn>
-              <TableColumn isLast={true}>
-                <div className="text-base font-semibold text-gray-600 dark:text-white">
-                  {twitter?.followers.toLocaleString()}
-                </div>
-              </TableColumn>
-            </TableRow>}
-          </React.Fragment>
+        {collections.map((collection, index) => (
+          <LeaderboardRow key={collection.address} collection={collection} position={index+1} />
         ))}
       </TableBody>
     </Table>
+  )
+}
+
+interface ILeaderboardRow {
+  collection: ICollection;
+  position: number;
+}
+
+const LeaderboardRow = ({collection, position}: ILeaderboardRow) => {
+  const { address, name, image, twitter, slug } = collection;
+  const router = useRouter();
+
+  const onClick = React.useCallback(() => window.open(`/collections/${slug}`, "_blank"), [slug]);
+
+  if (!twitter) {
+    return null;
+  }
+
+  return (
+    <TableRow onClick={onClick} >
+      <TableColumn isFirst={true}>
+        <div className="font-medium text-gray-900 dark:text-gray-50">{position}</div>
+      </TableColumn>
+      <TableColumn>
+        <div className="flex items-center">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={image.thumbnailUrl} className="rounded-full mr-2 h-8 w-8" alt={name || address} aria-hidden="true" />
+          <div className="font-semibold text-gray-600 dark:text-slate-50">{name}</div>
+        </div>
+      </TableColumn>
+      <TableColumn>
+        <div className="flex items-center">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img className="h-10 w-10 rounded-full mr-2" src={twitter.avatar} alt={twitter.username} aria-hidden="true" />
+          <div>
+            <div className="font-semibold text-gray-600 dark:text-slate-50">{twitter.name}</div>
+            <div className="text-xs text-gray-400">@{twitter.username}</div>
+          </div>
+        </div>
+      </TableColumn>
+      <TableColumn isLast={true}>
+        <div className="text-base font-semibold text-gray-600 dark:text-white">
+          {twitter?.followers.toLocaleString()}
+        </div>
+      </TableColumn>
+    </TableRow>
   )
 }
