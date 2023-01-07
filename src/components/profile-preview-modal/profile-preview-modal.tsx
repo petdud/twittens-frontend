@@ -87,7 +87,7 @@ export const ProfilePreviewModal = ({open, setOpen, user}: IProfilePreviewModalP
                             <AvatarsWithPlaceholder collections={userCollections}/> <span className="text-gray-500 dark:text-gray-400 text-sm font-normal">Communities</span>
                           </div>} */}
                         </div>
-                        <FooterButtons address={address} />
+                        <FooterButtons address={address} twitterUsername={twitter?.username} />
                       </div>
                     </div>
                   </div>
