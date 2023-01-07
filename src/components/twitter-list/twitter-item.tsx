@@ -25,12 +25,12 @@ export const TwitterItem = ({address, name, twitter, onUserClick }: ITwitterItem
             <span className="text-xs text-gray-500 dark:text-neutral-300">({shortenedAddress(address)})</span>
           </div>
         </div>
-        <div className="px-4 py-4 sm:px-6 group-hover:bg-gray-50 dark:group-hover:bg-gray-800">
+        <div className="px-3 py-3 sm:px-5 group-hover:bg-gray-50 dark:group-hover:bg-neutral-800">
           <div className="relative flex items-start">
             {twitter?.avatar && 
               <div className="flex-shrink-0 flex">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img className="h-12 w-12 md:h-16 md:w-16 rounded-full mr-4" src={twitter?.avatar} alt={twitter.username} aria-hidden="true" />
+                <img className="h-12 w-12 md:h-16 md:w-16 rounded-full mr-4 mt-1" src={twitter?.avatar} alt={twitter.username} aria-hidden="true" />
               </div>}
             <div className="min-w-0 flex-1 flex gap-2 flex-col">
               <div>
@@ -45,14 +45,14 @@ export const TwitterItem = ({address, name, twitter, onUserClick }: ITwitterItem
                   </span>}
                 </div>
 
-                <p className="text-sm text-gray-500 dark:text-gray-400">@{twitter?.username}</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">@{twitter?.username}</p>
               </div>
               <div>
-                <p className="text-sm text-gray-600 dark:text-gray-300">{twitter?.description}</p>
+                <p className="text-sm text-gray-600 dark:text-gray-300 truncate">{twitter?.description}</p>
               </div>
               <div className="flex gap-4 text-sm items-center">
-                <div className="flex flex-col-reverse dark:text-white md:flex-row md:gap-1"><span className="font-semibold">{twitter?.following.toLocaleString()}</span> <span className="text-gray-500 dark:text-gray-400 text-sm font-normal">Following</span></div>
-                <div className="flex flex-col-reverse dark:text-white md:flex-row md:gap-1"><span className="font-semibold">{twitter?.followers.toLocaleString()}</span> <span className="text-gray-500 dark:text-gray-400 text-sm font-normal">Followers</span></div>
+                <div className="flex dark:text-white flex-row gap-1"><span className="font-semibold">{twitter?.following.toLocaleString()}</span> <span className="text-gray-500 dark:text-gray-400 text-sm font-normal">Following</span></div>
+                <div className="flex dark:text-white flex-row gap-1"><span className="font-semibold">{twitter?.followers.toLocaleString()}</span> <span className="text-gray-500 dark:text-gray-400 text-sm font-normal">Followers</span></div>
                 {/* {userCollections.length > 0 && <div className="flex items-center flex-col-reverse md:flex-row gap-1">
                   <AvatarsWithPlaceholder collections={userCollections}/> <span className="text-gray-500 dark:text-gray-400 text-sm font-normal">Communities</span>
                 </div>} */}
