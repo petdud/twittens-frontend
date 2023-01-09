@@ -25,7 +25,7 @@ export const TwitterList = ({users}: ITwitterList) => {
   
   return (
     <>
-      <ul role="list" className="space-y-8 py-12 max-w-2xl">
+      <ul role="list" className="space-y-8 py-12 max-w-2xl md:px-6">
         {users.map(({twitter, address, name}) => {
           return (
             twitter && <TwitterItem 

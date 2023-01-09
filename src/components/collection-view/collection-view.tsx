@@ -10,8 +10,10 @@ interface ICollectionView {
 export const CollectionView = ({slug}: ICollectionView) =>  {
   return (
     <div className="md:py-6 py-2 max-w-5xl m-auto">
-      <CollectionHeader slug={slug}/>
-      <CollectionViewContent slug={slug} />
+      <div className="max-w-full px-2 mx-2">
+        <CollectionHeader slug={slug}/>
+        <CollectionViewContent slug={slug} />
+      </div>
     </div>
   )
 }

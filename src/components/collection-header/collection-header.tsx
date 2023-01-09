@@ -51,7 +51,7 @@ export const CollectionHeader = ({ slug }: ICollectionHeader) => {
   } = data;
 
   return (
-    <div className="max-w-full px-2 mx-2">
+    <>
       <BreadCrumbNavigation />
       <div className="md:flex md:items-center md:justify-between md:space-x-5">
         <div className="flex items-start space-x-5">
@@ -68,7 +68,7 @@ export const CollectionHeader = ({ slug }: ICollectionHeader) => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }
 
