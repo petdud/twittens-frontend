@@ -76,7 +76,6 @@ export interface ICollection {
 
 export interface ICollectionApiData {
   collection: ICollection,
-  users: IUser[],
 }
 
 export interface ITwitter {
@@ -94,4 +93,13 @@ export interface ITwitter {
   tweetCount: number,
   listedCount: number,
   creationDate: string,
+}
+
+export interface IUserCommunity {
+  user: IUser,
+  community: ICollection;
+  joinedAt: Date,
+  leavedAt?: Date,
+  rejoined?: boolean,
+  isActive: boolean,
 }
