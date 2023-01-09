@@ -100,7 +100,7 @@ export const AdminCollectionEdit = () => {
   }, [collection])
 
   const onDelete = useCallback(async () => {
-    await axios.delete(`/api/collections/${slug}/delete`);
+    await axios.delete(LOCAL_API_PATHS.DELETE_COLLECTION(slug));
   }, [slug]);
 
   if (isLoading) {

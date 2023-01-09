@@ -1,4 +1,4 @@
-import { CollectionList } from '../components/collection-list/collection-list';
+import { Collections } from '../components/collections/collections';
 import { HeadPage } from '../layouts/head-page';
 import { MainSlot } from '../layouts/main-slot';
 
@@ -11,7 +11,7 @@ export default function Home() {
       />
 
       <MainSlot>
-        <CollectionList />
+        <Collections />
       </MainSlot>
     </div>
   );

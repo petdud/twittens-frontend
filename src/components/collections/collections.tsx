@@ -1,11 +1,11 @@
+import Link from "next/link";
 import { useCollections } from "../../hooks/use-collections";
 import { CardSkeleton } from "../card/card";
 import { MainViewHeader } from "../main-view-header/main-view-header";
 import { SearchBar } from "../search-bar/search-bar";
-import { CollectionItem } from "./collection-item";
+import { Card } from "../card/card";
 
-
-export const CollectionList = () =>  {
+export const Collections = () =>  {
   const { data: collections, isLoading, error } = useCollections("active");
 
   if (error || (!isLoading && collections.length === 0)) {
@@ -40,7 +40,7 @@ export const CollectionList = () =>  {
             ))
           :           
             collections && collections?.map(({isFeatured, image, name, slug, ownersWithTwitterCount}) => ( 
-              <CollectionItem 
+              <CollectionsItem 
                 key={slug}
                 description={ownersWithTwitterCount ? `${ownersWithTwitterCount} members on Twitter` : undefined}
                 isFeatured={!!isFeatured}
@@ -55,3 +55,19 @@ export const CollectionList = () =>  {
     </div>
   )
 }
+
+interface ICollectionsItemProps {
+  imageUrl: string;
+  name: string;
+  path: string;
+  isFeatured: boolean;
+  description?: string;
+}
+
+const CollectionsItem = ({ description, isFeatured, imageUrl, name, path}: ICollectionsItemProps) => (
+  <li>
+    <Link href={path} className="flex justify-center relative top-0 hover:-top-1 transition top-ease delay-200">
+      <Card description={description} imageUrl={imageUrl} name={name} isFeatured={isFeatured} />
+    </Link>
+  </li>
+)

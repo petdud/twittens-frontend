@@ -2,16 +2,16 @@ import axios, { AxiosError } from "axios";
 import { NextApiRequest, NextApiResponse } from "next";
 import { API_PATHS, BASE_API_URL } from "../../../../core/constants";
 
-const API = `${BASE_API_URL}${API_PATHS.COLLECTIONS}`;
-
 const handler = async (req: NextApiRequest, res: NextApiResponse<any>) => {
-  const slug = req.query.slug;
+  const slug = req.query.slug as string;
   try {
     if (slug) {
-      const apiResponse = await axios.get(`${API}/${slug}`);
+      const API = BASE_API_URL + API_PATHS.GET_USERS_BY_COMMUNITY(slug);
+      console.log("AP", API)
+      const apiResponse = await axios.get(API);
       res.status(200).json(apiResponse.data)
     } else {
-      res.status(500).json({ error: `Wrong ID` });
+      res.status(500).json({ error: `No community slug provided` });
     }
   } catch(err: AxiosError | any) {
     err.statusCode
@@ -21,6 +21,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<any>) => {
       res.status(500).json({ error: `Failed to load data with error: ${err}` })
     }
   }
+
 };
 
 export default handler;

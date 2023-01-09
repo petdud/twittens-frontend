@@ -4,7 +4,7 @@ import { API_PATHS, BASE_API_URL } from "../../../core/constants";
 
 const API = `${BASE_API_URL}${API_PATHS.COLLECTIONS}`;
 
-const collections = async (req: NextApiRequest, res: NextApiResponse<any>) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse<any>) => {
   try {
     const status = req.query.status; 
     const params = status ? `?status=${status}` : '';
@@ -20,4 +20,4 @@ const collections = async (req: NextApiRequest, res: NextApiResponse<any>) => {
   }
 };
 
-export default collections;
+export default handler;

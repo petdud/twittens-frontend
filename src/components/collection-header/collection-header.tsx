@@ -1,56 +1,78 @@
-import { MarketplaceDropdownOptions } from "../wallet-dropdown-options/wallet-dropdown-options";
+import React from "react";
+import { useCollection } from "../../hooks/use-collection";
+import { MdOutlineArrowBackIosNew } from "react-icons/md";
+import { useHistory } from "../../core/history-manager-provider";
+import { useRouter } from "next/router";
+import { Divider } from "../../layouts/main-slot";
+import { MainViewHeader } from "../main-view-header/main-view-header";
+import { CollectionHeaderFooterLinks } from "./collection-header-footer-links";
 
 interface ICollectionHeader {
-  address: string;
-  name: string | JSX.Element;
-  imageUrl: string;
-  description?: string | JSX.Element;
-  imageAlt: string;
   slug: string;
-  rightButtons?: JSX.Element;
-  social: JSX.Element;
 }
 
-export const CollectionHeader = ({address, name, description, imageUrl, imageAlt, slug, rightButtons, social}: ICollectionHeader) => (
-  <div className="md:flex md:items-center md:justify-between md:space-x-5">
-    <div className="flex items-start space-x-5">
-      <div className="flex-shrink-0">
-        <div className="relative">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            className="rounded-full"
-            src={imageUrl}
-            width={96}
-            height={96}
-            alt={imageAlt}
-          />
-          <span className="absolute inset-0 rounded-full shadow-inner" aria-hidden="true" />
-        </div>
+export const CollectionHeader = ({ slug }: ICollectionHeader) => {
+  const { data, isLoading, error } = useCollection(slug);
+  
+  if (error) {
+    return (
+      <div className="py-6">
+        <MainViewHeader title={<div>Sorry, something went wrong 🫣.</div>} />
       </div>
-      {/*
-        Use vertical padding to simulate center alignment when both lines of text are one line,
-        but preserve the same layout if the text wraps without making the image jump around.
-      */}
-      <div className="pt-1 flex justify-between items-between flex-col grow">
-        <div>
-          <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-neutral-200">{name}</h1>
-          {description && <div className="text-sm font-medium text-gray-500 dark:text-neutral-400 pt-1">
-            {description}
-          </div>}
-        </div>
-        <div className="flex items-center gap-2 mt-1">
-          {social}
-          <MarketplaceDropdownOptions name="View collection" address={address} appearance="transparent" slug={slug} />
+    )
+  }
+
+  if (!data && !isLoading) {
+    return (
+      <div className="py-6">
+        <MainViewHeader title={<div>Sorry, we didn&apos;t find a collection called {slug} 🫣.</div>} />
+      </div>
+    )
+  }
+
+  if (isLoading || !data) {
+    return (
+      <CollectionHeaderSkeleton /> 
+    )
+  }
+
+  const { 
+    collection: {
+      address,
+      discordUrl,
+      externalUrl,
+      image,
+      name,
+      numberOfOwners,
+      ownersWithTwitterCount,
+      totalSupply,
+      twitterUsername
+    } 
+  } = data;
+
+  return (
+    <div className="max-w-full px-2 mx-2">
+      <BreadCrumbNavigation />
+      <div className="md:flex md:items-center md:justify-between md:space-x-5">
+        <div className="flex items-start space-x-5">
+          <CollectionImage imageUrl={image.url} altName={name} />
+          <div className="pt-1 flex justify-between items-between flex-col grow">
+            <CollectionTitle name={name} owners={numberOfOwners} supply={totalSupply} twitterAccountsCount={ownersWithTwitterCount} />
+            <CollectionHeaderFooterLinks 
+              address={address}
+              slug={slug}
+              twitter={twitterUsername}
+              discord={discordUrl}
+              externalUrl={externalUrl} 
+            />
+          </div>
         </div>
       </div>
     </div>
-    {rightButtons && <div className="justify-stretch mt-6 flex flex-col-reverse space-y-4 space-y-reverse sm:flex-row-reverse sm:justify-end sm:space-y-0 sm:space-x-3 sm:space-x-reverse md:mt-0 md:flex-row md:space-x-3">
-      {rightButtons}
-    </div>}
-  </div>
-)
+  )
+}
 
-export const CollectionHeaderSkeleton = () => (
+const CollectionHeaderSkeleton = () => (
   <div role="status" className="w-full animate-pulse dark:border-gray-700">  
     <div className="flex items-center space-x-3">
       <div className="flex ml-4 justify-center items-center w-28 h-28 bg-gray-300 rounded dark:bg-gray-700">
@@ -65,5 +87,70 @@ export const CollectionHeaderSkeleton = () => (
       </div>
     </div>
     <span className="sr-only">Loading...</span>
+  </div>
+)
+
+const BreadCrumbNavigation = () => {
+  const router = useRouter();
+  const historyManager = useHistory();
+  const canGoBack = historyManager.canGoBack();
+  
+  const onNavigationClick = React.useCallback(() => (
+    canGoBack ? router.back() : router.push('/')
+  ), [canGoBack, router]);
+
+  return (
+    <>
+      <nav aria-label="Breadcrumb" className="mb-2">
+        <ol role="list" className="flex items-center space-x-4">
+          <li className="text-sm">
+            <button onClick={onNavigationClick} aria-current="page" className="font-medium text-gray-500 dark:text-neutral-300 hover:text-gray-600 dark:hover:text-white cursor-pointer hover:underline">
+              <div className="flex items-center gap-1 p-1">
+                <MdOutlineArrowBackIosNew /> {canGoBack ? "Back" : "All collections"}
+              </div>
+            </button>
+          </li>
+        </ol>
+      </nav>
+      <Divider wrapperClass="mb-4 max-w-2xl" />
+    </>
+  )
+}
+
+interface ICollectionTitleProps {
+  name: string;
+  owners?: number;
+  supply?: number;
+  twitterAccountsCount?: number;
+}
+
+const CollectionTitle = ({name, owners, supply, twitterAccountsCount}: ICollectionTitleProps) => (
+  <>
+    <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-neutral-200">
+      <>{name} <span className="font-normal">on</span> <span className="text-blue-400">Twitter</span>!</>
+    </h1>
+    <div className="text-sm font-medium text-gray-500 dark:text-neutral-400 pt-1">
+      <div className="flex gap-3">
+        {supply && <div>Items: <span className="dark:text-slate-200 text-neutral-700 font-semibold">{supply}</span></div>}
+        {owners && <div>Owners: <span className="dark:text-slate-200 text-neutral-700 font-semibold">{owners}</span></div>}
+        {twitterAccountsCount && <div>Twitter members: <span className="dark:text-slate-200 text-neutral-700 font-semibold">{twitterAccountsCount}</span></div>}
+      </div>
+    </div>
+  </>
+)
+
+const CollectionImage = ({imageUrl, altName}: {imageUrl: string, altName: string}) => (
+  <div className="flex-shrink-0">
+    <div className="relative">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        className="rounded-full"
+        src={imageUrl}
+        width={96}
+        height={96}
+        alt={altName}
+        aria-hidden="true"
+      />
+    </div>
   </div>
 )

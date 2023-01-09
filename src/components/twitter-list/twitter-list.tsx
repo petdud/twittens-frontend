@@ -13,8 +13,10 @@ export const TwitterList = ({users}: ITwitterList) => {
 
   const onUserClick = useCallback((address: string) => {
     const user = users.find(user => user.address === address);
-    setSelectedUser(user);
-    setOpenProfile(true);
+    if (user) {
+      setSelectedUser(user);
+      setOpenProfile(true);
+    }
   }, [users]);
 
   const onClose = useCallback(() => {
@@ -24,7 +26,7 @@ export const TwitterList = ({users}: ITwitterList) => {
   return (
     <>
       <ul role="list" className="space-y-8 py-12 max-w-2xl">
-        {users.map(({address, name, twitter}) => {
+        {users.map(({twitter, address, name}) => {
           return (
             twitter && <TwitterItem 
               key={address}

@@ -5,7 +5,7 @@ export const LOCAL_API_PATHS = {
   UPDATE_COLLECTION_STATUS: "/api/collections/update-status", // provide collection's slug and new status
   GET_COLLECTIONS: "/api/collections", // get all collections; provide status in query (active, hidden)
   GET_COLLECTION: "/api/collections", // provide collection's slug
-  // DELETE_COLLECTION: "/api/collections/:slug/delete", // delete a collection by providing its slug
+  DELETE_COLLECTION: (slug: string) => `/api/collections/${slug}/delete`, // delete a collection by providing its slug
   // UPDATE_COLLECTION: "/api/collections/:slug/update", // update a collection data (users/details) by providing its slug
   GET_COLLECTION_OWNERS: "/api/collections/get-owners", // provide collection's contract address
   EDIT_COLLECTION: "/api/collections/edit", // provide collection's slug and new data
@@ -13,6 +13,7 @@ export const LOCAL_API_PATHS = {
   GET_MOST_FOLLOWED_USERS: "/api/users/most-followed",
   GET_MOST_FOLLOWED_COLLECTIONS: "/api/collections/most-followed",
   // GET_USER_NFTS: "/api/users/:address/nfts", // provide address
+  GET_USERS_BY_COMMUNITY: (slug: string) => `/api/users/by-community/${slug}`,
 }
 
 // paths outside of this application (api.twittens.xyz)
@@ -23,7 +24,8 @@ export const API_PATHS = {
   COLLECTIONS: "collections",
   USERS: "users",
   GET_MOST_FOLLOWED_USERS: "users/most-followed",
-  UPDATE_COLLECTION: "collections/update" // provide collection's slug - update collection data (details and members)
+  UPDATE_COLLECTION: "collections/update", // provide collection's slug - update collection data (details and members)
+  GET_USERS_BY_COMMUNITY: (slug: string) => `users/by-community/${slug}`,
 }
 
 export const ROUTES = {
