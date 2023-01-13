@@ -55,6 +55,7 @@ export const UploadWidget = ({folder, onSuccess}: IUploadWidgetProps) => {
       uploadPreset: process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET,
       sources: ["local", "url"],
       multiple: false,
+      secure: true,
       resourceType: "image",
       folder,
     }, (error: any, result: ICloudinaryResponse) => {

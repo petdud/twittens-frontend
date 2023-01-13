@@ -7,7 +7,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse<any>) => {
   try {
     if (slug) {
       const API = BASE_API_URL + API_PATHS.GET_USERS_BY_COMMUNITY(slug);
-      console.log("AP", API)
       const apiResponse = await axios.get(API);
       res.status(200).json(apiResponse.data)
     } else {
