@@ -48,6 +48,7 @@ export interface IUser {
   name: string | undefined,
   ens: IUserEns | null,
   twitter: ITwitter | null,
+  activeCommunities: ICollection[],
   createdAt: string,
   updatedAt: string
 }
@@ -70,6 +71,7 @@ export interface ICollection {
   twitter: ITwitter | null,
   stats: IStats | null,
   chain: chainTypes,
+  activeUsers: IUser[],
   createdAt: string,
   updatedAt: string,
 }

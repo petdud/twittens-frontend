@@ -90,6 +90,7 @@ export const MainSlot = ({children}: IMainSlot) => {
                           height="50"
                           src="/twittens_logo.png"
                           alt="Twittens"
+                          priority
                         />
                       </Link>
                     </div>
@@ -142,11 +143,11 @@ export const MainSlot = ({children}: IMainSlot) => {
             <div className="flex flex-shrink-0 items-center justify-center px-4">
               <Link href={"/"}>
                 <Image
-                  className=""
                   width="163"
                   height="50"
                   src="/twittens_logo.png"
                   alt="Twittens"
+                  priority
                 />
               </Link>
             </div>
@@ -203,11 +204,13 @@ export const MainSlot = ({children}: IMainSlot) => {
                 </button>
               </div>
               <Link href={"/"}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  width="100"
+                <Image
+                  className="h-8 w-auto"
+                  width="163"
+                  height="50"
                   src="/twittens_logo.png"
                   alt="Twittens"
+                  priority
                 />
               </Link>
               <div className="flex-1"/>
