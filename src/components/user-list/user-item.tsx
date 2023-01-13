@@ -67,7 +67,7 @@ export const UserItem = ({address, name, twitter, onUserClick, communities }: IU
               <div className="flex gap-4 text-sm items-center">
                 <div className="flex dark:text-white flex-col-reverse md:flex-row md:gap-1"><span className="font-semibold">{following.toLocaleString()}</span> <span className="text-gray-500 dark:text-gray-400 text-sm font-normal">Following</span></div>
                 <div className="flex dark:text-white flex-col-reverse md:flex-row md:gap-1"><span className="font-semibold">{followers.toLocaleString()}</span> <span className="text-gray-500 dark:text-gray-400 text-sm font-normal">Followers</span></div>
-                {false && communities.length > 0 && <div className="flex items-center flex-col-reverse md:flex-row md:gap-1">
+                {communities && communities.length > 0 && <div className="flex items-center flex-col-reverse md:flex-row md:gap-1">
                   <AvatarsWithPlaceholder images={communities}/> <span className="text-gray-500 dark:text-gray-400 text-sm font-normal">Communities</span>
                 </div>}
               </div>

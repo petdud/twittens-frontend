@@ -26,7 +26,7 @@ export const AdminCollectionList = () => {
           slug={slug}
           name={name}
           status={status}
-          numberOfOwners={numberOfOwners === activeUsers.length || 0 ? numberOfOwners.toString() : `X`} 
+          numberOfOwners={numberOfOwners === activeUsers.length || 0 ? numberOfOwners.toString() : `X ${activeUsers.length} expected: ${numberOfOwners}`} 
         />
       ))}
     </ul>

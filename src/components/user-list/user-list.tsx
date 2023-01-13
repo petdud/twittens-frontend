@@ -2,7 +2,7 @@ import React, { useCallback, useState } from "react";
 import { IUser } from "../../core/collection.interface";
 import { useCollections } from "../../hooks/use-collections";
 import { IAvatarWithPlaceholderImage } from "../avatars-with-placeholder/avatars-with-placeholder";
-import { ProfilePreviewModal } from "../profile-preview-modal/profile-preview-modal";
+import { UserPreviewModal } from "../user-preview-modal/user-preview-modal";
 import { UserItem } from "./user-item";
 
 interface IUserList {
@@ -34,10 +34,10 @@ export const UserList = ({ users, slug }: IUserList) => {
           let communities: IAvatarWithPlaceholderImage[] = [];
 
           for (const activeCommunity of activeCommunities) {
-            if (activeCommunity.slug === slug) continue; // skip the current community
+            if (activeCommunity.slug === slug || activeCommunity.status !== "active") continue; // skip current community and inactive communities
             const community = collections.find((collection) => collection.slug === activeCommunity.slug);
             if (community) {
-              communities.push({ imageUrl: community?.image?.thumbnailUrl, name: community?.name });
+              communities.push({ imageUrl: community.image.thumbnailUrl, name: community.name });
             }
           }
           
@@ -53,7 +53,7 @@ export const UserList = ({ users, slug }: IUserList) => {
           )
         })}
       </ul>
-      {selectedUser && <ProfilePreviewModal open={openProfile} onClose={onClose} user={selectedUser} />}
+      {selectedUser && <UserPreviewModal open={openProfile} onClose={onClose} user={selectedUser} collections={collections} />}
     </>
   )
 }

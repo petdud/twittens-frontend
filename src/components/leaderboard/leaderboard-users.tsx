@@ -1,14 +1,16 @@
+import React from "react";
+import Image from "next/image";
 import { useMostFollowedUsers } from "../../hooks/use-most-followed-users";
 import { shortenedAddress } from '../../utils';
-import Image from "next/image";
 import { Spinner } from "../spinner/spinner";
 import { Table, TableHeader, TableHeaderItem, TableBody, TableRow, TableColumn } from "../table/table";
-import React from "react";
-import { ProfilePreviewModal } from "../profile-preview-modal/profile-preview-modal";
+import { UserPreviewModal } from "../user-preview-modal/user-preview-modal";
 import { IUser } from "../../core/collection.interface";
+import { useCollections } from "../../hooks/use-collections";
 
 export const LeaderboardUsers = () => {
   const { data: users, isLoading } = useMostFollowedUsers();
+  const { data: collections } = useCollections({select: "slug,name,image.thumbnailUrl"});
   const [selectedUser, setSelectedUser] = React.useState<IUser>();
 
   const onClose = React.useCallback(() => {
@@ -39,7 +41,7 @@ export const LeaderboardUsers = () => {
           )}
         </TableBody>
       </Table>
-      {selectedUser && <ProfilePreviewModal open={!!selectedUser} onClose={onClose} user={selectedUser} />}
+      {selectedUser && <UserPreviewModal open={!!selectedUser} onClose={onClose} user={selectedUser} collections={collections} />}
     </>
   )
 }
