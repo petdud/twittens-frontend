@@ -13,7 +13,7 @@ export const LOCAL_API_PATHS = {
   GET_MOST_FOLLOWED_USERS: "/api/users/most-followed",
   GET_MOST_FOLLOWED_COLLECTIONS: "/api/collections/most-followed",
   // GET_USER_NFTS: "/api/users/:address/nfts", // provide address
-  GET_USERS_BY_COMMUNITY: (slug: string) => `/api/users/by-community/${slug}`,
+  GET_ACTIVE_USERS_FROM_COLLECTION: (slug: string) => `/api/collections/${slug}/active-users`,
 }
 
 // paths outside of this application (api.twittens.xyz)
@@ -25,7 +25,7 @@ export const API_PATHS = {
   USERS: "users",
   GET_MOST_FOLLOWED_USERS: "users/most-followed",
   UPDATE_COLLECTION: "collections/update", // provide collection's slug - update collection data (details and members)
-  GET_USERS_BY_COMMUNITY: (slug: string) => `users/by-community/${slug}`,
+  GET_ACTIVE_USERS_FROM_COLLECTION: (slug: string) => `collections/${slug}/active-users`,
 }
 
 export const ROUTES = {

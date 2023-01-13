@@ -10,13 +10,24 @@ import Link from 'next/link';
 import { MdModeEditOutline } from 'react-icons/md';
 import { BiRefresh } from 'react-icons/bi';
 
+const SELECT_FROM_COLLECTIONS = "name,slug,image.url,isFeatured,status,stats,activeUsers,numberOfOwners";
+
 export const AdminCollectionList = () => {
-  const { data: collections } = useCollections();
+  const { data: collections } = useCollections({
+    select: SELECT_FROM_COLLECTIONS
+  });
 
   return (
     <ul role="list" className="divide-y divide-gray-200 dark:divide-gray-700 mt-8 max-h-96 overflow-auto pb-40">
-      {collections?.map(({image, slug, name, status}) => (
-        <AdminCollectionItem key={slug} imageUrl={image?.url} slug={slug} name={name} status={status} />
+      {collections?.map(({image, slug, name, status, numberOfOwners, activeUsers}) => (
+        <AdminCollectionItem 
+          key={slug}
+          imageUrl={image?.url}
+          slug={slug}
+          name={name}
+          status={status}
+          numberOfOwners={numberOfOwners === activeUsers.length || 0 ? numberOfOwners.toString() : `X`} 
+        />
       ))}
     </ul>
   )
@@ -27,9 +38,10 @@ interface IAdminCollectionItemProps {
   slug: string;
   name: string;
   status: statusTypes;
+  numberOfOwners: string;
 }
 
-const AdminCollectionItem = ({imageUrl, slug, name, status}: IAdminCollectionItemProps) => {
+const AdminCollectionItem = ({imageUrl, slug, name, status, numberOfOwners}: IAdminCollectionItemProps) => {
 
   const updateCollection = useCallback(async () => {
     const response = await axios.patch(`/api/collections/${slug}/update`);
@@ -42,6 +54,7 @@ const AdminCollectionItem = ({imageUrl, slug, name, status}: IAdminCollectionIte
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={imageUrl} alt={name} className="inline-block h-6 w-6 rounded-full" />
           <span>{name}</span>
+          <span>({numberOfOwners})</span>
         </div>
       </Link>
       <div className="flex items-center gap-2">

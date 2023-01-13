@@ -1,13 +1,17 @@
 import React, { useCallback, useState } from "react";
 import { IUser } from "../../core/collection.interface";
+import { useCollections } from "../../hooks/use-collections";
+import { IAvatarWithPlaceholderImage } from "../avatars-with-placeholder/avatars-with-placeholder";
 import { ProfilePreviewModal } from "../profile-preview-modal/profile-preview-modal";
-import { TwitterItem } from "./twitter-item";
+import { UserItem } from "./user-item";
 
-interface ITwitterList {
+interface IUserList {
   users: IUser[];
+  slug: string;
 }
 
-export const TwitterList = ({users}: ITwitterList) => {
+export const UserList = ({ users, slug }: IUserList) => {
+  const { data: collections } = useCollections({select: "slug,name,image.thumbnailUrl"});
   const [selectedUser, setSelectedUser] = useState<IUser | undefined>(undefined);
   const [openProfile, setOpenProfile] = useState(false);
 
@@ -26,14 +30,25 @@ export const TwitterList = ({users}: ITwitterList) => {
   return (
     <>
       <ul role="list" className="space-y-8 py-12 max-w-2xl md:px-6">
-        {users.map(({twitter, address, name}) => {
+        {users.map(({twitter, address, name, activeCommunities}) => {
+          let communities: IAvatarWithPlaceholderImage[] = [];
+
+          for (const activeCommunity of activeCommunities) {
+            if (activeCommunity.slug === slug) continue; // skip the current community
+            const community = collections.find((collection) => collection.slug === activeCommunity.slug);
+            if (community) {
+              communities.push({ imageUrl: community?.image?.thumbnailUrl, name: community?.name });
+            }
+          }
+          
           return (
-            twitter && <TwitterItem 
+            twitter && <UserItem 
               key={address}
               onUserClick={onUserClick}
               address={address}
               name={name}
               twitter={twitter}
+              communities={communities}
             />
           )
         })}
@@ -43,7 +58,7 @@ export const TwitterList = ({users}: ITwitterList) => {
   )
 }
 
-export const TwitterListSkeleton = () => (
+export const UserListSkeleton = () => (
   <ul role="list" className="space-y-8 py-2 max-w-2xl">
     <div role="status" className="py-2 space-y-8 w-full rounded animate-pulse dark:divide-gray-700 md:p-6 dark:border-gray-700">
       {["a", "b", "c", "d"].map(alp => (

@@ -5,8 +5,13 @@ import { MainViewHeader } from "../main-view-header/main-view-header";
 import { SearchBar } from "../search-bar/search-bar";
 import { Card } from "../card/card";
 
+const SELECT_FROM_COLLECTIONS = "name,slug,image.url,ownersWithTwitterCount,isFeatured";
+
 export const Collections = () =>  {
-  const { data: collections, isLoading, error } = useCollections("active");
+  const { data: collections, isLoading, error } = useCollections({
+    status: "active", 
+    select: SELECT_FROM_COLLECTIONS
+  });
 
   if (error || (!isLoading && collections.length === 0)) {
     return (

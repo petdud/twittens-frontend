@@ -11,8 +11,12 @@ interface ICollectionHeader {
   slug: string;
 }
 
+const SELECT_FROM_COLLECTION = "address,discordUrl,externalUrl,image,name,numberOfOwners,ownersWithTwitterCount,totalSupply,twitterUsername";
+
 export const CollectionHeader = ({ slug }: ICollectionHeader) => {
-  const { data, isLoading, error } = useCollection(slug);
+  const { data, isLoading, error } = useCollection(slug, {
+    select: SELECT_FROM_COLLECTION
+  });
   
   if (error) {
     return (

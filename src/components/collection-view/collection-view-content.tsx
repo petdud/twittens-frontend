@@ -1,9 +1,9 @@
-import { useUsersByCommunity } from "../../hooks/use-users-by-community";
+import { useActiveUsersFromCommunity } from "../../hooks/use-active-users-from-community";
 import { MainViewHeader } from "../main-view-header/main-view-header";
-import { TwitterList, TwitterListSkeleton } from "../twitter-list/twitter-list";
+import { UserList, UserListSkeleton } from "../user-list/user-list";
 
 export const CollectionViewContent = ({slug}: {slug: string}) => {
-  const { data, isLoading, error } = useUsersByCommunity(slug);
+  const { data, isLoading, error } = useActiveUsersFromCommunity(slug);
 
   if (error) {
     return (
@@ -22,10 +22,10 @@ export const CollectionViewContent = ({slug}: {slug: string}) => {
   }
 
   if (isLoading || !data) {
-    return <TwitterListSkeleton />;
+    return <UserListSkeleton />;
   }
 
   const { users } = data;
 
-  return <TwitterList users={users} />;
+  return <UserList users={users} slug={slug} />;
 }
