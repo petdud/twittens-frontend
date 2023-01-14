@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from "react";
 import { IUser } from "../../core/collection.interface";
 import { useCollections } from "../../hooks/use-collections";
-import { IAvatarWithPlaceholderImage } from "../avatars-with-placeholder/avatars-with-placeholder";
+import { IAvatarGroupItemProps } from "../avatar-group/avatar-group";
 import { UserPreviewModal } from "../user-preview-modal/user-preview-modal";
 import { UserItem } from "./user-item";
 
@@ -31,7 +31,7 @@ export const UserList = ({ users, slug }: IUserList) => {
     <>
       <ul role="list" className="space-y-8 py-12 max-w-2xl md:px-6">
         {users.map(({twitter, address, name, activeCommunities}) => {
-          let communities: IAvatarWithPlaceholderImage[] = [];
+          let communities: IAvatarGroupItemProps[] = [];
 
           for (const activeCommunity of activeCommunities) {
             if (activeCommunity.slug === slug || activeCommunity.status !== "active") continue; // skip current community and inactive communities

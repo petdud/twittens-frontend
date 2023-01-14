@@ -5,8 +5,9 @@ import { shortenedAddress } from '../../utils';
 import { Spinner } from "../spinner/spinner";
 import { Table, TableHeader, TableHeaderItem, TableBody, TableRow, TableColumn } from "../table/table";
 import { UserPreviewModal } from "../user-preview-modal/user-preview-modal";
-import { IUser } from "../../core/collection.interface";
+import { ICollection, IUser } from "../../core/collection.interface";
 import { useCollections } from "../../hooks/use-collections";
+import { AvatarGroup, IAvatarGroupItemProps } from "../avatar-group/avatar-group";
 
 export const LeaderboardUsers = () => {
   const { data: users, isLoading } = useMostFollowedUsers();
@@ -32,12 +33,13 @@ export const LeaderboardUsers = () => {
           <TableHeaderItem name="Rank" isFirst={true} />
           <TableHeaderItem name="Name" />
           <TableHeaderItem name="Twitter" />
+          <TableHeaderItem name="A part of community" />
           <TableHeaderItem name="Followers" isLast={true} />
         </TableHeader>
 
         <TableBody>
           {users.map((user, index) => 
-            <LeaderboardRow key={user.address} user={user} position={index+1} onClick={onUserClick} />
+            <LeaderboardRow key={user.address} user={user} position={index+1} onClick={onUserClick} collections={collections} />
           )}
         </TableBody>
       </Table>
@@ -50,12 +52,26 @@ interface ILeaderboardRow {
   user: IUser;
   position: number;
   onClick: (user: IUser) => void;
+  collections: ICollection[];
 }
 
-const LeaderboardRow = ({user, position, onClick}: ILeaderboardRow) => {
-  const {address, name, twitter} = user;
+const LeaderboardRow = ({user, position, onClick, collections}: ILeaderboardRow) => {
+  const {address, name, twitter, activeCommunities} = user;
 
   const onUserClick = React.useCallback(() => onClick(user), [user, onClick]);
+
+  const communities = React.useMemo(() => {
+    let communities: IAvatarGroupItemProps[] = [];
+    
+    for (const activeCommunity of activeCommunities) {
+      if (activeCommunity.status !== "active") continue; // skip inactive communities
+      const community = collections.find((collection) => collection.slug === activeCommunity.slug);
+      if (community) {
+        communities.push({ name: community.name, imageUrl: community.image.thumbnailUrl });
+      }
+    }
+    return communities;
+  }, [activeCommunities, collections]);
 
   if (!twitter) {
     return null;
@@ -84,6 +100,9 @@ const LeaderboardRow = ({user, position, onClick}: ILeaderboardRow) => {
             <div className="text-xs text-gray-400">@{twitter.username}</div>
           </div>
         </div>
+      </TableColumn>
+      <TableColumn>
+        <AvatarGroup items={communities} maxItems={5} size={6} placeholderInherited={false} />
       </TableColumn>
       <TableColumn isLast={true}>
         <div className="text-base font-semibold text-gray-600 dark:text-white">

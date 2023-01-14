@@ -9,6 +9,7 @@ import { BsTwitter } from "react-icons/bs";
 import { WalletDropdownOptions } from '../wallet-dropdown-options/wallet-dropdown-options';
 import { FaWallet } from 'react-icons/fa';
 import { GoVerified } from 'react-icons/go';
+import { AvatarGroup, IAvatarGroupItemProps } from '../avatar-group/avatar-group';
 
 interface IUserPreviewModalProps {
   open: boolean;
@@ -21,13 +22,13 @@ export const UserPreviewModal = ({open, onClose, user, collections}: IUserPrevie
   const {address, name, twitter, activeCommunities} = user;
 
   const communities = React.useMemo(() => {
-    let communities: ICollection[] = [];
+    let communities: IAvatarGroupItemProps[] = [];
     
     for (const activeCommunity of activeCommunities) {
       if (activeCommunity.status !== "active") continue; // skip inactive communities
       const community = collections.find((collection) => collection.slug === activeCommunity.slug);
       if (community) {
-        communities.push(community);
+        communities.push({ name: community.name, imageUrl: community.image.thumbnailUrl, link: `/collection/${community.slug}` });
       }
     }
     return communities;
@@ -93,7 +94,12 @@ export const UserPreviewModal = ({open, onClose, user, collections}: IUserPrevie
                         <div>
                           <p className="text-sm text-gray-600 dark:text-gray-300">{twitter?.description}</p>
                         </div>
-                        <Communities communities={communities} />
+                        {communities &&  communities.length > 0 && (
+                          <div className="mb-2 mt-1">
+                            <span className="text-gray-500 dark:text-gray-400 text-sm font-normal pb-1">Communities:</span>
+                            <AvatarGroup items={communities} size={10} scroll={true} />
+                          </div>
+                        )}
                         <div className="flex gap-4 text-sm items-center">
                           <div className="flex dark:text-white flex-row gap-1"><span className="font-semibold">{twitter?.following.toLocaleString()}</span> <span className="text-gray-500 dark:text-gray-400 text-sm font-normal">Following</span></div>
                           <div className="flex dark:text-white flex-row gap-1"><span className="font-semibold">{twitter?.followers.toLocaleString()}</span> <span className="text-gray-500 dark:text-gray-400 text-sm font-normal">Followers</span></div>
@@ -135,28 +141,3 @@ const FooterButtons = ({address, twitterUsername}: {address: string, twitterUser
     <WalletDropdownOptions name={<><FaWallet /> Wallet</>} address={address} />
   </div>
 )
-
-const Communities = ({communities}: {communities: ICollection[]})=> {
-  if (!communities || communities.length === 0) {
-    return null;
-  }
-
-  return (
-    <div className="mb-2">
-      <span className="text-gray-500 dark:text-gray-400 text-sm font-normal pb-1">Communities:</span>
-      <div className="flex -space-x-2 overflow-scroll">
-        {communities.map(({slug, name, image}) => (
-          <Link href={`/collections/${slug}`} key={slug} target="_blank">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              key={slug}
-              className="inline-block h-7 w-7 rounded-full ring-2 ring-white cursor-pointer"
-              src={image.thumbnailUrl}
-              alt={name}
-            />
-          </Link>
-        ))}
-      </div>
-    </div>
-  )
-}
