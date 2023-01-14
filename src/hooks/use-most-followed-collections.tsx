@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
 import { ICollection } from "../core/collection.interface";
-import { LOCAL_API_PATHS } from "../core/constants";
+import { LOCAL_API_PATHS } from "../core/routes";
 
 export const useMostFollowedCollections = () => {
   const [data, setData] = useState<ICollection[]>([]);

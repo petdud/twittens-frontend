@@ -1,6 +1,6 @@
 import axios, { AxiosError } from "axios";
 import { NextApiRequest, NextApiResponse } from "next";
-import { BASE_API_URL } from "../../../../core/constants";
+import { BASE_API_URL } from "../../../../core/routes";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse<any>) => {
   try {

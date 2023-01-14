@@ -5,7 +5,7 @@ import { Modal } from '../../modal/modal';
 import { ICollection, chainTypes, IImage } from '../../../core/collection.interface';
 import { PreviewCollectionContent } from './preview-collection-content';
 import { ICloudinary } from './upload-widget';
-import { LOCAL_API_PATHS, OPENSEA_API_ENDPOINT } from '../../../core/constants';
+import { LOCAL_API_PATHS, OPENSEA_API_ENDPOINT } from '../../../core/routes';
 
 export type AddCollectionProps = Pick<ICollection, "name" | "slug" | "address" | "description" | "totalSupply" | "twitterUsername" | "discordUrl" | "image" | "externalUrl" | "chain"> | null;
 

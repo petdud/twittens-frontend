@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import { GOOGLE_FEEDBACK_FORM } from '../core/constants';
+import { GOOGLE_FEEDBACK_FORM } from '../core/routes';
 
 export default function FeedbackPage() {
   const router = useRouter()

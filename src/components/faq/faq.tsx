@@ -1,6 +1,6 @@
 import { Disclosure } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/24/outline'
-import { ROUTES } from '../../core/constants'
+import { ROUTES } from '../../core/routes'
 import { classNames } from '../../utils'
 
 const LINK_CLASSNAME = "underline text-sky-600 dark:text-sky-500";

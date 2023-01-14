@@ -83,10 +83,10 @@ const LeaderboardRow = ({user, position, onClick, collections}: ILeaderboardRow)
         <div className="font-medium text-gray-900 dark:text-gray-50">{position}</div>
       </TableColumn>
       <TableColumn>
-        <div className="flex items-center">
+        <div className="flex items-center pr-2">
           <Image src="/ens_default.png" className="rounded-full mr-2" height={38} width={38} alt={name || address} aria-hidden="true" />
           <div>
-            <div className="font-semibold text-gray-600 dark:text-slate-50">{name}</div>
+            <div className="font-semibold text-gray-600 dark:text-slate-50 truncate ...">{name}</div>
             <div className="text-xs text-gray-400">{shortenedAddress(address)}</div>
           </div>
         </div>

@@ -4,7 +4,7 @@ import { Input } from "../../controllers/input/input";
 import { Switch } from "../../controllers/input/switch";
 import { useRouter } from 'next/router';
 import { ICloudinary, UploadWidget } from "../admin-add-collection/upload-widget";
-import { CLOUDINARY_COLLECTION_FOUNDER, LOCAL_API_PATHS } from "../../../core/constants";
+import { CLOUDINARY_COLLECTION_FOLDER, LOCAL_API_PATHS } from "../../../core/routes";
 import axios from "axios";
 
 export const AdminCollectionEdit = () => {
@@ -175,7 +175,7 @@ export const AdminCollectionEdit = () => {
         {/* statusTypes */}
         {/* chain */}
         <div className="mt-4 flex gap-3">
-          <UploadWidget folder={CLOUDINARY_COLLECTION_FOUNDER} onSuccess={onImageUploaded} />
+          <UploadWidget folder={CLOUDINARY_COLLECTION_FOLDER} onSuccess={onImageUploaded} />
           <div className="text-black dark:text-white">
             Cloudinary:
             {/* eslint-disable-next-line @next/next/no-img-element */}

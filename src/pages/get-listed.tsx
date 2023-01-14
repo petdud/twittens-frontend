@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import { GOOGLE_FORM_GET_LISTED } from '../core/constants';
+import { GOOGLE_FORM_GET_LISTED } from '../core/routes';
 
 export default function GetListedPage() {
   const router = useRouter()

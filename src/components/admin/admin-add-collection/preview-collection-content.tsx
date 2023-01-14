@@ -1,6 +1,6 @@
 import { CheckIcon } from "@heroicons/react/20/solid";
 import { chainTypes } from "../../../core/collection.interface";
-import { CLOUDINARY_COLLECTION_FOUNDER } from "../../../core/constants";
+import { CLOUDINARY_COLLECTION_FOLDER } from "../../../core/routes";
 import { useGetCollectionOwners } from "../../../hooks/use-get-collection-owners";
 import { AddCollectionProps } from "./admin-add-collection";
 import { ICloudinary, UploadWidget } from "./upload-widget";
@@ -69,7 +69,7 @@ export const PreviewCollectionContent = ({contractAddress, chain, data, onImageU
         <span className={dataItemClassName}>Chain: </span>
         <span>{chain}</span>
       </div>
-      {!data.image.id && <UploadWidget folder={CLOUDINARY_COLLECTION_FOUNDER} onSuccess={onImageUploaded} />}
+      {!data.image.id && <UploadWidget folder={CLOUDINARY_COLLECTION_FOLDER} onSuccess={onImageUploaded} />}
       {data.image.id && <div className="flex items-center gap-2">
       <CheckIcon className="text-green-700 w-6" /> Image uploaded
       </div>}

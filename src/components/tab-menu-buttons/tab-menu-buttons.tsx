@@ -131,7 +131,7 @@ export const TabMenuButtonsItem = ({icon, id, value, ariaControl}: IGroupButtonT
   return (
     <button 
       className={classNames(
-        "flex items-center rounded-md py-[0.4375rem] pl-2 pr-3 w-full",
+        "flex items-center rounded-md py-[0.4375rem] pl-2 pr-3 w-full justify-center",
         isSelected ? "text-base font-semibold bg-white dark:bg-black shadow" : "text-sm hover:bg-slate-100 hover:dark:bg-zinc-800"
       )}
       id={id}

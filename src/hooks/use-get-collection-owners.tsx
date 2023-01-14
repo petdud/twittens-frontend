@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
-import { LOCAL_API_PATHS } from "../core/constants";
+import { LOCAL_API_PATHS } from "../core/routes";
 
 export const useGetCollectionOwners = (contractAddress: string, chain: string): {data?: string[], isLoading: boolean, error: boolean} => {
   const [data, setData] = useState<string[]>();

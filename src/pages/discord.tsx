@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import { TWITTENS_DISCORD_URL } from '../core/constants';
+import { TWITTENS_DISCORD_URL } from '../core/routes';
 
 export default function Discord() {
   const router = useRouter()

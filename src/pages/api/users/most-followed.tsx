@@ -1,6 +1,6 @@
 import axios, { AxiosError } from "axios";
 import { NextApiRequest, NextApiResponse } from "next";
-import { API_PATHS, BASE_API_URL } from "../../../core/constants";
+import { API_PATHS, BASE_API_URL } from "../../../core/routes";
 
 const API = `${BASE_API_URL}${API_PATHS.GET_MOST_FOLLOWED_USERS}`;
 

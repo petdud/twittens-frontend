@@ -5,7 +5,7 @@ import { Listbox, Transition } from '@headlessui/react'
 import { ChevronUpDownIcon } from '@heroicons/react/20/solid'
 import { classNames } from '../../../utils';
 import axios from 'axios';
-import { LOCAL_API_PATHS } from '../../../core/constants';
+import { LOCAL_API_PATHS } from '../../../core/routes';
 import Link from 'next/link';
 import { MdModeEditOutline } from 'react-icons/md';
 import { BiRefresh } from 'react-icons/bi';
@@ -44,7 +44,7 @@ interface IAdminCollectionItemProps {
 const AdminCollectionItem = ({imageUrl, slug, name, status, numberOfOwners}: IAdminCollectionItemProps) => {
 
   const updateCollection = useCallback(async () => {
-    const response = await axios.patch(`/api/collections/${slug}/update`);
+    const response = await axios.patch(LOCAL_API_PATHS.UPDATE_COLLECTION(slug));
   }, [slug]);
 
   return (

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
 import { ICollectionApiData } from "../core/collection.interface";
-import { LOCAL_API_PATHS } from "../core/constants";
+import { LOCAL_API_PATHS } from "../core/routes";
 
 interface IOptions {
   select?: string; // string separated by commas

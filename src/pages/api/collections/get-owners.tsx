@@ -1,6 +1,6 @@
 import axios, { AxiosError } from "axios";
 import { NextApiRequest, NextApiResponse } from "next";
-import { BASE_API_URL, API_PATHS } from "../../../core/constants";
+import { BASE_API_URL, API_PATHS } from "../../../core/routes";
 
 const API = `${BASE_API_URL}${API_PATHS.GET_COLLECTION_OWNERS}`;
 

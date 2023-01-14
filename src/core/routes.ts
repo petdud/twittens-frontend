@@ -6,13 +6,12 @@ export const LOCAL_API_PATHS = {
   GET_COLLECTIONS: "/api/collections", // get all collections; provide status in query (active, hidden)
   GET_COLLECTION: "/api/collections", // provide collection's slug
   DELETE_COLLECTION: (slug: string) => `/api/collections/${slug}/delete`, // delete a collection by providing its slug
-  // UPDATE_COLLECTION: "/api/collections/:slug/update", // update a collection data (users/details) by providing its slug
+  UPDATE_COLLECTION: (slug: string) => `/api/collections/${slug}/update`, // update a collection data (users/details) by providing its slug
   GET_COLLECTION_OWNERS: "/api/collections/get-owners", // provide collection's contract address
   EDIT_COLLECTION: "/api/collections/edit", // provide collection's slug and new data
   CREATE_COLLECTION: "/api/collections/create", // create a new collection
   GET_MOST_FOLLOWED_USERS: "/api/users/most-followed",
   GET_MOST_FOLLOWED_COLLECTIONS: "/api/collections/most-followed",
-  // GET_USER_NFTS: "/api/users/:address/nfts", // provide address
   GET_ACTIVE_USERS_FROM_COLLECTION: (slug: string) => `/api/collections/${slug}/active-users`,
 }
 
@@ -44,4 +43,4 @@ export const TWITTENS_DISCORD_URL = "https://discord.gg/txXEVWckAV";
 
 export const OPENSEA_API_ENDPOINT = "https://api.opensea.io/api/v1/"; 
 
-export const CLOUDINARY_COLLECTION_FOUNDER = process.env.NODE_ENV === "production" ? "collections" : "test";
+export const CLOUDINARY_COLLECTION_FOLDER = process.env.NODE_ENV === "production" ? "collections" : "test";

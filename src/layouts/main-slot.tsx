@@ -14,7 +14,7 @@ import { SearchBar } from '../components/search-bar/search-bar';
 import { AiOutlineRight } from 'react-icons/ai';
 import { BsTwitter } from 'react-icons/bs';
 import { ImContrast } from 'react-icons/im';
-import { ROUTES } from '../core/constants';
+import { ROUTES } from '../core/routes';
 import { useThemeContext } from '../core/theme-provider';
 import { MdLeaderboard, MdOutlineFeedback } from 'react-icons/md';
 import { useSession, signOut } from 'next-auth/react';
