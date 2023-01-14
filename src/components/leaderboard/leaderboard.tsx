@@ -18,20 +18,20 @@ export const Leaderboard = () => {
       <div className="sm:flex sm:items-center">
         <div className="sm:flex-auto">
           <div className="flex items-center gap-2">
-          <Image
-            className="h-8 w-auto"
-            width="163"
-            height="50"
-            src="/twittens_symbol.png"
-            alt="Twittens"
-          />
-          <h1 className="text-3xl font-semibold text-gray-900 dark:text-white" id={LEADERBOARD_TITLE_ID}>Leaderboard</h1>
+            <Image
+              className="h-8 w-auto"
+              width="163"
+              height="50"
+              src="/twittens_symbol.png"
+              alt="Twittens"
+            />
+            <h1 className="text-3xl font-semibold text-gray-900 dark:text-white" id={LEADERBOARD_TITLE_ID}>Leaderboard</h1>
           </div>
           <p className="mt-2 text-sm text-gray-700 dark:text-neutral-300">
             The most followed Twitter accounts in our supported NFT collections.
           </p>
         </div>
-        <div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
+        <div className="mt-4 sm:mt-0 sm:ml-16 xs:w-full sm:flex-none">
           <TabMenuButtons onTabSelect={onTabSelect} ariaLabelledBy={LEADERBOARD_TITLE_ID} defaultSelectedValue={tab} >
             <TabMenuButtonsItem 
               ariaControl="leaderboard-users-panel"

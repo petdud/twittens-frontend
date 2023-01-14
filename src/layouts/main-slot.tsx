@@ -19,6 +19,7 @@ import { useThemeContext } from '../core/theme-provider';
 import { MdLeaderboard, MdOutlineFeedback } from 'react-icons/md';
 import { useSession, signOut } from 'next-auth/react';
 import { FaDiscord } from 'react-icons/fa';
+import { Divider } from '../components/divider/divider';
 
 const navigation = [
   { name: 'Home', href: '/', icon: HomeIcon },
@@ -275,10 +276,6 @@ const Footer = () => (
       </div>
     </div>
   </>
-)
-
-export const Divider = ({wrapperClass}: {wrapperClass?: string}) => (
-  <div className={`border-t border-gray-200 dark:border-neutral-700 ${wrapperClass}`} />
 )
 
 const ThemeSettings = () => {
