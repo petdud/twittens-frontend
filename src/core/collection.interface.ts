@@ -53,6 +53,11 @@ export interface IUser {
   updatedAt: string
 }
 
+export interface ITag {
+  _id: string;
+  name: string; // in lowercase
+}
+
 export interface ICollection {
   _id: string,
   slug: string,
@@ -72,6 +77,7 @@ export interface ICollection {
   stats: IStats | null,
   chain: chainTypes,
   activeUsers: IUser[],
+  tags: ITag[],
   createdAt: string,
   updatedAt: string,
 }

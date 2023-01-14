@@ -6,12 +6,16 @@ import { useRouter } from 'next/router';
 import { ICloudinary, UploadWidget } from "../admin-add-collection/upload-widget";
 import { CLOUDINARY_COLLECTION_FOLDER, LOCAL_API_PATHS } from "../../../core/routes";
 import axios from "axios";
+import { useTags } from "../../../hooks/tags/use-tags";
+import { Checkbox } from "../../checkbox/checkbox";
+import { capitalizeFirstLetter } from "../../../utils";
 
 export const AdminCollectionEdit = () => {
   const router = useRouter();
   const slug = router.query.slug as string;
 
   const { data, isLoading } = useCollection(slug);
+  const { data: tags } = useTags();
   const [isSuccessfullyUpdated, setIsSuccessfullyUpdated] = useState(false);
   const [isError, setIsError] = useState(false);
   const collection = data?.collection;
@@ -26,7 +30,8 @@ export const AdminCollectionEdit = () => {
     totalSupply: null,
     numberOfOwners: null,
     image: "",
-    isFeatured: false
+    isFeatured: false,
+    tags: [],
   });
 
   const onSubmit = useCallback(async (event: any) => {
@@ -82,6 +87,21 @@ export const AdminCollectionEdit = () => {
     });
   }, [collectionFields]);
 
+  const onTagsChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+    const tags = event.target.checked ?
+       [...collectionFields.tags, event.target.id] 
+       : collectionFields.tags.filter((tagId: string) => tagId !== event.target.id);
+      
+    setCollectionFields({
+      ...collectionFields,
+      tags
+    });
+    console.log({
+      ...collectionFields,
+      tags
+    })
+  }, [collectionFields]);
+
   useEffect(() => {
     if (collection) {
       setCollectionFields({
@@ -95,6 +115,7 @@ export const AdminCollectionEdit = () => {
         numberOfOwners: collection?.numberOfOwners || "",
         image: collection?.image || "",
         isFeatured: collection?.isFeatured || false,
+        tags: collection?.tags || [],
       })
     }
   }, [collection])
@@ -162,6 +183,20 @@ export const AdminCollectionEdit = () => {
           </div>
           <div className="w-full">
           <Input label="Discord URL" id="discordUrl" value={collectionFields.discordUrl} onChange={onInputChange} />
+          </div>
+        </div>
+
+        <div className="mt-4">
+          <div className="flex flex-wrap gap-x-3 gap-y-1">
+            {tags?.map(({_id, name}) => (
+              <Checkbox 
+                key={_id}
+                id={_id}
+                label={capitalizeFirstLetter(name)}
+                onChange={onTagsChange}
+                checked={collectionFields.tags?.find((tagId: string) => tagId === _id)}
+              /> 
+            ))}
           </div>
         </div>
 
