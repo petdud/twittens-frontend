@@ -7,7 +7,7 @@ import { classNames } from '../../utils';
 import { useRouter } from 'next/router';
 
 export const SearchBar = () => {
-  const { data: collections } = useCollections({status: "active"});
+  const { data: collections } = useCollections({status: "active", select: "name,slug,image.thumbnailUrl"});
   const router = useRouter();
 
   const [query, setQuery] = useState('')
