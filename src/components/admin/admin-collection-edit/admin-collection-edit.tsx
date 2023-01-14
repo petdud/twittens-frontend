@@ -10,11 +10,15 @@ import { useTags } from "../../../hooks/tags/use-tags";
 import { Checkbox } from "../../checkbox/checkbox";
 import { capitalizeFirstLetter } from "../../../utils";
 
+const SELECT_FROM_COLLECTION = "address,name,description,twitterUsername,discordUrl,externalUrl,totalSupply,numberOfOwners,image,isFeatured,tags";
+
 export const AdminCollectionEdit = () => {
   const router = useRouter();
   const slug = router.query.slug as string;
 
-  const { data, isLoading } = useCollection(slug);
+  const { data, isLoading } = useCollection(slug, {
+    select: SELECT_FROM_COLLECTION
+  });
   const { data: tags } = useTags();
   const [isSuccessfullyUpdated, setIsSuccessfullyUpdated] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -134,16 +138,6 @@ export const AdminCollectionEdit = () => {
 
   return (
     <>
-      {isSuccessfullyUpdated &&
-        <div className="text-green-700">
-          Collection has been successfully updated.
-        </div>
-      }
-      {isError &&
-        <div className="text-red-700">
-          Something wrong happened. Please try again.
-        </div>
-      }
       <div className="flex justify-between">
         <h1 className="text-xl text-black dark:text-white font-semibold">{collection?.name}</h1>
         <button onClick={onDelete} className="px-2 py-1 bg-red-800 text-white border-gray-300 dark:border-gray-500 border rounded-md">
@@ -223,7 +217,16 @@ export const AdminCollectionEdit = () => {
             <img src={collection.image?.externalUrl} alt={collection.name} width={150}/>
           </div>
         </div>
-
+        {isSuccessfullyUpdated &&
+          <div className="text-green-700">
+            Collection has been successfully updated.
+          </div>
+        }
+        {isError &&
+          <div className="text-red-700">
+            Something wrong happened. Please try again.
+          </div>
+        }
         <button
           type="submit"
           className="inline-flex mt-4 items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
