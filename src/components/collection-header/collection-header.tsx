@@ -3,9 +3,9 @@ import { useCollection } from "../../hooks/use-collection";
 import { MdOutlineArrowBackIosNew } from "react-icons/md";
 import { useHistory } from "../../core/history-manager-provider";
 import { useRouter } from "next/router";
-import { Divider } from "../../layouts/main-slot";
 import { MainViewHeader } from "../main-view-header/main-view-header";
 import { CollectionHeaderFooterLinks } from "./collection-header-footer-links";
+import { Divider } from "../divider/divider";
 
 interface ICollectionHeader {
   slug: string;
@@ -36,7 +36,10 @@ export const CollectionHeader = ({ slug }: ICollectionHeader) => {
 
   if (isLoading || !data) {
     return (
-      <CollectionHeaderSkeleton /> 
+      <>
+        <BreadCrumbNavigation />
+        <CollectionHeaderSkeleton /> 
+      </>
     )
   }
 
