@@ -8,6 +8,8 @@ import { UserPreviewModal } from "../user-preview-modal/user-preview-modal";
 import { ICollection, IUser } from "../../core/collection.interface";
 import { useCollections } from "../../hooks/use-collections";
 import { AvatarGroup, IAvatarGroupItemProps } from "../avatar-group/avatar-group";
+import { GoVerified } from "react-icons/go";
+import { AiFillLock } from "react-icons/ai";
 
 export const LeaderboardUsers = () => {
   const { data: users, isLoading } = useMostFollowedUsers();
@@ -96,7 +98,15 @@ const LeaderboardRow = ({user, position, onClick, collections}: ILeaderboardRow)
         {/* eslint-disable-next-line @next/next/no-img-element */}
           <img className="h-10 w-10 rounded-full mr-2" src={twitter.avatar} alt={twitter.username} aria-hidden="true" />
           <div>
-            <div className="font-semibold text-gray-600 dark:text-slate-50">{twitter.name}</div>
+            <div className="flex items-center">
+              <h3 className="font-semibold text-gray-600 dark:text-slate-50">{twitter.name}</h3>
+              {twitter.verified && <span className="inline-block flex-shrink-0 text-sky-400 pl-1.5">
+                <GoVerified aria-label="Twitter verified" />
+              </span>}
+              {twitter.protected && <span className="inline-block flex-shrink-0 text-yellow-600 pl-1.5">
+                <AiFillLock aria-label="Twitter private account" />
+              </span>}
+            </div>
             <div className="text-xs text-gray-400">@{twitter.username}</div>
           </div>
         </div>
