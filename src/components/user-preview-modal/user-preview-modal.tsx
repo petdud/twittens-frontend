@@ -61,7 +61,7 @@ export const UserPreviewModal = ({open, onClose, user, collections}: IUserPrevie
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <Dialog.Panel className="relative transform rounded-lg bg-white dark:bg-neutral-800 px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6 sm:pt-4">
+              <Dialog.Panel className="relative transform rounded-lg bg-white dark:bg-neutral-800 px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 w-full sm:max-w-lg sm:p-6 sm:pt-4">
                 <CloseButton onClose={onClose} />
                 <div className="px-1 divide-y divide-gray-200 dark:divide-gray-700 mr-4">
                   <div className="flex items-center gap-3 justify-between divide-y-2 divide-gray-200 dark:divide-neutral-700">
@@ -95,7 +95,7 @@ export const UserPreviewModal = ({open, onClose, user, collections}: IUserPrevie
                           <p className="text-sm text-gray-600 dark:text-gray-300">{twitter?.description}</p>
                         </div>
                         {communities &&  communities.length > 0 && (
-                          <div className="mb-2 mt-1">
+                          <div className="mb-2 mt-1 overflow-hidden">
                             <span className="text-gray-500 dark:text-gray-400 text-sm font-normal pb-1">Communities:</span>
                             <AvatarGroup items={communities} size={10} scroll={true} />
                           </div>
