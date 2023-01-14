@@ -28,7 +28,7 @@ export const UserPreviewModal = ({open, onClose, user, collections}: IUserPrevie
       if (activeCommunity.status !== "active") continue; // skip inactive communities
       const community = collections.find((collection) => collection.slug === activeCommunity.slug);
       if (community) {
-        communities.push({ name: community.name, imageUrl: community.image.thumbnailUrl, link: `/collection/${community.slug}` });
+        communities.push({ name: community.name, imageUrl: community.image.thumbnailUrl, link: `/collections/${community.slug}` });
       }
     }
     return communities;
