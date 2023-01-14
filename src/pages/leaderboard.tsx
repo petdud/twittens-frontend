@@ -4,7 +4,6 @@ import { HeadPage } from '../layouts/head-page';
 import { MainSlot } from '../layouts/main-slot';
 
 export default function LeaderboardPage() {
-  return null;
 
   return (
     <div>
