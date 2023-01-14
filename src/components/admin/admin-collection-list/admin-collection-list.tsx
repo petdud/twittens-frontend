@@ -10,7 +10,7 @@ import Link from 'next/link';
 import { MdModeEditOutline } from 'react-icons/md';
 import { BiRefresh } from 'react-icons/bi';
 
-const SELECT_FROM_COLLECTIONS = "name,slug,image.url,isFeatured,status,stats,activeUsers,numberOfOwners";
+const SELECT_FROM_COLLECTIONS = "name,slug,image.url,isFeatured,status,stats,numberOfOwners";
 
 export const AdminCollectionList = () => {
   const { data: collections } = useCollections({
@@ -26,7 +26,6 @@ export const AdminCollectionList = () => {
           slug={slug}
           name={name}
           status={status}
-          numberOfOwners={numberOfOwners === activeUsers.length || 0 ? numberOfOwners.toString() : `X ${activeUsers.length} expected: ${numberOfOwners}`} 
         />
       ))}
     </ul>
@@ -38,10 +37,9 @@ interface IAdminCollectionItemProps {
   slug: string;
   name: string;
   status: statusTypes;
-  numberOfOwners: string;
 }
 
-const AdminCollectionItem = ({imageUrl, slug, name, status, numberOfOwners}: IAdminCollectionItemProps) => {
+const AdminCollectionItem = ({imageUrl, slug, name, status}: IAdminCollectionItemProps) => {
 
   const updateCollection = useCallback(async () => {
     const response = await axios.patch(LOCAL_API_PATHS.UPDATE_COLLECTION(slug));
@@ -54,7 +52,6 @@ const AdminCollectionItem = ({imageUrl, slug, name, status, numberOfOwners}: IAd
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={imageUrl} alt={name} className="inline-block h-6 w-6 rounded-full" />
           <span>{name}</span>
-          <span>({numberOfOwners})</span>
         </div>
       </Link>
       <div className="flex items-center gap-2">
