@@ -14,7 +14,7 @@ export const Leaderboard = () => {
   const onTabSelect = useCallback((value: string) => setTab(value as "Users" | "Collections"), [])
 
   return (
-    <div className="px-4 sm:px-6 lg:px-8">
+    <>
       <div className="sm:flex sm:items-center">
         <div className="sm:flex-auto">
           <div className="flex items-center gap-2">
@@ -67,6 +67,6 @@ export const Leaderboard = () => {
           </div>
         }
       </div>
-    </div>
+    </>
   )
 }
