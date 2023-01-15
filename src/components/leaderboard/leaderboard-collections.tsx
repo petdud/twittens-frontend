@@ -62,7 +62,7 @@ const LeaderboardRow = ({collection, position}: ILeaderboardRow) => {
       <TableColumn>
         <div className="flex items-center">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={image.thumbnailUrl} className="rounded-full mr-2 h-8 w-8" alt={name || address} aria-hidden="true" />
+          <img src={image.thumbnailUrl} className="rounded-full mr-2 h-10 w-10" alt={name || address} aria-hidden="true" />
           <div className="font-semibold text-gray-600 dark:text-slate-50 truncate ...">{name}</div>
         </div>
       </TableColumn>

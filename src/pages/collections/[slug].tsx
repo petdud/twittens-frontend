@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { CollectionView } from '../../components/collection-view/collection-view';
+import { Container } from "../../components/container/container";
 import { HeadPage } from '../../layouts/head-page';
 import { MainSlot } from "../../layouts/main-slot";
 import { capitalizeFirstLetter } from "../../utils";
@@ -20,7 +21,9 @@ export default function Collection() {
       <div className="bg-gray-100 h-full">
         {slug && 
           <MainSlot>
-            <CollectionView slug={slug} />
+            <Container top="small" >
+              <CollectionView slug={slug} />
+            </Container>
           </MainSlot>
         }
       </div>

@@ -13,10 +13,8 @@ export default function LeaderboardPage() {
       />
 
       <MainSlot>
-        <Container>
-          <div className="mt-10">
-            <Leaderboard />
-          </div>
+        <Container top="large">
+          <Leaderboard />
         </Container>
       </MainSlot>
     </div>

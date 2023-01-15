@@ -29,7 +29,7 @@ export const UserList = ({ users, slug }: IUserList) => {
   
   return (
     <>
-      <ul role="list" className="space-y-8 py-12 max-w-2xl md:px-6">
+      <ul role="list" className="space-y-8 pt-12">
         {users.map(({twitter, address, name, activeCommunities}) => {
           let communities: IAvatarGroupItemProps[] = [];
 
@@ -59,8 +59,8 @@ export const UserList = ({ users, slug }: IUserList) => {
 }
 
 export const UserListSkeleton = () => (
-  <ul role="list" className="space-y-8 py-2 max-w-2xl">
-    <div role="status" className="py-2 space-y-8 w-full rounded animate-pulse dark:divide-gray-700 md:p-6 dark:border-gray-700">
+  <ul role="list" className="space-y-8 pt-12">
+    <div role="status" className="py-2 space-y-8 w-full rounded animate-pulse dark:divide-gray-700 dark:border-gray-700">
       {["a", "b", "c", "d"].map(alp => (
         <div key={alp} className="shadow bg-white rounded-md dark:bg-black">
           <div className="px-4 py-1 bg-slate-50 dark:bg-gray-600 border-b-2 border-slate-100 dark:border-neutral-700 flex items-center gap-3 justify-between">

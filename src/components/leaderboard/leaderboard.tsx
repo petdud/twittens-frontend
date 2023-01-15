@@ -56,7 +56,7 @@ export const Leaderboard = () => {
           </TabMenuButtons>
         </div>
       </div>
-      <div className="mt-8 mb-20">
+      <div className="mt-8">
         {tab === "Users" ? 
           <div id="leaderboard-users-panel" role="tabpanel" tabIndex={0} aria-labelledby="leaderboard-users-tab">
             <LeaderboardUsers />

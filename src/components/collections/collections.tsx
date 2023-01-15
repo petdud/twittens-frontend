@@ -22,42 +22,40 @@ export const Collections = () =>  {
   }
 
   return (
-    <div className="md:py-6 py-2 mb-12">
+    <>
       <div className="pb-4">
         <div className="flex justify-between">
           <MainViewHeader title={<div>Find your <span className="text-blue-400">Twitter</span> frens!</div>} />
-          {collections.length > 0 && <div className="hidden text-right md:block px-2 sm:px-6 md:px-8 mx-5 mt-1 text-base text-gray-500 dark:text-neutral-300">
+          {collections.length > 0 && <div className="hidden text-right md:block mt-2 text-base text-gray-500 dark:text-neutral-300">
             Collections: <span className="font-semibold">{collections.length}</span>
             {/* TODO: Sort it by list and not grid */}
           </div>}
         </div>
-        <div className="md:hidden px-6 mt-4 mb-3">
+        <div className="md:hidden mt-4 mb-3">
           <SearchBar />
         </div>
       </div>
-      <div className="max-w-full px-2 sm:px-6 md:px-8 mx-2 md:mx-5">
-        <ul role="list" className="grid grid-cols-2 gap-6 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6">
-          {isLoading ? 
-            ["1a", "2a", "3a", "4a", "5a", "6a", "7a", "8a", "9a"].map(i =>  (
-              <li key={i} className="flex justify-center relative top-0">
-                <CardSkeleton />
-              </li>
-            ))
-          :           
-            collections && collections?.map(({isFeatured, image, name, slug, ownersWithTwitterCount}) => ( 
-              <CollectionsItem 
-                key={slug}
-                description={ownersWithTwitterCount ? `${ownersWithTwitterCount} members on Twitter` : undefined}
-                isFeatured={!!isFeatured}
-                imageUrl={image?.url}
-                name={name}
-                path={`/collections/${slug}`} 
-              />
-            ))
-          }
-        </ul>
-      </div>
-    </div>
+      <ul role="list" className="grid grid-cols-2 gap-6 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6">
+        {isLoading ? 
+          ["1a", "2a", "3a", "4a", "5a", "6a", "7a", "8a", "9a"].map(i =>  (
+            <li key={i} className="flex justify-center relative top-0">
+              <CardSkeleton />
+            </li>
+          ))
+        :
+          collections && collections?.map(({isFeatured, image, name, slug, ownersWithTwitterCount}) => ( 
+            <CollectionsItem
+              key={slug}
+              description={ownersWithTwitterCount ? `${ownersWithTwitterCount} members on Twitter` : undefined}
+              isFeatured={!!isFeatured}
+              imageUrl={image?.url}
+              name={name}
+              path={`/collections/${slug}`}
+            />
+          ))
+        }
+      </ul>
+    </>
   )
 }
 

@@ -119,7 +119,7 @@ const BreadCrumbNavigation = () => {
           </li>
         </ol>
       </nav>
-      <Divider wrapperClass="mb-4 max-w-2xl" />
+      <Divider wrapperClass="mb-4" />
     </>
   )
 }

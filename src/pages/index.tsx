@@ -1,4 +1,5 @@
 import { Collections } from '../components/collections/collections';
+import { Container } from '../components/container/container';
 import { HeadPage } from '../layouts/head-page';
 import { MainSlot } from '../layouts/main-slot';
 
@@ -11,7 +12,9 @@ export default function Home() {
       />
 
       <MainSlot>
-        <Collections />
+        <Container fullWidth={true} top="medium">
+          <Collections />
+        </Container>
       </MainSlot>
     </div>
   );
