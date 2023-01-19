@@ -50,10 +50,8 @@ export default function Home() {
           </div>
           <Collections collections={collections.slice(0, NUMBER_OF_COLLECTIONS_BEFORE_LEADERBOARD)} isLoading={isLoading} />
           <LeaderboardSection />
-          <>
-            <div className="pb-4"><MainViewHeader title="More collections" /></div>
-            <Collections collections={collections.slice(NUMBER_OF_COLLECTIONS_BEFORE_LEADERBOARD, collections.length)} isLoading={isLoading} />
-          </>
+          <div className="pb-4"><MainViewHeader title="More collections" /></div>
+          <Collections collections={collections.slice(NUMBER_OF_COLLECTIONS_BEFORE_LEADERBOARD, collections.length)} isLoading={isLoading} />
         </Container>
       </MainSlot>
     </div>
@@ -67,7 +65,7 @@ const LeaderboardSection = () => {
 
   return (
     <div className="my-12">
-      <div >
+      <div>
         <div className="flex items-center gap-2 pb-4">
           <Image
             className="h-8 w-auto"
