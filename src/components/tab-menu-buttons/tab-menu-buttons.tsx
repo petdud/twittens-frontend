@@ -3,13 +3,13 @@ import { classNames } from "../../utils";
 import { TabMenuButtonsProvider, useTabMenuButtonsContext } from "./tab-menu-buttons-provider";
 
 interface IGroupButtonTabMenuProps {
-  defaultSelectedValue: string; 
+  defaultSelectedValue?: string;
   onTabSelect: (value: string) => void;
   children: JSX.Element|JSX.Element[];
   ariaLabelledBy: string;
 }
 
-export const TabMenuButtons = ({children, defaultSelectedValue, onTabSelect, ...rest}: IGroupButtonTabMenuProps) => { 
+export const TabMenuButtons = ({children, defaultSelectedValue, onTabSelect, ...rest}: IGroupButtonTabMenuProps) => {
   return (
     <TabMenuButtonsProvider onTabSelect={onTabSelect} defaultSelectedValue={defaultSelectedValue}>
       <TabMenuButtonsComponent {...rest} >

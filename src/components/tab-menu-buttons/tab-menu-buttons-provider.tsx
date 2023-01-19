@@ -50,6 +50,12 @@ export const TabMenuButtonsProvider = ({ children, defaultSelectedValue, onTabSe
 
   const getRegisteredTabs = React.useCallback(() => registeredTabs.current, []);
 
+  React.useEffect(() => {
+    if (defaultSelectedValue !== selectedTab) {
+      setSelectedTab(defaultSelectedValue)
+    }
+  }, [defaultSelectedValue, onChange, selectedTab]);
+
   return (
     <TabMenuButtonsContext.Provider value={{
       getRegisteredTabs,

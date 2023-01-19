@@ -18,7 +18,7 @@ export interface IAvatarGroupItemProps {
 
 export const AvatarGroup = ({closer, items, maxItems, size = 6, placeholderInherited, scroll}: IAvatarGroupProps) => {
   const number = maxItems ? items.length - maxItems : undefined;
-  const ringClass = size > 6 ? "ring-2 ring-white dark:ring-neutral-600" : "ring-1 ring-white dark:ring-neutral-600";
+  const ringClass = size > 6 ? "ring-2 ring-slate-100 dark:ring-neutral-600" : "ring-1 ring-slate-100 dark:ring-neutral-600";
 
   if (!items || items.length === 0) {
     return null;

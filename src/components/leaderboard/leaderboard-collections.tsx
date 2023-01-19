@@ -23,7 +23,7 @@ export const LeaderboardCollections = () => {
 
       <TableBody>
         {collections.map((collection, index) => (
-          <LeaderboardRow key={collection.address} collection={collection} position={index+1} />
+          <LeaderboardRow key={collection.slug} collection={collection} position={index+1} />
         ))}
       </TableBody>
     </Table>
@@ -55,7 +55,7 @@ const LeaderboardRow = ({collection, position}: ILeaderboardRow) => {
   }
 
   return (
-    <TableRow onClick={onClick} >
+    <TableRow onClick={onClick}>
       <TableColumn isFirst={true}>
         <div className="font-medium text-gray-900 dark:text-gray-50">{position}</div>
       </TableColumn>

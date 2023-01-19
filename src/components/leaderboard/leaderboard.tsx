@@ -1,17 +1,31 @@
+import React, { useCallback, useState } from 'react';
+import Image from "next/image";
 import { FiUsers } from 'react-icons/fi';
 import { IoIosPhotos } from 'react-icons/io';
-import Image from "next/image";
-import { useCallback, useState } from 'react';
 import { TabMenuButtons, TabMenuButtonsItem } from '../tab-menu-buttons/tab-menu-buttons';
 import { LeaderboardUsers } from './leaderboard-users';
 import { LeaderboardCollections } from './leaderboard-collections';
+import { useRouter } from 'next/router';
 
 const DEFAULT_TAB = "Users";
 const LEADERBOARD_TITLE_ID = "leaderboard-title-panel";
 
 export const Leaderboard = () => {
-  const [tab, setTab] = useState<"Users" | "Collections">(DEFAULT_TAB);
-  const onTabSelect = useCallback((value: string) => setTab(value as "Users" | "Collections"), [])
+  const router = useRouter()
+  const [tab, setTab] = useState<"Users" | "Collections">();
+  const onTabSelect = useCallback((value: string) => {
+    window.location.hash = value.toLowerCase();
+    setTab(value as "Users" | "Collections");
+  }, [])
+
+  React.useEffect(() => {
+    if (window.location.hash.toLowerCase().includes("collections")) {
+      setTab("Collections");
+    } else {
+      setTab("Users");
+    }
+}, [router])
+
 
   return (
     <>

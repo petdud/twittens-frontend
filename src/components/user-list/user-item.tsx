@@ -65,11 +65,19 @@ export const UserItem = ({address, name, twitter, onUserClick, communities }: IU
                 <p className="text-sm text-gray-600 dark:text-gray-300 truncate">{description}</p>
               </div>
               <div className="flex gap-4 text-sm items-center">
-                <div className="flex dark:text-white flex-col-reverse md:flex-row md:gap-1"><span className="font-semibold">{following.toLocaleString()}</span> <span className="text-gray-500 dark:text-gray-400 text-sm font-normal">Following</span></div>
-                <div className="flex dark:text-white flex-col-reverse md:flex-row md:gap-1"><span className="font-semibold">{followers.toLocaleString()}</span> <span className="text-gray-500 dark:text-gray-400 text-sm font-normal">Followers</span></div>
-                {communities && communities.length > 0 && <div className="flex items-center flex-col-reverse md:flex-row md:gap-1">
-                  <AvatarGroup items={communities} maxItems={4} size={5} closer={true} placeholderInherited={true} /> <span className="text-gray-500 dark:text-gray-400 text-sm font-normal">Communities</span>
-                </div>}
+                <div className="flex dark:text-white flex-col-reverse md:flex-row md:gap-1">
+                  <span className="font-semibold">{following.toLocaleString()}</span>
+                  <span className="text-gray-500 dark:text-gray-400 text-sm font-normal">Following</span>
+                </div>
+                <div className="flex dark:text-white flex-col-reverse md:flex-row md:gap-1">
+                  <span className="font-semibold">{followers.toLocaleString()}</span>
+                  <span className="text-gray-500 dark:text-gray-400 text-sm font-normal">Followers</span>
+                </div>
+                {communities && communities.length > 0 && 
+                  <div className="flex items-center flex-col-reverse md:flex-row md:gap-1">
+                    <AvatarGroup items={communities} maxItems={4} size={5} closer={true} placeholderInherited={true} />&nbsp;
+                    <span className="text-gray-500 dark:text-gray-400 text-sm font-normal">Communities</span>
+                  </div>}
               </div>
             </div>
           </div>
