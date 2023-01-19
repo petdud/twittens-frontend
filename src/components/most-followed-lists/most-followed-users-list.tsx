@@ -5,7 +5,6 @@ import { GoVerified } from "react-icons/go";
 import { IUser } from "../../core/collection.interface";
 import { useCollections } from "../../hooks/use-collections";
 import { useMostFollowedUsers } from "../../hooks/use-most-followed-users";
-import { Spinner } from "../spinner/spinner";
 import { UserPreviewModal } from "../user-preview-modal/user-preview-modal";
 import { MostFollowedList, MostFollowedListItem } from "./most-followed-list";
 
@@ -27,10 +26,6 @@ export const MostFollowedUsersList = () => {
     setOpenProfile(false);
   }, []);
 
-  if (isLoading) {
-    return <div className="mt-6"><Spinner /></div>;
-  }
-
   return (
     <MostFollowedList
       title={
@@ -39,6 +34,7 @@ export const MostFollowedUsersList = () => {
         </div>
       }
       footerLink="/leaderboard#users"
+      isLoading={isLoading}
     >
       <>
         {users.slice(0, 5).map(({address, name, twitter}, index) => (

@@ -1,7 +1,6 @@
 import React from "react";
 import { useRouter } from "next/router";
 import { useMostFollowedCollections } from "../../hooks/use-most-followed-collections";
-import { Spinner } from "../spinner/spinner";
 import { MostFollowedList, MostFollowedListItem } from "./most-followed-list";
 import { IoIosPhotos } from 'react-icons/io';
 
@@ -13,11 +12,6 @@ export const MostFollowedCollectionsList = () => {
     router.push(`/collections/${slug}`);
   }, [router]);
 
-
-  if (isLoading) {
-    return <div className="mt-6"><Spinner /></div>;
-  }
-
   return (
     <MostFollowedList
       title={
@@ -26,6 +20,7 @@ export const MostFollowedCollectionsList = () => {
         </div>
       }
       footerLink="/leaderboard#collections"
+      isLoading={isLoading}
     >
       {collections.slice(0, 5).map(({address, image, name, twitter, slug}, index) => (
         <MostFollowedListItem 
