@@ -7,7 +7,7 @@ import {
   QuestionMarkCircleIcon, 
   XMarkIcon,
 } from '@heroicons/react/24/outline';
-import { classNames } from '../utils';
+import { classNames, FEATURE_FLAGS } from '../utils';
 import Link from 'next/link';
 import Image from 'next/image';
 import { SearchBar } from '../components/search-bar/search-bar';
@@ -22,9 +22,9 @@ import { FaDiscord } from 'react-icons/fa';
 import { Divider } from '../components/divider/divider';
 
 const navigation = [
-  { name: 'Home', href: '/', icon: HomeIcon },
-  // { name: "Leaderboard", href: "/leaderboard", icon: MdLeaderboard },
-  { name: 'FAQ', href: '/faq', icon: QuestionMarkCircleIcon },
+  { name: 'Home', href: '/', icon: HomeIcon, isActive: true },
+  { name: "Leaderboard", href: "/leaderboard", icon: MdLeaderboard, isActive: FEATURE_FLAGS.ENABLE_LEADERBOARD },
+  { name: 'FAQ', href: '/faq', icon: QuestionMarkCircleIcon, isActive: true },
 ];
 
 interface IMainSlot {
@@ -98,7 +98,7 @@ export const MainSlot = ({children}: IMainSlot) => {
                     <Divider wrapperClass='mt-4' />
                     <nav className="mt-5 space-y-1 px-2">
                       {navigation.map((item) => (
-                        <a
+                        item.isActive && <a
                           key={item.name}
                           href={item.href}
                           className={classNames(
@@ -157,7 +157,7 @@ export const MainSlot = ({children}: IMainSlot) => {
               <div>
                 <nav className="flex-1 space-y-1 px-2 pb-4">
                   {navigation.map((item) => (
-                    <Link
+                    item.isActive && <Link
                       key={item.name} 
                       href={item.href}
                       className={classNames(
