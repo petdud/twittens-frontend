@@ -19,7 +19,7 @@ export const CollectionViewList = ({children, title, asideLabel, footerLink, isL
     <div className="p-4 rounded bg-white dark:bg-neutral-800 shadow-sm">
       <div className="divide-y-2 divide-gray-200 dark:divide-neutral-700">
         <div className="flex justify-between items-end">
-          <h2 className="text-lg font-medium text-gray-900 dark:text-white">
+          <h2 className="text-base font-medium text-gray-700 dark:text-white">
             {title}
           </h2>
           <div className="text-xs font-light text-gray-400 mr-2">

@@ -3,7 +3,7 @@ import { classNames } from "../../utils";
 interface IContainerProps  {
   fullWidth?: boolean;
   top?: "none" | "small" | "medium" | "large";
-  children: JSX.Element | JSX.Element[];
+  children: JSX.Element | (JSX.Element | null)[];
 }
 export const Container = ({fullWidth, top = "medium", children}: IContainerProps) => (
   <div className={

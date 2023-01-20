@@ -4,7 +4,7 @@ import { Card } from "../card/card";
 import { ICollection } from "../../core/collection.interface";
 
 interface ICollectionsProps {
-  isLoading: boolean;
+  isLoading?: boolean;
   collections: ICollection[];
 }
 
