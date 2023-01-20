@@ -4,7 +4,7 @@ import { FaDiscord } from 'react-icons/fa';
 import { BsTwitter } from "react-icons/bs";
 import { MarketplaceDropdownOptions } from "../wallet-dropdown-options/wallet-dropdown-options";
 
-interface ICollectionHeaderFooterLinksProps {
+interface ICollectionHeaderSocialProps {
   address: string;
   discord?: string | null;
   externalUrl?: string | null;
@@ -12,13 +12,13 @@ interface ICollectionHeaderFooterLinksProps {
   slug: string;
 }
 
-export const CollectionHeaderFooterLinks = ({
+export const CollectionHeaderSocial = ({
   address,
   discord,
   externalUrl,
   twitter,
   slug
-}: ICollectionHeaderFooterLinksProps) => {
+}: ICollectionHeaderSocialProps) => {
   if (!discord && !externalUrl && !twitter) {
     return null;
   }
