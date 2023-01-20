@@ -9,7 +9,7 @@ interface ICollectionView {
 
 export const CollectionView = ({slug}: ICollectionView) =>  {
   return (
-    <div className="max-w-2xl m-auto">
+    <div className="m-auto max-w-5xl">
       <CollectionHeader slug={slug}/>
       <CollectionViewContent slug={slug} />
     </div>

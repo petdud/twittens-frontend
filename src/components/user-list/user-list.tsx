@@ -1,71 +1,64 @@
-import React, { useCallback, useState } from "react";
-import { IUser } from "../../core/collection.interface";
-import { useCollections } from "../../hooks/use-collections";
+import React from "react";
+import { ICollection, IUser } from "../../core/collection.interface";
 import { IAvatarGroupItemProps } from "../avatar-group/avatar-group";
-import { UserPreviewModal } from "../user-preview-modal/user-preview-modal";
 import { UserItem } from "./user-item";
 
 interface IUserList {
+  isLoading: boolean;
   users: IUser[];
   slug: string;
+  onUserClick: (address: string) => void;
+  collections: ICollection[];
 }
 
-export const UserList = ({ users, slug }: IUserList) => {
-  const { data: collections } = useCollections({select: "slug,name,image.thumbnailUrl"});
-  const [selectedUser, setSelectedUser] = useState<IUser | undefined>(undefined);
-  const [openProfile, setOpenProfile] = useState(false);
+export const UserList = ({ 
+  collections,
+  isLoading,
+  onUserClick,
+  users,
+  slug
+}: IUserList) => {
 
-  const onUserClick = useCallback((address: string) => {
-    const user = users.find(user => user.address === address);
-    if (user) {
-      setSelectedUser(user);
-      setOpenProfile(true);
-    }
-  }, [users]);
+  if (isLoading) {
+    return <UserListSkeleton />
+  }
 
-  const onClose = useCallback(() => {
-    setOpenProfile(false);
-  }, []);
-  
   return (
-    <>
-      <ul role="list" className="space-y-8 pt-12">
-        {users.map(({twitter, address, name, activeCommunities}) => {
-          let communities: IAvatarGroupItemProps[] = [];
+    <ul role="list" className="space-y-8">
+      {users.map(({twitter, address, name, activeCommunities}) => {
+        let communities: IAvatarGroupItemProps[] = [];
 
-          for (const activeCommunity of activeCommunities) {
-            if (activeCommunity.slug === slug || activeCommunity.status !== "active") continue; // skip current community and inactive communities
-            const community = collections.find((collection) => collection.slug === activeCommunity.slug);
-            if (community) {
-              communities.push({ imageUrl: community.image.thumbnailUrl, name: community.name });
-            }
+        for (const activeCommunity of activeCommunities) {
+          if (activeCommunity.slug === slug || activeCommunity.status !== "active") continue; // skip current community and inactive communities
+          const community = collections.find((collection) => collection.slug === activeCommunity.slug);
+          if (community) {
+            communities.push({ imageUrl: community.image.thumbnailUrl, name: community.name });
           }
-          
-          return (
-            twitter && <UserItem 
-              key={address}
-              onUserClick={onUserClick}
-              address={address}
-              name={name}
-              twitter={twitter}
-              communities={communities}
-            />
-          )
-        })}
-      </ul>
-      {selectedUser && <UserPreviewModal open={openProfile} onClose={onClose} user={selectedUser} collections={collections} />}
-    </>
+        }
+        
+        return (
+          twitter && <UserItem 
+            key={address}
+            onUserClick={onUserClick}
+            address={address}
+            name={name}
+            twitter={twitter}
+            communities={communities}
+          />
+        )
+      })}
+    </ul>
   )
 }
 
-export const UserListSkeleton = () => (
-  <ul role="list" className="space-y-8 pt-12">
+const UserListSkeleton = () => (
+  <ul role="list" className="space-y-8">
     <div role="status" className="py-2 space-y-8 w-full rounded animate-pulse dark:divide-gray-700 dark:border-gray-700">
       {["a", "b", "c", "d"].map(alp => (
         <div key={alp} className="shadow bg-white rounded-md dark:bg-black">
           <div className="px-4 py-1 bg-slate-50 dark:bg-gray-600 border-b-2 border-slate-100 dark:border-neutral-700 flex items-center gap-3 justify-between">
             <div className="flex items-center gap-2 h-6">
-              <div className="w-48 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+              <div className="w-48 h-2 bg-gray-200 rounded-full dark:bg-gray-700" />
             </div>
           </div>
           <div className="flex items-start p-4 gap-3">

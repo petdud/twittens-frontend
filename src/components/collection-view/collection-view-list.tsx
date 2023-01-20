@@ -1,82 +1,80 @@
 import React from "react";
 import Link from "next/link";
+import { Divider } from "../divider/divider";
 
-interface IMostFollowedListProps {
+interface ICollectionViewProps {
   title: string | JSX.Element;
+  asideLabel: string;
   children: JSX.Element | JSX.Element[];
-  footerLink: string;
+  footerLink?: string;
   isLoading?: boolean;
 }
 
-export const MostFollowedList = ({children, title, footerLink, isLoading}: IMostFollowedListProps) => {
+export const CollectionViewList = ({children, title, asideLabel, footerLink, isLoading}: ICollectionViewProps) => {
   if (isLoading) {
-    return <MostFollowedListSkeleton />
+    return <CollectionViewListSkeleton />
   }
 
   return (
-    <div className="py-4 px-6 mt-2 rounded-lg bg-white dark:bg-neutral-800 shadow-lg">
-      <>
+    <div className="p-4 rounded bg-white dark:bg-neutral-800 shadow-sm">
+      <div className="divide-y-2 divide-gray-200 dark:divide-neutral-700">
         <div className="flex justify-between items-end">
-          <h2 className="text-lg font-medium text-gray-900 dark:text-white mb-2">
+          <h2 className="text-lg font-medium text-gray-900 dark:text-white">
             {title}
           </h2>
           <div className="text-xs font-light text-gray-400 mr-2">
-            Followers
+            {asideLabel}
           </div>
         </div>
-        <div className="flow-root">
-          <ul role="list" className="my-2 divide-y divide-gray-300 dark:divide-gray-600">
-            {children}
-          </ul>
+      </div>
+      <Divider wrapperClass="my-2" />
+      <div className="flow-root w-full">
+        <ul role="list">
+          {children}
+        </ul>
+      </div>
+      {footerLink && 
+        <div className="text-center">
+          <Link
+            href={footerLink}
+            className="text-center px-4 py-2 text-sm font-medium text-gray-700 dark:text-white hover:underline"
+          >
+            View more
+          </Link>
         </div>
-        {footerLink && 
-          <div className="text-center">
-            <Link
-              href={footerLink}
-              className="text-center px-4 py-2 text-sm font-medium text-gray-700 dark:text-white hover:underline"
-            >
-              View more
-            </Link>
-          </div>
-        }
-      </>
+      }
     </div>
   )
 }
 
-const MostFollowedListSkeleton = () => (
-  <div role="status" className="w-full p-4 space-y-4 bg-white dark:bg-neutral-800 border border-gray-200 divide-y divide-gray-200 rounded shadow animate-pulse dark:divide-gray-700 md:p-6 dark:border-gray-700">
+export const CollectionViewListSkeleton = () => (
+  <div role="status" className="w-full p-4 bg-white dark:bg-black space-y-4 divide-y divide-gray-200 rounded shadow animate-pulse dark:divide-gray-700 md:p-6 dark:border-gray-700">
     <div className="flex items-center justify-between">
       <div>
-        <div className="h-2.5 bg-gray-300 rounded-full dark:bg-gray-600 w-24 mb-2.5"></div>
         <div className="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
       </div>
       <div className="h-2.5 bg-gray-300 rounded-full dark:bg-gray-700 w-12"></div>
     </div>
     <div className="flex items-center justify-between pt-4">
       <div>
-        <div className="h-2.5 bg-gray-300 rounded-full dark:bg-gray-600 w-24 mb-2.5"></div>
         <div className="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
       </div>
       <div className="h-2.5 bg-gray-300 rounded-full dark:bg-gray-700 w-12"></div>
     </div>
     <div className="flex items-center justify-between pt-4">
       <div>
-        <div className="h-2.5 bg-gray-300 rounded-full dark:bg-gray-600 w-24 mb-2.5"></div>
         <div className="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
       </div>
       <div className="h-2.5 bg-gray-300 rounded-full dark:bg-gray-700 w-12"></div>
     </div>
     <div className="flex items-center justify-between pt-4">
       <div>
-        <div className="h-2.5 bg-gray-300 rounded-full dark:bg-gray-600 w-24 mb-2.5"></div>
         <div className="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
       </div>
       <div className="h-2.5 bg-gray-300 rounded-full dark:bg-gray-700 w-12"></div>
     </div>
     <div className="flex items-center justify-between pt-4">
       <div>
-        <div className="h-2.5 bg-gray-300 rounded-full dark:bg-gray-600 w-24 mb-2.5"></div>
         <div className="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
       </div>
       <div className="h-2.5 bg-gray-300 rounded-full dark:bg-gray-700 w-12"></div>
@@ -86,27 +84,26 @@ const MostFollowedListSkeleton = () => (
 )
 
 
-interface IMostFollowedListItemProps {
+interface ICollectionViewListItemProps {
   id: string;
-  rank: number;
   imageSrc: string | undefined;
   imageAlt: string | undefined;
   title: string | JSX.Element;
-  subtitle: string | undefined;
-  followers: string;
+  subtitle?: string | undefined;
+  asideContent: string;
   onClick?: (id: string) => void;
 }
 
-export const MostFollowedListItem = ({
+export const CollectionViewListItem = ({
   id,
-  rank,
   imageSrc,
   imageAlt,
   title,
   subtitle,
-  followers,
+  asideContent,
   onClick
-}: IMostFollowedListItemProps) => {
+}: ICollectionViewListItemProps) => {
+
   const handleClick = React.useCallback((e: React.MouseEvent) => {
     e.preventDefault();
     onClick?.(id);
@@ -116,20 +113,17 @@ export const MostFollowedListItem = ({
     <li>
       <button 
         onClick={handleClick}
-        className="px-2 py-2 w-full dark:bg-neutral-800 cursor-pointer hover:bg-slate-100 dark:hover:bg-neutral-900"
+        className="px-2 py-2 w-full cursor-pointer hover:bg-slate-100 dark:hover:bg-neutral-900"
       >
         <div className="flex items-center space-x-3">
-          <div className="flex-shrink-0 text-gray-900 dark:text-gray-50 mr-4">
-            <div>{rank}.</div>
-          </div>
           <div className="min-w-0 flex-1 flex gap-2 items-center">
             {imageSrc &&
               <>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img className="h-6 w-6 rounded-full" src={imageSrc} alt={imageAlt} aria-hidden="true" />
+                <img className="h-5 w-5 rounded-full" src={imageSrc} alt={imageAlt} aria-hidden="true" />
               </>
             }
-            <div className="text-sm font-semibold text-gray-600 dark:text-slate-50 text-left">
+            <div className="text-sm text-gray-600 dark:text-slate-50 text-left truncate ...">
               <div>
                 {title}
                 {subtitle && 
@@ -140,9 +134,8 @@ export const MostFollowedListItem = ({
               </div>
             </div>
           </div>
-
-          <div className="flex-shrink-0 text-sm font-semibold text-gray-600 dark:text-white">
-            {followers}
+          <div className="flex-shrink-0 text-sm font-semibold text-gray-600 dark:text-white pl-2">
+            {asideContent}
           </div>
         </div>
       </button>
