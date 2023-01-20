@@ -48,7 +48,7 @@ export const CollectionViewContent = ({slug}: {slug: string}) => {
   const users = data?.users || [];
 
   return (
-    <div className="flex pt-12">
+    <div className="flex pt-8">
       <div className={classNames(
         "w-full",
         FEATURE_FLAGS.ENABLE_SIDEBAR ? "lg:w-8/12" : ""
@@ -63,11 +63,11 @@ export const CollectionViewContent = ({slug}: {slug: string}) => {
       </div>
 
       {FEATURE_FLAGS.ENABLE_SIDEBAR && 
-        <div className="hidden lg:block w-4/12 pl-6 xl:pl-10">
-          <div className="flex gap-8 flex-col">
-            <MostFollowedInCollection slug={slug} onUserClick={onUserClick} />
+        <div className="hidden lg:block w-4/12 ">
+          <div className="flex gap-8 flex-col pl-4 ml-4 xl:pl-6 xl:ml-6 border-left-2 border-l border-gray-200 dark:border-neutral-700">
+            <MostFollowedInCollection users={users} isLoading={isLoading} error={false} slug={slug} onUserClick={onUserClick} />
             {/* <NewUserList slug={slug} onUserClick={onUserClick} /> */}
-            <MostActiveList slug={slug} onUserClick={onUserClick} />
+            {!isLoading && <MostActiveList users={users} error={false} slug={slug} onUserClick={onUserClick} />}
           </div>
         </div>
       }
@@ -77,22 +77,21 @@ export const CollectionViewContent = ({slug}: {slug: string}) => {
 }
 
 interface IMostFollowedInCollectionProps {
+  users: IUser[]; 
   onUserClick: (address: string) => void;
   slug: string;
+  error?: boolean;
+  isLoading?: boolean;
 }
 
-export const MostFollowedInCollection = ({onUserClick, slug}: IMostFollowedInCollectionProps) => {
-  const { data, isLoading, error } = useActiveUsersFromCommunity(slug);
-
+export const MostFollowedInCollection = ({users, isLoading, error, onUserClick, slug}: IMostFollowedInCollectionProps) => {
   if (isLoading) {
     return <CollectionViewListSkeleton />
   } 
 
-  if (!data || error) {
+  if (!users || error) {
     return null;
   }
-
-  const { users } = data;
   
   users.sort((b, a) => (a?.twitter?.followers || 0) - (b?.twitter?.followers || 0));
 
@@ -135,22 +134,21 @@ export const MostFollowedInCollection = ({onUserClick, slug}: IMostFollowedInCol
 };
 
 interface IMostActiveListProps {
+  users: IUser[]; 
   onUserClick: (address: string) => void;
   slug: string;
+  error?: boolean;
+  isLoading?: boolean;
 }
 
-export const MostActiveList = ({onUserClick, slug}: IMostActiveListProps) => {
-  const { data, isLoading, error } = useActiveUsersFromCommunity(slug);
-
+export const MostActiveList = ({users, isLoading, error, onUserClick, slug}: IMostActiveListProps) => {
   if (isLoading) {
     return <CollectionViewListSkeleton />
   } 
 
-  if (!data || error) {
+  if (!users || error) {
     return null;
   }
-
-  const { users } = data;
 
   users.sort((b, a) => (a?.twitter?.tweetCount || 0) - (b?.twitter?.tweetCount || 0));
 
