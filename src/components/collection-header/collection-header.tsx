@@ -1,17 +1,18 @@
 import React from "react";
+// import ReactMarkdown from 'react-markdown';
 import { useCollection } from "../../hooks/use-collection";
 import { MdOutlineArrowBackIosNew } from "react-icons/md";
 import { useHistory } from "../../core/history-manager-provider";
 import { useRouter } from "next/router";
 import { MainViewHeader } from "../main-view-header/main-view-header";
-import { CollectionHeaderFooterLinks } from "./collection-header-footer-links";
+import { CollectionHeaderSocial } from "./collection-header-social";
 import { Divider } from "../divider/divider";
 
 interface ICollectionHeader {
   slug: string;
 }
 
-const SELECT_FROM_COLLECTION = "address,discordUrl,externalUrl,image,name,numberOfOwners,ownersWithTwitterCount,totalSupply,twitterUsername";
+const SELECT_FROM_COLLECTION = "address,description,discordUrl,externalUrl,image,name,numberOfOwners,ownersWithTwitterCount,totalSupply,twitterUsername"; // description
 
 export const CollectionHeader = ({ slug }: ICollectionHeader) => {
   const { data, isLoading, error } = useCollection(slug, {
@@ -46,6 +47,7 @@ export const CollectionHeader = ({ slug }: ICollectionHeader) => {
   const { 
     collection: {
       address,
+      description,
       discordUrl,
       externalUrl,
       image,
@@ -60,12 +62,15 @@ export const CollectionHeader = ({ slug }: ICollectionHeader) => {
   return (
     <>
       <BreadCrumbNavigation />
-      <div className="md:flex md:items-center md:justify-between md:space-x-5">
         <div className="flex items-start space-x-5">
+          <div className="flex-shrink-0">
           <CollectionImage imageUrl={image.url} altName={name} />
-          <div className="pt-1 flex justify-between items-between flex-col grow">
-            <CollectionTitle name={name} owners={numberOfOwners} supply={totalSupply} twitterAccountsCount={ownersWithTwitterCount} />
-            <CollectionHeaderFooterLinks 
+          </div>
+          <div className="pt-1 flex justify-between items-between flex-col">
+            <CollectionTitle name={name} />
+            {/* <ReactMarkdown className="mt-2 whitespace-normal text-sm text-gray-700 dark:text-neutral-300 text-ellipsis overflow-hidden ...">{description}</ReactMarkdown> */}
+            <CollectionInfo owners={numberOfOwners} supply={totalSupply} twitterAccountsCount={ownersWithTwitterCount} />
+            <CollectionHeaderSocial 
               address={address}
               slug={slug}
               twitter={twitterUsername}
@@ -74,7 +79,6 @@ export const CollectionHeader = ({ slug }: ICollectionHeader) => {
             />
           </div>
         </div>
-      </div>
     </>
   )
 }
@@ -126,38 +130,40 @@ const BreadCrumbNavigation = () => {
 
 interface ICollectionTitleProps {
   name: string;
+}
+
+const CollectionTitle = ({name}: ICollectionTitleProps) => (
+  <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-neutral-200">
+    <>{name} <span className="font-normal">on</span> <span className="text-blue-400">Twitter</span>!</>
+  </h1>
+)
+
+interface ICollectionInfoProps {
   owners?: number;
   supply?: number;
   twitterAccountsCount?: number;
 }
 
-const CollectionTitle = ({name, owners, supply, twitterAccountsCount}: ICollectionTitleProps) => (
-  <>
-    <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-neutral-200">
-      <>{name} <span className="font-normal">on</span> <span className="text-blue-400">Twitter</span>!</>
-    </h1>
-    <div className="text-sm font-medium text-gray-500 dark:text-neutral-400 pt-1">
-      <div className="flex gap-3">
-        {supply && <div>Items: <span className="dark:text-slate-200 text-neutral-700 font-semibold">{supply}</span></div>}
-        {owners && <div>Owners: <span className="dark:text-slate-200 text-neutral-700 font-semibold">{owners}</span></div>}
-        {twitterAccountsCount && <div>Twitter members: <span className="dark:text-slate-200 text-neutral-700 font-semibold">{twitterAccountsCount}</span></div>}
-      </div>
+const CollectionInfo = ({owners, supply, twitterAccountsCount}: ICollectionInfoProps) => (
+  <div className="text-sm font-medium text-gray-500 dark:text-neutral-400 pt-1">
+    <div className="flex gap-3">
+      {supply && <div>Items: <span className="dark:text-slate-200 text-neutral-700 font-semibold">{supply}</span></div>}
+      {owners && <div>Owners: <span className="dark:text-slate-200 text-neutral-700 font-semibold">{owners}</span></div>}
+      {twitterAccountsCount && <div>Twitter members: <span className="dark:text-slate-200 text-neutral-700 font-semibold">{twitterAccountsCount}</span></div>}
     </div>
-  </>
+  </div>
 )
 
 const CollectionImage = ({imageUrl, altName}: {imageUrl: string, altName: string}) => (
-  <div className="flex-shrink-0">
-    <div className="relative">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        className="rounded-full"
-        src={imageUrl}
-        width={96}
-        height={96}
-        alt={altName}
-        aria-hidden="true"
-      />
-    </div>
-  </div>
+  <>
+    {/* eslint-disable-next-line @next/next/no-img-element */}
+    <img
+      className="rounded-full"
+      src={imageUrl}
+      width={96}
+      height={96}
+      alt={altName}
+      aria-hidden="true"
+    />
+  </>
 )
