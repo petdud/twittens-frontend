@@ -75,8 +75,8 @@ export const UserItem = ({address, name, twitter, onUserClick, communities }: IU
                 </div>
                 {communities && communities.length > 0 && 
                   <div className="flex items-center flex-col-reverse md:flex-row md:gap-1">
-                    <AvatarGroup items={communities} maxItems={4} size={5} closer={true} placeholderInherited={true} />&nbsp;
-                    <span className="text-gray-500 dark:text-gray-400 text-sm font-normal">Communities</span>
+                    <AvatarGroup items={communities} maxItems={4} size={5} closer={true} placeholderInherited={true} />
+                    <span className="text-gray-500 dark:text-gray-400 text-sm font-normal">&nbsp;Communities</span>
                   </div>}
               </div>
             </div>

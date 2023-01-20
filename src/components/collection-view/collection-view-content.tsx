@@ -2,8 +2,10 @@ import React from "react";
 import { AiFillLock } from "react-icons/ai";
 import { GoVerified } from "react-icons/go";
 import { IUser } from "../../core/collection.interface";
+import { FEATURE_FLAGS } from "../../core/feature-flags";
 import { useActiveUsersFromCommunity } from "../../hooks/use-active-users-from-community";
 import { useCollections } from "../../hooks/use-collections";
+import { classNames } from "../../utils";
 import { MainViewHeader } from "../main-view-header/main-view-header";
 import { UserList } from "../user-list/user-list";
 import { UserPreviewModal } from "../user-preview-modal/user-preview-modal";
@@ -47,7 +49,10 @@ export const CollectionViewContent = ({slug}: {slug: string}) => {
 
   return (
     <div className="flex pt-12">
-      <div className="w-full lg:w-8/12">
+      <div className={classNames(
+        "w-full",
+        FEATURE_FLAGS.ENABLE_SIDEBAR ? "lg:w-8/12" : ""
+    )}>
         <UserList 
           onUserClick={onUserClick}
           collections={collections}
@@ -57,13 +62,15 @@ export const CollectionViewContent = ({slug}: {slug: string}) => {
         />
       </div>
 
-      <div className="hidden lg:block w-4/12 pl-6 xl:pl-10">
-        <div className="flex gap-8 flex-col">
-          <MostFollowedInCollection slug={slug} onUserClick={onUserClick} />
-          {/* <NewUserList slug={slug} onUserClick={onUserClick} /> */}
-          <MostActiveList slug={slug} onUserClick={onUserClick} />
+      {FEATURE_FLAGS.ENABLE_SIDEBAR && 
+        <div className="hidden lg:block w-4/12 pl-6 xl:pl-10">
+          <div className="flex gap-8 flex-col">
+            <MostFollowedInCollection slug={slug} onUserClick={onUserClick} />
+            {/* <NewUserList slug={slug} onUserClick={onUserClick} /> */}
+            <MostActiveList slug={slug} onUserClick={onUserClick} />
+          </div>
         </div>
-      </div>
+      }
       {selectedUser && <UserPreviewModal open={openProfile} onClose={onClose} user={selectedUser} collections={collections} />}
     </div>
   )
