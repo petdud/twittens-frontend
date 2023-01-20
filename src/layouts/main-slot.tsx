@@ -7,7 +7,7 @@ import {
   QuestionMarkCircleIcon, 
   XMarkIcon,
 } from '@heroicons/react/24/outline';
-import { classNames, FEATURE_FLAGS } from '../utils';
+import { classNames } from '../utils';
 import Link from 'next/link';
 import Image from 'next/image';
 import { SearchBar } from '../components/search-bar/search-bar';
@@ -20,6 +20,7 @@ import { MdLeaderboard, MdOutlineFeedback } from 'react-icons/md';
 import { useSession, signOut } from 'next-auth/react';
 import { FaDiscord } from 'react-icons/fa';
 import { Divider } from '../components/divider/divider';
+import { FEATURE_FLAGS } from '../core/feature-flags';
 
 const navigation = [
   { name: 'Home', href: '/', icon: HomeIcon, isActive: true },

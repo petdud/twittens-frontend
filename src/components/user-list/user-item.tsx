@@ -39,7 +39,7 @@ export const UserItem = ({address, name, twitter, onUserClick, communities }: IU
             <span className="text-xs text-gray-500 dark:text-neutral-300">({shortenedAddress(address)})</span>
           </div>
         </div>
-        <div className="px-3 py-3 sm:px-5 group-hover:bg-gray-50 dark:group-hover:bg-neutral-800">
+        <div className="px-3 py-3 sm:px-5">
           <div className="relative flex items-start">
             {avatar && 
               <div className="flex-shrink-0 flex">

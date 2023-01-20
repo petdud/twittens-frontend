@@ -1,5 +1,4 @@
 import React from "react";
-import { useRouter } from "next/router";
 import Link from "next/link";
 
 interface IMostFollowedListProps {
@@ -108,8 +107,6 @@ export const MostFollowedListItem = ({
   followers,
   onClick
 }: IMostFollowedListItemProps) => {
-  const router = useRouter();
-
   const handleClick = React.useCallback((e: React.MouseEvent) => {
     e.preventDefault();
     onClick?.(id);

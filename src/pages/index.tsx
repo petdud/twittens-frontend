@@ -5,10 +5,10 @@ import { MainViewHeader } from '../components/main-view-header/main-view-header'
 import { MostFollowedCollectionsList } from '../components/most-followed-lists/most-followed-collections-list';
 import { MostFollowedUsersList } from '../components/most-followed-lists/most-followed-users-list';
 import { SearchBar } from '../components/search-bar/search-bar';
+import { FEATURE_FLAGS } from "../core/feature-flags";
 import { useCollections } from '../hooks/use-collections';
 import { HeadPage } from '../layouts/head-page';
 import { MainSlot } from '../layouts/main-slot';
-import { FEATURE_FLAGS } from "../utils";
 
 const SELECT_FROM_COLLECTIONS = "name,slug,image.url,ownersWithTwitterCount,isFeatured";
 const NUMBER_OF_COLLECTIONS_BEFORE_LEADERBOARD = 18;
