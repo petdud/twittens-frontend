@@ -31,7 +31,7 @@ const faqs = [
     question: 'Can we get listed for free?',
     answer: (
       <>
-        We are open to sponsor a listing for a community that is not listed yet. If you are interested, please <a href={ROUTES.DISCORD} target="_blank" rel="noreferrer" className={linkClassName}>contact us on Discord</a>. We will also consider listing a community for free if it is a charity or a community without revenue (no royalties). We&apos;ll also list notable communities with strong interest for free for you to enjoy.
+        We are open to sponsor a listing for a community that is not listed yet. If you are interested, please <a href={ROUTES.DISCORD} target="_blank" rel="noreferrer" className={linkClassName}>connect with us on Discord</a>. We&apos;ll also consider listing a community for free if it is a charity, community without revenue (no royalties) or a project that contributes greatly to the adoption of web3. We&apos;ll also list notable communities with strong public interest for free for you to enjoy.
       </>
     ),
   },
