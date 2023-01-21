@@ -1,5 +1,5 @@
 import React from "react";
-// import ReactMarkdown from 'react-markdown';
+import ReactMarkdown from 'react-markdown';
 import { useCollection } from "../../hooks/use-collection";
 import { MdOutlineArrowBackIosNew } from "react-icons/md";
 import { useHistory } from "../../core/history-manager-provider";
@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import { MainViewHeader } from "../main-view-header/main-view-header";
 import { CollectionHeaderSocial } from "./collection-header-social";
 import { Divider } from "../divider/divider";
+import { classNames } from "../../utils";
 
 interface ICollectionHeader {
   slug: string;
@@ -66,10 +67,12 @@ export const CollectionHeader = ({ slug }: ICollectionHeader) => {
           <div className="flex-shrink-0">
           <CollectionImage imageUrl={image.url} altName={name} />
           </div>
-          <div className="pt-1 flex justify-between items-between flex-col">
-            <CollectionTitle name={name} />
-            {/* <ReactMarkdown className="mt-2 whitespace-normal text-sm text-gray-700 dark:text-neutral-300 text-ellipsis overflow-hidden ...">{description}</ReactMarkdown> */}
-            <CollectionInfo owners={numberOfOwners} supply={totalSupply} twitterAccountsCount={ownersWithTwitterCount} />
+          <div className="pt-1 flex justify-between flex-col items-between">
+            <div>
+              <CollectionTitle name={name} />
+              {/* <CollectionDescription description={description} /> */}
+              <CollectionInfo owners={numberOfOwners} supply={totalSupply} twitterAccountsCount={ownersWithTwitterCount} />
+            </div>
             <CollectionHeaderSocial 
               address={address}
               slug={slug}
@@ -137,6 +140,36 @@ const CollectionTitle = ({name}: ICollectionTitleProps) => (
     <>{name} <span className="font-normal">on</span> <span className="text-blue-400">Twitter</span>!</>
   </h1>
 )
+
+const CollectionDescription = ({description} : {description: string}) => {
+  const [showMore, setShowMore] = React.useState(false);
+
+  const onClick = React.useCallback(() => {
+    setShowMore(prevValue => !prevValue);
+  }, []);
+
+  return (
+    <div className={classNames(
+      "mt-2 flex",
+      showMore ? "flex-col items-start" : "items-center"
+    )}>
+      <div className="text-gray-700 dark:text-neutral-300 truncate ...">
+        {showMore ? 
+          <ReactMarkdown>{description}</ReactMarkdown> : <>{description}</>
+        }
+      </div>
+      <button
+        className={classNames(
+          "whitespace-nowrap text-black dark:text-white hover:underline",
+          showMore ? "" : "ml-4"
+        )}
+        onClick={onClick}
+      >
+        {showMore ? "Show less" : "Show more"}
+      </button>
+    </div>
+  )
+}
 
 interface ICollectionInfoProps {
   owners?: number;
