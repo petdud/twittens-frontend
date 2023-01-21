@@ -5,11 +5,13 @@ import { IUser } from "../../core/collection.interface";
 import { FEATURE_FLAGS } from "../../core/feature-flags";
 import { useActiveUsersFromCommunity } from "../../hooks/use-active-users-from-community";
 import { useCollections } from "../../hooks/use-collections";
+import { useRecentUsersFromCommunity } from "../../hooks/use-recent-users-from-community";
 import { classNames } from "../../utils";
 import { MainViewHeader } from "../main-view-header/main-view-header";
 import { UserList } from "../user-list/user-list";
 import { UserPreviewModal } from "../user-preview-modal/user-preview-modal";
 import { CollectionViewList, CollectionViewListItem, CollectionViewListSkeleton } from "./collection-view-list";
+import { formatDistance } from 'date-fns'
 
 export const CollectionViewContent = ({slug}: {slug: string}) => {
   const { data, isLoading, error } = useActiveUsersFromCommunity(slug);
@@ -66,8 +68,8 @@ export const CollectionViewContent = ({slug}: {slug: string}) => {
         <div className="hidden lg:block w-4/12 ">
           <div className="flex gap-8 flex-col pl-4 ml-4 xl:pl-6 xl:ml-6 border-left-2 border-l border-gray-200 dark:border-neutral-700">
             <MostFollowedInCollection users={users} isLoading={isLoading} error={false} slug={slug} onUserClick={onUserClick} />
-            {/* <NewUserList slug={slug} onUserClick={onUserClick} /> */}
             {!isLoading && <MostActiveList users={users} error={false} slug={slug} onUserClick={onUserClick} />}
+            {!isLoading && <RecentUserList slug={slug} onUserClick={onUserClick} />}
           </div>
         </div>
       }
@@ -189,13 +191,13 @@ export const MostActiveList = ({users, isLoading, error, onUserClick, slug}: IMo
 };
 
 
-interface INewUserListProps {
+interface IRecentUserListProps {
   onUserClick: (address: string) => void;
   slug: string;
 }
 
-export const NewUserList = ({onUserClick, slug}: INewUserListProps) => {
-  const { data, isLoading, error } = useActiveUsersFromCommunity(slug);
+export const RecentUserList = ({onUserClick, slug}: IRecentUserListProps) => {
+  const { data, isLoading, error } = useRecentUsersFromCommunity(slug);
 
   if (isLoading) {
     return <CollectionViewListSkeleton />
@@ -218,27 +220,36 @@ export const NewUserList = ({onUserClick, slug}: INewUserListProps) => {
       }
       asideLabel="Joined at"
     >
-      {users.slice(0, maxUsers).map(({address, twitter}) => (
-        <CollectionViewListItem
-          key={address}
-          id={address}
-          imageSrc={twitter?.avatar}
-          imageAlt={twitter?.username}
-          onClick={onUserClick}
-          title={
-            <div className="flex items-center">
-              {twitter?.name}
-              {twitter?.verified && <span className="inline-block flex-shrink-0 text-sky-400 pl-1.5">
-                <GoVerified aria-label="Twitter verified" />
-              </span>}
-              {twitter?.protected && <span className="inline-block flex-shrink-0 text-yellow-600 pl-1.5">
-                <AiFillLock aria-label="Twitter private account" />
-              </span>}
-            </div>
-          }
-          asideContent ={twitter?.followers.toLocaleString() || ""}
-        />
-      ))}
+      {users.length === 0 
+      ? <div className="text-gray-500 text-sm">No recent users</div>
+      :
+      users.slice(0, maxUsers).map(({address, twitter, joinedAt}) => {
+        const time = formatDistance(
+          new Date(joinedAt), new Date(), { addSuffix: true }
+        ).replace("about ", "",).replace("hours", "hrs");
+
+        return (
+          <CollectionViewListItem
+            key={address}
+            id={address}
+            imageSrc={twitter?.avatar}
+            imageAlt={twitter?.username}
+            onClick={onUserClick}
+            title={
+              <div className="flex items-center">
+                {twitter?.name}
+                {twitter?.verified && <span className="inline-block flex-shrink-0 text-sky-400 pl-1.5">
+                  <GoVerified aria-label="Twitter verified" />
+                </span>}
+                {twitter?.protected && <span className="inline-block flex-shrink-0 text-yellow-600 pl-1.5">
+                  <AiFillLock aria-label="Twitter private account" />
+                </span>}
+              </div>
+            }
+            asideContent={<div className="text-xs font-light">{time}</div>}
+          />
+        )
+      })}
     </CollectionViewList>
   )
 };

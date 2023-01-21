@@ -50,7 +50,7 @@ export default function Home() {
           </div>
           <Collections collections={collections.slice(0, NUMBER_OF_COLLECTIONS_BEFORE_LEADERBOARD)} isLoading={isLoading} />
           <LeaderboardSection />
-          {!isLoading 
+          {!isLoading && collections.length > NUMBER_OF_COLLECTIONS_BEFORE_LEADERBOARD
             ?
             <>
               <div className="pb-4">

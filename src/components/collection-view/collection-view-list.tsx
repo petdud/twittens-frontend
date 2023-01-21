@@ -48,7 +48,7 @@ export const CollectionViewList = ({children, title, asideLabel, footerLink, isL
 }
 
 export const CollectionViewListSkeleton = () => (
-  <div role="status" className="w-full p-4 bg-white dark:bg-black space-y-4 divide-y divide-gray-200 rounded shadow animate-pulse dark:divide-gray-700 md:p-6 dark:border-gray-700">
+  <div role="status" className="w-full p-4 bg-white dark:bg-neutral-800 space-y-4 divide-y divide-gray-200 rounded shadow animate-pulse dark:divide-gray-700 md:p-6 dark:border-gray-700">
     <div className="flex items-center justify-between">
       <div>
         <div className="w-32 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>

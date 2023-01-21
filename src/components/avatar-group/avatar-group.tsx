@@ -27,11 +27,11 @@ export const AvatarGroup = ({closer, items, maxItems, size = 6, placeholderInher
   return (
     <div className={classNames(
       scroll ? "overflow-x-auto" : "overflow-x-hidden",
-      "flex items-center space-x-2 py-1"
+      "flex items-center space-x-2"
     )}>
       <div className={classNames(
         closer ? "-space-x-2" : "-space-x-1",
-        "flex flex-shrink-0"
+        "flex flex-shrink-0 p-1"
       )}>
         {(maxItems && items.slice(0, maxItems) || items).map(({imageUrl, link, name}) => (
           link ? (

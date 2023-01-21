@@ -55,7 +55,7 @@ const UserListSkeleton = () => (
   <ul role="list" className="space-y-8">
     <div role="status" className="py-2 space-y-8 w-full rounded animate-pulse dark:divide-gray-700 dark:border-gray-700">
       {["a", "b", "c", "d"].map(alp => (
-        <div key={alp} className="shadow bg-white rounded-md dark:bg-black">
+        <div key={alp} className="shadow bg-white rounded-md dark:bg-neutral-800">
           <div className="px-4 py-1 bg-slate-50 dark:bg-gray-600 border-b-2 border-slate-100 dark:border-neutral-700 flex items-center gap-3 justify-between">
             <div className="flex items-center gap-2 h-6">
               <div className="w-48 h-2 bg-gray-200 rounded-full dark:bg-gray-700" />
