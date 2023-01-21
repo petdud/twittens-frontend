@@ -1,22 +1,27 @@
 import { Disclosure } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/24/outline'
+import { FEATURE_FLAGS } from '../../core/feature-flags';
 import { ROUTES } from '../../core/routes'
 import { classNames } from '../../utils'
 
+export const HOW_DOES_IT_WORK_CONTENT = "Our website displays Twitter accounts of collection owners who have provided their Twitter handle in the primary ENS name associated with their collections. The information is publicly available on the blockchain with the user's consent.";
 const LINK_CLASSNAME = "underline text-sky-600 dark:text-sky-500";
 
 const faqs = [
   {
     id: "1",
     question: "How does Twittens works",
-    answer:
-      "Our website displays Twitter accounts of collection owners who have provided their Twitter handle in the primary ENS name associated with their collections. The information is publicly available on the blockchain with the user's consent"
+    answer: HOW_DOES_IT_WORK_CONTENT
   },
   {
     id: "2",
     question: "Can I get my NFT collection listed",
-    answer:
+    answer: (
+      FEATURE_FLAGS.ENABLE_PAID_LISTING ? 
+      <a href={ROUTES.GET_LISTED} className={LINK_CLASSNAME} rel="noreferrer" target="_blank">Please click here for more details</a>
+      :
       <>If you would like to have your NFT collection listed on Twittens, please <a href={ROUTES.GET_LISTED} className={LINK_CLASSNAME} rel="noreferrer" target="_blank">fill out this form</a>. We will review your submission and add your collection to our website as soon as possible. If you have any questions or need assistance, please don&apos;t hesitate to contact us at <a href="mailto:hi@twittens.xyz" className={LINK_CLASSNAME}>hi@twittens.xyz</a>.</>
+    )
   },
   {
     id: "4",
