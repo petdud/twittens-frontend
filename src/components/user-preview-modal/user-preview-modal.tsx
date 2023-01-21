@@ -81,7 +81,7 @@ export const UserPreviewModal = ({open, onClose, user, collections}: IUserPrevie
                         <div>
 
                           <div className="flex items-center">
-                            <h3 className="text-base font-medium text-gray-900 dark:text-white">{twitter?.name}</h3>
+                            <h3 className="text-base font-medium text-gray-900 dark:text-white overflow-hidden">{twitter?.name}</h3>
                             {twitter?.verified && <span className="inline-block flex-shrink-0 text-sky-400 pl-1.5">
                               <GoVerified aria-label="Twitter verified" />
                             </span>}

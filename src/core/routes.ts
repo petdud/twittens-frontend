@@ -13,6 +13,7 @@ export const LOCAL_API_PATHS = {
   GET_MOST_FOLLOWED_USERS: "/api/users/most-followed",
   GET_MOST_FOLLOWED_COLLECTIONS: "/api/collections/most-followed",
   GET_ACTIVE_USERS_FROM_COLLECTION: (slug: string) => `/api/collections/${slug}/active-users`,
+  GET_RECENT_USERS_FROM_COLLECTION: (slug: string) => `/api/collections/${slug}/recent-users`,
   GET_TAGS: () => `/api/tags`,
 }
 
@@ -26,6 +27,7 @@ export const API_PATHS = {
   GET_MOST_FOLLOWED_USERS: "users/most-followed",
   UPDATE_COLLECTION: "collections/update", // provide collection's slug - update collection data (details and members)
   GET_ACTIVE_USERS_FROM_COLLECTION: (slug: string) => `collections/${slug}/active-users`,
+  GET_RECENT_USERS_FROM_COLLECTION: (slug: string) => `collections/${slug}/recent-users`,
   GET_TAGS: () => `tags`,
 }
 

@@ -109,6 +109,7 @@ export const AdminAddCollection = () => {
 const chainOptions: {name: string, value: chainTypes}[] = [
   { name: 'ETH', value: "eth-mainnet" },
   { name: 'MATIC', value: "polygon-mainnet" },
+  { name: "Arbitrum", value: "arb-mainnet" }
 ]
 
 interface IChainOptions {
