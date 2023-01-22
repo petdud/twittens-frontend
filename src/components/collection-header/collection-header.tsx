@@ -144,30 +144,30 @@ const CollectionTitle = ({name}: ICollectionTitleProps) => (
 )
 
 const CollectionDescription = ({description} : {description: string}) => {
-  const [showMore, setShowMore] = React.useState(false);
+  const [seeMore, setSeeMore] = React.useState(false);
 
   const onClick = React.useCallback(() => {
-    setShowMore(prevValue => !prevValue);
+    setSeeMore(prevValue => !prevValue);
   }, []);
 
   return (
     <div className={classNames(
       "flex text-sm",
-      showMore ? "flex-col items-start" : "items-center"
+      seeMore ? "flex-col items-start" : "items-center"
     )}>
-      <div className={classNames("text-gray-700 dark:text-neutral-300", showMore ? "" : "truncate ...")}>
-        {showMore ? 
+      <div className={classNames("text-gray-700 dark:text-neutral-300", seeMore ? "" : "truncate ...")}>
+        {seeMore ? 
           <ReactMarkdown className="whitespace-normal">{description}</ReactMarkdown> : description
         }
       </div>
       <button
         className={classNames(
           "whitespace-nowrap text-black dark:text-white hover:underline",
-          showMore ? "" : "ml-4"
+          seeMore ? "" : "ml-4"
         )}
         onClick={onClick}
       >
-        {showMore ? "Show less" : "Show more"}
+        {seeMore ? "See less" : "See more"}
       </button>
     </div>
   )
