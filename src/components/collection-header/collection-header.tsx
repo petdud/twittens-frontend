@@ -64,12 +64,15 @@ export const CollectionHeader = ({ slug }: ICollectionHeader) => {
     <>
       <BreadCrumbNavigation />
         <div className="flex items-start space-x-4 lg:space-x-5">
-          <div className="flex-shrink-0">
-          <CollectionImage imageUrl={image.url} altName={name} />
+          <div className="flex-shrink-0 hidden sm:block">
+            <CollectionImage imageUrl={image.url} altName={name} />
           </div>
           <div className="lg:pt-1 pt-0 flex flex-col lg:flex-row justify-between grow">
-            <div className="max-w-xs md:max-w-sm xl:max-w-xl overflow-hidden flex gap-1 flex-col">
-              <CollectionTitle name={name} />
+            <div className="max-w-xs sm:max-w-sm xl:max-w-xl overflow-hidden flex gap-1 flex-col">
+              <div className="flex items-center">
+                <div className="block sm:hidden"><CollectionImage imageUrl={image.url} altName={name} /></div>
+                <CollectionTitle name={name} />
+              </div>
               <CollectionDescription description={description} />
               <CollectionInfo owners={numberOfOwners} supply={totalSupply} twitterAccountsCount={ownersWithTwitterCount} />
             </div>
@@ -138,8 +141,8 @@ interface ICollectionTitleProps {
 }
 
 const CollectionTitle = ({name}: ICollectionTitleProps) => (
-  <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-neutral-200">
-    <>{name} <span className="font-normal">on</span> <span className="text-blue-400">Twitter</span>!</>
+  <h1 className="flex flex-col md:flex-row text-2xl font-bold text-gray-900 dark:text-neutral-200">
+    <>{name}<span className="hidden sm:block"><span className="font-normal">&nbsp;on</span> <span className="text-blue-400">Twitter</span>!</span></>
   </h1>
 )
 
@@ -152,7 +155,7 @@ const CollectionDescription = ({description} : {description: string}) => {
 
   return (
     <div className={classNames(
-      "flex text-sm",
+      "flex text-xs sm:text-sm",
       seeMore ? "flex-col items-start" : "items-center"
     )}>
       <div className={classNames("text-gray-700 dark:text-neutral-300", seeMore ? "" : "truncate ...")}>
@@ -189,11 +192,11 @@ const CollectionInfo = ({owners, supply, twitterAccountsCount}: ICollectionInfoP
   </div>
 )
 
-const CollectionImage = ({imageUrl, altName}: {imageUrl: string, altName: string}) => (
+const CollectionImage = ({imageUrl, altName}: {imageUrl: string, altName: string }) => (
   <>
     {/* eslint-disable-next-line @next/next/no-img-element */}
     <img
-      className="rounded-full h-24 md:h-28"
+      className={`rounded-full sm:h-24 md:h-28 h-10 mr-2 sm:mr-0`}
       src={imageUrl}
       alt={altName}
       aria-hidden="true"

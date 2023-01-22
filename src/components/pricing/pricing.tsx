@@ -9,8 +9,8 @@ const linkClassName = "underline text-black dark:text-white";
 
 const features = [
   'Have your NFT collection listed on homepage',
-  'Compete in the leaderboard section',
-  'Daily updates of the collection and its users',
+  'Compete in the leaderboard',
+  'Daily updates of your collection and users',
   'Get featured on homepage for one week',
   'Get notified when new twitter account appears on Twittens',
   'Work with us on more insight',
