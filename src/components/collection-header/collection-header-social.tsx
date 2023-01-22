@@ -24,8 +24,8 @@ export const CollectionHeaderSocial = ({
   }
   
   return (
-    <div className="flex items-center gap-2 mt-1">
-      <div className="flex mt-1">
+    <div className="flex items-center flex-row lg:flex-col lg:items-end">
+      <div className="flex lg:mt-1">
         {twitter && 
           <Link href={`https://www.twitter.com/${twitter}`} target="_blank" className="p-2 hover:bg-gray-200 rounded-md dark:hover:bg-gray-700">
             <BsTwitter className="text-sky-500 dark:text-sky-300" />

@@ -63,23 +63,25 @@ export const CollectionHeader = ({ slug }: ICollectionHeader) => {
   return (
     <>
       <BreadCrumbNavigation />
-        <div className="flex items-start space-x-5">
+        <div className="flex items-start space-x-4 lg:space-x-5">
           <div className="flex-shrink-0">
           <CollectionImage imageUrl={image.url} altName={name} />
           </div>
-          <div className="pt-1 flex justify-between flex-col items-between">
-            <div>
+          <div className="lg:pt-1 pt-0 flex flex-col lg:flex-row justify-between grow">
+            <div className="max-w-xs md:max-w-sm xl:max-w-xl overflow-hidden flex gap-1 flex-col">
               <CollectionTitle name={name} />
-              {/* <CollectionDescription description={description} /> */}
+              <CollectionDescription description={description} />
               <CollectionInfo owners={numberOfOwners} supply={totalSupply} twitterAccountsCount={ownersWithTwitterCount} />
             </div>
-            <CollectionHeaderSocial 
-              address={address}
-              slug={slug}
-              twitter={twitterUsername}
-              discord={discordUrl}
-              externalUrl={externalUrl} 
-            />
+            <div className="ml-0 lg:ml-auto flex items-center lg:items-start justify-start lg:justify-end">
+              <CollectionHeaderSocial 
+                address={address}
+                slug={slug}
+                twitter={twitterUsername}
+                discord={discordUrl}
+                externalUrl={externalUrl} 
+              />
+            </div>
           </div>
         </div>
     </>
@@ -150,12 +152,12 @@ const CollectionDescription = ({description} : {description: string}) => {
 
   return (
     <div className={classNames(
-      "mt-2 flex",
+      "flex text-sm",
       showMore ? "flex-col items-start" : "items-center"
     )}>
-      <div className="text-gray-700 dark:text-neutral-300 truncate ...">
+      <div className={classNames("text-gray-700 dark:text-neutral-300", showMore ? "" : "truncate ...")}>
         {showMore ? 
-          <ReactMarkdown>{description}</ReactMarkdown> : <>{description}</>
+          <ReactMarkdown className="whitespace-normal">{description}</ReactMarkdown> : description
         }
       </div>
       <button
@@ -178,7 +180,7 @@ interface ICollectionInfoProps {
 }
 
 const CollectionInfo = ({owners, supply, twitterAccountsCount}: ICollectionInfoProps) => (
-  <div className="text-sm font-medium text-gray-500 dark:text-neutral-400 pt-1">
+  <div className="text-sm font-medium text-gray-500 dark:text-neutral-400 pt-1 lg:pt-4">
     <div className="flex gap-3">
       {supply && <div>Items: <span className="dark:text-slate-200 text-neutral-700 font-semibold">{supply}</span></div>}
       {owners && <div>Owners: <span className="dark:text-slate-200 text-neutral-700 font-semibold">{owners}</span></div>}
@@ -191,10 +193,8 @@ const CollectionImage = ({imageUrl, altName}: {imageUrl: string, altName: string
   <>
     {/* eslint-disable-next-line @next/next/no-img-element */}
     <img
-      className="rounded-full"
+      className="rounded-full h-24 md:h-28"
       src={imageUrl}
-      width={96}
-      height={96}
       alt={altName}
       aria-hidden="true"
     />

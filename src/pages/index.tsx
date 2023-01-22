@@ -11,7 +11,7 @@ import { HeadPage } from '../layouts/head-page';
 import { MainSlot } from '../layouts/main-slot';
 
 const SELECT_FROM_COLLECTIONS = "name,slug,image.url,ownersWithTwitterCount,isFeatured";
-const NUMBER_OF_COLLECTIONS_BEFORE_LEADERBOARD = 18;
+const NUMBER_OF_COLLECTIONS_BEFORE_LEADERBOARD = 12;
 
 export default function Home() {
   const { data: collections, isLoading, error } = useCollections({
