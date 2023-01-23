@@ -74,7 +74,7 @@ export const Pricing = () => {
                 <span className="text-gray-900 dark:text-white"> or equivalent</span>
               </h1>
               <p className="mt-5 text-xl text-gray-500 dark:text-gray-400">
-                Join forces with your <span className="font-bold text-neutral-800 dark:text-neutral-100">NFT community</span> and grow your Twitter presence.
+                Join forces with your <span className="font-bold text-neutral-800 dark:text-neutral-100">NFT community</span> and get listed on Twittens.
               </p>
             </div>
             <a

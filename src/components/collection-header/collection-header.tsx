@@ -13,7 +13,7 @@ interface ICollectionHeader {
   slug: string;
 }
 
-const SELECT_FROM_COLLECTION = "address,description,discordUrl,externalUrl,image,name,numberOfOwners,ownersWithTwitterCount,totalSupply,twitterUsername"; // description
+const SELECT_FROM_COLLECTION = "address,description,discordUrl,externalUrl,image,name,numberOfOwners,ownersWithTwitterCount,totalSupply,twitterUsername";
 
 export const CollectionHeader = ({ slug }: ICollectionHeader) => {
   const { data, isLoading, error } = useCollection(slug, {
