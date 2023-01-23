@@ -141,7 +141,7 @@ interface ICollectionTitleProps {
 }
 
 const CollectionTitle = ({name}: ICollectionTitleProps) => (
-  <h1 className="flex flex-col md:flex-row text-2xl font-bold text-gray-900 dark:text-neutral-200">
+  <h1 className="flex flex-col md:flex-row text-2xl lg:text-3xl font-bold text-gray-900 dark:text-neutral-200">
     <>{name}<span className="hidden sm:block"><span className="font-normal">&nbsp;on</span> <span className="text-blue-400">Twitter</span>!</span></>
   </h1>
 )
