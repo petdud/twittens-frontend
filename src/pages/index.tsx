@@ -53,7 +53,7 @@ export default function Home() {
           {!isLoading && collections.length > NUMBER_OF_COLLECTIONS_BEFORE_LEADERBOARD
             ?
             <>
-              <div className="pb-4">
+              <div className="pb-4 mt-8">
                 <MainViewHeader title="More collections" />
               </div>
               <Collections collections={collections.slice(NUMBER_OF_COLLECTIONS_BEFORE_LEADERBOARD, collections.length)} />
@@ -72,7 +72,7 @@ const LeaderboardSection = () => {
   }
 
   return (
-    <div className="my-12">
+    <div className="mt-12">
       <div>
         <div className="flex items-center gap-2 pb-4">
           <Image

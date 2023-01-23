@@ -39,6 +39,7 @@ export const HeadPage = ({children, title, description}: IHeadPageProps) => {
         property="twitter:description"
           content="Twittens helps you to find twitter frens in your favorite NFT collections."
       />
+      <meta name="twitter:creator" content="petrdu" />
       <link rel="icon" href="/favicon.ico" />
       <script async defer data-website-id="91db11b4-a01b-4b14-a4ad-e5175b609163" src="https://umammprod.up.railway.app/umami.js"></script>
       {children}
