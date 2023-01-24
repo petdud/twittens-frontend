@@ -35,9 +35,13 @@ export const UserList = ({
             communities.push({ imageUrl: community.image.thumbnailUrl, name: community.name });
           }
         }
+
+        if (!twitter) {
+          return null
+        }
         
         return (
-          twitter && <UserItem 
+          <UserItem 
             key={address}
             onUserClick={onUserClick}
             address={address}

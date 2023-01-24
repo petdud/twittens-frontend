@@ -47,7 +47,8 @@ export const CollectionViewContent = ({slug}: {slug: string}) => {
     )
   }
 
-  const users = data?.users || [];
+  // sort by alphabetical order
+  const users = data?.users.sort((a, b) => ((a?.name || "z").localeCompare((b.name || "z")))) || [];
 
   return (
     <div className="flex pt-8">

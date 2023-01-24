@@ -33,7 +33,7 @@ export const useCollections = ({
   }, [select, status])
 
   useEffect(() => {
-      fetchCollections();
+    fetchCollections();
   }, [fetchCollections]);
 
   return {
