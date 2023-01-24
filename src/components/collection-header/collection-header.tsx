@@ -73,7 +73,7 @@ export const CollectionHeader = ({ slug }: ICollectionHeader) => {
                 <div className="block sm:hidden"><CollectionImage imageUrl={image.url} altName={name} /></div>
                 <CollectionTitle name={name} />
               </div>
-              <CollectionDescription description={description} />
+              {description && <CollectionDescription description={description} />}
               <CollectionInfo owners={numberOfOwners} supply={totalSupply} twitterAccountsCount={ownersWithTwitterCount} />
             </div>
             <div className="ml-0 lg:ml-auto flex items-center lg:items-start justify-start lg:justify-end">
@@ -141,8 +141,8 @@ interface ICollectionTitleProps {
 }
 
 const CollectionTitle = ({name}: ICollectionTitleProps) => (
-  <h1 className="flex flex-col md:flex-row text-2xl lg:text-3xl font-bold text-gray-900 dark:text-neutral-200">
-    <>{name}<span className="hidden sm:block"><span className="font-normal">&nbsp;on</span> <span className="text-blue-400">Twitter</span>!</span></>
+  <h1 className="inline-block w-full text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 dark:text-neutral-200">
+    {name}<span><span className="font-normal">&nbsp;on</span> <span className="text-blue-400">Twitter</span>!</span>
   </h1>
 )
 
@@ -166,7 +166,7 @@ const CollectionDescription = ({description} : {description: string}) => {
       <button
         className={classNames(
           "whitespace-nowrap text-black dark:text-white hover:underline",
-          seeMore ? "" : "ml-4"
+          seeMore ? "" : "ml-2"
         )}
         onClick={onClick}
       >
@@ -196,7 +196,7 @@ const CollectionImage = ({imageUrl, altName}: {imageUrl: string, altName: string
   <>
     {/* eslint-disable-next-line @next/next/no-img-element */}
     <img
-      className={`rounded-full sm:h-24 md:h-28 h-10 mr-2 sm:mr-0`}
+      className={`rounded-full sm:h-24 sm:w-24 md:h-28 md:w-28 h-10 w-10 mr-6 sm:mr-0`}
       src={imageUrl}
       alt={altName}
       aria-hidden="true"
