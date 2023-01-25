@@ -26,7 +26,7 @@ export const AvatarGroup = ({closer, items, maxItems, size = 6, placeholderInher
 
   return (
     <div className={classNames(
-      scroll ? "overflow-x-auto" : "overflow-x-hidden",
+      scroll ? "overflow-x-auto hide-scrollbar" : "overflow-x-hidden",
       "flex items-center space-x-2"
     )}>
       <div className={classNames(
