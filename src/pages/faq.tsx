@@ -8,7 +8,7 @@ export default function FaqPage() {
     <>
       <HeadPage 
         title="FAQ for Twittens, ENS and Twitter frens | Twittens" 
-        description="Twittens' frequently asked questions and answers. Find out about Twittens work, how to add your NFT collection to Twittens or how to update your Twitter, so it will be displayed here."
+        description="Twittens' frequently asked questions and answers. Find out how does Twittens work, how to list your NFT collection or how to update your Twitter account, so it will be displayed on Twittens."
       />
       <MainSlot>
         <Faq />

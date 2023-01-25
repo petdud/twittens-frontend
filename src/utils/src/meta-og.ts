@@ -40,7 +40,7 @@ export const META_OG  = {
     "ogImage": "https://twittens.xyz/op_meta/mooncats.jpg"
   },
   "clonex": { 
-    "name": "CLONE X",
+    "name": "Clone X",
     "ogImage": "https://twittens.xyz/op_meta/clonex.jpg"
   },
   "azuki": { 
@@ -56,7 +56,7 @@ export const META_OG  = {
     "ogImage": "https://twittens.xyz/op_meta/coolcats.jpg"
   },
   "a0k1verse-passport": { 
-    "name": "A0K1VERSE Passport",
+    "name": "A0k1verse Passport",
     "ogImage": "https://twittens.xyz/op_meta/a0k1verse.jpg"
   },
   "digidaigaku": { 

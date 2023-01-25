@@ -10,6 +10,7 @@ export default function LeaderboardPage() {
       <HeadPage 
         title="Leaderboard for Twitter + ENS | Twittens.xyz" 
         description="Discover who are the most followed Twitter accounts within NFT collections."
+        image='https://twittens.xyz/leaderboard.jpg'
       />
 
       <MainSlot>

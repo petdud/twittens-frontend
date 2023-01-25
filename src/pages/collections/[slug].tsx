@@ -22,8 +22,8 @@ export default function Collection(
   return (
     <div>
       <HeadPage 
-        title={`${collectionName ? collectionName : "NFT friends"} on Twitter | Twittens.xyz` }
-        description={`Find and connect with your ${collectionName + " NFT" || "NFT"} holders on Twitter thanks to Twittens.xyz.`}
+        title={`${collectionName ? collectionName : "NFT"} holders on Twitter | Twittens.xyz` }
+        description={`Discover and connect with ${collectionName + " " || ""}NFT holders on Twitter thanks to Twittens.xyz and ENS.`}
         image={collectionImage}
       />
       <div className="bg-gray-100 h-full">
