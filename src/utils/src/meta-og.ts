@@ -24,7 +24,7 @@ export const META_OG  = {
     "ogImage": "https://twittens.xyz/op_meta/wow.jpg"
   },
   "8liens": { 
-    "name": "8liens NFT",
+    "name": "8liens",
     "ogImage": "https://twittens.xyz/op_meta/8liens.jpg"
   },
   "mutant-ape-yacht-club": { 

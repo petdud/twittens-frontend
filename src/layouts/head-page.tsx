@@ -7,8 +7,8 @@ interface IHeadPageProps {
   children?: JSX.Element;
 }
 
-export const HeadPage = ({children, title, description, image}: IHeadPageProps) => {
-  const imageUrl = image || "https://twittens.xyz/sharing.jpg";
+export const HeadPage = ({ children, title, description, image}: IHeadPageProps) => {
+  const imageUrl = image || "https://twittens.xyz/sharing.jpg?t=24";
   return (
     <Head>
       <title>{title}</title>
@@ -35,7 +35,7 @@ export const HeadPage = ({children, title, description, image}: IHeadPageProps) 
       />
       <meta
         property="twitter:title"
-          content={title}
+        content={title}
       />
       <meta
         property="twitter:description"

@@ -1,18 +1,23 @@
-import { useRouter } from "next/router";
+import { GetServerSidePropsContext } from "next";
 import { CollectionView } from '../../components/collection-view/collection-view';
 import { Container } from "../../components/container/container";
 import { HeadPage } from '../../layouts/head-page';
 import { MainSlot } from "../../layouts/main-slot";
 import { META_OG } from "../../utils";
 
-export default function Collection() {
-  const router = useRouter();
-  const slug = router.query.slug as string;
+interface ICollectionProps {
+  slug: string, 
+  meta: {
+    name: string,
+    ogImage?: string
+  }
+}
 
-  const meta = (META_OG as any)[slug];
+export default function Collection(
+  { slug, meta }: ICollectionProps
+) {
   const collectionName = meta?.name;
   const collectionImage = meta?.ogImage;
-
 
   return (
     <div>
@@ -32,4 +37,15 @@ export default function Collection() {
       </div>
     </div>
   );
+}
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const meta = (META_OG as any)[context.query.slug as string];
+  
+  return {
+    props: {
+      slug: context.query.slug,
+      meta,
+    },
+  };
 }
