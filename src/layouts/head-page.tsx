@@ -8,7 +8,7 @@ interface IHeadPageProps {
 }
 
 export const HeadPage = ({ children, title, description, image}: IHeadPageProps) => {
-  const imageUrl = image || "https://twittens.xyz/sharing.jpg?t=24";
+  const imageUrl = image || "https://twittens.xyz/sharing.jpg?t=a";
   return (
     <Head>
       <title>{title}</title>
