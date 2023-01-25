@@ -3,10 +3,12 @@ import Head from 'next/head';
 interface IHeadPageProps {
   title: string;
   description: string;
+  image?: string;
   children?: JSX.Element;
 }
 
-export const HeadPage = ({children, title, description}: IHeadPageProps) => {
+export const HeadPage = ({children, title, description, image}: IHeadPageProps) => {
+  const imageUrl = image || "https://twittens.xyz/sharing.jpg";
   return (
     <Head>
       <title>{title}</title>
@@ -19,7 +21,7 @@ export const HeadPage = ({children, title, description}: IHeadPageProps) => {
       <meta property="og:site_name" content="Twittens" />
       <meta
         property="og:image"
-        content="https://twittens.xyz/sharing.jpg"
+        content={imageUrl}
       />
       <meta property="twitter:site" content="@twittensxyz" />
       <meta
@@ -29,7 +31,7 @@ export const HeadPage = ({children, title, description}: IHeadPageProps) => {
       <meta property="og:type" content="product" />
       <meta
         property="twitter:image"
-        content="https://twittens.xyz/sharing.jpg"
+        content={imageUrl}
       />
       <meta
         property="twitter:title"
