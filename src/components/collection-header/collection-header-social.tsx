@@ -20,7 +20,7 @@ export const CollectionHeaderSocial = ({
   slug
 }: ICollectionHeaderSocialProps) => (
   <div className="flex items-center flex-row lg:flex-col lg:items-end">
-    {twitter || discord || externalUrl && <div className="flex lg:mt-1">
+    <div className="flex lg:mt-1">
       {twitter && 
         <Link href={`https://www.twitter.com/${twitter}`} target="_blank" className="p-2 hover:bg-gray-200 rounded-md dark:hover:bg-gray-700">
           <BsTwitter className="text-sky-500 dark:text-sky-300" />
@@ -36,7 +36,7 @@ export const CollectionHeaderSocial = ({
           <AiOutlineLink className="text-gray-700 dark:text-gray-300"/>
         </Link>
       }
-    </div>}
+    </div>
     <MarketplaceDropdownOptions name="View collection" address={address} appearance="transparent" slug={slug} />
   </div>
 )
