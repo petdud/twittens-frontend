@@ -1,5 +1,5 @@
 export const FEATURE_FLAGS = {
   ENABLE_SIDEBAR: true,
-  ENABLE_LEADERBOARD: false,
+  ENABLE_LEADERBOARD: true,
   ENABLE_PAID_LISTING: true,
 }
