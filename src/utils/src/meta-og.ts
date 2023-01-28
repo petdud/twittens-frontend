@@ -197,4 +197,8 @@ export const META_OG  = {
     "name": "Non Fungible Conference 2023",
     "ogImage": "https://twittens.xyz/op_meta/nonfungibleconference.jpeg"
   },
+  "vv-checks": { 
+    "name": "Checks - VV Edition",
+    "ogImage": "https://twittens.xyz/op_meta/checks.jpg"
+  },
 }

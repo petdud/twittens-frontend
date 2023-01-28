@@ -7,7 +7,6 @@ import { LeaderboardUsers } from './leaderboard-users';
 import { LeaderboardCollections } from './leaderboard-collections';
 import { useRouter } from 'next/router';
 
-const DEFAULT_TAB = "Users";
 const LEADERBOARD_TITLE_ID = "leaderboard-title-panel";
 
 export const Leaderboard = () => {
@@ -16,7 +15,7 @@ export const Leaderboard = () => {
   const onTabSelect = useCallback((value: string) => {
     window.location.hash = value.toLowerCase();
     setTab(value as "Users" | "Collections");
-  }, [])
+  }, []);
 
   React.useEffect(() => {
     if (window.location.hash.toLowerCase().includes("collections")) {
@@ -24,8 +23,7 @@ export const Leaderboard = () => {
     } else {
       setTab("Users");
     }
-}, [router])
-
+  }, [router])
 
   return (
     <>
