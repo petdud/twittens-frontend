@@ -22,9 +22,9 @@ export const MostFollowedCollectionsList = () => {
       footerLink="/leaderboard#collections"
       isLoading={isLoading}
     >
-      {collections.slice(0, 5).map(({address, image, name, twitter, slug}, index) => (
+      {collections.slice(0, 5).map(({image, name, twitter, slug}, index) => (
         <MostFollowedListItem 
-          key={address}
+          key={slug}
           id={slug}
           rank={index + 1}
           imageSrc={image.thumbnailUrl}
