@@ -184,6 +184,7 @@ export const META_OG  = {
   },
   "thesaudis": { 
     "name": "The Saudis",
+    "ogImage": "https://twittens.xyz/op_meta/saudis.jpg"
   },
   "right-click-share": { 
     "name": "Right Click Share by XCOPY and Deca",
