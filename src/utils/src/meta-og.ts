@@ -202,4 +202,8 @@ export const META_OG  = {
     "name": "Checks - VV Edition",
     "ogImage": "https://twittens.xyz/op_meta/checks.jpg"
   },
+  "partydegenerates": { 
+    "name": "Party Degenerates",
+    "ogImage": "https://twittens.xyz/op_meta/partydegens.jpg"
+  },
 }
