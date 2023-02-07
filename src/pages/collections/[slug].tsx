@@ -40,12 +40,12 @@ export default function Collection(
 }
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const meta = (META_OG as any)[context.query.slug as string];
+  const meta = (META_OG as any)?.[context.query.slug as string];
   
   return {
     props: {
       slug: context.query.slug,
-      meta,
+      ...(meta && { meta }),
     },
   };
 }
