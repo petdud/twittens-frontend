@@ -271,7 +271,7 @@ const Footer = () => (
     <div className="p-4">
       <Link href={ROUTES.FEEDBACK} className="flex items-center gap-2 text-gray-500 dark:text-gray-400 text-sm mb-2" target="_blank"><MdOutlineFeedback /> Send feedback</Link>
       <div className="block text-gray-500 dark:text-gray-400 text-xs">
-        By <a href="https://www.twitter.com/petrdu" className="cursor-pointer text-gray-600 dark:text-gray-300 underline hover:dark:text-gray-50" target="_blank" rel="noreferrer">petrdu</a> and <a href="https://www.twitter.com/tuanphung_" className="cursor-pointer text-gray-600 dark:text-gray-300 underline hover:dark:text-gray-50" target="_blank" rel="noreferrer">tuanphung</a>
+        By <a href="https://www.twitter.com/petrdu" className="cursor-pointer text-gray-600 dark:text-gray-300 underline hover:dark:text-gray-50" target="_blank" rel="noreferrer">petrdu</a>
       </div>
     </div>
   </>
