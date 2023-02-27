@@ -206,4 +206,8 @@ export const META_OG  = {
     "name": "Party Degenerates",
     "ogImage": "https://twittens.xyz/op_meta/partydegens.jpg"
   },
+  "ensmaxis": { 
+    "name": "ENS Maxis",
+    "ogImage": "https://twittens.xyz/op_meta/ensmaxis.jpg"
+  },
 }
