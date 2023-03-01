@@ -14,13 +14,14 @@ import { SearchBar } from '../components/search-bar/search-bar';
 import { AiOutlineRight } from 'react-icons/ai';
 import { BsTwitter } from 'react-icons/bs';
 import { ImContrast } from 'react-icons/im';
-import { ROUTES } from '../core/routes';
+import { ROUTES, SET_TWITTER_URL } from '../core/routes';
 import { useThemeContext } from '../core/theme-provider';
 import { MdLeaderboard, MdOutlineFeedback } from 'react-icons/md';
 import { useSession, signOut } from 'next-auth/react';
 import { FaDiscord } from 'react-icons/fa';
 import { Divider } from '../components/divider/divider';
 import { FEATURE_FLAGS } from '../core/feature-flags';
+import { IoIosPhotos } from 'react-icons/io';
 
 const navigation = [
   { name: 'Home', href: '/', icon: HomeIcon, isActive: true },
@@ -117,6 +118,7 @@ export const MainSlot = ({children}: IMainSlot) => {
                       </a>
                     ))}
                     <GetListedButton />
+                    <RequestCollectionButton />
                   </nav>
                   <Divider wrapperClass="my-6" />
                   <JoinCommunitySection />
@@ -175,6 +177,7 @@ export const MainSlot = ({children}: IMainSlot) => {
                   </Link>
                 ))}
                 <GetListedButton />
+                <RequestCollectionButton />
               </nav>
               <Divider wrapperClass='mt-3' />
               <div className="mt-6">
@@ -254,12 +257,25 @@ const JoinCommunitySection = () => (
 
 const GetListedButton = () => (
   <div className="pt-4">
-    <Link href={ROUTES.GET_LISTED} target={FEATURE_FLAGS.ENABLE_PAID_LISTING ? '' : '_blank'} type="button">
+    <Link href={SET_TWITTER_URL} target='_blank' type="button">
       <div
         className="inline-flex items-center rounded-md border border-transparent bg-indigo-600 dark:bg-indigo-800 px-3 py-2 text-sm font-medium leading-4 text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
       >
         Get listed
         <AiOutlineRight className="ml-2" />
+      </div>
+    </Link>
+  </div>
+)
+
+const RequestCollectionButton = () => (
+  <div className="pt-4">
+    <Link href={ROUTES.GET_LISTED} target={FEATURE_FLAGS.ENABLE_PAID_LISTING ? '' : '_blank'} type="button">
+      <div
+        className="inline-flex items-center rounded-md border border-transparent bg-indigo-600 dark:bg-indigo-800 px-3 py-2 text-sm font-medium leading-4 text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+      >
+        Add collection
+        <IoIosPhotos className="ml-2" />
       </div>
     </Link>
   </div>
