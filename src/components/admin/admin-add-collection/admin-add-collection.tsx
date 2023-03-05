@@ -69,12 +69,13 @@ export const AdminAddCollection = () => {
           twitterUsername: twitter_username,
           discordUrl: discord_url,
           externalUrl: external_url,
-          chain
+          chain,
+          dataSource
         }
         setData(dataToSubmit)
       }
     }
-  }, [chain, text]);
+  }, [chain, dataSource, text]);
 
   return (
     <div className="dark:bg-neutral-800 bg-white p-4 rounded-md shadow-lg">

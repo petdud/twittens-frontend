@@ -21,8 +21,8 @@ export const useGetCollectionOwners = (contractAddress: string, chain: chainType
   }, [contractAddress, chain, dataSource])
 
   useEffect(() => {
-    fetchCollectionOwners();
-  }, [fetchCollectionOwners]);
+    contractAddress && fetchCollectionOwners();
+  }, [contractAddress, fetchCollectionOwners]);
 
   return {
     data,
