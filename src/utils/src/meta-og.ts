@@ -210,4 +210,8 @@ export const META_OG  = {
     "name": "ENS Maxis",
     "ogImage": "https://twittens.xyz/op_meta/ensmaxis.jpg"
   },
+  "nessgraphics-open-editions": { 
+    "name": "NessGraphics OE",
+    "ogImage": "https://twittens.xyz/op_meta/nessgraphics.jpg"
+  },
 }
