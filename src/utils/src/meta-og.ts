@@ -214,4 +214,8 @@ export const META_OG  = {
     "name": "Chromie Squiggle",
     "ogImage": "https://twittens.xyz/op_meta/chromie.jpg"
   },
+  "0xai-genesis": { 
+    "name": "0xAI",
+    "ogImage": "https://twittens.xyz/op_meta/0xai.jpg"
+  },
 }
