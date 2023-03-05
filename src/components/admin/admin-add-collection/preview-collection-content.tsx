@@ -1,5 +1,6 @@
 import { CheckIcon } from "@heroicons/react/20/solid";
-import { chainTypes } from "../../../core/collection.interface";
+import React from "react";
+import { chainTypes, dataSourceTypes } from "../../../core/collection.interface";
 import { CLOUDINARY_COLLECTION_FOLDER } from "../../../core/routes";
 import { useGetCollectionOwners } from "../../../hooks/use-get-collection-owners";
 import { AddCollectionProps } from "./admin-add-collection";
@@ -10,18 +11,25 @@ interface IPreviewCollectionContentProps {
   contractAddress: string;
   chain: chainTypes;
   data: AddCollectionProps;
+  dataSource: dataSourceTypes;
   onImageUploaded: (info: ICloudinary) => void;
+  setData: (data: AddCollectionProps) => void;
 }
 
-export const PreviewCollectionContent = ({contractAddress, chain, data, onImageUploaded}: IPreviewCollectionContentProps) => {
-  const { data: owners, isLoading } = useGetCollectionOwners(contractAddress, chain);
+export const PreviewCollectionContent = ({contractAddress, chain, data, dataSource, onImageUploaded, setData}: IPreviewCollectionContentProps) => {
+  const [customContractAddress, setCustomContractAddress] = React.useState<string>("");
+  const { data: owners, isLoading } = useGetCollectionOwners(customContractAddress || contractAddress, chain, dataSource);
+
+  const onContractAddressChange = React.useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setCustomContractAddress(e.target.value);
+    data && setData({ ...data, address: e.target.value });
+  }, [data, setData]);
 
   if (!data) {
     return null;
   }
 
   const {
-    slug,
     name,
     description,
     address,
@@ -51,7 +59,20 @@ export const PreviewCollectionContent = ({contractAddress, chain, data, onImageU
       </div>
       <div>
         <div className={dataItemClassName}>Contract: </div>
-        <span>{address}</span>
+        {
+          address 
+            ? 
+              <span>{address}</span> 
+            :
+            <input
+            type="text"
+            name="text"
+            id="text"
+            value={customContractAddress}
+            className="dark:bg-neutral-900 dark:text-white dark:border-neutral-500 dark:focus:ring-gray-500 dark:focus:border-gray-500 dark:placeholder-gray-500 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+            onChange={onContractAddressChange}
+            /> 
+        }
       </div>
       <div>
         <div className={dataItemClassName}>External URL: </div>

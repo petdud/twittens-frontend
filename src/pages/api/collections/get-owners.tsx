@@ -5,10 +5,10 @@ import { BASE_API_URL, API_PATHS } from "../../../core/routes";
 const API = `${BASE_API_URL}${API_PATHS.GET_COLLECTION_OWNERS}`;
 
 const handler = async (req: NextApiRequest, res: NextApiResponse<any>) => {
-  const { contractAddress, chain }= req.query;
+  const { contractAddress, chain, dataSource }= req.query;
   try {
     if (contractAddress) {
-      const apiResponse = await axios.get(`${API}/${contractAddress}?chain=${chain}`);
+      const apiResponse = await axios.get(`${API}/${contractAddress}?chain=${chain}&dataSource=${dataSource}`);
       res.status(200).json(apiResponse.data)
     } else {
       res.status(409).json({ error: `Wrong contract address provided: ${contractAddress}` });

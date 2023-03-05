@@ -1,5 +1,6 @@
 export type chainTypes = "eth-mainnet" | "polygon-mainnet" | "arb-mainnet";
 export type statusTypes = "initiated" | "creating" | "error" | "ready" | "hidden" | "active";
+export type dataSourceTypes = "alchemy" | "reservoir";
 
 export interface IUserEns {
   avatar: string,
@@ -80,6 +81,7 @@ export interface ICollection {
   tags: ITag[],
   createdAt: string,
   updatedAt: string,
+  dataSource: dataSourceTypes,
 }
 
 export interface ICollectionApiData {

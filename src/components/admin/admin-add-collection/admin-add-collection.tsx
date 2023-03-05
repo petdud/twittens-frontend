@@ -2,7 +2,7 @@ import React, { FormEvent, useCallback, useState } from 'react';
 import axios from 'axios';
 import { IOpenSea } from '../../../core/opensea.interface';
 import { Modal } from '../../modal/modal';
-import { ICollection, chainTypes, IImage } from '../../../core/collection.interface';
+import { ICollection, chainTypes, IImage, dataSourceTypes } from '../../../core/collection.interface';
 import { PreviewCollectionContent } from './preview-collection-content';
 import { ICloudinary } from './upload-widget';
 import { LOCAL_API_PATHS, OPENSEA_API_ENDPOINT } from '../../../core/routes';
@@ -13,6 +13,7 @@ export const AdminAddCollection = () => {
   const [text, setText] = useState("");
   const [open, setOpen] = useState(false);
   const [chain, setChain] = useState<chainTypes>("eth-mainnet");
+  const [dataSource, setDataSource] = useState<dataSourceTypes>("alchemy");
   const [data, setData] = useState<AddCollectionProps>(null);
 
   const submit = useCallback(async () => {
@@ -56,7 +57,7 @@ export const AdminAddCollection = () => {
       const { data } = await axios.get(`${OPENSEA_API_ENDPOINT}collection/${text}`)
       if (data?.collection) {
         const {name, slug, description, external_url, image_url, primary_asset_contracts, stats, twitter_username, discord_url } = data.collection as IOpenSea;
-        const contractAddress = primary_asset_contracts[0].address
+        const contractAddress = primary_asset_contracts[0]?.address
 
         const dataToSubmit = {
           name,
@@ -91,6 +92,7 @@ export const AdminAddCollection = () => {
           onChange={onChange}
         />
         <ChainOptions chain={chain} setChain={setChain} />
+        <DataSourceOptions dataSource={dataSource} setDataSource={setDataSource} />
         <button
           type="submit"
           disabled={!text}
@@ -100,7 +102,7 @@ export const AdminAddCollection = () => {
         </button>
       </form>
       <Modal content={data &&
-         <PreviewCollectionContent onImageUploaded={onImageUploaded} contractAddress={data.address} data={data} chain={chain} />
+         <PreviewCollectionContent onImageUploaded={onImageUploaded} contractAddress={data.address} data={data} chain={chain} dataSource={dataSource} setData={setData} />
       } actionButtonContent='Add collection' actionCallback={submit} open={open} setOpen={setOpen} />
     </div>
   );
@@ -132,10 +134,53 @@ const ChainOptions = ({chain, setChain}: IChainOptions) => {
               <input
                 id={name}
                 onChange={onChange}
-                name="notification-method"
+                name="chain"
                 type="radio"
                 value={value}
                 defaultChecked={chain === value}
+                className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500 cursor-pointer"
+              />
+              <label htmlFor={name} className="ml-2 block text-sm font-medium text-gray-700 dark:text-neutral-200 cursor-pointer">
+                {name}
+              </label>
+            </div>
+          ))}
+        </div>
+      </fieldset>
+    </div>
+  )
+}
+
+
+const dataSourceOptions: {name: string, value: dataSourceTypes}[] = [
+  { name: 'Alchemy', value: "alchemy" },
+  { name: 'Reservior', value: "reservoir" }
+]
+
+interface IDataSourceOptionsProps {
+  dataSource: dataSourceTypes;
+  setDataSource: React.Dispatch<React.SetStateAction<dataSourceTypes>>;
+}
+
+const DataSourceOptions = ({dataSource, setDataSource}: IDataSourceOptionsProps) => {
+  const onChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => 
+  setDataSource(e.target.value as dataSourceTypes), [setDataSource]);
+
+  return (
+    <div className="flex items-center gap-3 mt-4">
+      <label className="text-base font-medium text-gray-900 dark:text-neutral-300">Data source: </label> 
+      <fieldset>
+        <legend className="sr-only">Data source types</legend>
+        <div className="space-y-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-5">
+          {dataSourceOptions.map(({name, value}) => (
+            <div key={name} className="flex items-center">
+              <input
+                id={name}
+                onChange={onChange}
+                name="data-source"
+                type="radio"
+                value={value}
+                defaultChecked={dataSource === value}
                 className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500 cursor-pointer"
               />
               <label htmlFor={name} className="ml-2 block text-sm font-medium text-gray-700 dark:text-neutral-200 cursor-pointer">
