@@ -12,32 +12,32 @@ const marketplaceProviders = [
   {
     name: "LooksRare",
     logo: `${PREFIX_IMAGE_PATH}/looksrare.png`,
-    getLink: (address: string, _slug: string) => `https://looksrare.org/collections/${address}`,
+    getLink: (address: string, _slug: string) => !address.includes(":") && `https://looksrare.org/collections/${address}`,
   },
   {
     name: "Rarible",
     logo: `${PREFIX_IMAGE_PATH}/rarible.png`,
-    getLink: (address: string, _slug: string) => `https://rarible.com/collection/${address}`,
+    getLink: (address: string, _slug: string) => !address.includes(":") && `https://rarible.com/collection/${address}`,
   },
   {
     name: "Coinbase",
     logo: `${PREFIX_IMAGE_PATH}/coinbase.png`,
-    getLink: (address: string, _slug: string) => `https://nft.coinbase.com/collection/ethereum/${address}`,
+    getLink: (address: string, _slug: string) => !address.includes(":") && `https://nft.coinbase.com/collection/ethereum/${address}`,
   },
   {
     name: "Sudoswap",
     logo: `${PREFIX_IMAGE_PATH}/sudoswap.png`,
-    getLink: (address: string, _slug: string) => `https://sudoswap.xyz/#/browse/buy/${address}`,
+    getLink: (address: string, _slug: string) => !address.includes(":") && `https://sudoswap.xyz/#/browse/buy/${address}`,
   },
   {
     name: "Blur",
     logo: `${PREFIX_IMAGE_PATH}/blur.png`,
-    getLink: (address: string, _slug: string) => `https://blur.io/collection/${address}`,
+    getLink: (address: string, _slug: string) => !address.includes(":") && `https://blur.io/collection/${address}`,
   },
   {
     name: "Gem",
     logo: `${PREFIX_IMAGE_PATH}/gem.png`,
-    getLink: (address: string, _slug: string) => `https://www.gem.xyz/collection/${address}`,
+    getLink: (address: string, _slug: string) => !address.includes(":") && `https://www.gem.xyz/collection/${address}`,
   },
   {
     name: "DappRadar",
@@ -136,17 +136,25 @@ export const MarketplaceDropdownOptions = ({ appearance, address, name, slug }: 
     </div>}
     appearance={appearance}
   >
-    {marketplaceProviders.map(({name, logo, getLink}) => (
-      <DropdownMenuItem key={name} 
-        name={
-          <div className="flex items-center gap-2">
-            <Image src={logo} alt={name} width={20} height={20} />
-            <span>{name}</span>
-          </div>
-        }
-        link={getLink(address, slug)}
-        isExternal={true}
-      />
-    ))}
+    {marketplaceProviders.map(({name, logo, getLink}) => {
+      const link = getLink(address, slug);
+
+      if (!link) {
+        return <></>;
+      }
+
+      return (
+        <DropdownMenuItem key={name} 
+          name={
+            <div className="flex items-center gap-2">
+              <Image src={logo} alt={name} width={20} height={20} />
+              <span>{name}</span>
+            </div>
+          }
+          link={link}
+          isExternal={true}
+        />
+      )
+    })}
   </Dropdown>
 )

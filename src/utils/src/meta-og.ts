@@ -214,6 +214,26 @@ export const META_OG  = {
     "name": "Chromie Squiggle",
     "ogImage": "https://twittens.xyz/op_meta/chromie.jpg"
   },
+  "fidenza-by-tyler-hobbs": { 
+    "name": "Fidenza",
+    "ogImage": "https://twittens.xyz/op_meta/fidenza.jpg"
+  },
+  "ringers-by-dmitri-cherniak": { 
+    "name": "Ringers",
+    "ogImage": "https://twittens.xyz/op_meta/ringers.jpg"
+  },
+  "gazers-by-matt-kane": { 
+    "name": "Gazers",
+    "ogImage": "https://twittens.xyz/op_meta/gazers.jpg"
+  },
+  "memories-of-qilin-by-emily-xie": { 
+    "name": "Memories of Qilin",
+    "ogImage": "https://twittens.xyz/op_meta/memories.jpg"
+  },
+  "the-harvest-by-per-kristian-stoveland": { 
+    "name": "The Harvest",
+    "ogImage": "https://twittens.xyz/op_meta/theharvest.jpg"
+  },
   "0xai-genesis": { 
     "name": "0xAI",
     "ogImage": "https://twittens.xyz/op_meta/0xai.jpg"
