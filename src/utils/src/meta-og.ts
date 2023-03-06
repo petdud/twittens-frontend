@@ -238,4 +238,24 @@ export const META_OG  = {
     "name": "0xAI",
     "ogImage": "https://twittens.xyz/op_meta/0xai.jpg"
   },
+  "genesis-by-claire-silver": { 
+    "name": "Genesis by Claire Silver",
+    "ogImage": "https://twittens.xyz/op_meta/genesis.jpg"
+  },
+  "podgans-by-pindar-van-arman": { 
+    "name": "podGANs",
+    "ogImage": "https://twittens.xyz/op_meta/podgans.jpg"
+  },
+  "brain-loops-by-gene-kogan": { 
+    "name": "Brain Loops",
+    "ogImage": "https://twittens.xyz/op_meta/brainloops.jpg"
+  },
+  "life-in-west-america-by-roope-rainisto": { 
+    "name": "Life In West America",
+    "ogImage": "https://twittens.xyz/op_meta/lifeinwestamerica.jpg"
+  },
+  "chimerical-stories-by-entangled-others-sofia-cresp": { 
+    "name": "Chimerical Stories",
+    "ogImage": "https://twittens.xyz/op_meta/chimerical_stories.jpg"
+  },
 }
