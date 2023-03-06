@@ -1,10 +1,12 @@
 import Image from "next/image";
 import { Collections } from '../components/collections/collections';
 import { Container } from '../components/container/container';
+import { FeaturedList } from "../components/featured-list/featured-list";
 import { MainViewHeader } from '../components/main-view-header/main-view-header';
 import { MostFollowedCollectionsList } from '../components/most-followed-lists/most-followed-collections-list';
 import { MostFollowedUsersList } from '../components/most-followed-lists/most-followed-users-list';
 import { SearchBar } from '../components/search-bar/search-bar';
+import { ICollection } from "../core/collection.interface";
 import { FEATURE_FLAGS } from "../core/feature-flags";
 import { useCollections } from '../hooks/use-collections';
 import { HeadPage } from '../layouts/head-page';
@@ -12,6 +14,35 @@ import { MainSlot } from '../layouts/main-slot';
 
 const SELECT_FROM_COLLECTIONS = "name,slug,image.url,ownersWithTwitterCount,isFeatured";
 const NUMBER_OF_COLLECTIONS_BEFORE_LEADERBOARD = 12;
+
+const NUMBER_OF_COLLECTIONS_BEFORE_FEATURED_SECTION = 12 + 12;
+
+const ARTBLOCKS_COLLECTIONS = [
+  "chromie-squiggle-by-snowfro", 
+  "fidenza-by-tyler-hobbs",
+  "ringers-by-dmitri-cherniak",
+  "gazers-by-matt-kane", 
+  "memories-of-qilin-by-emily-xie",
+  "the-harvest-by-per-kristian-stoveland"
+];
+
+const AI_COLLECTIONS = [
+  "genesis-by-claire-silver", 
+  "podgans-by-pindar-van-arman",
+  "brain-loops-by-gene-kogan",
+  "life-in-west-america-by-roope-rainisto", 
+  "chimerical-stories-by-entangled-others-sofia-cresp",
+  "0xai-genesis"
+];
+
+const ART_COLLECTIONS = [
+  "right-click-share", 
+  "nouns",
+  "proof-moonbirds",
+  "terraforms", 
+  "nessgraphics-open-editions",
+  "supernormalbyzipcy"
+];
 
 export default function Home() {
   const { data: collections, isLoading, error } = useCollections({
@@ -38,7 +69,7 @@ export default function Home() {
         <Container fullWidth={true} top="medium">
           <div className="pb-4">
             <div className="flex justify-between">
-              <MainViewHeader title={<div>Find your <span className="text-blue-400">Twitter</span> frens!</div>} />
+              <MainViewHeader title={<div>Follow your <span className="text-blue-400">Twitter</span> frens!</div>} />
               {collections.length > 0 && <div className="hidden text-right md:block mt-2 text-sm text-gray-500 dark:text-neutral-300">
                 Collections: <span className="font-semibold">{collections.length}</span>
                 {/* TODO: Sort it by list and not grid */}
@@ -56,7 +87,18 @@ export default function Home() {
               <div className="pb-4 mt-8">
                 <MainViewHeader title="More collections" />
               </div>
-              <Collections collections={collections.slice(NUMBER_OF_COLLECTIONS_BEFORE_LEADERBOARD, collections.length)} />
+              <Collections collections={collections.slice(NUMBER_OF_COLLECTIONS_BEFORE_LEADERBOARD, NUMBER_OF_COLLECTIONS_BEFORE_FEATURED_SECTION)} />
+            </> 
+            : null
+          }
+          <FeaturedSection collections={collections} isLoading={isLoading} />
+          {!isLoading && collections.length > NUMBER_OF_COLLECTIONS_BEFORE_FEATURED_SECTION
+            ?
+            <>
+              <div className="pb-4 mt-8">
+                {/* <MainViewHeader title="More collections" /> */}
+                <Collections collections={collections.slice(NUMBER_OF_COLLECTIONS_BEFORE_FEATURED_SECTION, collections.length)} />
+              </div>
             </> 
             : null
           }
@@ -64,6 +106,59 @@ export default function Home() {
       </MainSlot>
     </div>
   );
+}
+
+interface IFeaturedSectionProps {
+  collections: ICollection[];
+  isLoading: boolean;
+}
+
+const FeaturedSection = ({collections, isLoading}: IFeaturedSectionProps) => {
+  if (!FEATURE_FLAGS.ENABLE_FEATURE_SECTION_HOMEPAGE) {
+    return null;
+  }
+  
+  const artBlocks = collections.filter((collection) => ARTBLOCKS_COLLECTIONS.includes(collection.slug));
+  const artBlocksItems = artBlocks.slice(0, 5).map(collection => ({
+      image: collection.image?.url,
+      name: collection.name,
+      slug: collection.slug,
+      stat: collection.ownersWithTwitterCount
+  }));
+
+  const ai = collections.filter((collection) => AI_COLLECTIONS.includes(collection.slug));
+  const aiItems = ai.slice(0, 5).map(collection => ({
+      image: collection.image?.url,
+      name: collection.name,
+      slug: collection.slug,
+      stat: collection.ownersWithTwitterCount
+  }));
+  
+  const featured = collections.filter((collection) => ART_COLLECTIONS.includes(collection.slug));
+  const featuredItems = featured.slice(0, 5).map(collection => ({
+      image: collection.image?.url,
+      name: collection.name,
+      slug: collection.slug,
+      stat: collection.ownersWithTwitterCount
+  }));
+  
+
+  return (
+    <div className="mt-12">
+      <div>
+        <div className="flex items-center gap-2 pb-4">
+          <MainViewHeader title="Featured Section" />
+        </div>
+      </div>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <FeaturedList isLoading={isLoading} title="ArtBlocks" items={artBlocksItems} />
+        <FeaturedList isLoading={isLoading} title="BrainDrops + AI" items={aiItems} />
+        <div className="hidden lg:block">
+          <FeaturedList isLoading={isLoading} title="Others" items={featuredItems} />
+        </div>
+      </div>
+    </div>
+  )
 }
 
 const LeaderboardSection = () => {
