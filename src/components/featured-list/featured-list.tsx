@@ -38,7 +38,7 @@ export const FeaturedList = ({items, isLoading, title}: IFeatureList) => {
         </div>
         <div className="flow-root">
           <ul role="list" className="my-2 divide-y divide-gray-300 dark:divide-gray-600">
-            {items.slice(0, 5).map(({image, name, slug, stat}) => (
+            {items.map(({image, name, slug, stat}) => (
               <FeaturedListItem 
                 key={slug}
                 slug={slug}

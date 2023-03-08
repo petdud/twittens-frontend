@@ -16,6 +16,7 @@ const SELECT_FROM_COLLECTIONS = "name,slug,image.url,ownersWithTwitterCount,isFe
 const NUMBER_OF_COLLECTIONS_BEFORE_LEADERBOARD = 12;
 
 const NUMBER_OF_COLLECTIONS_BEFORE_FEATURED_SECTION = 12 + 12;
+const MAX_FEATURED_SECTION_LIST_ITEMS = 6;
 
 const ARTBLOCKS_COLLECTIONS = [
   "chromie-squiggle-by-snowfro", 
@@ -119,7 +120,7 @@ const FeaturedSection = ({collections, isLoading}: IFeaturedSectionProps) => {
   }
   
   const artBlocks = collections.filter((collection) => ARTBLOCKS_COLLECTIONS.includes(collection.slug));
-  const artBlocksItems = artBlocks.slice(0, 5).map(collection => ({
+  const artBlocksItems = artBlocks.slice(0, MAX_FEATURED_SECTION_LIST_ITEMS).map(collection => ({
       image: collection.image?.url,
       name: collection.name,
       slug: collection.slug,
@@ -127,7 +128,7 @@ const FeaturedSection = ({collections, isLoading}: IFeaturedSectionProps) => {
   }));
 
   const ai = collections.filter((collection) => AI_COLLECTIONS.includes(collection.slug));
-  const aiItems = ai.slice(0, 5).map(collection => ({
+  const aiItems = ai.slice(0, MAX_FEATURED_SECTION_LIST_ITEMS).map(collection => ({
       image: collection.image?.url,
       name: collection.name,
       slug: collection.slug,
@@ -135,7 +136,7 @@ const FeaturedSection = ({collections, isLoading}: IFeaturedSectionProps) => {
   }));
   
   const featured = collections.filter((collection) => ART_COLLECTIONS.includes(collection.slug));
-  const featuredItems = featured.slice(0, 6).map(collection => ({
+  const featuredItems = featured.slice(0, MAX_FEATURED_SECTION_LIST_ITEMS).map(collection => ({
       image: collection.image?.url,
       name: collection.name,
       slug: collection.slug,
