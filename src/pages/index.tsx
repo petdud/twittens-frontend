@@ -69,7 +69,7 @@ export default function Home() {
         <Container fullWidth={true} top="medium">
           <div className="pb-4">
             <div className="flex justify-between">
-              <MainViewHeader title={<div>Follow your <span className="text-blue-400">Twitter</span> frens!</div>} />
+              <MainViewHeader title={<div>Find new <span className="text-blue-400">Twitter</span> frens!</div>} />
               {collections.length > 0 && <div className="hidden text-right md:block mt-2 text-sm text-gray-500 dark:text-neutral-300">
                 Collections: <span className="font-semibold">{collections.length}</span>
                 {/* TODO: Sort it by list and not grid */}
@@ -96,9 +96,9 @@ export default function Home() {
             ?
             <>
               <div className="pb-4 mt-8">
-                {/* <MainViewHeader title="More collections" /> */}
-                <Collections collections={collections.slice(NUMBER_OF_COLLECTIONS_BEFORE_FEATURED_SECTION, collections.length)} />
+                <MainViewHeader title="More collections" />
               </div>
+              <Collections collections={collections.slice(NUMBER_OF_COLLECTIONS_BEFORE_FEATURED_SECTION, collections.length)} />
             </> 
             : null
           }
