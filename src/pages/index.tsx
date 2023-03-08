@@ -38,10 +38,10 @@ const AI_COLLECTIONS = [
 const ART_COLLECTIONS = [
   "right-click-share", 
   "nouns",
-  "proof-moonbirds",
-  "terraforms", 
-  "nessgraphics-open-editions",
-  "supernormalbyzipcy"
+  "terraforms",
+  "proof-moonbirds", 
+  "world-of-women-nft",
+  "thememes6529"
 ];
 
 export default function Home() {
@@ -135,7 +135,7 @@ const FeaturedSection = ({collections, isLoading}: IFeaturedSectionProps) => {
   }));
   
   const featured = collections.filter((collection) => ART_COLLECTIONS.includes(collection.slug));
-  const featuredItems = featured.slice(0, 5).map(collection => ({
+  const featuredItems = featured.slice(0, 6).map(collection => ({
       image: collection.image?.url,
       name: collection.name,
       slug: collection.slug,
@@ -152,7 +152,7 @@ const FeaturedSection = ({collections, isLoading}: IFeaturedSectionProps) => {
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
         <FeaturedList isLoading={isLoading} title="ArtBlocks" items={artBlocksItems} />
-        <FeaturedList isLoading={isLoading} title="BrainDrops + AI" items={aiItems} />
+        <FeaturedList isLoading={isLoading} title="AI Art" items={aiItems} />
         <div className="hidden lg:block">
           <FeaturedList isLoading={isLoading} title="Others" items={featuredItems} />
         </div>
