@@ -258,4 +258,8 @@ export const META_OG  = {
     "name": "Chimerical Stories",
     "ogImage": "https://twittens.xyz/op_meta/chimerical_stories.jpg"
   },
+  "cryptoarte": { 
+    "name": "CryptoArte",
+    "ogImage": "https://twittens.xyz/op_meta/cryptoarte.jpg"
+  },
 }
