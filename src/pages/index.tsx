@@ -14,6 +14,7 @@ import { useCollections } from '../hooks/use-collections';
 import { HeadPage } from '../layouts/head-page';
 import { MainSlot } from '../layouts/main-slot';
 
+const BADGE_ID = "Dk4MTI3Njc5MzI2N";
 const SELECT_FROM_COLLECTIONS = "name,slug,image.url,ownersWithTwitterCount,isFeatured";
 const NUMBER_OF_COLLECTIONS_BEFORE_LEADERBOARD = 12;
 
@@ -212,7 +213,6 @@ const FooterAlchemyLogo = () => {
   let ALCHEMY_URL = `https://alchemyapi.io/?r=badge:${BADGE_ID}`;
   const ALCHEMY_ANALYTICS_URL = `https://analytics.alchemyapi.io/analytics`;
   const imageUrl = theme === "dark" ? "https://static.alchemyapi.io/images/marketing/badge.png" : "https://static.alchemyapi.io/images/marketing/badgeLight.png";
-  const BADGE_ID = "Dk4MTI3Njc5MzI2N";
 
   const logBadgeClick = () => {
     fetch(`${ALCHEMY_ANALYTICS_URL}/badge-click`, {
