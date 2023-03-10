@@ -1,3 +1,4 @@
+import React from "react";
 import Image from "next/image";
 import { Collections } from '../components/collections/collections';
 import { Container } from '../components/container/container';
@@ -8,6 +9,7 @@ import { MostFollowedUsersList } from '../components/most-followed-lists/most-fo
 import { SearchBar } from '../components/search-bar/search-bar';
 import { ICollection } from "../core/collection.interface";
 import { FEATURE_FLAGS } from "../core/feature-flags";
+import { useThemeContext } from "../core/theme-provider";
 import { useCollections } from '../hooks/use-collections';
 import { HeadPage } from '../layouts/head-page';
 import { MainSlot } from '../layouts/main-slot';
@@ -104,6 +106,7 @@ export default function Home() {
             : null
           }
         </Container>
+        <Footer/>
       </MainSlot>
     </div>
   );
@@ -186,5 +189,85 @@ const LeaderboardSection = () => {
         <MostFollowedCollectionsList />
       </div>
     </div>
+  )
+}
+
+const Footer = () => {
+  const currentYear = new Date().getFullYear();
+
+  return (
+    <footer>
+      <div className="mx-auto px-16 pb-6">
+        <div className="flex justify-between items-center border-t border-gray-200 dark:border-gray-700 pt-6">
+          <p className="text-xs leading-5 text-gray-500">&copy; {currentYear} Twittens</p>
+          <FooterAlchemyLogo />
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+const FooterAlchemyLogo = () => {
+  const { theme } = useThemeContext();
+  let ALCHEMY_URL = `https://alchemyapi.io/?r=badge:${BADGE_ID}`;
+  const ALCHEMY_ANALYTICS_URL = `https://analytics.alchemyapi.io/analytics`;
+  const imageUrl = theme === "dark" ? "https://static.alchemyapi.io/images/marketing/badge.png" : "https://static.alchemyapi.io/images/marketing/badgeLight.png";
+  const BADGE_ID = "Dk4MTI3Njc5MzI2N";
+
+  const logBadgeClick = () => {
+    fetch(`${ALCHEMY_ANALYTICS_URL}/badge-click`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        badge_id: BADGE_ID,
+      }),
+    });
+    window.open(ALCHEMY_URL, '_blank')?.focus();
+  }
+
+  const logBadgeView = () => {
+    fetch(`${ALCHEMY_ANALYTICS_URL}/badge-view`, {
+    method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        badge_id: BADGE_ID,
+      }),
+    });
+  }
+
+  const isBadgeInViewpoint = (bounding: any) => {
+    return (
+      bounding.top >= 0
+      && bounding.left >= 0
+      && bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight)
+      && bounding.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+  }
+
+  React.useEffect(() => {
+    var intervalId = setInterval(() => {
+      const badge = document.getElementById('badge-button');
+      if (badge && isBadgeInViewpoint(badge.getBoundingClientRect())) {
+        logBadgeView();
+        clearInterval(intervalId);
+      }
+    }, 2000);
+  });
+
+  return (
+    <a href="#">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        onClick={logBadgeClick}
+        id="badge-button"
+        style={{width:"180px", height: "auto"}}
+        src={imageUrl}
+        alt="Alchemy Supercharged" 
+      />
+    </a>
   )
 }
