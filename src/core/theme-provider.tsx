@@ -19,11 +19,11 @@ ThemeContext.displayName = 'ThemeContext';
 export const ThemeProvider = ({ children }: IThemeProviderProps) => {
   const [theme, setTheme] = useState<string>("light");
   
-  const changeTheme = React.useCallback((theme: string) => {
+  const changeTheme = (theme: string) => {
     setTheme(theme);
     localStorage.theme = theme;
     updateDocumentClass(theme);
-  }, []);
+  };
 
   useEffect(() => {
     const isDarkTheme = localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);

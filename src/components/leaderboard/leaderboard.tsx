@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import Image from "next/image";
 import { FiUsers } from 'react-icons/fi';
 import { IoIosPhotos } from 'react-icons/io';
@@ -12,10 +12,10 @@ const LEADERBOARD_TITLE_ID = "leaderboard-title-panel";
 export const Leaderboard = () => {
   const router = useRouter()
   const [tab, setTab] = useState<"Users" | "Collections">();
-  const onTabSelect = useCallback((value: string) => {
+  const onTabSelect = (value: string) => {
     window.location.hash = value.toLowerCase();
     setTab(value as "Users" | "Collections");
-  }, []);
+  };
 
   React.useEffect(() => {
     if (window.location.hash.toLowerCase().includes("collections")) {

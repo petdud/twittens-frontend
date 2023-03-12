@@ -14,17 +14,17 @@ export const MostFollowedUsersList = () => {
   const [selectedUser, setSelectedUser] = React.useState<IUser | undefined>(undefined);
   const [openProfile, setOpenProfile] = React.useState(false);
 
-  const onClick = React.useCallback((address: string) => {
+  const onClick = (address: string) => {
     const user = users.find(user => user.address === address);
     if (user) {
       setSelectedUser(user);
       setOpenProfile(true);
     }
-  }, [users]);
+  };
 
-  const onClose = React.useCallback(() => {
+  const onClose = () => {
     setOpenProfile(false);
-  }, []);
+  };
 
   return (
     <MostFollowedList

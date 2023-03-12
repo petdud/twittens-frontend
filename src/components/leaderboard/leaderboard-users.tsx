@@ -16,13 +16,13 @@ export const LeaderboardUsers = () => {
   const { data: collections } = useCollections({select: "slug,name,image.thumbnailUrl"});
   const [selectedUser, setSelectedUser] = React.useState<IUser>();
 
-  const onClose = React.useCallback(() => {
+  const onClose = () => {
     setSelectedUser(undefined);
-  }, []);
+  };
 
-  const onUserClick = React.useCallback((user: IUser) => {
+  const onUserClick = (user: IUser) => {
     setSelectedUser(user);
-  }, []);
+  };
 
   if (isLoading) {
     return <div className="mt-6"><Spinner /></div>;
@@ -60,7 +60,7 @@ interface ILeaderboardRow {
 const LeaderboardRow = ({user, position, onClick, collections}: ILeaderboardRow) => {
   const {address, name, twitter, activeCommunities} = user;
 
-  const onUserClick = React.useCallback(() => onClick(user), [user, onClick]);
+  const onUserClick = () => onClick(user);
 
   const communities = React.useMemo(() => {
     let communities: IAvatarGroupItemProps[] = [];

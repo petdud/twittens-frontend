@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
 export interface ICloudinary {
   access_mode: string,
@@ -43,10 +43,10 @@ export const UploadWidget = ({folder, onSuccess}: IUploadWidgetProps) => {
   const cloudinaryRef = useRef();
   const widgetRef = useRef();
 
-  const openWidget = useCallback((e: React.MouseEvent) => {
+  const openWidget = (e: React.MouseEvent) => {
     e.preventDefault();
     (widgetRef.current as any)?.open();
-  }, []);
+  };
 
   useEffect(() => {
     cloudinaryRef.current = (window as any).cloudinary;

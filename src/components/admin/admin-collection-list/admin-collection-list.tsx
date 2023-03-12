@@ -1,4 +1,4 @@
-import React, { Fragment, useCallback, useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import { statusTypes } from '../../../core/collection.interface';
 import { useCollections } from '../../../hooks/use-collections';
 import { Listbox, Transition } from '@headlessui/react'
@@ -41,9 +41,9 @@ interface IAdminCollectionItemProps {
 
 const AdminCollectionItem = ({imageUrl, slug, name, status}: IAdminCollectionItemProps) => {
 
-  const updateCollection = useCallback(async () => {
+  const updateCollection = async () => {
     const response = await axios.patch(LOCAL_API_PATHS.UPDATE_COLLECTION(slug));
-  }, [slug]);
+  };
 
   return (
     <li key={slug} className=" dark:text-white flex justify-between hover:bg-gray-200 hover:dark:bg-gray-800">
@@ -73,14 +73,14 @@ const types: statusTypes[] = ["ready", "hidden", "active"];
 
 const StatusDropdown = ({slug, status}: {slug: string, status: statusTypes}) => {
   const [selectedStatus, setSelectedStatus] = useState(status);
-  const onStatusChange = useCallback(async (status: statusTypes) => {
+  const onStatusChange = async (status: statusTypes) => {
     if (status !== selectedStatus) {
       const response = await axios.get(`${LOCAL_API_PATHS.UPDATE_COLLECTION_STATUS}?status=${status}&slug=${slug}`);
       if (response.status === 200 || response.status === 201) {
         setSelectedStatus(status);
       }
     }
-  }, [selectedStatus, setSelectedStatus, slug]);
+  };
 
   return (
     <Listbox value={status} onChange={onStatusChange}>

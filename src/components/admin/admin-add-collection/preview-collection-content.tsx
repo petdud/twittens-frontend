@@ -1,5 +1,5 @@
+import React, { useCallback } from "react";
 import { CheckIcon } from "@heroicons/react/20/solid";
-import React from "react";
 import { chainTypes, dataSourceTypes } from "../../../core/collection.interface";
 import { CLOUDINARY_COLLECTION_FOLDER } from "../../../core/routes";
 import { useGetCollectionOwners } from "../../../hooks/use-get-collection-owners";
@@ -20,7 +20,7 @@ export const PreviewCollectionContent = ({contractAddress, chain, data, dataSour
   const [customContractAddress, setCustomContractAddress] = React.useState<string>("");
   const { data: owners, isLoading } = useGetCollectionOwners(customContractAddress || contractAddress, chain, dataSource);
 
-  const onContractAddressChange = React.useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+  const onContractAddressChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setCustomContractAddress(e.target.value);
     data && setData({ ...data, address: e.target.value });
   }, [data, setData]);

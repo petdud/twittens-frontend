@@ -40,15 +40,11 @@ export const TabMenuButtonsProvider = ({ children, defaultSelectedValue, onTabSe
     setSelectedTab(value);
   }, [onTabSelect]);
 
-  const onRegister = React.useCallback((data: TabRegisterData) => {
-    registeredTabs.current[data.value] = data;
-  }, [registeredTabs]);
+  const onRegister = (data: TabRegisterData) => registeredTabs.current[data.value] = data;
 
-  const onUnregister = React.useCallback((data: TabRegisterData) => {
-    delete registeredTabs.current[data.value];
-  }, [registeredTabs]);
+  const onUnregister = (data: TabRegisterData) => delete registeredTabs.current[data.value];
 
-  const getRegisteredTabs = React.useCallback(() => registeredTabs.current, []);
+  const getRegisteredTabs = () => registeredTabs.current;
 
   React.useEffect(() => {
     if (defaultSelectedValue !== selectedTab) {

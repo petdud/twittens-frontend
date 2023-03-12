@@ -17,9 +17,9 @@ interface IFeatureList {
 export const FeaturedList = ({items, isLoading, title}: IFeatureList) => {
   const router = useRouter();
 
-  const onClick = React.useCallback((slug: string) => {
+  const onClick = (slug: string) => {
     router.push(`/collections/${slug}`);
-  }, [router]);
+  };
 
   if (isLoading) {
     return <FeauredListSkeleton />

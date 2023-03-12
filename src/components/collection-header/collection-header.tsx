@@ -114,9 +114,9 @@ const BreadCrumbNavigation = () => {
   const historyManager = useHistory();
   const canGoBack = historyManager.canGoBack();
   
-  const onNavigationClick = React.useCallback(() => (
+  const onNavigationClick = () => (
     canGoBack ? router.back() : router.push('/')
-  ), [canGoBack, router]);
+  );
 
   return (
     <>
@@ -149,9 +149,9 @@ const CollectionTitle = ({name}: ICollectionTitleProps) => (
 const CollectionDescription = ({description} : {description: string}) => {
   const [seeMore, setSeeMore] = React.useState(false);
 
-  const onClick = React.useCallback(() => {
+  const onClick = () => {
     setSeeMore(prevValue => !prevValue);
-  }, []);
+  };
 
   return (
     <div className={classNames(

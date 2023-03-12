@@ -19,17 +19,17 @@ export const CollectionViewContent = ({slug}: {slug: string}) => {
   const [selectedUser, setSelectedUser] = React.useState<IUser | undefined>(undefined);
   const [openProfile, setOpenProfile] = React.useState(false);
 
-  const onUserClick = React.useCallback((address: string) => {
+  const onUserClick = (address: string) => {
     const user = data?.users.find(user => user.address === address);
     if (user) {
       setSelectedUser(user);
       setOpenProfile(true);
     }
-  }, [data]);
+  };
 
-  const onClose = React.useCallback(() => {
+  const onClose = () => {
     setOpenProfile(false);
-  }, []);
+  };
 
   if (error) {
     return (

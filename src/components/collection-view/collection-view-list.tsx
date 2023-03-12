@@ -104,10 +104,10 @@ export const CollectionViewListItem = ({
   onClick
 }: ICollectionViewListItemProps) => {
 
-  const handleClick = React.useCallback((e: React.MouseEvent) => {
+  const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
     onClick?.(id);
-  }, [id, onClick]);
+  };
 
   return (
     <li>
