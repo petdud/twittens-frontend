@@ -262,4 +262,8 @@ export const META_OG  = {
     "name": "CryptoArte",
     "ogImage": "https://twittens.xyz/op_meta/cryptoarte.jpg"
   },
+  "nowpass": { 
+    "name": "Now Pass",
+    "ogImage": "https://twittens.xyz/op_meta/nowpass.jpg"
+  },
 }
