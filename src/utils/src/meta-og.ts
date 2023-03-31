@@ -266,4 +266,24 @@ export const META_OG  = {
     "name": "Now Pass",
     "ogImage": "https://twittens.xyz/op_meta/nowpass.jpg"
   },
+  "y00ts": { 
+    "name": "Y00ts",
+    "ogImage": "https://twittens.xyz/op_meta/y00ts.jpg"
+  },
+  "degods": { 
+    "name": "DeGods",
+    "ogImage": "https://twittens.xyz/op_meta/degods.jpg"
+  },
+  "the-devs-nft": { 
+    "name": "The Dev's NFT",
+    "ogImage": "https://twittens.xyz/op_meta/thedev.jpg"
+  },
+    "opepen-edition": { 
+    "name": "Opepen Edition",
+    "ogImage": "https://twittens.xyz/op_meta/opepen.jpg"
+  },
+  "friendship-bracelets-by-alexis-andre": { 
+    "name": "Friendship Bracelets",
+    "ogImage": "https://twittens.xyz/op_meta/friendship-bracelets.jpg"
+  },
 }
