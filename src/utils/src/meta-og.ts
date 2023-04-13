@@ -286,4 +286,8 @@ export const META_OG  = {
     "name": "Friendship Bracelets",
     "ogImage": "https://twittens.xyz/op_meta/friendship-bracelets.jpg"
   },
+  "bytegans": { 
+    "name": "byteGANs",
+    "ogImage": ""
+  },
 }
