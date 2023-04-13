@@ -19,7 +19,7 @@ const SELECT_FROM_COLLECTIONS = "name,slug,image.url,ownersWithTwitterCount,isFe
 const NUMBER_OF_COLLECTIONS_BEFORE_LEADERBOARD = 12;
 
 const NUMBER_OF_COLLECTIONS_BEFORE_FEATURED_SECTION = 12 + 12;
-const MAX_FEATURED_SECTION_LIST_ITEMS = 6;
+const MAX_FEATURED_SECTION_LIST_ITEMS = 7;
 
 const ARTBLOCKS_COLLECTIONS = [
   "chromie-squiggle-by-snowfro", 
@@ -27,7 +27,8 @@ const ARTBLOCKS_COLLECTIONS = [
   "ringers-by-dmitri-cherniak",
   "gazers-by-matt-kane", 
   "memories-of-qilin-by-emily-xie",
-  "the-harvest-by-per-kristian-stoveland"
+  "the-harvest-by-per-kristian-stoveland",
+  "friendship-bracelets-by-alexis-andre"
 ];
 
 const AI_COLLECTIONS = [
@@ -36,7 +37,8 @@ const AI_COLLECTIONS = [
   "brain-loops-by-gene-kogan",
   "life-in-west-america-by-roope-rainisto", 
   "chimerical-stories-by-entangled-others-sofia-cresp",
-  "0xai-genesis"
+  "0xai-genesis",
+  "bytegans"
 ];
 
 const ART_COLLECTIONS = [
@@ -45,7 +47,8 @@ const ART_COLLECTIONS = [
   "terraforms",
   "proof-moonbirds", 
   "world-of-women-nft",
-  "thememes6529"
+  "thememes6529",
+  "degods"
 ];
 
 export default function Home() {
