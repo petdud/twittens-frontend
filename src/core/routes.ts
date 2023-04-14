@@ -15,6 +15,7 @@ export const LOCAL_API_PATHS = {
   GET_ACTIVE_USERS_FROM_COLLECTION: (slug: string) => `/api/collections/${slug}/active-users`,
   GET_RECENT_USERS_FROM_COLLECTION: (slug: string) => `/api/collections/${slug}/recent-users`,
   GET_TAGS: () => `/api/tags`,
+  GET_MULTI_COLLECTION_ACTIVE_USERS: () => `/api/collections/multi-community-active-users`, // provide multiple slugs separated by comma
 }
 
 // paths outside of this application (api.twittens.xyz)
@@ -29,6 +30,7 @@ export const API_PATHS = {
   GET_ACTIVE_USERS_FROM_COLLECTION: (slug: string) => `collections/${slug}/active-users`,
   GET_RECENT_USERS_FROM_COLLECTION: (slug: string) => `collections/${slug}/recent-users`,
   GET_TAGS: () => `tags`,
+  GET_MULTI_COLLECTION_ACTIVE_USERS: () => `collections/multi-community-active-users`, // provide multiple slugs separated by comma
 }
 
 export const ROUTES = {
