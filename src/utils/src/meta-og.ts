@@ -298,4 +298,24 @@ export const META_OG  = {
     "name": "The Captainz",
     "ogImage": ""
   },
+  "lilpudgys": { 
+    "name": "Lil Pudgys",
+    "ogImage": ""
+  },
+  "anticyclone-by-william-mapan": { 
+    "name": "Anticyclone by William Mapan",
+    "ogImage": ""
+  },
+  "fontana-by-harvey-rayner-patterndotco": { 
+    "name": "Fontana by Harvey Rayner",
+    "ogImage": ""
+  },
+  "qql-mint-pass": { 
+    "name": "QQL Mint Pass",
+    "ogImage": ""
+  },
+  "elemental-creation-the-artistic-journey-by-charles": { 
+    "name": "Elemental Creation : The Artistic Journey",
+    "ogImage": ""
+  },
 }
