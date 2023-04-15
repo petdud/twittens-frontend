@@ -14,6 +14,9 @@ import { CollectionViewList, CollectionViewListItem, CollectionViewListSkeleton 
 import { formatDistance } from 'date-fns'
 import { UserListHeader } from "../user-list/user-list-header";
 import { DEFAULT_SORTING_TYPE } from "../user-list/user-list-sorting-helpers";
+import { ICommonCollections, getCommonCollections } from "./collection-view-helpers";
+
+const ENABLE_COMMON_COLLECTION_FOR_MIN_USERS = 1;
 
 export const CollectionViewContent = ({slug}: {slug: string}) => {
   const { data, isLoading, error } = useActiveUsersFromCommunity(slug);
@@ -24,6 +27,7 @@ export const CollectionViewContent = ({slug}: {slug: string}) => {
 
   const dataUsers = React.useMemo(() => {
     if (data && !isLoading) {
+      
       return DEFAULT_SORTING_TYPE.callback({users: data.users});
     }
     return []
@@ -48,6 +52,21 @@ export const CollectionViewContent = ({slug}: {slug: string}) => {
     setOpenProfile(false);
   };
 
+  const onFilter = (filter: string[]) => {
+    if (filter.length === 0) {
+      setSortedUsers(dataUsers);
+    } else {
+      const filteredUsers = dataUsers.filter(user => {
+        return filter.every(slug => {
+          return user.activeCommunities.some(community => community.slug === slug);
+        });
+      });
+      setSortedUsers(filteredUsers);
+    }
+  }
+
+  const commonCollections = React.useMemo(() => getCommonCollections(slug, dataUsers), [dataUsers, slug]);
+
   if (error) {
     return (
       <div className="py-6">
@@ -65,12 +84,14 @@ export const CollectionViewContent = ({slug}: {slug: string}) => {
   }
 
   return (
-    <div className="flex pt-8">
+    <div className="flex pt-4">
       <div className={classNames(
         "w-full",
         FEATURE_FLAGS.ENABLE_SIDEBAR ? "lg:w-8/12" : ""
     )}>
-        {/* <UserListHeader onSort={sortUsers} /> */}
+        {!isLoading && dataUsers.length > 0 && 
+          <UserListHeader onSort={sortUsers} onFilter={onFilter} commonCollections={commonCollections} />
+        }
         <UserList 
           onUserClick={onUserClick}
           collections={collections}
@@ -86,6 +107,7 @@ export const CollectionViewContent = ({slug}: {slug: string}) => {
             <MostFollowedInCollection users={[...dataUsers]} isLoading={isLoading} error={false} slug={slug} onUserClick={onUserClick} />
             {!isLoading && <MostActiveList users={[...dataUsers]} error={false} slug={slug} onUserClick={onUserClick} />}
             {!isLoading && <RecentUserList slug={slug} onUserClick={onUserClick} />}
+            {!isLoading && dataUsers.length >= ENABLE_COMMON_COLLECTION_FOR_MIN_USERS && <CommonCollectionsList collections={commonCollections} />}
           </div>
         </div>
       }
@@ -266,6 +288,49 @@ export const RecentUserList = ({onUserClick, slug}: IRecentUserListProps) => {
           />
         )
       })}
+    </CollectionViewList>
+  )
+};
+
+interface ICommonCollectionsListProps {
+  collections: ICommonCollections[];
+}
+
+export const CommonCollectionsList = ({collections}: ICommonCollectionsListProps) => {
+  if (!collections) {
+    return null;
+  }
+
+  const maxCollections = collections.length < 5 ? collections.length : 5;
+
+  const onClick = (slug: string) => {
+    window.open(`/collections/${slug}`, "_blank");
+  }
+
+  return (
+    <CollectionViewList
+      title={
+        <div className="flex items-center gap-3">
+          Mutual collections
+        </div>
+      }
+      asideLabel="Owned by"
+    >
+      {collections.slice(0, maxCollections).map(({slug, count, imageUrl, name}) => (
+        <CollectionViewListItem
+          key={slug}
+          id={slug}
+          imageSrc={imageUrl}
+          imageAlt={name}
+          onClick={() => onClick(slug)}
+          title={
+            <div className="flex items-center font-light">
+              {name}
+            </div>
+          }      
+          asideContent={count}
+        />   
+      ))}
     </CollectionViewList>
   )
 };

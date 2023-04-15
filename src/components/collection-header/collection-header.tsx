@@ -141,7 +141,7 @@ interface ICollectionTitleProps {
 }
 
 const CollectionTitle = ({name}: ICollectionTitleProps) => (
-  <h1 className="inline-block w-full text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 dark:text-neutral-200">
+  <h1 className="inline-block w-full text-2xl sm:text-2xl lg:text-3xl font-bold text-gray-900 dark:text-neutral-200">
     {name}<span><span className="font-normal">&nbsp;on</span> <span className="text-blue-400">Twitter</span>!</span>
   </h1>
 )
@@ -196,7 +196,7 @@ const CollectionImage = ({imageUrl, altName}: {imageUrl: string, altName: string
   <>
     {/* eslint-disable-next-line @next/next/no-img-element */}
     <img
-      className={`rounded-full sm:h-24 sm:w-24 md:h-28 md:w-28 h-10 w-10 mr-6 sm:mr-0`}
+      className={`rounded-full sm:h-24 sm:w-24 md:h-28 md:w-28 h-12 w-12 mr-6 sm:mr-0`}
       src={imageUrl}
       alt={altName}
       aria-hidden="true"

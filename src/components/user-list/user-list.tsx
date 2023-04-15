@@ -22,6 +22,10 @@ export const UserList = ({
     return <UserListSkeleton />
   }
 
+  if (users.length === 0) {
+    return <h1 className="text-black text-xl dark:text-white">No users found</h1>;
+  }
+
   return (
     <ul role="list" className="space-y-8">
       {users.map(({twitter, address, name, activeCommunities}) => {

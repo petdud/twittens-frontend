@@ -90,7 +90,7 @@ interface ICollectionViewListItemProps {
   imageAlt: string | undefined;
   title: string | JSX.Element;
   subtitle?: string | undefined;
-  asideContent: string | JSX.Element;
+  asideContent: string | number | JSX.Element;
   onClick?: (id: string) => void;
 }
 

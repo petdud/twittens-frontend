@@ -290,4 +290,12 @@ export const META_OG  = {
     "name": "byteGANs",
     "ogImage": ""
   },
+  "nakamigos": { 
+    "name": "Nakamigos",
+    "ogImage": ""
+  },
+  "thecaptainz": { 
+    "name": "The Captainz",
+    "ogImage": ""
+  },
 }

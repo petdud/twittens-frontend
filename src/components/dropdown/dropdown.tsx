@@ -3,6 +3,7 @@ import { Menu, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { classNames } from '../../utils'
 import { FiExternalLink } from 'react-icons/fi';
+import { AiOutlineCheck } from 'react-icons/ai';
 
 export type AppearanceType = "button" | "transparent";
 
@@ -69,6 +70,32 @@ export const DropdownMenuItem = ({name, link, isExternal}: IDropdownMenuItemProp
         </div>
 
       </a>
+    )}
+  </Menu.Item>
+)
+
+interface IDropdownMenuItemClickProps {
+  name: JSX.Element | string;
+  isSelected: boolean;
+  onClick: () => void;
+}
+
+export const DropdownMenuItemClick = ({name, onClick, isSelected}: IDropdownMenuItemClickProps) => (
+  <Menu.Item>
+    {({ active }) => (
+      <button
+        className={classNames(
+          active ? 'bg-indigo-600 text-white font-semibold' : 'text-gray-900 dark:text-neutral-200',
+          'block px-4 py-2 text-sm w-full'
+        )}
+        onClick={onClick}
+      >
+        <div className="flex items-center">
+          <span>{name}</span>
+          {isSelected  && <AiOutlineCheck className={classNames("ml-auto text-gray-600 dark:text-gray-200")} />}
+        </div>
+
+      </button>
     )}
   </Menu.Item>
 )
