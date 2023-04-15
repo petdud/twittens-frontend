@@ -12,20 +12,37 @@ import { UserList } from "../user-list/user-list";
 import { UserPreviewModal } from "../user-preview-modal/user-preview-modal";
 import { CollectionViewList, CollectionViewListItem, CollectionViewListSkeleton } from "./collection-view-list";
 import { formatDistance } from 'date-fns'
+import { UserListHeader } from "../user-list/user-list-header";
+import { DEFAULT_SORTING_TYPE } from "../user-list/user-list-sorting-helpers";
 
 export const CollectionViewContent = ({slug}: {slug: string}) => {
   const { data, isLoading, error } = useActiveUsersFromCommunity(slug);
   const { data: collections } = useCollections({select: "slug,name,image.thumbnailUrl"});
   const [selectedUser, setSelectedUser] = React.useState<IUser | undefined>(undefined);
   const [openProfile, setOpenProfile] = React.useState(false);
+  const [sortedUsers, setSortedUsers] = React.useState<IUser[] | undefined>(undefined);
 
-  const onUserClick = (address: string) => {
-    const user = data?.users.find(user => user.address === address);
-    if (user) {
+  const dataUsers = React.useMemo(() => {
+    if (data && !isLoading) {
+      return DEFAULT_SORTING_TYPE.callback({users: data.users});
+    }
+    return []
+  }, [data, isLoading])
+
+  const sortUsers = React.useCallback(
+    (sortingType: any) => {
+      setSortedUsers(sortingType?.callback({
+        users: [...dataUsers],
+      }));
+  }, [dataUsers]);
+
+  const onUserClick = React.useCallback((address: string) => {
+    const user = dataUsers.find(user => user.address === address);
+    if (dataUsers) {
       setSelectedUser(user);
       setOpenProfile(true);
     }
-  };
+  }, [dataUsers]);
 
   const onClose = () => {
     setOpenProfile(false);
@@ -47,19 +64,17 @@ export const CollectionViewContent = ({slug}: {slug: string}) => {
     )
   }
 
-  // sort by alphabetical order
-  const users = data?.users.sort((a, b) => ((a?.name || "z").localeCompare((b.name || "z")))) || [];
-
   return (
     <div className="flex pt-8">
       <div className={classNames(
         "w-full",
         FEATURE_FLAGS.ENABLE_SIDEBAR ? "lg:w-8/12" : ""
     )}>
+        {/* <UserListHeader onSort={sortUsers} /> */}
         <UserList 
           onUserClick={onUserClick}
           collections={collections}
-          users={users}
+          users={sortedUsers || dataUsers}
           slug={slug}
           isLoading={isLoading}
         />
@@ -68,8 +83,8 @@ export const CollectionViewContent = ({slug}: {slug: string}) => {
       {FEATURE_FLAGS.ENABLE_SIDEBAR && 
         <div className="hidden lg:block w-4/12 ">
           <div className="flex gap-8 flex-col pl-4 ml-4 xl:pl-6 xl:ml-6 border-left-2 border-l border-gray-200 dark:border-neutral-700">
-            <MostFollowedInCollection users={users} isLoading={isLoading} error={false} slug={slug} onUserClick={onUserClick} />
-            {!isLoading && <MostActiveList users={users} error={false} slug={slug} onUserClick={onUserClick} />}
+            <MostFollowedInCollection users={[...dataUsers]} isLoading={isLoading} error={false} slug={slug} onUserClick={onUserClick} />
+            {!isLoading && <MostActiveList users={[...dataUsers]} error={false} slug={slug} onUserClick={onUserClick} />}
             {!isLoading && <RecentUserList slug={slug} onUserClick={onUserClick} />}
           </div>
         </div>

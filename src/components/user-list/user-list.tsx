@@ -18,7 +18,6 @@ export const UserList = ({
   users,
   slug
 }: IUserList) => {
-
   if (isLoading) {
     return <UserListSkeleton />
   }

@@ -24,21 +24,21 @@ const marketplaceProviders = [
     logo: `${PREFIX_IMAGE_PATH}/coinbase.png`,
     getLink: (address: string, _slug: string) => !address.includes(":") && `https://nft.coinbase.com/collection/ethereum/${address}`,
   },
-  {
-    name: "Sudoswap",
-    logo: `${PREFIX_IMAGE_PATH}/sudoswap.png`,
-    getLink: (address: string, _slug: string) => !address.includes(":") && `https://sudoswap.xyz/#/browse/buy/${address}`,
-  },
+  // {
+  //   name: "Sudoswap",
+  //   logo: `${PREFIX_IMAGE_PATH}/sudoswap.png`,
+  //   getLink: (address: string, _slug: string) => !address.includes(":") && `https://sudoswap.xyz/#/browse/buy/${address}`,
+  // },
   {
     name: "Blur",
     logo: `${PREFIX_IMAGE_PATH}/blur.png`,
     getLink: (address: string, _slug: string) => !address.includes(":") && `https://blur.io/collection/${address}`,
   },
-  {
-    name: "Gem",
-    logo: `${PREFIX_IMAGE_PATH}/gem.png`,
-    getLink: (address: string, _slug: string) => !address.includes(":") && `https://www.gem.xyz/collection/${address}`,
-  },
+  // {
+  //   name: "Gem",
+  //   logo: `${PREFIX_IMAGE_PATH}/gem.png`,
+  //   getLink: (address: string, _slug: string) => !address.includes(":") && `https://www.gem.xyz/collection/${address}`,
+  // },
   {
     name: "DappRadar",
     logo: `${PREFIX_IMAGE_PATH}/dappradar.png`,
@@ -82,11 +82,11 @@ const walletProviders = [
     logo: `${PREFIX_IMAGE_PATH}/coinbase.png`,
     link: "https://nft.coinbase.com/" // + address
   },
-  {
-    name: "Gem",
-    logo: `${PREFIX_IMAGE_PATH}/gem.png`,
-    link: "https://www.gem.xyz/profile/" // + address
-  },
+  // {
+  //   name: "Gem",
+  //   logo: `${PREFIX_IMAGE_PATH}/gem.png`,
+  //   link: "https://www.gem.xyz/profile/" // + address
+  // },
   {
     name: "Rarible",
     logo: `${PREFIX_IMAGE_PATH}/rarible.png`,
@@ -108,7 +108,7 @@ export const WalletDropdownOptions = ({ address, name, appearance }: IWalletDrop
     appearance={appearance}
   >
     {walletProviders.map(({name, logo, link}) => (
-      <DropdownMenuItem key={name} 
+      <DropdownMenuItem key={`${name}-wallet`} 
         name={
           <div className="flex items-center gap-2">
             <Image src={logo} alt={name} width={20} height={20} />
@@ -144,7 +144,7 @@ export const MarketplaceDropdownOptions = ({ appearance, address, name, slug }: 
       }
 
       return (
-        <DropdownMenuItem key={name} 
+        <DropdownMenuItem key={`${name}-marketplace`} 
           name={
             <div className="flex items-center gap-2">
               <Image src={logo} alt={name} width={20} height={20} />
