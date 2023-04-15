@@ -1,13 +1,10 @@
 import React, { Fragment } from "react";
 import { UserListFilter } from "./user-list-filter";
 import { classNames } from "../../utils";
-import { CheckIcon, ChevronDownIcon } from "@heroicons/react/20/solid";
-import { Menu, Transition } from "@headlessui/react";
 import { DEFAULT_SORTING_TYPE, SORTING_TYPES } from "./user-list-sorting-helpers";
 import { ICommonCollections } from "../collection-view/collection-view-helpers";
 import { Dropdown, DropdownMenuItemClick } from "../dropdown/dropdown";
 import { BsFilter } from "react-icons/bs";
-
 
 interface IUserListHeaderProps {
   onSort: (sortingType: any) => void;
@@ -24,15 +21,14 @@ export const UserListHeader = ({onSort, onFilter, commonCollections}: IUserListH
     setActiveFilter(filter.length);
   }
   
-  {/* px-2.5 py-1.5 border border-gray-300 dark:border-gray-600 bg-white dark:bg-neutral-800 hover:bg-gray-50 shadow-sm" : "bg-transparent hover:text-underline py-0.5 */}
   return (
-    <div className="flex py-2 justify-end">
+    <div className="flex py-2 justify-end items-center">
       <div className="flex gap-2">
         <SortByDropdown onSort={onSort} />
         <div>
           <button 
             className={classNames(
-              "gap-2 inline-flex items-center w-full justify-center rounded-md text-sm font-medium text-neutral-800 dark:text-slate-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100 px-2.5 py-1.5 border border-gray-300 dark:border-gray-600 hover:bg-gray-50 shadow-sm",
+              "gap-2 inline-flex items-center w-full justify-center rounded-md text-sm font-medium text-neutral-800 dark:text-slate-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100 px-2 py-1.5 border border-gray-300 dark:border-gray-600 hover:bg-gray-50 shadow-sm",
               activeFilter > 0 ? "bg-indigo-500 dark:bg-indigo-800" : "bg-white dark:bg-neutral-800"
             )}
             onClick={() => setOpen(true)}

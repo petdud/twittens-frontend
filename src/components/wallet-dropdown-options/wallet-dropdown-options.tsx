@@ -123,17 +123,20 @@ export const WalletDropdownOptions = ({ address, name, appearance }: IWalletDrop
 )
 
 interface IMarketplaceDropdownOptionsProps {
-  name: string | JSX.Element;
+  name?: string | JSX.Element;
   address: string;
   appearance?: AppearanceType;
   slug: string;
+  icon?: string | React.ReactNode;
 }
 
-export const MarketplaceDropdownOptions = ({ appearance, address, name, slug }: IMarketplaceDropdownOptionsProps) => (
+export const MarketplaceDropdownOptions = ({ appearance, address, name, slug, icon }: IMarketplaceDropdownOptionsProps) => (
   <Dropdown name={
-    <div className="flex items-center gap-2">
-      {name}
-    </div>}
+      !icon && <div className="flex items-center gap-2">
+        {name}
+      </div>
+    }
+    icon={icon}
     appearance={appearance}
   >
     {marketplaceProviders.map(({name, logo, getLink}) => {

@@ -8,22 +8,23 @@ import { AiOutlineCheck } from 'react-icons/ai';
 export type AppearanceType = "button" | "transparent";
 
 interface IDropdownProps {
-  name: JSX.Element | string;
+  name: JSX.Element | React.ReactNode;
   children: JSX.Element | JSX.Element[];
   appearance?: AppearanceType;
+  icon?: React.ReactNode;
 }
 
-export const Dropdown = ({name, children, appearance = "button"}: IDropdownProps) => {
+export const Dropdown = ({name, children, appearance = "button", icon}: IDropdownProps) => {
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
         <Menu.Button className={
           classNames(
             "inline-flex w-full justify-center rounded-md text-sm font-medium text-neutral-800 dark:text-slate-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100",
-            appearance === "button" ? "px-2.5 py-1.5 border border-gray-300 dark:border-gray-600 bg-white dark:bg-neutral-800 hover:bg-gray-50 shadow-sm" : "bg-transparent hover:text-underline py-0.5"
+            appearance === "button" ? "px-2.5 py-1.5 border border-gray-300 dark:border-gray-600 bg-white dark:bg-neutral-800 hover:bg-gray-50 shadow-sm" : "bg-transparent hover:text-underline py-0.5 px-0.5"
           )}>
           {name}
-          <ChevronDownIcon className="-mr-1 ml-2 h-5 w-5" aria-hidden="true" />
+          {icon ? icon : <ChevronDownIcon className="-mr-1 ml-1 h-5 w-5" aria-hidden="true" />}
         </Menu.Button>
       </div>
 
