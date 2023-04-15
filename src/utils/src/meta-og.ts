@@ -318,4 +318,8 @@ export const META_OG  = {
     "name": "Elemental Creation : The Artistic Journey",
     "ogImage": ""
   },
+  "onchainmonkey": { 
+    "name": "OnChainMonkey",
+    "ogImage": ""
+  },
 }
