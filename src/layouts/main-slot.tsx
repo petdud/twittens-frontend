@@ -11,7 +11,7 @@ import { classNames } from '../utils';
 import Link from 'next/link';
 import Image from 'next/image';
 import { SearchBar } from '../components/search-bar/search-bar';
-import { AiOutlineRight } from 'react-icons/ai';
+import { AiOutlineClose, AiOutlineRight } from 'react-icons/ai';
 import { BsTwitter } from 'react-icons/bs';
 import { ImContrast } from 'react-icons/im';
 import { ROUTES, SET_TWITTER_URL } from '../core/routes';
@@ -222,12 +222,47 @@ export const MainSlot = ({children}: IMainSlot) => {
         </div>
 
         <main className="flex-1">
+          <MessageBanner />
           {children}
         </main>
       </div>
     </div>
   )
 }
+
+const MessageBanner = () => {
+  const [showBanner, setShowBanner] = useState(true);
+
+  const handleDismiss = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+    event.preventDefault();
+    setShowBanner(false);
+  };
+
+  if (!showBanner) {
+    return null;
+  }
+
+  return (
+    <div className="bg-yellow-100 py-2 px-4 text-sm text-yellow-800 flex justify-between">
+      <a
+        href="https://explorer.gitcoin.co/#/round/1/0x9c3b81967eafba0a451e324417dd4f3f353b997b/0x9c3b81967eafba0a451e324417dd4f3f353b997b-6"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="hover:underline"
+      >
+        <p className="font-medium">
+          <strong>Twittens.xyz</strong> has been accepted into the Gitcoin Grant Program for funding.
+          Please support our project! 🙏
+        </p>
+      </a>
+      <button className="text-yellow-800" onClick={handleDismiss}>
+        <AiOutlineClose  />
+      </button>
+    </div>
+  );
+};
+
 
 const JoinCommunitySection = () => (
   <div className="px-3">

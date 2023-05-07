@@ -15,6 +15,7 @@ import { formatDistance } from 'date-fns'
 import { UserListHeader } from "../user-list/user-list-header";
 import { DEFAULT_SORTING_TYPE } from "../user-list/user-list-sorting-helpers";
 import { ICommonCollections, getCommonCollections } from "./collection-view-helpers";
+import { useTopHoldersFromCollection } from "../../hooks/use-top-holders-from-collection";
 
 const ENABLE_COMMON_COLLECTION_FOR_MIN_USERS = 1;
 
@@ -105,6 +106,7 @@ export const CollectionViewContent = ({slug}: {slug: string}) => {
         <div className="hidden lg:block w-4/12 ">
           <div className="flex gap-8 flex-col pl-4 ml-4 xl:pl-6 xl:ml-6 border-left-2 border-l border-gray-200 dark:border-neutral-700">
             <MostFollowedInCollection users={[...dataUsers]} isLoading={isLoading} error={false} slug={slug} onUserClick={onUserClick} />
+            <TopHoldersInCollection users={[...dataUsers]} isLoading={isLoading} error={false} slug={slug} onUserClick={onUserClick} />
             {!isLoading && <MostActiveList users={[...dataUsers]} error={false} slug={slug} onUserClick={onUserClick} />}
             {!isLoading && <RecentUserList slug={slug} onUserClick={onUserClick} />}
             {!isLoading && dataUsers.length >= ENABLE_COMMON_COLLECTION_FOR_MIN_USERS && <CommonCollectionsList collections={commonCollections} />}
@@ -166,6 +168,85 @@ export const MostFollowedInCollection = ({users, isLoading, error, onUserClick, 
               </div>
             }
             asideContent={twitter?.followers.toLocaleString() || ""}
+          />
+        ))}
+      </>
+    </CollectionViewList>
+  )
+};
+
+interface ITopHoldersInCollectionProps {
+  users: IUser[]; 
+  onUserClick: (address: string) => void;
+  slug: string;
+  error?: boolean;
+  isLoading?: boolean;
+}
+
+interface IUserWithTokenCount extends IUser {
+  tokenCount: number;
+}
+
+export const TopHoldersInCollection = ({users, isLoading, error, onUserClick, slug}: ITopHoldersInCollectionProps) => {
+  const { data: topHolders, isLoading: isTopHoldersLoading, error: isTopHoldersError, } = useTopHoldersFromCollection(slug);
+
+  const holders = React.useMemo(() => {
+    if (!topHolders || !users) {
+      return [];
+    }
+
+    const holders: IUserWithTokenCount[] = [];
+    topHolders.map(({address, tokenCount}) => {
+      const user = users.find(user => user.address === address);
+      if (user && tokenCount > 1) {
+        holders.push({
+          ...user,
+          tokenCount
+        })
+      }
+    })
+    return holders;
+  }, [topHolders, users])
+
+  if (isLoading || isTopHoldersLoading) {
+    return <CollectionViewListSkeleton />
+  } 
+
+  if (!holders || holders.length === 0 || error) {
+    return null;
+  }
+
+  const maxUsers = holders.length < 5 ? holders.length : 5;
+
+  return (
+    <CollectionViewList
+      title={
+        <div className="flex items-center gap-3">
+          Top holders
+        </div>
+      }
+      asideLabel="Tokens"
+    >
+      <>
+        {holders.slice(0, maxUsers).map(({address, twitter, tokenCount}) => (
+          <CollectionViewListItem
+            key={address}
+            id={address}
+            imageSrc={twitter?.avatar}
+            imageAlt={twitter?.username}
+            onClick={onUserClick}
+            title={
+              <div className="flex items-center">
+                {twitter?.name}
+                {twitter?.verified && <span className="inline-block flex-shrink-0 text-sky-400 pl-1.5">
+                  <GoVerified aria-label="Twitter verified" />
+                </span>}
+                {twitter?.protected && <span className="inline-block flex-shrink-0 text-yellow-600 pl-1.5">
+                  <AiFillLock aria-label="Twitter private account" />
+                </span>}
+              </div>
+            }
+            asideContent={tokenCount}
           />
         ))}
       </>
