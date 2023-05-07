@@ -244,7 +244,7 @@ const MessageBanner = () => {
   }
 
   return (
-    <div className="bg-yellow-100 py-2 px-4 text-sm text-yellow-800 flex justify-between">
+    <div className="bg-yellow-100 py-2 px-4 text-sm text-yellow-800 flex justify-between border-b border-yellow-400">
       <a
         href="https://explorer.gitcoin.co/#/round/1/0x9c3b81967eafba0a451e324417dd4f3f353b997b/0x9c3b81967eafba0a451e324417dd4f3f353b997b-6"
         target="_blank"
