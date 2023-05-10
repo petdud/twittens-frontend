@@ -222,7 +222,7 @@ export const MainSlot = ({children}: IMainSlot) => {
         </div>
 
         <main className="flex-1">
-          <MessageBanner />
+          {/* <MessageBanner /> */}
           {children}
         </main>
       </div>
