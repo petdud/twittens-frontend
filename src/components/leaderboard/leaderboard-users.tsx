@@ -10,6 +10,7 @@ import { useCollections } from "../../hooks/use-collections";
 import { AvatarGroup, IAvatarGroupItemProps } from "../avatar-group/avatar-group";
 import { GoVerified } from "react-icons/go";
 import { AiFillLock } from "react-icons/ai";
+import { useAvatar } from "../../hooks/use-avatar";
 
 export const LeaderboardUsers = () => {
   const { data: users, isLoading } = useMostFollowedUsers();
@@ -61,6 +62,7 @@ const LeaderboardRow = ({user, position, onClick, collections}: ILeaderboardRow)
   const {address, name, twitter, activeCommunities} = user;
 
   const onUserClick = () => onClick(user);
+  const { avatar } = useAvatar(name);
 
   const communities = React.useMemo(() => {
     let communities: IAvatarGroupItemProps[] = [];
@@ -86,7 +88,7 @@ const LeaderboardRow = ({user, position, onClick, collections}: ILeaderboardRow)
       </TableColumn>
       <TableColumn>
         <div className="flex items-center pr-2">
-          <Image src="/ens_default.png" className="rounded-full mr-2" height={38} width={38} alt={name || address} aria-hidden="true" />
+          <img src={avatar || "/ens_default.png"} className="rounded-full mr-2" height={38} width={38} alt={name || address} aria-hidden="true" />
           <div>
             <div className="font-semibold text-gray-600 dark:text-slate-50 truncate ...">{name}</div>
             <div className="text-xs text-gray-400">{shortenedAddress(address)}</div>
