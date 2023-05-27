@@ -18,6 +18,7 @@ import { ICommonCollections, getCommonCollections } from "./collection-view-help
 import { useTopHoldersFromCollection } from "../../hooks/use-top-holders-from-collection";
 
 const ENABLE_COMMON_COLLECTION_FOR_MIN_USERS = 1;
+export const USER_PROFILE_URL_PARAM = "profile";
 
 export const CollectionViewContent = ({slug}: {slug: string}) => {
   const { data, isLoading, error } = useActiveUsersFromCommunity(slug);
@@ -32,7 +33,16 @@ export const CollectionViewContent = ({slug}: {slug: string}) => {
       return DEFAULT_SORTING_TYPE.callback({users: data.users});
     }
     return []
-  }, [data, isLoading])
+  }, [data, isLoading]);
+
+  React.useEffect(() => {
+    const urlParams = new URLSearchParams(location.search);
+    const profileName = urlParams.get(USER_PROFILE_URL_PARAM);
+
+    const user = dataUsers.find(user => user.address === profileName?.toLowerCase() || user.name === profileName?.toLowerCase());
+    user && setSelectedUser(user);
+    setOpenProfile(Boolean(profileName));
+  }, [dataUsers]);
 
   const sortUsers = React.useCallback(
     (sortingType: any) => {
@@ -43,13 +53,23 @@ export const CollectionViewContent = ({slug}: {slug: string}) => {
 
   const onUserClick = React.useCallback((address: string) => {
     const user = dataUsers.find(user => user.address === address);
-    if (dataUsers) {
+    if (user) {
+      const urlParams = new URLSearchParams(location.search);
+      urlParams.set(USER_PROFILE_URL_PARAM, user.name || user.address);
+      const newUrl = `${window.location.pathname}?${urlParams.toString()}`;
+      window.history.pushState({ path: newUrl }, '', newUrl);
+
       setSelectedUser(user);
       setOpenProfile(true);
     }
   }, [dataUsers]);
 
   const onClose = () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    urlParams.delete(USER_PROFILE_URL_PARAM);
+    const newUrl = `${window.location.pathname}?${urlParams.toString()}`;
+    window.history.pushState({ path: newUrl }, '', newUrl);
+
     setOpenProfile(false);
   };
 

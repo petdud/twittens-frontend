@@ -11,17 +11,37 @@ import { AvatarGroup, IAvatarGroupItemProps } from "../avatar-group/avatar-group
 import { GoVerified } from "react-icons/go";
 import { AiFillLock } from "react-icons/ai";
 import { useAvatar } from "../../hooks/use-avatar";
+import { USER_PROFILE_URL_PARAM } from "../collection-view/collection-view-content";
 
 export const LeaderboardUsers = () => {
   const { data: users, isLoading } = useMostFollowedUsers();
   const { data: collections } = useCollections({select: "slug,name,image.thumbnailUrl"});
   const [selectedUser, setSelectedUser] = React.useState<IUser>();
 
+  React.useEffect(() => {
+    const urlParams = new URLSearchParams(location.search);
+    const profileName = urlParams.get(USER_PROFILE_URL_PARAM);
+
+    const user = users.find(user => user.address === profileName?.toLowerCase() || user.name === profileName?.toLowerCase());
+    user && setSelectedUser(user);
+  }, [users]);
+
+
   const onClose = () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    urlParams.delete(USER_PROFILE_URL_PARAM);
+    const newUrl = `${window.location.pathname}?${urlParams.toString()}`;
+    window.history.pushState({ path: newUrl }, '', newUrl);
+
     setSelectedUser(undefined);
   };
 
   const onUserClick = (user: IUser) => {
+    const urlParams = new URLSearchParams(location.search);
+    urlParams.set(USER_PROFILE_URL_PARAM, user.name || user.address);
+    const newUrl = `${window.location.pathname}?${urlParams.toString()}`;
+    window.history.pushState({ path: newUrl }, '', newUrl);
+
     setSelectedUser(user);
   };
 

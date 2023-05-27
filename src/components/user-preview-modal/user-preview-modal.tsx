@@ -19,7 +19,7 @@ interface IUserPreviewModalProps {
 }
 
 export const UserPreviewModal = ({open, onClose, user, collections}: IUserPreviewModalProps) => {
-  const {address, name, twitter, activeCommunities} = user;
+  const {address, twitter, activeCommunities} = user;
   // const { avatar } = useAvatar(name);
 
   const communities = React.useMemo(() => {
