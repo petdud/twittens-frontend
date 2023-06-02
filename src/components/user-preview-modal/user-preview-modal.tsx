@@ -19,7 +19,7 @@ interface IUserPreviewModalProps {
 }
 
 export const UserPreviewModal = ({open, onClose, user, collections}: IUserPreviewModalProps) => {
-  const {address, twitter, activeCommunities} = user;
+  const {address, name, twitter, activeCommunities} = user;
   // const { avatar } = useAvatar(name);
 
   const communities = React.useMemo(() => {
@@ -67,7 +67,7 @@ export const UserPreviewModal = ({open, onClose, user, collections}: IUserPrevie
                 <div className="px-1 divide-y divide-gray-200 dark:divide-gray-700 mr-4">
                   <div className="flex items-center gap-3 justify-between divide-y-2 divide-gray-200 dark:divide-neutral-700">
                     <div className="flex items-center gap-2 dark:text-gray-200 mb-2">
-                      <FaWallet className="text-gray-400 dark:text-neutral-300" />
+                      <FaWallet className="text-gray-400 dark:text-neutral-300" /> {name}
                       {/* <img src={avatar} className="rounded-full ml-2" height={18} width={18} alt={name || address} aria-hidden="true" /> {name}  */}
                       <span className="flex items-end text-xs text-gray-500 dark:text-neutral-400">({shortenedAddress(address)}) <CopyButton value={address} /></span>
                     </div>
