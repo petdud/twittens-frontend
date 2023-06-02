@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Collections } from '../components/collections/collections';
 import { Container } from '../components/container/container';
 import { FeaturedList } from "../components/featured-list/featured-list";
@@ -15,7 +16,7 @@ import { HeadPage } from '../layouts/head-page';
 import { MainSlot } from '../layouts/main-slot';
 
 const BADGE_ID = "Dk4MTI3Njc5MzI2N";
-const SELECT_FROM_COLLECTIONS = "name,slug,image.url,ownersWithTwitterCount,isFeatured";
+const SELECT_FROM_COLLECTIONS = "name,slug,image.url,ownersWithTwitterCount,ownersWithLensCount,isFeatured";
 const NUMBER_OF_COLLECTIONS_BEFORE_LEADERBOARD = 12;
 
 const NUMBER_OF_COLLECTIONS_BEFORE_FEATURED_SECTION = 12 + 12;
@@ -203,7 +204,7 @@ const Footer = () => {
     <footer>
       <div className="mx-auto px-16 pb-6">
         <div className="flex justify-between items-center border-t border-gray-200 dark:border-gray-700 pt-6">
-          <p className="text-xs leading-5 text-gray-500">&copy; {currentYear} Twittens</p>
+        <p className="text-xs leading-5 text-gray-500 hover:underline">&copy; {currentYear} <Link href="https://fomofrens.xyz" target="_blank">FomoFrens.xyz</Link></p>
           <FooterAlchemyLogo />
         </div>
       </div>

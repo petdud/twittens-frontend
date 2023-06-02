@@ -21,7 +21,10 @@ export const LeaderboardUsers = () => {
   React.useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
     const profileName = urlParams.get(USER_PROFILE_URL_PARAM);
-
+    if (!profileName) {
+      return
+    }
+    
     const user = users.find(user => user.address === profileName?.toLowerCase() || user.name === profileName?.toLowerCase());
     user && setSelectedUser(user);
   }, [users]);

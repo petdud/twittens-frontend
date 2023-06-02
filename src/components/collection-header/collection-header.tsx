@@ -196,7 +196,7 @@ const CollectionImage = ({imageUrl, altName}: {imageUrl: string, altName: string
   <>
     {/* eslint-disable-next-line @next/next/no-img-element */}
     <img
-      className={`rounded-full sm:h-24 sm:w-24 md:h-28 md:w-28 h-12 w-12 mr-6 sm:mr-0`}
+      className={`sm:h-24 sm:w-24 md:h-28 md:w-28 h-12 w-12 mr-6 sm:mr-0 rounded`}
       src={imageUrl}
       alt={altName}
       aria-hidden="true"
