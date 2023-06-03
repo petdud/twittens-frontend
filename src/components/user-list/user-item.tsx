@@ -24,6 +24,7 @@ export const UserItem = ({address, name, twitter, onUserClick, communities }: IU
     description,
     followers,
     following,
+    tweetCount,
     name: twitterName,
     protected: isProtected,
     username: twitterUsername,
@@ -64,6 +65,12 @@ export const UserItem = ({address, name, twitter, onUserClick, communities }: IU
               <div>
                 <p className="text-sm text-gray-600 dark:text-gray-300 truncate">{description}</p>
               </div>
+              {communities &&  communities.length > 0 && (
+                <div className="overflow-hidden">
+                  <span className="text-gray-500 dark:text-gray-400 text-sm font-normal pb-1">Communities: </span>
+                  <AvatarGroup items={communities} size={5} scroll={true} />
+                </div>
+              )}
               <div className="flex gap-4 text-sm items-center">
                 <div className="flex dark:text-white flex-col-reverse md:flex-row md:gap-1">
                   <span className="font-semibold">{following.toLocaleString()}</span>
@@ -73,11 +80,10 @@ export const UserItem = ({address, name, twitter, onUserClick, communities }: IU
                   <span className="font-semibold">{followers.toLocaleString()}</span>
                   <span className="text-gray-500 dark:text-gray-400 text-sm font-normal">Followers</span>
                 </div>
-                {communities && communities.length > 0 && 
-                  <div className="flex items-center flex-col-reverse md:flex-row md:gap-1">
-                    <AvatarGroup items={communities} maxItems={4} size={5} closer={true} placeholderInherited={true} />
-                    <span className="text-gray-500 dark:text-gray-400 text-sm font-normal">&nbsp;Communities</span>
-                  </div>}
+                <div className="flex dark:text-white flex-col-reverse md:flex-row md:gap-1">
+                  <span className="font-semibold">{tweetCount?.toLocaleString()}</span>
+                  <span className="text-gray-500 dark:text-gray-400 text-sm font-normal">Tweets</span>
+                </div>
               </div>
             </div>
           </div>
