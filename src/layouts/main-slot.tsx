@@ -144,9 +144,10 @@ export const MainSlot = ({children}: IMainSlot) => {
       <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col">
         {/* Sidebar component, swap this element with another sidebar if you like */}
         <div className="flex flex-grow flex-col overflow-y-auto border-r border-gray-200 bg-white pt-5 px-4 dark:bg-neutral-800 dark:border-neutral-700">
-          <div className="flex flex-shrink-0 items-center justify-center px-4">
+          <div className="flex flex-shrink-0 items-center px-4">
             <Link href={"/"}>
               <Image
+                className="h-10 w-auto"
                 width="163"
                 height="50"
                 src="/twittens_logo.png"
