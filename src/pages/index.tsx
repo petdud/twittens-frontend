@@ -204,7 +204,7 @@ const Footer = () => {
     <footer>
       <div className="mx-auto px-16 pb-6">
         <div className="flex justify-between items-center border-t border-gray-200 dark:border-gray-700 pt-6">
-        <p className="text-xs leading-5 text-gray-500 hover:underline">&copy; {currentYear} <Link href="https://fomofrens.xyz" target="_blank">FomoFrens.xyz</Link></p>
+        <p className="text-xs leading-5 text-gray-500 hover:underline">&copy; {currentYear} <Link href="https://twitter.com/petrdu" target="_blank">petrdu & twittens.xyz</Link></p>
           <FooterAlchemyLogo />
         </div>
       </div>

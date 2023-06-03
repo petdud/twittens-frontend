@@ -21,6 +21,8 @@ import { useSession, signOut } from 'next-auth/react';
 import { FaDiscord } from 'react-icons/fa';
 import { Divider } from '../components/divider/divider';
 import { FEATURE_FLAGS } from '../core/feature-flags';
+import { AiFillFolderAdd } from 'react-icons/ai';
+import { HiOutlineExternalLink } from 'react-icons/hi';
 import { IoIosPhotos } from 'react-icons/io';
 
 const navigation = [
@@ -117,8 +119,7 @@ export const MainSlot = ({children}: IMainSlot) => {
                         {item.name}
                       </a>
                     ))}
-                    <GetListedButton />
-                    <RequestCollectionButton />
+                    <LensensLink />
                   </nav>
                   <Divider wrapperClass="my-6" />
                   <JoinCommunitySection />
@@ -176,8 +177,7 @@ export const MainSlot = ({children}: IMainSlot) => {
                     {item.name}
                   </Link>
                 ))}
-                <GetListedButton />
-                <RequestCollectionButton />
+                <LensensLink />
               </nav>
               <Divider wrapperClass='mt-3' />
               <div className="mt-6">
@@ -191,7 +191,6 @@ export const MainSlot = ({children}: IMainSlot) => {
             </div>
           </div>
           <Footer />
-
         </div>
       </div>
       <div className="flex flex-1 flex-col md:pl-64">
@@ -263,6 +262,31 @@ const MessageBanner = () => {
   );
 };
 
+const LensensLink = () => (
+  FEATURE_FLAGS.ENABLE_LENSENS_IN_MENU ?
+    <Link
+      href={ROUTES.LENSENS}
+      target="_blank"
+      className={classNames(
+        'text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-neutral-200 justify-between',
+        'group flex items-center px-2 py-2 text-base font-medium rounded-md hover:bg-gray-50 hover:text-gray-900 hover:dark:bg-neutral-900 hover:dark:text-neutral-100'
+      )}
+    >
+      <div className="flex items-center">
+        <span
+          className="mr-3 flex-shrink-0 h-6 w-6 text-xl"
+          role="img"
+          aria-label="Leaf"
+        >
+          🍃
+        </span>
+        <span className="group-hover:text-lime-600">Lens</span><span className="group-hover:text-lime-500">ens.xyz</span>
+      </div>
+      <HiOutlineExternalLink
+        className="opacity-0 mr-1 group-hover:opacity-100 transition-opacity duration-200"
+      />
+    </Link> : null
+)
 
 const JoinCommunitySection = () => (
   <div className="px-3">
@@ -320,9 +344,11 @@ const Footer = () => (
   <>
     <Divider/>
     <div className="p-4">
-      <Link href={ROUTES.FEEDBACK} className="flex items-center gap-2 text-gray-500 dark:text-gray-400 text-sm mb-2" target="_blank"><MdOutlineFeedback /> Send feedback</Link>
+      <Link href={SET_TWITTER_URL} className="flex items-center gap-2 text-gray-500 dark:text-gray-400 text-sm mb-2 hover:underline cursor-pointer" target="_blank"><AiOutlineRight /> Get listed</Link>
+      <Link href={ROUTES.GET_LISTED} target={FEATURE_FLAGS.ENABLE_PAID_LISTING ? '' : '_blank'} className="flex items-center gap-2 text-gray-500 dark:text-gray-400 text-sm mb-2 hover:underline cursor-pointer"><AiFillFolderAdd /> Request collection</Link>
+      <Link href={ROUTES.FEEDBACK} className="flex items-center gap-2 text-gray-500 dark:text-gray-400 text-sm mb-2 hover:underline cursor-pointer" target="_blank"><MdOutlineFeedback /> Send feedback</Link>
       <div className="block text-gray-500 dark:text-gray-400 text-xs">
-        By <a href="https://www.twitter.com/petrdu" className="cursor-pointer text-gray-600 dark:text-gray-300 underline hover:dark:text-gray-50" target="_blank" rel="noreferrer">petrdu</a>
+        Created by <a href="https://www.twitter.com/petrdu" className="cursor-pointer text-gray-600 dark:text-gray-300 underline hover:dark:text-gray-50" target="_blank" rel="noreferrer">petrdu</a>
       </div>
     </div>
   </>

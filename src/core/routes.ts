@@ -42,6 +42,7 @@ export const ROUTES = {
   TWITTER: "/twitter",
   DISCORD: "/discord",
   HOW_TO_ADD_TWITTER: "/how-to-add-twitter",
+  LENSENS: "https://lensens.xyz"
 }
 
 export const SET_TWITTER_URL = "https://set.twittens.xyz";
