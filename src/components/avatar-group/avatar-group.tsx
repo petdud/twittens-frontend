@@ -73,6 +73,7 @@ const AvatarItem = ({imageUrl, name, size, ringClass}: IAvatarItemProps) => (
         ringClass
       )
     }
+    title={name}
     src={imageUrl}
     alt={name}
   />
