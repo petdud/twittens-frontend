@@ -19,10 +19,10 @@ const sortByTweetCount = ({ users }: ISortByProps) =>
 
 
 export const SORTING_TYPES = [
-  { id: "alphabetical", name: 'A-Z', callback: sortAlphabetically },
   { id: "by_followers", name: 'Followers', callback: sortByNumOfFollowers },
   { id: "by_following", name: 'Following', callback: sortByNumOfFollowing },
   { id: "tweet_count", name: 'Tweet count', callback: sortByTweetCount },
+  { id: "alphabetical", name: 'A-Z', callback: sortAlphabetically },
 ];
 
 export const DEFAULT_SORTING_TYPE = SORTING_TYPES[0];
