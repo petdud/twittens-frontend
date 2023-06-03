@@ -105,6 +105,7 @@ export const UserPreviewModal = ({open, onClose, user, collections}: IUserPrevie
                         <div className="flex gap-4 text-sm items-center">
                           <div className="flex dark:text-white flex-row gap-1"><span className="font-semibold">{twitter?.following.toLocaleString()}</span> <span className="text-gray-500 dark:text-gray-400 text-sm font-normal">Following</span></div>
                           <div className="flex dark:text-white flex-row gap-1"><span className="font-semibold">{twitter?.followers.toLocaleString()}</span> <span className="text-gray-500 dark:text-gray-400 text-sm font-normal">Followers</span></div>
+                          <div className="flex dark:text-white flex-row gap-1"><span className="font-semibold">{twitter?.tweetCount.toLocaleString()}</span> <span className="text-gray-500 dark:text-gray-400 text-sm font-normal">Tweets</span></div>
                         </div>
                         <FooterButtons address={address} twitterUsername={twitter?.username} />
                       </div>
