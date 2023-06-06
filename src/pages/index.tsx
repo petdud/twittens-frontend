@@ -14,10 +14,13 @@ import { useThemeContext } from "../core/theme-provider";
 import { useCollections } from '../hooks/use-collections';
 import { HeadPage } from '../layouts/head-page';
 import { MainSlot } from '../layouts/main-slot';
+import { ProfileList } from "../components/profile-list/profile-list";
 
 const BADGE_ID = "Dk4MTI3Njc5MzI2N";
-const SELECT_FROM_COLLECTIONS = "name,slug,image.url,ownersWithTwitterCount,ownersWithLensCount,isFeatured";
+export const SELECT_FROM_COLLECTIONS = "name,slug,image.url,ownersWithTwitterCount,ownersWithLensCount,isFeatured";
 const NUMBER_OF_COLLECTIONS_BEFORE_LEADERBOARD = 12;
+
+const RECOMMENDED_TWITTER_ACC = ["duda.eth", "snowfro.eth", "gmoney.eth", "barmstrong.eth", "noun12.eth"];
 
 const NUMBER_OF_COLLECTIONS_BEFORE_FEATURED_SECTION = 12 + 12;
 const MAX_FEATURED_SECTION_LIST_ITEMS = 7;
@@ -100,6 +103,14 @@ export default function Home() {
             : null
           }
           <FeaturedSection collections={collections} isLoading={isLoading} />
+
+          <>
+            <div className="pb-4 mt-8">
+              <MainViewHeader title="Collectors & builders" />
+            </div>
+            <ProfileList names={RECOMMENDED_TWITTER_ACC} />
+          </> 
+            
           {!isLoading && collections.length > NUMBER_OF_COLLECTIONS_BEFORE_FEATURED_SECTION
             ?
             <>

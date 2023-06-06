@@ -11,6 +11,7 @@ export const LOCAL_API_PATHS = {
   EDIT_COLLECTION: "/api/collections/edit", // provide collection's slug and new data
   CREATE_COLLECTION: "/api/collections/create", // create a new collection
   GET_MOST_FOLLOWED_USERS: "/api/users/most-followed",
+  GET_USERS_BY_NAMES: "/api/users/get-by-names", // provide users' names separated by comma
   GET_MOST_FOLLOWED_COLLECTIONS: "/api/collections/most-followed",
   GET_ACTIVE_USERS_FROM_COLLECTION: (slug: string) => `/api/collections/${slug}/active-users`,
   GET_RECENT_USERS_FROM_COLLECTION: (slug: string) => `/api/collections/${slug}/recent-users`,
@@ -28,6 +29,7 @@ export const API_PATHS = {
   COLLECTIONS: "collections",
   USERS: "users",
   GET_MOST_FOLLOWED_USERS: "users/most-followed",
+  GET_USERS_BY_NAMES: "users/get-by-names", // provide users' names separated by comma
   UPDATE_COLLECTION: "collections/update", // provide collection's slug - update collection data (details and members)
   GET_ACTIVE_USERS_FROM_COLLECTION: (slug: string) => `collections/${slug}/active-users`,
   GET_RECENT_USERS_FROM_COLLECTION: (slug: string) => `collections/${slug}/recent-users`,
