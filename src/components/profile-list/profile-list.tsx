@@ -32,7 +32,7 @@ export const ProfileList = ({names}: { names: string[] }) => {
     <div className="overflow-x-auto hide-scrollbar">
       <ul className="flex flex-nowrap list-none gap-5">
         {users.map((user) => (
-          <ProfileItem key={user.address} user={user} onClick={onClick} />
+          user && <ProfileItem key={user.address} user={user} onClick={onClick} />
         ))}
       </ul>
       {selectedUser && <UserPreviewModal open={openProfile} onClose={onClose} user={selectedUser} collections={collections} />}
