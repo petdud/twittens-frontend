@@ -182,13 +182,6 @@ export default function Home() {
           <FeaturedSection collections={collections} isLoading={isLoading} />
 
           <Collections
-            title="Music Collections"
-            collections={collectionCategories.music}
-            isLoading={isLoading}
-            isHorizontal={true}
-          />
-
-          <Collections
             title="Historical Collections"
             collections={collectionCategories.historical}
             isLoading={isLoading}
@@ -198,6 +191,13 @@ export default function Home() {
           <ProfileListByCollectionTag
             title={"Historical NFT Collectors"}
             tag="historical"
+          />
+
+          <Collections
+            title="Music Collections"
+            collections={collectionCategories.music}
+            isLoading={isLoading}
+            isHorizontal={true}
           />
 
         </Container>

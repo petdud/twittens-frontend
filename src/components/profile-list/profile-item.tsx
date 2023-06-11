@@ -39,7 +39,7 @@ export const ProfileItem = ({ user, onClick }: {user: IUser, onClick: (address: 
   )
 
   return (
-    <li key={user.name} className="flex flex-col">
+    <li className="flex flex-col">
       <button className="bg-white dark:bg-neutral-800 rounded-md shadow flex flex-col md:flex-row p-3" onClick={handleClick}>
         <div className="flex-shrink-0 flex items-center mb-2">
           <img className="h-12 w-12 md:h-16 md:w-16 rounded-full mr-4 mt-1" src={avatar} alt={twitterUsername} />
