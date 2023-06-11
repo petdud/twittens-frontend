@@ -15,6 +15,7 @@ export const LOCAL_API_PATHS = {
   GET_MOST_FOLLOWED_COLLECTIONS: "/api/collections/most-followed",
   GET_ACTIVE_USERS_FROM_COLLECTION: (slug: string) => `/api/collections/${slug}/active-users`,
   GET_RECENT_USERS_FROM_COLLECTION: (slug: string) => `/api/collections/${slug}/recent-users`,
+  GET_USERS_BY_COLLECTION_TAG: () => `/api/users/get-users-by-collection-tag`, // provides tag name, social netowrk and limit if necessary
   GET_TAGS: () => `/api/tags`,
   GET_MULTI_COLLECTION_ACTIVE_USERS: () => `/api/collections/multi-community-active-users`, // provide multiple slugs separated by comma
   GET_TOP_HOLDERS_FROM_COLLECTION: (slug: string) => `/api/collections/${slug}/top-holders`,
@@ -33,6 +34,7 @@ export const API_PATHS = {
   UPDATE_COLLECTION: "collections/update", // provide collection's slug - update collection data (details and members)
   GET_ACTIVE_USERS_FROM_COLLECTION: (slug: string) => `collections/${slug}/active-users`,
   GET_RECENT_USERS_FROM_COLLECTION: (slug: string) => `collections/${slug}/recent-users`,
+  GET_USERS_BY_COLLECTION_TAG: () => `users/get-users-by-collection-tag`, // provides tag name, social netowrk and limit if necessary
   GET_TAGS: () => `tags`,
   GET_MULTI_COLLECTION_ACTIVE_USERS: () => `collections/multi-community-active-users`, // provide multiple slugs separated by comma
   GET_TOP_HOLDERS_FROM_COLLECTION: (slug: string) => `collections/${slug}/top-holders`,

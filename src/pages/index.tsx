@@ -14,7 +14,7 @@ import { useThemeContext } from "../core/theme-provider";
 import { useCollections } from '../hooks/use-collections';
 import { HeadPage } from '../layouts/head-page';
 import { MainSlot } from '../layouts/main-slot';
-import { ProfileList } from "../components/profile-list/profile-list";
+import { ProfileListByNames, ProfileListByCollectionTag } from "../components/profile-list/profile-list";
 
 const BADGE_ID = "Dk4MTI3Njc5MzI2N";
 export const SELECT_FROM_COLLECTIONS = "name,slug,image.url,ownersWithTwitterCount,ownersWithLensCount,isFeatured,tags";
@@ -134,7 +134,7 @@ export default function Home() {
             isHorizontal={true}
           />
 
-          <ProfileList
+          <ProfileListByNames
             title={"Collectors & builders"}
             names={RECOMMENDED_TWITTER_ACC} 
           />
@@ -146,6 +146,11 @@ export default function Home() {
             isHorizontal={true} 
           />
 
+          <ProfileListByCollectionTag
+            title={"Generative Art Collectors"}
+            tag="gen-art" 
+          />
+
           <LeaderboardSection />
 
           <Collections 
@@ -153,6 +158,11 @@ export default function Home() {
             collections={collectionCategories.ai}
             isLoading={isLoading}
             isHorizontal={true}
+          />
+
+          <ProfileListByCollectionTag
+            title={"AI Art Collectors"}
+            tag="ai"
           />
 
           <Collections
@@ -183,6 +193,11 @@ export default function Home() {
             collections={collectionCategories.historical}
             isLoading={isLoading}
             isHorizontal={true}
+          />
+
+          <ProfileListByCollectionTag
+            title={"Historical NFT Collectors"}
+            tag="historical"
           />
 
         </Container>
@@ -355,7 +370,7 @@ const HeroBanner = () => (
   <div className="flex justify-between flex-col">
     <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl">Find new <span className="text-blue-400">Twitter</span> frens!</p>
     <p className="mt-2 text-base md:text-xl leading-8 text-gray-600 dark:text-gray-300 ">
-      Twittens helps you to find NFT collectors on Twitter, so you can connect & <strong>make new frens</strong>.
+      Twittens helps you to find NFT collectors on Twitter, so you can connect & make new frens.
     </p>
   </div>
 )

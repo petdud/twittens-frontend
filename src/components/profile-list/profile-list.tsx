@@ -1,18 +1,19 @@
 import React from "react";
-import { useGetUsersByNames } from "../../hooks/use-get-users-by-names"
 import { IUser } from "../../core/collection.interface";
 import { UserPreviewModal } from "../user-preview-modal/user-preview-modal";
+import { useGetUsersByNames } from "../../hooks/use-get-users-by-names";
+import { useGetUsersByCollectionTag } from "../../hooks/use-get-users-by-collection-tag";
 import { useCollections } from "../../hooks/use-collections";
 import { ProfileItem } from "./profile-item";
 import { MainViewHeader } from "../main-view-header/main-view-header";
 
 interface IProfileListProps {
-  names: string[];
+  users: IUser[];
   title?: string;
+  isLoading?: boolean;
 }
 
-export const ProfileList = ({names, title}: IProfileListProps) => {
-  const { data: users, isLoading } = useGetUsersByNames(names);
+export const ProfileList = ({users, title, isLoading}: IProfileListProps) => {
   const { data: collections } = useCollections({select: "slug,name,image.thumbnailUrl"});
 
   const [selectedUser, setSelectedUser] = React.useState<IUser | undefined>(undefined);
@@ -50,5 +51,26 @@ export const ProfileList = ({names, title}: IProfileListProps) => {
         {selectedUser && <UserPreviewModal open={openProfile} onClose={onClose} user={selectedUser} collections={collections} />}
       </div>
     </>
+  )
+}
+
+interface IProfileListByNamesProps {
+  names: string[];
+  title?: string;
+}
+
+export const ProfileListByNames = ({names, title}: IProfileListByNamesProps) => {
+  const { data: users, isLoading } = useGetUsersByNames(names);
+
+  return (
+    <ProfileList users={users} title={title} isLoading={isLoading} />
+  )
+}
+
+export const ProfileListByCollectionTag = ({tag, title}: IProfileListByNamesProps) => {
+  const { data: users, isLoading } = useGetUsersByCollectionTag(tag);
+
+  return (
+    <ProfileList users={users} title={title} isLoading={isLoading} />
   )
 }
