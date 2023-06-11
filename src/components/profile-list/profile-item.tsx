@@ -40,14 +40,14 @@ export const ProfileItem = ({ user, onClick }: {user: IUser, onClick: (address: 
 
   return (
     <li key={user.name} className="flex md:w-96 w-72 flex-col">
-      <button className="bg-white dark:bg-neutral-800 rounded-md shadow flex flex-col md:flex-row p-4" onClick={handleClick}>
+      <button className="bg-white dark:bg-neutral-800 rounded-md shadow flex flex-col md:flex-row p-3" onClick={handleClick}>
         <div className="flex-shrink-0 flex items-center mb-2">
-          <img className="h-12 w-12 md:h-20 md:w-20 rounded-full mr-4 mt-1" src={avatar} alt={twitterUsername} />
+          <img className="h-12 w-12 md:h-16 md:w-16 rounded-full mr-4 mt-1" src={avatar} alt={twitterUsername} />
           <div className="block md:hidden">
             <ProfileName/>
           </div>
         </div>
-        <div className="flex-1 flex flex-col gap-2 max-w-full overflow-hidden text-left">
+        <div className="flex-1 flex flex-col gap-1 max-w-full overflow-hidden text-left">
           <div className="hidden md:block">
             <ProfileName />
           </div>

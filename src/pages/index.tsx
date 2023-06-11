@@ -17,12 +17,10 @@ import { MainSlot } from '../layouts/main-slot';
 import { ProfileList } from "../components/profile-list/profile-list";
 
 const BADGE_ID = "Dk4MTI3Njc5MzI2N";
-export const SELECT_FROM_COLLECTIONS = "name,slug,image.url,ownersWithTwitterCount,ownersWithLensCount,isFeatured";
-const NUMBER_OF_COLLECTIONS_BEFORE_LEADERBOARD = 12;
+export const SELECT_FROM_COLLECTIONS = "name,slug,image.url,ownersWithTwitterCount,ownersWithLensCount,isFeatured,tags";
 
 const RECOMMENDED_TWITTER_ACC = ["duda.eth", "snowfro.eth", "gmoney.eth", "barmstrong.eth", "noun12.eth"];
 
-const NUMBER_OF_COLLECTIONS_BEFORE_FEATURED_SECTION = 12 + 12;
 const MAX_FEATURED_SECTION_LIST_ITEMS = 7;
 
 const ARTBLOCKS_COLLECTIONS = [
@@ -49,10 +47,10 @@ const ART_COLLECTIONS = [
   "right-click-share", 
   "nouns",
   "terraforms",
-  "proof-moonbirds", 
+  "vv-checks", 
   "world-of-women-nft",
   "thememes6529",
-  "degods"
+  "proof-moonbirds"
 ];
 
 export default function Home() {
@@ -60,6 +58,50 @@ export default function Home() {
     status: "active", 
     select: SELECT_FROM_COLLECTIONS,
   });
+
+  const collectionCategories = React.useMemo(() => {
+    const categories = {
+      artblocks: [] as ICollection[],
+      ai: [] as ICollection[],
+      art: [] as ICollection[],
+      historical: [] as ICollection[],
+      membership: [] as ICollection[],
+      music: [] as ICollection[],
+      recommended: [] as ICollection[]
+    }
+    collections.map(collection => {
+      if (collection.isFeatured) {
+        categories.recommended.push(collection);
+        return;
+      }
+      collection.tags?.map(tag => {
+        switch (tag.name) {
+          case "artblocks":
+            categories.artblocks.push(collection);
+            break;
+          case "ai":
+            categories.ai.push(collection);
+            break;
+          case "art":
+            categories.art.push(collection);
+            break;
+          case "bluechip":
+            categories.recommended.push(collection);
+            break;
+          case "membership":
+            categories.membership.push(collection);
+            break;
+          case "historical":
+            categories.historical.push(collection);
+            break;
+          case "music":
+            categories.music.push(collection);
+            break;
+        }
+      })
+    });
+    return categories;
+  }, [collections]);
 
   if (error || (!isLoading && collections.length === 0)) {
     return (
@@ -79,48 +121,70 @@ export default function Home() {
       <MainSlot>
         <Container fullWidth={true} top="medium">
           <div className="pb-4">
-            <div className="flex justify-between">
-              <MainViewHeader title={<div>Find new <span className="text-blue-400">Twitter</span> frens!</div>} />
-              {collections.length > 0 && <div className="hidden text-right md:block mt-2 text-sm text-gray-500 dark:text-neutral-300">
-                Collections: <span className="font-semibold">{collections.length}</span>
-                {/* TODO: Sort it by list and not grid */}
-              </div>}
-            </div>
-            <div className="md:hidden mt-4 mb-3">
+            <HeroBanner/>
+            <div className="md:hidden mt-4">
               <SearchBar />
             </div>
           </div>
-          <Collections collections={collections.slice(0, NUMBER_OF_COLLECTIONS_BEFORE_LEADERBOARD)} isLoading={isLoading} />
+
+          <Collections 
+            title="Featured Collections"
+            collections={collectionCategories.recommended} 
+            isLoading={isLoading} 
+            isHorizontal={true}
+          />
+
+          <ProfileList
+            title={"Collectors & builders"}
+            names={RECOMMENDED_TWITTER_ACC} 
+          />
+
+          <Collections 
+            title="ArtBlocks Collections"
+            collections={collectionCategories.artblocks}
+            isLoading={isLoading}
+            isHorizontal={true} 
+          />
+
           <LeaderboardSection />
-          {!isLoading && collections.length > NUMBER_OF_COLLECTIONS_BEFORE_LEADERBOARD
-            ?
-            <>
-              <div className="pb-4 mt-8">
-                <MainViewHeader title="More collections" />
-              </div>
-              <Collections collections={collections.slice(NUMBER_OF_COLLECTIONS_BEFORE_LEADERBOARD, NUMBER_OF_COLLECTIONS_BEFORE_FEATURED_SECTION)} />
-            </> 
-            : null
-          }
+
+          <Collections 
+            title="AI Collections"
+            collections={collectionCategories.ai}
+            isLoading={isLoading}
+            isHorizontal={true}
+          />
+
+          <Collections
+            title="Art Collections"
+            collections={collectionCategories.art}
+            isLoading={isLoading}
+            isHorizontal={true} 
+          />
+
+          <Collections
+            title="Membership Collections"
+            collections={collectionCategories.membership}
+            isLoading={isLoading}
+            isHorizontal={true} 
+          />
+
           <FeaturedSection collections={collections} isLoading={isLoading} />
 
-          <>
-            <div className="pb-4 mt-8">
-              <MainViewHeader title="Collectors & builders" />
-            </div>
-            <ProfileList names={RECOMMENDED_TWITTER_ACC} />
-          </> 
-            
-          {!isLoading && collections.length > NUMBER_OF_COLLECTIONS_BEFORE_FEATURED_SECTION
-            ?
-            <>
-              <div className="pb-4 mt-8">
-                <MainViewHeader title="More collections" />
-              </div>
-              <Collections collections={collections.slice(NUMBER_OF_COLLECTIONS_BEFORE_FEATURED_SECTION, collections.length)} />
-            </> 
-            : null
-          }
+          <Collections
+            title="Music Collections"
+            collections={collectionCategories.music}
+            isLoading={isLoading}
+            isHorizontal={true}
+          />
+
+          <Collections
+            title="Historical Collections"
+            collections={collectionCategories.historical}
+            isLoading={isLoading}
+            isHorizontal={true}
+          />
+
         </Container>
         <Footer/>
       </MainSlot>
@@ -286,3 +350,12 @@ const FooterAlchemyLogo = () => {
     </a>
   )
 }
+
+const HeroBanner = () => (
+  <div className="flex justify-between flex-col">
+    <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl">Find new <span className="text-blue-400">Twitter</span> frens!</p>
+    <p className="mt-2 text-base md:text-xl leading-8 text-gray-600 dark:text-gray-300 ">
+      Twittens helps you to find NFT collectors on Twitter, so you can connect with them and make new frens.
+    </p>
+  </div>
+)
