@@ -281,7 +281,7 @@ const LensensLink = () => (
         >
           🍃
         </span>
-        <span className="group-hover:text-lime-600">Lens</span><span className="group-hover:text-lime-500">ens.xyz</span>
+        <span className="group-hover:text-lime-500">Lens</span><span className="group-hover:text-lime-600">ens.xyz</span>
       </div>
       <HiOutlineExternalLink
         className="opacity-0 mr-1 group-hover:opacity-100 transition-opacity duration-200"

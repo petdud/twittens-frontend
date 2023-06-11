@@ -355,7 +355,7 @@ const HeroBanner = () => (
   <div className="flex justify-between flex-col">
     <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl">Find new <span className="text-blue-400">Twitter</span> frens!</p>
     <p className="mt-2 text-base md:text-xl leading-8 text-gray-600 dark:text-gray-300 ">
-      Twittens helps you to find NFT collectors on Twitter, so you can connect with them and make new frens.
+      Twittens helps you to find NFT collectors on Twitter, so you can connect & <strong>make new frens</strong>.
     </p>
   </div>
 )
