@@ -67,7 +67,12 @@ export const ProfileListByNames = ({names, title}: IProfileListByNamesProps) => 
   )
 }
 
-export const ProfileListByCollectionTag = ({tag, title}: IProfileListByNamesProps) => {
+interface ProfileListByCollectionTagProps {
+  tag: string;
+  title?: string;
+}
+
+export const ProfileListByCollectionTag = ({tag, title}: ProfileListByCollectionTagProps) => {
   const { data: users, isLoading } = useGetUsersByCollectionTag(tag);
 
   return (
