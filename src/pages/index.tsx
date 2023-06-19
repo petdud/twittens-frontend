@@ -19,7 +19,7 @@ import { ProfileListByNames, ProfileListByCollectionTag } from "../components/pr
 const BADGE_ID = "Dk4MTI3Njc5MzI2N";
 export const SELECT_FROM_COLLECTIONS = "name,slug,image.url,ownersWithTwitterCount,ownersWithLensCount,isFeatured,tags";
 
-const RECOMMENDED_TWITTER_ACC = ["duda.eth", "snowfro.eth", "gmoney.eth", "barmstrong.eth", "noun12.eth"];
+const RECOMMENDED_TWITTER_ACC = ["duda.eth", "snowfro.eth", "gmoney.eth", "brantly.eth", "barmstrong.eth", "noun12.eth"];
 
 const MAX_FEATURED_SECTION_LIST_ITEMS = 7;
 
