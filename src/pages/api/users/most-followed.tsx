@@ -3,10 +3,18 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { API_PATHS, BASE_API_URL } from "../../../core/routes";
 
 const API = `${BASE_API_URL}${API_PATHS.GET_MOST_FOLLOWED_USERS}`;
+const SOCIAL = "twitter";
 
-const handler = async (_req: NextApiRequest, res: NextApiResponse<any>) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse<any>) => {
   try {
-    const apiResponse = await axios.get(API);
+    const { page, limit } = req.query;
+    const apiResponse = await axios.get(API, {
+      params: {
+        page: Number(page as string) || 1,
+        limit: Number(limit as string) || 100,
+        social: SOCIAL,
+      },
+    });
     res.status(200).json(apiResponse.data)
   } catch(err: AxiosError | any) {
     err.statusCode

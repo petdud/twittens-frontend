@@ -14,7 +14,7 @@ import { useAvatar } from "../../hooks/use-avatar";
 import { USER_PROFILE_URL_PARAM } from "../collection-view/collection-view-content";
 
 export const LeaderboardUsers = () => {
-  const { data: users, isLoading } = useMostFollowedUsers();
+  const { data: users, isLoading, fetchMore } = useMostFollowedUsers();
   const { data: collections } = useCollections({select: "slug,name,image.thumbnailUrl"});
   const [selectedUser, setSelectedUser] = React.useState<IUser>();
 
@@ -48,6 +48,10 @@ export const LeaderboardUsers = () => {
     setSelectedUser(user);
   };
 
+  const loadMore = () => {
+    fetchMore();
+  };
+
   if (isLoading) {
     return <div className="mt-6"><Spinner /></div>;
   }
@@ -70,6 +74,13 @@ export const LeaderboardUsers = () => {
         </TableBody>
       </Table>
       {selectedUser && <UserPreviewModal open={!!selectedUser} onClose={onClose} user={selectedUser} collections={collections} />}
+      {!isLoading && (
+        <div className="flex justify-center mt-4">
+          <button className="btn btn-primary bg-indigo-600 text-white px-4 py-2 rounded focus:outline-none" onClick={loadMore}>
+            Load More
+          </button>
+        </div>
+      )}
     </>
   )
 }
