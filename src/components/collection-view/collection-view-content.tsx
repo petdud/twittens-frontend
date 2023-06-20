@@ -57,7 +57,7 @@ export const CollectionViewContent = ({slug}: {slug: string}) => {
       const urlParams = new URLSearchParams(location.search);
       urlParams.set(USER_PROFILE_URL_PARAM, user.name || user.address);
       const newUrl = `${window.location.pathname}?${urlParams.toString()}`;
-      window.history.pushState({ path: newUrl }, '', newUrl);
+      window.history.replaceState({ path: newUrl }, '', newUrl);
 
       setSelectedUser(user);
       setOpenProfile(true);
@@ -68,7 +68,7 @@ export const CollectionViewContent = ({slug}: {slug: string}) => {
     const urlParams = new URLSearchParams(window.location.search);
     urlParams.delete(USER_PROFILE_URL_PARAM);
     const newUrl = `${window.location.pathname}?${urlParams.toString()}`;
-    window.history.pushState({ path: newUrl }, '', newUrl);
+    window.history.replaceState({ path: newUrl }, '', newUrl);
 
     setOpenProfile(false);
   };
