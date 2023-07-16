@@ -326,4 +326,12 @@ export const META_OG  = {
     "name": "OnChainMonkey",
     "ogImage": ""
   },
+  "meridian-by-matt-deslauriers": { 
+    "name": "Meridian",
+    "ogImage": ""
+  },
+  "human-unreadable-by-operator": { 
+    "name": "Human Unreadable",
+    "ogImage": ""
+  },
 }
