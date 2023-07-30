@@ -12,7 +12,7 @@ export const customSortMethod = ({ users }: ISortByProps) =>
     if (priorityComparison !== 0) {
       return priorityComparison;
     }
-    return (b?.twitter?.following || 0) - (a?.twitter?.following || 0);
+    return (b?.twitter?.followers || 0) - (a?.twitter?.followers || 0);
   });
 
 // SORTING
