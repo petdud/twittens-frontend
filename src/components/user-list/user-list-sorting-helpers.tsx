@@ -4,6 +4,17 @@ interface ISortByProps {
   users: IUser[];
 }
 
+const getPriority = (user: IUser): number => (user.isPromoted ? 0 : 1);
+
+export const customSortMethod = ({ users }: ISortByProps) =>
+  users.sort((a, b) => {
+    const priorityComparison = getPriority(a) - getPriority(b);
+    if (priorityComparison !== 0) {
+      return priorityComparison;
+    }
+    return (b?.twitter?.following || 0) - (a?.twitter?.following || 0);
+  });
+
 // SORTING
 const sortAlphabetically = ({ users }: ISortByProps) => 
   users.sort((a, b) => ((a?.name || "z").localeCompare((b.name || "z")))) || [];

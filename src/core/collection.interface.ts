@@ -50,6 +50,7 @@ export interface IUser {
   ens: IUserEns | null,
   twitter: ITwitter | null,
   activeCommunities: ICollection[],
+  isPromoted: boolean;
   createdAt: string,
   updatedAt: string
 }

@@ -13,7 +13,7 @@ import { UserPreviewModal } from "../user-preview-modal/user-preview-modal";
 import { CollectionViewList, CollectionViewListItem, CollectionViewListSkeleton } from "./collection-view-list";
 import { formatDistance } from 'date-fns'
 import { UserListHeader } from "../user-list/user-list-header";
-import { DEFAULT_SORTING_TYPE } from "../user-list/user-list-sorting-helpers";
+import { customSortMethod } from "../user-list/user-list-sorting-helpers";
 import { ICommonCollections, getCommonCollections } from "./collection-view-helpers";
 import { useTopHoldersFromCollection } from "../../hooks/use-top-holders-from-collection";
 
@@ -30,7 +30,7 @@ export const CollectionViewContent = ({slug}: {slug: string}) => {
   const dataUsers = React.useMemo(() => {
     if (data && !isLoading) {
       
-      return DEFAULT_SORTING_TYPE.callback({users: data.users});
+      return customSortMethod({users: data.users});
     }
     return []
   }, [data, isLoading]);
