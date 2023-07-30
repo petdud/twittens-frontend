@@ -334,4 +334,8 @@ export const META_OG  = {
     "name": "Human Unreadable",
     "ogImage": ""
   },
+  "agoria-comp-nd-x-l-market": { 
+    "name": "Agoria {Comp-nd}",
+    "ogImage": ""
+  },
 }
