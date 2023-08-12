@@ -2,18 +2,35 @@ import React, { FormEvent, useCallback, useState } from 'react';
 import axios from 'axios';
 import { IOpenSea } from '../../../core/opensea.interface';
 import { Modal } from '../../modal/modal';
-import { ICollection, chainTypes, IImage, dataSourceTypes } from '../../../core/collection.interface';
+import {
+  ICollection,
+  chainTypes,
+  IImage,
+  dataSourceTypes
+} from '../../../core/collection.interface';
 import { PreviewCollectionContent } from './preview-collection-content';
 import { ICloudinary } from './upload-widget';
 import { LOCAL_API_PATHS } from '../../../core/routes';
 
-export type AddCollectionProps = Pick<ICollection, "name" | "slug" | "address" | "description" | "totalSupply" | "twitterUsername" | "discordUrl" | "image" | "externalUrl" | "chain"> | null;
+export type AddCollectionProps = Pick<
+  ICollection,
+  | 'name'
+  | 'slug'
+  | 'address'
+  | 'description'
+  | 'totalSupply'
+  | 'twitterUsername'
+  | 'discordUrl'
+  | 'image'
+  | 'externalUrl'
+  | 'chain'
+> | null;
 
 export const AdminAddCollection = () => {
-  const [text, setText] = useState("");
+  const [text, setText] = useState('');
   const [open, setOpen] = useState(false);
-  const [chain, setChain] = useState<chainTypes>("eth-mainnet");
-  const [dataSource, setDataSource] = useState<dataSourceTypes>("alchemy");
+  const [chain, setChain] = useState<chainTypes>('eth-mainnet');
+  const [dataSource, setDataSource] = useState<dataSourceTypes>('alchemy');
   const [data, setData] = useState<AddCollectionProps>(null);
 
   const submit = useCallback(async () => {
@@ -21,7 +38,7 @@ export const AdminAddCollection = () => {
       await axios.post(LOCAL_API_PATHS.CREATE_COLLECTION, data);
       setOpen(false);
       setData(null);
-      setText("");
+      setText('');
     }
   }, [data]);
 
@@ -30,57 +47,79 @@ export const AdminAddCollection = () => {
     setData(null);
   }, []);
 
-  const onImageUploaded = useCallback((info: ICloudinary) => {
-    data && setData((prevState: any) => {
-      const { format, public_id, asset_id, width, height, url, thumbnail_url } = info;
+  const onImageUploaded = useCallback(
+    (info: ICloudinary) => {
+      data &&
+        setData((prevState: any) => {
+          const { format, public_id, asset_id, width, height, url, thumbnail_url } = info;
 
-      return {
-        ...prevState,
-        image: {
-          ...prevState.image,
-          url, 
-          thumbnailUrl: thumbnail_url,
-          extension: format,
-          publicId: public_id,
-          id: asset_id,
-          width,
-          height,
+          return {
+            ...prevState,
+            image: {
+              ...prevState.image,
+              url,
+              thumbnailUrl: thumbnail_url,
+              extension: format,
+              publicId: public_id,
+              id: asset_id,
+              width,
+              height
+            }
+          };
+        });
+    },
+    [data]
+  );
+
+  const openPreviewDialog = useCallback(
+    async (e: FormEvent) => {
+      e.preventDefault();
+      setOpen(true);
+      if (text) {
+        const { data } = await axios.get(
+          LOCAL_API_PATHS.GET_COLLECTION_FROM_OPENSEA(text)
+        );
+        if (data) {
+          const {
+            name,
+            slug,
+            description,
+            external_url,
+            image_url,
+            primary_asset_contracts,
+            stats,
+            twitter_username,
+            discord_url
+          } = data as IOpenSea;
+          const contractAddress = primary_asset_contracts[0]?.address;
+
+          const dataToSubmit = {
+            name,
+            slug,
+            address: contractAddress,
+            description,
+            image: { externalUrl: image_url } as IImage, // other properties will be added on upload
+            totalSupply: stats.total_supply,
+            twitterUsername: twitter_username,
+            discordUrl: discord_url,
+            externalUrl: external_url,
+            chain,
+            dataSource
+          };
+          setData(dataToSubmit);
         }
       }
-    });
-  }, [data]);
-
-  const openPreviewDialog = useCallback(async (e: FormEvent) => {
-    e.preventDefault();
-    setOpen(true);
-    if (text) {
-      const { data } = await axios.get(LOCAL_API_PATHS.GET_COLLECTION_FROM_OPENSEA(text))
-      if (data) {
-        const {name, slug, description, external_url, image_url, primary_asset_contracts, stats, twitter_username, discord_url } = data as IOpenSea;
-        const contractAddress = primary_asset_contracts[0]?.address
-
-        const dataToSubmit = {
-          name,
-          slug,
-          address: contractAddress, 
-          description,
-          image: { externalUrl: image_url} as IImage, // other properties will be added on upload
-          totalSupply: stats.total_supply,
-          twitterUsername: twitter_username,
-          discordUrl: discord_url,
-          externalUrl: external_url,
-          chain,
-          dataSource
-        }
-        setData(dataToSubmit)
-      }
-    }
-  }, [chain, dataSource, text]);
+    },
+    [chain, dataSource, text]
+  );
 
   return (
     <div className="dark:bg-neutral-800 bg-white p-4 rounded-md shadow-lg">
       <form onSubmit={openPreviewDialog}>
-        <label htmlFor="text" className="block text-sm font-medium text-gray-700 dark:text-gray-400 pb-2">
+        <label
+          htmlFor="text"
+          className="block text-sm font-medium text-gray-700 dark:text-gray-400 pb-2"
+        >
           Add collection:
         </label>
         <input
@@ -102,35 +141,55 @@ export const AdminAddCollection = () => {
           Preview collection
         </button>
       </form>
-      <Modal content={data &&
-         <PreviewCollectionContent onImageUploaded={onImageUploaded} contractAddress={data.address} data={data} chain={chain} dataSource={dataSource} setData={setData} />
-      } actionButtonContent='Add collection' actionCallback={submit} open={open} setOpen={setOpen} />
+      <Modal
+        content={
+          data && (
+            <PreviewCollectionContent
+              onImageUploaded={onImageUploaded}
+              contractAddress={data.address}
+              data={data}
+              chain={chain}
+              dataSource={dataSource}
+              setData={setData}
+            />
+          )
+        }
+        actionButtonContent="Add collection"
+        actionCallback={submit}
+        open={open}
+        setOpen={setOpen}
+      />
     </div>
   );
-}
+};
 
-const chainOptions: {name: string, value: chainTypes}[] = [
-  { name: 'ETH', value: "eth-mainnet" },
-  { name: 'MATIC', value: "polygon-mainnet" },
-  { name: "Arbitrum", value: "arb-mainnet" }
-]
+const chainOptions: { name: string; value: chainTypes }[] = [
+  { name: 'ETH', value: 'eth-mainnet' },
+  { name: 'MATIC', value: 'polygon-mainnet' },
+  { name: 'Arbitrum', value: 'arb-mainnet' },
+  { name: 'Optimism', value: 'opt-mainnet' }
+];
 
 interface IChainOptions {
   chain: chainTypes;
   setChain: React.Dispatch<React.SetStateAction<chainTypes>>;
 }
 
-const ChainOptions = ({chain, setChain}: IChainOptions) => {
-  const onChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => 
-    setChain(e.target.value as chainTypes), [setChain]);
+const ChainOptions = ({ chain, setChain }: IChainOptions) => {
+  const onChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => setChain(e.target.value as chainTypes),
+    [setChain]
+  );
 
   return (
     <div className="flex items-center gap-3 mt-4">
-      <label className="text-base font-medium text-gray-900 dark:text-neutral-300">Select chain: </label> 
+      <label className="text-base font-medium text-gray-900 dark:text-neutral-300">
+        Select chain:{' '}
+      </label>
       <fieldset>
         <legend className="sr-only">Chain types</legend>
         <div className="space-y-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-5">
-          {chainOptions.map(({name, value}) => (
+          {chainOptions.map(({ name, value }) => (
             <div key={name} className="flex items-center">
               <input
                 id={name}
@@ -141,7 +200,10 @@ const ChainOptions = ({chain, setChain}: IChainOptions) => {
                 defaultChecked={chain === value}
                 className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500 cursor-pointer"
               />
-              <label htmlFor={name} className="ml-2 block text-sm font-medium text-gray-700 dark:text-neutral-200 cursor-pointer">
+              <label
+                htmlFor={name}
+                className="ml-2 block text-sm font-medium text-gray-700 dark:text-neutral-200 cursor-pointer"
+              >
                 {name}
               </label>
             </div>
@@ -149,31 +211,35 @@ const ChainOptions = ({chain, setChain}: IChainOptions) => {
         </div>
       </fieldset>
     </div>
-  )
-}
+  );
+};
 
-
-const dataSourceOptions: {name: string, value: dataSourceTypes}[] = [
-  { name: 'Alchemy', value: "alchemy" },
-  { name: 'Reservior', value: "reservoir" }
-]
+const dataSourceOptions: { name: string; value: dataSourceTypes }[] = [
+  { name: 'Alchemy', value: 'alchemy' },
+  { name: 'Reservior', value: 'reservoir' }
+];
 
 interface IDataSourceOptionsProps {
   dataSource: dataSourceTypes;
   setDataSource: React.Dispatch<React.SetStateAction<dataSourceTypes>>;
 }
 
-const DataSourceOptions = ({dataSource, setDataSource}: IDataSourceOptionsProps) => {
-  const onChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => 
-  setDataSource(e.target.value as dataSourceTypes), [setDataSource]);
+const DataSourceOptions = ({ dataSource, setDataSource }: IDataSourceOptionsProps) => {
+  const onChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) =>
+      setDataSource(e.target.value as dataSourceTypes),
+    [setDataSource]
+  );
 
   return (
     <div className="flex items-center gap-3 mt-4">
-      <label className="text-base font-medium text-gray-900 dark:text-neutral-300">Data source: </label> 
+      <label className="text-base font-medium text-gray-900 dark:text-neutral-300">
+        Data source:{' '}
+      </label>
       <fieldset>
         <legend className="sr-only">Data source types</legend>
         <div className="space-y-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-5">
-          {dataSourceOptions.map(({name, value}) => (
+          {dataSourceOptions.map(({ name, value }) => (
             <div key={name} className="flex items-center">
               <input
                 id={name}
@@ -184,7 +250,10 @@ const DataSourceOptions = ({dataSource, setDataSource}: IDataSourceOptionsProps)
                 defaultChecked={dataSource === value}
                 className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500 cursor-pointer"
               />
-              <label htmlFor={name} className="ml-2 block text-sm font-medium text-gray-700 dark:text-neutral-200 cursor-pointer">
+              <label
+                htmlFor={name}
+                className="ml-2 block text-sm font-medium text-gray-700 dark:text-neutral-200 cursor-pointer"
+              >
                 {name}
               </label>
             </div>
@@ -192,5 +261,5 @@ const DataSourceOptions = ({dataSource, setDataSource}: IDataSourceOptionsProps)
         </div>
       </fieldset>
     </div>
-  )
-}
+  );
+};
