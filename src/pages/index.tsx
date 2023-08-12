@@ -27,6 +27,7 @@ const RECOMMENDED_TWITTER_ACC = [
   'duda.eth',
   'snowfro.eth',
   'gmoney.eth',
+  'osf.eth',
   'brantly.eth',
   'superphiz.eth',
   'serenae.eth',
