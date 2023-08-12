@@ -36,16 +36,6 @@ const RECOMMENDED_TWITTER_ACC = [
 
 const MAX_FEATURED_SECTION_LIST_ITEMS = 7;
 
-const AI_COLLECTIONS = [
-  'genesis-by-claire-silver',
-  'podgans-by-pindar-van-arman',
-  'brain-loops-by-gene-kogan',
-  'life-in-west-america-by-roope-rainisto',
-  'chimerical-stories-by-entangled-others-sofia-cresp',
-  '0xai-genesis',
-  'bytegans'
-];
-
 const ART_COLLECTIONS = [
   'right-click-share',
   'nouns',
@@ -246,13 +236,19 @@ const FeaturedSection = ({ collections, isLoading }: IFeaturedSectionProps) => {
       return acc;
     }, []);
 
-  const ai = collections.filter(collection => AI_COLLECTIONS.includes(collection.slug));
-  const aiItems = ai.slice(0, MAX_FEATURED_SECTION_LIST_ITEMS).map(collection => ({
-    image: collection.image?.url,
-    name: collection.name,
-    slug: collection.slug,
-    stat: collection.ownersWithTwitterCount
-  }));
+  const mostTwitterMembers = collections
+    .sort((a, b) => b.ownersWithTwitterCount - a.ownersWithTwitterCount)
+    .reduce((acc: any[], collection, idx) => {
+      if (idx < MAX_FEATURED_SECTION_LIST_ITEMS) {
+        acc.push({
+          image: collection.image?.url,
+          name: collection.name,
+          slug: collection.slug,
+          stat: collection.ownersWithTwitterCount
+        });
+      }
+      return acc;
+    }, []);
 
   const featured = collections.filter(collection =>
     ART_COLLECTIONS.includes(collection.slug)
@@ -279,7 +275,11 @@ const FeaturedSection = ({ collections, isLoading }: IFeaturedSectionProps) => {
           title="Latest Additions"
           items={newCollections}
         />
-        <FeaturedList isLoading={isLoading} title="AI Art" items={aiItems} />
+        <FeaturedList
+          isLoading={isLoading}
+          title="Most Members"
+          items={mostTwitterMembers}
+        />
         <div className="hidden lg:block">
           <FeaturedList isLoading={isLoading} title="Others" items={featuredItems} />
         </div>
