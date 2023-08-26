@@ -1,14 +1,26 @@
-import React from "react";
-import { ICollection } from "../../core/collection.interface";
-import { useMostFollowedCollections } from "../../hooks/use-most-followed-collections";
+import React from 'react';
+import { ICollection } from '../../core/collection.interface';
+import { useMostFollowedCollections } from '../../hooks/use-most-followed-collections';
 import { Spinner } from '../spinner/spinner';
-import { Table, TableBody, TableColumn, TableHeader, TableHeaderItem, TableRow } from '../table/table';
+import {
+  Table,
+  TableBody,
+  TableColumn,
+  TableHeader,
+  TableHeaderItem,
+  TableRow
+} from '../table/table';
+import { GENERIC_AVATAR } from '../../utils';
 
 export const LeaderboardCollections = () => {
   const { data: collections, isLoading } = useMostFollowedCollections();
-  
+
   if (isLoading) {
-    return <div className="mt-6"><Spinner /></div>;
+    return (
+      <div className="mt-6">
+        <Spinner />
+      </div>
+    );
   }
 
   return (
@@ -23,25 +35,36 @@ export const LeaderboardCollections = () => {
 
       <TableBody>
         {collections.map((collection, index) => (
-          <LeaderboardRow key={collection.slug} collection={collection} position={index+1} />
+          <LeaderboardRow
+            key={collection.slug}
+            collection={collection}
+            position={index + 1}
+          />
         ))}
       </TableBody>
     </Table>
-  )
-}
+  );
+};
 
 interface ILeaderboardRow {
   collection: ICollection;
   position: number;
 }
 
-const LeaderboardRow = ({collection, position}: ILeaderboardRow) => {
+const LeaderboardRow = ({ collection, position }: ILeaderboardRow) => {
   const { address, name, image, twitter, slug } = collection;
-  const onClick = React.useCallback(() => window.open(`/collections/${slug}`, "_blank"), [slug]);
+  const onClick = React.useCallback(
+    () => window.open(`/collections/${slug}`, '_blank'),
+    [slug]
+  );
 
+  const onImageError = React.useCallback((event: any) => {
+    event.target.onerror = null;
+    event.target.src = GENERIC_AVATAR;
+  }, []);
   // const users = React.useMemo(() => {
   //   let users: IAvatarGroupItemProps[] = [];
-    
+
   //   for (const user of activeUsers) {
   //     if (user?.twitter?.avatar) {
   //       users.push({ name: user.twitter.username, imageUrl: user.twitter.avatar });
@@ -62,16 +85,31 @@ const LeaderboardRow = ({collection, position}: ILeaderboardRow) => {
       <TableColumn>
         <div className="flex items-center">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={image.thumbnailUrl} className="rounded-full mr-2 h-10 w-10" alt={name || address} aria-hidden="true" />
-          <div className="font-semibold text-gray-600 dark:text-slate-50 truncate ...">{name}</div>
+          <img
+            src={image.thumbnailUrl}
+            className="rounded-full mr-2 h-10 w-10"
+            alt={name || address}
+            aria-hidden="true"
+          />
+          <div className="font-semibold text-gray-600 dark:text-slate-50 truncate ...">
+            {name}
+          </div>
         </div>
       </TableColumn>
       <TableColumn>
         <div className="flex items-center truncate ...">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className="h-10 w-10 rounded-full mr-2" src={twitter.avatar} alt={twitter.username} aria-hidden="true" />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            className="h-10 w-10 rounded-full mr-2"
+            src={twitter.avatar}
+            alt={twitter.username}
+            aria-hidden="true"
+            onError={onImageError}
+          />
           <div>
-            <div className="font-semibold text-gray-600 dark:text-slate-50">{twitter.name}</div>
+            <div className="font-semibold text-gray-600 dark:text-slate-50">
+              {twitter.name}
+            </div>
             <div className="text-xs text-gray-400">@{twitter.username}</div>
           </div>
         </div>
@@ -85,5 +123,5 @@ const LeaderboardRow = ({collection, position}: ILeaderboardRow) => {
         </div>
       </TableColumn>
     </TableRow>
-  )
-}
+  );
+};
