@@ -40,12 +40,12 @@ const MAX_FEATURED_SECTION_LIST_ITEMS = 7;
 const FEATURED_COLLECTIONS = [
   'cryptopunks',
   'boredapeyachtclub',
-  'world-of-women-nft',
-  'chromie-squiggle-by-snowfro',
-  'proof-moonbirds',
-  'cryptoarte',
   'pudgypenguins',
+  'world-of-women-nft',
+  'proof-moonbirds',
   'doodles-official',
+  // 'chromie-squiggle-by-snowfro',
+  // 'cryptoarte',
   'clonex',
   'degods',
   'azuki'
