@@ -37,6 +37,20 @@ const RECOMMENDED_TWITTER_ACC = [
 
 const MAX_FEATURED_SECTION_LIST_ITEMS = 7;
 
+const FEATURED_COLLECTIONS = [
+  'cryptopunks',
+  'boredapeyachtclub',
+  'world-of-women-nft',
+  'chromie-squiggle-by-snowfro',
+  'proof-moonbirds',
+  'cryptoarte',
+  'pudgypenguins',
+  'doodles-official',
+  'clonex',
+  'degods',
+  'azuki'
+];
+
 const ART_COLLECTIONS = [
   'right-click-share',
   'nouns',
@@ -84,9 +98,9 @@ export default function Home() {
           case 'art':
             categories.art.push(collection);
             break;
-          case 'bluechip':
-            categories.recommended.push(collection);
-            break;
+          // case 'bluechip':
+          //   categories.recommended.push(collection);
+          //   break;
           case 'memes':
             categories.memes.push(collection);
             break;
@@ -102,6 +116,13 @@ export default function Home() {
         }
       });
     });
+    FEATURED_COLLECTIONS.map(slug => {
+      const collection = collections.find(collection => collection.slug === slug);
+      if (collection) {
+        categories.recommended.push(collection);
+      }
+    });
+
     return categories;
   }, [collections]);
 
