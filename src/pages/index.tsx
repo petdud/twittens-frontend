@@ -137,7 +137,7 @@ export default function Home() {
   return (
     <div>
       <HeadPage
-        title="Find new NFT collectors on Twitter | Twittens.xyz"
+        title="Find NFT collectors on Twitter | Twittens.xyz"
         description="Twittens helps you to find NFT collection holders on Twitter, so you can connect and make new frens."
       />
 
