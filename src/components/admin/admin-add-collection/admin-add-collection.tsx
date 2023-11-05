@@ -86,12 +86,12 @@ export const AdminAddCollection = () => {
             description,
             external_url,
             image_url,
-            primary_asset_contracts,
+            contracts,
             stats,
             twitter_username,
             discord_url
           } = data as IOpenSea;
-          const contractAddress = primary_asset_contracts[0]?.address;
+          const contractAddress = contracts[0]?.address;
 
           const dataToSubmit = {
             name,

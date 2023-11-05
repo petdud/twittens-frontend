@@ -4,6 +4,11 @@ interface IOpenSeaDisplayData {
   card_display_style: 'contain';
 }
 
+interface Contract {
+  address: string; // "0xf9c12bd715df34c7850766a48178648ac0cb200d"
+  chain: string;
+}
+
 interface IPrimaryAssetContract {
   address: string; // "0xf9c12bd715df34c7850766a48178648ac0cb200d"
   asset_contract_type: string; // "non-fungible"
@@ -30,54 +35,54 @@ interface IPrimaryAssetContract {
 }
 
 export interface IOpenSeaStats {
-  one_hour_volume: number,
-  one_hour_change: number,
-  one_hour_sales: number,
-  one_hour_sales_change: number,
-  one_hour_average_price: number,
-  one_hour_difference: number,
-  six_hour_volume: number,
-  six_hour_change: number,
-  six_hour_sales: number,
-  six_hour_sales_change: number,
-  six_hour_average_price: number,
-  six_hour_difference: number,
-  one_day_volume: number,
-  one_day_change: number,
-  one_day_sales: number,
-  one_day_sales_change: number,
-  one_day_average_price: number,
-  one_day_difference: number,
-  seven_day_volume: number,
-  seven_day_change: number,
-  seven_day_sales: number,
-  seven_day_average_price: number,
-  seven_day_difference: number,
-  thirty_day_volume: number,
-  thirty_day_change: number,
-  thirty_day_sales: number,
-  thirty_day_average_price: number,
-  thirty_day_difference: number,
-  total_volume: number,
-  total_sales: number,
-  total_supply: number,
-  count: number,
-  num_owners: number,
-  average_price: number,
-  num_reports: number,
-  market_cap: number,
-  floor_price: number,
+  one_hour_volume: number;
+  one_hour_change: number;
+  one_hour_sales: number;
+  one_hour_sales_change: number;
+  one_hour_average_price: number;
+  one_hour_difference: number;
+  six_hour_volume: number;
+  six_hour_change: number;
+  six_hour_sales: number;
+  six_hour_sales_change: number;
+  six_hour_average_price: number;
+  six_hour_difference: number;
+  one_day_volume: number;
+  one_day_change: number;
+  one_day_sales: number;
+  one_day_sales_change: number;
+  one_day_average_price: number;
+  one_day_difference: number;
+  seven_day_volume: number;
+  seven_day_change: number;
+  seven_day_sales: number;
+  seven_day_average_price: number;
+  seven_day_difference: number;
+  thirty_day_volume: number;
+  thirty_day_change: number;
+  thirty_day_sales: number;
+  thirty_day_average_price: number;
+  thirty_day_difference: number;
+  total_volume: number;
+  total_sales: number;
+  total_supply: number;
+  count: number;
+  num_owners: number;
+  average_price: number;
+  num_reports: number;
+  market_cap: number;
+  floor_price: number;
 }
 
 export interface IOpenSea {
-  banner_image_url: string; 
+  banner_image_url: string;
   chat_url: string | null;
   created_date: string;
   default_to_fiat: boolean;
   description: string; // need
   dev_buyer_fee_basis_points: string;
   dev_seller_fee_basis_points: string;
-  discord_url: string; // need 
+  discord_url: string; // need
   display_data: IOpenSeaDisplayData;
   external_url: string; // need
   featured: boolean;
@@ -96,14 +101,15 @@ export interface IOpenSea {
   opensea_seller_fee_basis_points: string;
   payment_tokens: any[];
   payout_address: string;
-  primary_asset_contracts: IPrimaryAssetContract[];
+  primary_asset_contracts: IPrimaryAssetContract[]; // old v1 API
+  contracts: Contract[]; // new v2
   require_email: boolean;
   safelist_request_status: SafelistRequestedStats;
   short_description: string;
   slug: string;
   stats: IOpenSeaStats;
   telegram_url: string | null;
-  traits: any
+  traits: any;
   twitter_username: string | null;
   wiki_url: string | null;
 }
