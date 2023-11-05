@@ -77,6 +77,7 @@ export interface IOpenSeaStats {
 export interface IOpenSea {
   banner_image_url: string;
   chat_url: string | null;
+  collection: string; // slug
   created_date: string;
   default_to_fiat: boolean;
   description: string; // need
@@ -101,12 +102,12 @@ export interface IOpenSea {
   opensea_seller_fee_basis_points: string;
   payment_tokens: any[];
   payout_address: string;
-  primary_asset_contracts: IPrimaryAssetContract[]; // old v1 API
+  primary_asset_contracts: IPrimaryAssetContract[]; // DEPRECATED OLD v1 API - use contracts
   contracts: Contract[]; // new v2
   require_email: boolean;
   safelist_request_status: SafelistRequestedStats;
   short_description: string;
-  slug: string;
+  slug: string; // DEPRECATED OLD v1 API - use collection
   stats: IOpenSeaStats;
   telegram_url: string | null;
   traits: any;

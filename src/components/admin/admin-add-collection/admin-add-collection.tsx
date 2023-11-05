@@ -82,7 +82,7 @@ export const AdminAddCollection = () => {
         if (data) {
           const {
             name,
-            slug,
+            collection,
             description,
             external_url,
             image_url,
@@ -95,11 +95,11 @@ export const AdminAddCollection = () => {
 
           const dataToSubmit = {
             name,
-            slug,
+            slug: collection,
             address: contractAddress,
             description,
             image: { externalUrl: image_url } as IImage, // other properties will be added on upload
-            totalSupply: stats.total_supply,
+            totalSupply: 10000, // NOT WORKING -> NEED TO UPDATE MANUALLY OR FIX IT
             twitterUsername: twitter_username,
             discordUrl: discord_url,
             externalUrl: external_url,
