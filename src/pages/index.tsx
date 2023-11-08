@@ -38,6 +38,7 @@ const RECOMMENDED_TWITTER_ACC = [
 const MAX_FEATURED_SECTION_LIST_ITEMS = 7;
 
 const FEATURED_COLLECTIONS = [
+  'winds-of-yawanawa',
   'cryptopunks',
   'boredapeyachtclub',
   'pudgypenguins',
