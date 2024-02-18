@@ -3,9 +3,9 @@ import { Fragment, useState } from 'react';
 import { Dialog, Switch, Transition } from '@headlessui/react';
 import {
   Bars3Icon,
-  HomeIcon, 
-  QuestionMarkCircleIcon, 
-  XMarkIcon,
+  HomeIcon,
+  QuestionMarkCircleIcon,
+  XMarkIcon
 } from '@heroicons/react/24/outline';
 import { classNames } from '../utils';
 import Link from 'next/link';
@@ -27,19 +27,24 @@ import { IoIosPhotos } from 'react-icons/io';
 
 const navigation = [
   { name: 'Home', href: '/', icon: HomeIcon, isActive: true },
-  { name: "Leaderboard", href: "/leaderboard", icon: MdLeaderboard, isActive: FEATURE_FLAGS.ENABLE_LEADERBOARD },
-  { name: 'FAQ', href: '/faq', icon: QuestionMarkCircleIcon, isActive: true },
+  {
+    name: 'Leaderboard',
+    href: '/leaderboard',
+    icon: MdLeaderboard,
+    isActive: FEATURE_FLAGS.ENABLE_LEADERBOARD
+  },
+  { name: 'FAQ', href: '/faq', icon: QuestionMarkCircleIcon, isActive: true }
 ];
 
 interface IMainSlot {
   children: JSX.Element | JSX.Element[];
 }
 
-export const MainSlot = ({children}: IMainSlot) => {
-  const [sidebarOpen, setSidebarOpen] = useState(false)
+export const MainSlot = ({ children }: IMainSlot) => {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className='bg-gray-100 min-h-screen h-full dark:bg-zinc-900'>
+    <div className="bg-gray-100 min-h-screen h-full dark:bg-zinc-900">
       <Transition.Root show={sidebarOpen} as={Fragment}>
         <Dialog as="div" className="relative z-40 md:hidden" onClose={setSidebarOpen}>
           <Transition.Child
@@ -87,7 +92,7 @@ export const MainSlot = ({children}: IMainSlot) => {
                 </Transition.Child>
                 <div className="h-0 flex-1 overflow-y-auto pt-5 pb-4 px-4">
                   <div className="flex flex-shrink-0 items-center px-4 justify-start">
-                    <Link href={"/"}>
+                    <Link href={'/'}>
                       <Image
                         className="h-8 w-auto"
                         width="163"
@@ -98,28 +103,32 @@ export const MainSlot = ({children}: IMainSlot) => {
                       />
                     </Link>
                   </div>
-                  <Divider wrapperClass='mt-4' />
+                  <Divider wrapperClass="mt-4" />
                   <nav className="mt-5 space-y-1 px-2">
-                    {navigation.map((item) => (
-                      item.isActive && <a
-                        key={item.name}
-                        href={item.href}
-                        className={classNames(
-                          'text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-neutral-200 hover:dark:text-neutral-100 hover:dark:bg-neutral-900',
-                          'group flex items-center px-2 py-2 text-base font-medium rounded-md'
-                        )}
-                      >
-                        <item.icon
-                          className={classNames(
-                            'text-gray-400 group-hover:text-gray-500',
-                            'mr-4 flex-shrink-0 h-6 w-6'
-                          )}
-                          aria-hidden="true"
-                        />
-                        {item.name}
-                      </a>
-                    ))}
+                    {navigation.map(
+                      item =>
+                        item.isActive && (
+                          <a
+                            key={item.name}
+                            href={item.href}
+                            className={classNames(
+                              'text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-neutral-200 hover:dark:text-neutral-100 hover:dark:bg-neutral-900',
+                              'group flex items-center px-2 py-2 text-base font-medium rounded-md'
+                            )}
+                          >
+                            <item.icon
+                              className={classNames(
+                                'text-gray-400 group-hover:text-gray-500',
+                                'mr-4 flex-shrink-0 h-6 w-6'
+                              )}
+                              aria-hidden="true"
+                            />
+                            {item.name}
+                          </a>
+                        )
+                    )}
                     <LensensLink />
+                    <CastFrensLink />
                   </nav>
                   <Divider wrapperClass="my-6" />
                   <JoinCommunitySection />
@@ -129,7 +138,6 @@ export const MainSlot = ({children}: IMainSlot) => {
                 </div>
 
                 <Footer />
-
               </Dialog.Panel>
             </Transition.Child>
 
@@ -145,7 +153,7 @@ export const MainSlot = ({children}: IMainSlot) => {
         {/* Sidebar component, swap this element with another sidebar if you like */}
         <div className="flex flex-grow flex-col overflow-y-auto border-r border-gray-200 bg-white pt-5 px-4 dark:bg-neutral-800 dark:border-neutral-700">
           <div className="flex flex-shrink-0 items-center px-4">
-            <Link href={"/"}>
+            <Link href={'/'}>
               <Image
                 className="h-10 w-auto"
                 width="163"
@@ -157,30 +165,35 @@ export const MainSlot = ({children}: IMainSlot) => {
             </Link>
           </div>
           <Divider wrapperClass="mt-4" />
-          <div className="mt-5 flex flex-grow flex-col"> 
+          <div className="mt-5 flex flex-grow flex-col">
             <div>
               <nav className="flex-1 space-y-1 px-2 pb-4">
-                {navigation.map((item) => (
-                  item.isActive && <Link
-                    key={item.name} 
-                    href={item.href}
-                    className={classNames(
-                      'text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-neutral-200',
-                      'group flex items-center px-2 py-2 text-sm font-medium rounded-md hover:bg-gray-50 hover:text-gray-900 hover:dark:bg-neutral-900 hover:dark:text-neutral-100'
-                  )}>
-                    <item.icon
-                      className={classNames(
-                        'text-gray-400 group-hover:text-indigo-700 dark:group-hover:text-indigo-400',
-                        'mr-3 flex-shrink-0 h-6 w-6 text-gray-400 dark:text-neutral-200'
-                      )}
-                      aria-hidden="true"
-                    />
-                    {item.name}
-                  </Link>
-                ))}
+                {navigation.map(
+                  item =>
+                    item.isActive && (
+                      <Link
+                        key={item.name}
+                        href={item.href}
+                        className={classNames(
+                          'text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-neutral-200',
+                          'group flex items-center px-2 py-2 text-sm font-medium rounded-md hover:bg-gray-50 hover:text-gray-900 hover:dark:bg-neutral-900 hover:dark:text-neutral-100'
+                        )}
+                      >
+                        <item.icon
+                          className={classNames(
+                            'text-gray-400 group-hover:text-indigo-700 dark:group-hover:text-indigo-400',
+                            'mr-3 flex-shrink-0 h-6 w-6 text-gray-400 dark:text-neutral-200'
+                          )}
+                          aria-hidden="true"
+                        />
+                        {item.name}
+                      </Link>
+                    )
+                )}
                 <LensensLink />
+                <CastFrensLink />
               </nav>
-              <Divider wrapperClass='mt-3' />
+              <Divider wrapperClass="mt-3" />
               <div className="mt-6">
                 <SearchBar />
               </div>
@@ -207,7 +220,7 @@ export const MainSlot = ({children}: IMainSlot) => {
                 <Bars3Icon className="h-6 w-6 dark:text-white" aria-hidden="true" />
               </button>
             </div>
-            <Link href={"/"}>
+            <Link href={'/'}>
               <Image
                 className="h-8 w-auto"
                 width="163"
@@ -217,7 +230,7 @@ export const MainSlot = ({children}: IMainSlot) => {
                 priority
               />
             </Link>
-            <div className="flex-1"/>
+            <div className="flex-1" />
           </div>
         </div>
 
@@ -227,8 +240,8 @@ export const MainSlot = ({children}: IMainSlot) => {
         </main>
       </div>
     </div>
-  )
-}
+  );
+};
 
 const MessageBanner = () => {
   const [showBanner, setShowBanner] = useState(true);
@@ -252,125 +265,173 @@ const MessageBanner = () => {
         className="hover:underline"
       >
         <p className="font-medium">
-          <strong>Twittens.xyz</strong> has been accepted into the Gitcoin Grant Program for funding.
-          Please support our project! 🙏
+          <strong>Twittens.xyz</strong> has been accepted into the Gitcoin Grant Program
+          for funding. Please support our project! 🙏
         </p>
       </a>
       <button className="text-yellow-800" onClick={handleDismiss}>
-        <AiOutlineClose  />
+        <AiOutlineClose />
       </button>
     </div>
   );
 };
 
-const LensensLink = () => (
-  FEATURE_FLAGS.ENABLE_LENSENS_IN_MENU ?
+const LensensLink = () =>
+  FEATURE_FLAGS.ENABLE_LENSENS_IN_MENU ? (
     <Link
       href={ROUTES.LENSENS}
       target="_blank"
       className={classNames(
         'text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-neutral-200 justify-between',
-        'group flex items-center px-2 py-2 text-base font-medium rounded-md hover:bg-gray-50 hover:text-gray-900 hover:dark:bg-neutral-900 hover:dark:text-neutral-100'
+        'group flex items-center px-2 py-1 text-base font-medium rounded-md hover:bg-gray-50 hover:text-gray-900 hover:dark:bg-neutral-900 hover:dark:text-neutral-100'
       )}
     >
       <div className="flex items-center">
-        <span
-          className="mr-3 flex-shrink-0 h-6 w-6 text-xl"
-          role="img"
-          aria-label="Leaf"
-        >
+        <span className="mr-3 flex-shrink-0 h-6 w-6 text-xl" role="img" aria-label="Leaf">
           🍃
         </span>
-        <span className="group-hover:text-lime-500">Lens</span><span className="group-hover:text-lime-600">ens.xyz</span>
+        <span className="group-hover:text-lime-500">Lens</span>
+        <span className="group-hover:text-lime-600">ens.xyz</span>
       </div>
-      <HiOutlineExternalLink
-        className="opacity-0 mr-1 group-hover:opacity-100 transition-opacity duration-200"
-      />
-    </Link> : null
-)
+      <HiOutlineExternalLink className="opacity-0 mr-1 group-hover:opacity-100 transition-opacity duration-200" />
+    </Link>
+  ) : null;
+
+const CastFrensLink = () => (
+  <Link
+    href={ROUTES.CASTFRENS}
+    target="_blank"
+    className={classNames(
+      'text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-neutral-200 justify-between',
+      'group flex items-center px-2 py-1 text-base font-medium rounded-md hover:bg-gray-50 hover:text-gray-900 hover:dark:bg-neutral-900 hover:dark:text-neutral-100'
+    )}
+  >
+    <div className="flex items-center">
+      <span className="mr-3 flex-shrink-0 h-6 w-6 text-xl" role="img" aria-label="Leaf">
+        💟
+      </span>
+      <span className="group-hover:text-purple-600 dark:group-hover:text-purple-500">
+        Cast
+      </span>
+      <span className="group-hover:text-violet-700 dark:group-hover:text-violet-600">
+        Frens.xyz
+      </span>
+    </div>
+    <HiOutlineExternalLink className="opacity-0 mr-1 group-hover:opacity-100 transition-opacity duration-200" />
+  </Link>
+);
 
 const JoinCommunitySection = () => (
   <div className="px-3">
-    <div className="font-semibold text-neutral-700 dark:text-neutral-200">Join our community:</div>
+    <div className="font-semibold text-neutral-700 dark:text-neutral-200">
+      Join our community:
+    </div>
     <div className="mt-2 flex flex-col">
-      <Link
-        href={ROUTES.TWITTER}
-        target="_blank"
-        className="cursor-pointer"
-      >
+      <Link href={ROUTES.TWITTER} target="_blank" className="cursor-pointer">
         <div className="inline-flex items-center gap-2 px-1 py-1 rounded-md text-sm text-gray-500 hover:text-gray-600 dark:text-neutral-200 hover:dark:text-neutral-50 group">
-          <BsTwitter className="group-hover:text-sky-700 dark:group-hover:text-sky-400" /> Twitter
+          <BsTwitter className="group-hover:text-sky-700 dark:group-hover:text-sky-400" />{' '}
+          Twitter
         </div>
       </Link>
-      <Link
-        href={ROUTES.DISCORD}
-        target="_blank"
-        className="cursor-pointer"
-      >
+      <Link href={ROUTES.DISCORD} target="_blank" className="cursor-pointer">
         <div className="inline-flex items-center gap-2 px-1 py-1 rounded-md text-sm text-gray-500 hover:text-gray-600 dark:text-neutral-200 hover:dark:text-neutral-50 group">
-          <FaDiscord className="group-hover:text-indigo-700 dark:group-hover:text-indigo-400" /> Discord
+          <FaDiscord className="group-hover:text-indigo-700 dark:group-hover:text-indigo-400" />{' '}
+          Discord
         </div>
       </Link>
     </div>
   </div>
-)
+);
 
 const GetListedButton = () => (
   <div className="pt-4">
-    <Link href={SET_TWITTER_URL} target='_blank' type="button">
-      <div
-        className="inline-flex items-center rounded-md border border-transparent bg-indigo-600 dark:bg-indigo-800 px-3 py-2 text-sm font-medium leading-4 text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-      >
+    <Link href={SET_TWITTER_URL} target="_blank" type="button">
+      <div className="inline-flex items-center rounded-md border border-transparent bg-indigo-600 dark:bg-indigo-800 px-3 py-2 text-sm font-medium leading-4 text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
         Get listed
         <AiOutlineRight className="ml-2" />
       </div>
     </Link>
   </div>
-)
+);
 
 const RequestCollectionButton = () => (
   <div className="pt-4">
-    <Link href={ROUTES.GET_LISTED} target={FEATURE_FLAGS.ENABLE_PAID_LISTING ? '' : '_blank'} type="button">
-      <div
-        className="inline-flex items-center rounded-md border border-transparent bg-indigo-600 dark:bg-indigo-800 px-3 py-2 text-sm font-medium leading-4 text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-      >
+    <Link
+      href={ROUTES.GET_LISTED}
+      target={FEATURE_FLAGS.ENABLE_PAID_LISTING ? '' : '_blank'}
+      type="button"
+    >
+      <div className="inline-flex items-center rounded-md border border-transparent bg-indigo-600 dark:bg-indigo-800 px-3 py-2 text-sm font-medium leading-4 text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
         Add collection
         <IoIosPhotos className="ml-2" />
       </div>
     </Link>
   </div>
-)
+);
 
 const Footer = () => (
   <>
-    <Divider/>
+    <Divider />
     <div className="p-4">
-      <Link href={SET_TWITTER_URL} className="flex items-center gap-2 text-gray-500 dark:text-gray-400 text-sm mb-2 hover:underline cursor-pointer" target="_blank"><AiOutlineRight /> Get listed</Link>
-      <Link href={ROUTES.GET_LISTED} target={FEATURE_FLAGS.ENABLE_PAID_LISTING ? '' : '_blank'} className="flex items-center gap-2 text-gray-500 dark:text-gray-400 text-sm mb-2 hover:underline cursor-pointer"><AiFillFolderAdd /> Request collection</Link>
-      <Link href={ROUTES.FEEDBACK} className="flex items-center gap-2 text-gray-500 dark:text-gray-400 text-sm mb-2 hover:underline cursor-pointer" target="_blank"><MdOutlineFeedback /> Send feedback</Link>
+      <Link
+        href={SET_TWITTER_URL}
+        className="flex items-center gap-2 text-gray-500 dark:text-gray-400 text-sm mb-2 hover:underline cursor-pointer"
+        target="_blank"
+      >
+        <AiOutlineRight /> Get listed
+      </Link>
+      <Link
+        href={ROUTES.GET_LISTED}
+        target={FEATURE_FLAGS.ENABLE_PAID_LISTING ? '' : '_blank'}
+        className="flex items-center gap-2 text-gray-500 dark:text-gray-400 text-sm mb-2 hover:underline cursor-pointer"
+      >
+        <AiFillFolderAdd /> Request collection
+      </Link>
+      <Link
+        href={ROUTES.FEEDBACK}
+        className="flex items-center gap-2 text-gray-500 dark:text-gray-400 text-sm mb-2 hover:underline cursor-pointer"
+        target="_blank"
+      >
+        <MdOutlineFeedback /> Send feedback
+      </Link>
       <div className="block text-gray-500 dark:text-gray-400 text-xs">
-        Created by <a href="https://www.twitter.com/petrdu" className="cursor-pointer text-gray-600 dark:text-gray-300 underline hover:dark:text-gray-50" target="_blank" rel="noreferrer">petrdu</a>
+        Created by{' '}
+        <a
+          href="https://www.twitter.com/petrdu"
+          className="cursor-pointer text-gray-600 dark:text-gray-300 underline hover:dark:text-gray-50"
+          target="_blank"
+          rel="noreferrer"
+        >
+          petrdu
+        </a>
       </div>
     </div>
   </>
-)
+);
 
 const ThemeSettings = () => {
   const { theme, setTheme } = useThemeContext();
-  const isEnabled = theme === "dark" ? true : false;
+  const isEnabled = theme === 'dark' ? true : false;
 
-  const onChange = React.useCallback((val: boolean) => {
-    const theme = val ? "dark" : "light";
-    setTheme(theme);
-  }, [setTheme])
+  const onChange = React.useCallback(
+    (val: boolean) => {
+      const theme = val ? 'dark' : 'light';
+      setTheme(theme);
+    },
+    [setTheme]
+  );
 
   return (
     <Switch.Group as="div" className="cursor-pointer">
       <div className="flex items-center justify-around grow">
         <Switch.Label as="span" className="ml-3">
           <div className="flex items-center gap-2">
-          <span className="pr-4 text-white dark:text-neutral-200"><ImContrast className="text-black dark:text-white" /></span>
-            <span className="text-sm font-medium text-gray-900 dark:text-neutral-200">DARK MODE</span>
+            <span className="pr-4 text-white dark:text-neutral-200">
+              <ImContrast className="text-black dark:text-white" />
+            </span>
+            <span className="text-sm font-medium text-gray-900 dark:text-neutral-200">
+              DARK MODE
+            </span>
           </div>
         </Switch.Label>
         <Switch
@@ -380,7 +441,10 @@ const ThemeSettings = () => {
         >
           <span className="sr-only">Use dark mode</span>
           {/* // this */}
-          <span aria-hidden="true" className="pointer-events-none absolute h-full w-full rounded-md " /> 
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute h-full w-full rounded-md "
+          />
           <span
             aria-hidden="true"
             className={classNames(
@@ -398,8 +462,8 @@ const ThemeSettings = () => {
         </Switch>
       </div>
     </Switch.Group>
-  )
-}
+  );
+};
 
 const AdminMenu = () => {
   const { data: session } = useSession();
@@ -413,18 +477,12 @@ const AdminMenu = () => {
       <Divider />
       <div className="px-3 mt-5 flex items-center">
         <div className="font-semibold dark:text-neutral-200">
-          <Link
-            href="/admin/collections"
-            className="cursor-pointer"
-          >
+          <Link href="/admin/collections" className="cursor-pointer">
             Admin panel
           </Link>
         </div>
         <div>
-          <button
-            onClick={() => signOut()}
-            className="cursor-pointer"
-          >
+          <button onClick={() => signOut()} className="cursor-pointer">
             <div className="inline-flex items-center gap-2 px-1 py-1 rounded-md text-sm text-gray-600 hover:text-black dark:text-neutral-400 hover:dark:text-neutral-300">
               (Sign Out)
             </div>
@@ -432,5 +490,5 @@ const AdminMenu = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
