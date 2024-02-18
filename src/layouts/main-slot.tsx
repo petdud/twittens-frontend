@@ -283,7 +283,7 @@ const LensensLink = () =>
       target="_blank"
       className={classNames(
         'text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-neutral-200 justify-between',
-        'group flex items-center px-2 py-1 text-base font-medium rounded-md hover:bg-gray-50 hover:text-gray-900 hover:dark:bg-neutral-900 hover:dark:text-neutral-100'
+        'group flex items-center px-2 py-1 text-sm font-medium rounded-md hover:bg-gray-50 hover:text-gray-900 hover:dark:bg-neutral-900 hover:dark:text-neutral-100'
       )}
     >
       <div className="flex items-center">
@@ -303,7 +303,7 @@ const CastFrensLink = () => (
     target="_blank"
     className={classNames(
       'text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-neutral-200 justify-between',
-      'group flex items-center px-2 py-1 text-base font-medium rounded-md hover:bg-gray-50 hover:text-gray-900 hover:dark:bg-neutral-900 hover:dark:text-neutral-100'
+      'group flex items-center px-2 py-1 text-sm font-medium rounded-md hover:bg-gray-50 hover:text-gray-900 hover:dark:bg-neutral-900 hover:dark:text-neutral-100'
     )}
   >
     <div className="flex items-center">
