@@ -138,8 +138,8 @@ export default function Home() {
   return (
     <div>
       <HeadPage
-        title="Find NFT collectors on Twitter | Twittens.xyz"
-        description="Twittens helps you to find NFT collection holders on Twitter, so you can connect and make new frens."
+        title="Find NFT collectors on 𝕏 | xFrens.xyz"
+        description="xFrens helps you to find NFT collection holders on 𝕏, so you can connect and make new frens."
       />
 
       <MainSlot>
@@ -428,11 +428,12 @@ const FooterAlchemyLogo = () => {
 const HeroBanner = () => (
   <div className="flex justify-between flex-col">
     <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl">
-      Find new <span className="text-blue-400">Twitter</span> frens!
+      Find new <span className="text-gray-500 dark:text-gray-400">frens</span>{' '}
+      on&nbsp;&nbsp;𝕏!
     </p>
     <p className="mt-2 text-base md:text-xl leading-8 text-gray-600 dark:text-gray-300 ">
-      Twittens helps you to find NFT collectors on Twitter, so you can connect & make new
-      frens.
+      xFrens helps you to find NFT collectors on&nbsp;&nbsp;𝕏, so you can connect & make
+      new frens.
     </p>
   </div>
 );

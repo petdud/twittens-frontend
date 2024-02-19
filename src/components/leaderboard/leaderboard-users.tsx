@@ -78,7 +78,7 @@ export const LeaderboardUsers = () => {
         <TableHeader>
           <TableHeaderItem name="Rank" isFirst={true} />
           <TableHeaderItem name="Name" />
-          <TableHeaderItem name="Twitter" />
+          <TableHeaderItem name="𝕏" />
           <TableHeaderItem name="A part of community" />
           <TableHeaderItem name="Followers" isLast={true} />
         </TableHeader>

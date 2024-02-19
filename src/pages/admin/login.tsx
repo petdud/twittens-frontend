@@ -1,46 +1,49 @@
-import Link from "next/link";
+import Link from 'next/link';
 import Image from 'next/image';
-import { MainSlot } from "../../layouts/main-slot";
-import { HeadPage } from "../../layouts/head-page";
-import { useCallback, useState } from "react";
-import { Input } from "../../components/controllers/input/input";
-import { signIn } from "next-auth/react";
-import { useRouter } from "next/router";
+import { MainSlot } from '../../layouts/main-slot';
+import { HeadPage } from '../../layouts/head-page';
+import { useCallback, useState } from 'react';
+import { Input } from '../../components/controllers/input/input';
+import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/router';
 
 export default function Login() {
   return (
     <>
-      <HeadPage 
-        title="Twittens - Admin Login panel" 
-        description="Twittens helps you to find your twitter frens in your favorite NFT collections."
+      <HeadPage
+        title="xFrens - Admin Login panel"
+        description="xFrens helps you to find your frens on X in your favorite NFT collections."
       >
         <meta name="robots" content="noindex,follow" />
       </HeadPage>
       <MainSlot>
         <div className="mx-auto max-w-3xl sm:px-6 lg:px-8 my-12 px-4">
-        <LoginWidget />
+          <LoginWidget />
         </div>
       </MainSlot>
     </>
-  )
+  );
 }
 
 const LoginWidget = () => {
   const router = useRouter();
   const error = router.query.error as string;
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  const onSubmit = useCallback(async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    await signIn("credentials", { email, password, callbackUrl: '/admin/collections' });
-  }, [email, password]);
+  const onSubmit = useCallback(
+    async (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      await signIn('credentials', { email, password, callbackUrl: '/admin/collections' });
+    },
+    [email, password]
+  );
 
   return (
     <>
       <div className="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
-          <Link href={"/"}>
+          <Link href={'/'}>
             <Image
               className="h-8 w-auto m-auto"
               width="163"
@@ -64,7 +67,7 @@ const LoginWidget = () => {
                     autoComplete="email"
                     value={email}
                     required
-                    onChange={(e) => setEmail(e.target.value)}
+                    onChange={e => setEmail(e.target.value)}
                   />
                 </div>
               </div>
@@ -78,14 +81,12 @@ const LoginWidget = () => {
                     placeholder="Password"
                     autoComplete="current-password"
                     value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    onChange={e => setPassword(e.target.value)}
                     required
                   />
                 </div>
               </div>
-              {error && <div className="text-red-500">
-                {`Something wrong: ${error}`}
-              </div>}
+              {error && <div className="text-red-500">{`Something wrong: ${error}`}</div>}
               <div>
                 <button
                   type="submit"
@@ -99,5 +100,5 @@ const LoginWidget = () => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};

@@ -79,12 +79,12 @@ export const UserItem = ({
                   </h3>
                   {verified && (
                     <span className="inline-block flex-shrink-0 text-sky-400 pl-1.5">
-                      <GoVerified aria-label="Twitter verified" />
+                      <GoVerified aria-label="X verified" />
                     </span>
                   )}
                   {isProtected && (
                     <span className="inline-block flex-shrink-0 text-yellow-600 pl-1.5">
-                      <AiFillLock aria-label="Twitter private account" />
+                      <AiFillLock aria-label="X private account" />
                     </span>
                   )}
                 </div>

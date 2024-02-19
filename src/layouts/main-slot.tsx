@@ -12,7 +12,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { SearchBar } from '../components/search-bar/search-bar';
 import { AiOutlineClose, AiOutlineRight } from 'react-icons/ai';
-import { BsTwitter } from 'react-icons/bs';
+import { FaXTwitter } from 'react-icons/fa6';
 import { ImContrast } from 'react-icons/im';
 import { ROUTES, SET_TWITTER_URL } from '../core/routes';
 import { useThemeContext } from '../core/theme-provider';
@@ -24,6 +24,7 @@ import { FEATURE_FLAGS } from '../core/feature-flags';
 import { AiFillFolderAdd } from 'react-icons/ai';
 import { HiOutlineExternalLink } from 'react-icons/hi';
 import { IoIosPhotos } from 'react-icons/io';
+import { Logo } from '../components/logo/logo';
 
 const navigation = [
   { name: 'Home', href: '/', icon: HomeIcon, isActive: true },
@@ -92,16 +93,7 @@ export const MainSlot = ({ children }: IMainSlot) => {
                 </Transition.Child>
                 <div className="h-0 flex-1 overflow-y-auto pt-5 pb-4 px-4">
                   <div className="flex flex-shrink-0 items-center px-4 justify-start">
-                    <Link href={'/'}>
-                      <Image
-                        className="h-8 w-auto"
-                        width="163"
-                        height="50"
-                        src="/twittens_logo.png"
-                        alt="Twittens"
-                        priority
-                      />
-                    </Link>
+                    <Logo withLink={true} />
                   </div>
                   <Divider wrapperClass="mt-4" />
                   <nav className="mt-5 space-y-1 px-2">
@@ -153,16 +145,7 @@ export const MainSlot = ({ children }: IMainSlot) => {
         {/* Sidebar component, swap this element with another sidebar if you like */}
         <div className="flex flex-grow flex-col overflow-y-auto border-r border-gray-200 bg-white pt-5 px-4 dark:bg-neutral-800 dark:border-neutral-700">
           <div className="flex flex-shrink-0 items-center px-4">
-            <Link href={'/'}>
-              <Image
-                className="h-10 w-auto"
-                width="163"
-                height="50"
-                src="/twittens_logo.png"
-                alt="Twittens"
-                priority
-              />
-            </Link>
+            <Logo withLink={true} />
           </div>
           <Divider wrapperClass="mt-4" />
           <div className="mt-5 flex flex-grow flex-col">
@@ -220,16 +203,7 @@ export const MainSlot = ({ children }: IMainSlot) => {
                 <Bars3Icon className="h-6 w-6 dark:text-white" aria-hidden="true" />
               </button>
             </div>
-            <Link href={'/'}>
-              <Image
-                className="h-8 w-auto"
-                width="163"
-                height="50"
-                src="/twittens_logo.png"
-                alt="Twittens"
-                priority
-              />
-            </Link>
+            <Logo withLink={true} />
             <div className="flex-1" />
           </div>
         </div>
@@ -329,8 +303,8 @@ const JoinCommunitySection = () => (
     <div className="mt-2 flex flex-col">
       <Link href={ROUTES.TWITTER} target="_blank" className="cursor-pointer">
         <div className="inline-flex items-center gap-2 px-1 py-1 rounded-md text-sm text-gray-500 hover:text-gray-600 dark:text-neutral-200 hover:dark:text-neutral-50 group">
-          <BsTwitter className="group-hover:text-sky-700 dark:group-hover:text-sky-400" />{' '}
-          Twitter
+          <FaXTwitter className="group-hover:text-gray-700 dark:group-hover:text-gray-400" />{' '}
+          X.com
         </div>
       </Link>
       <Link href={ROUTES.DISCORD} target="_blank" className="cursor-pointer">

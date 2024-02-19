@@ -4,13 +4,12 @@ import { HeadPage } from '../layouts/head-page';
 import { MainSlot } from '../layouts/main-slot';
 
 export default function LeaderboardPage() {
-
   return (
     <div>
-      <HeadPage 
-        title="Leaderboard for Twitter + ENS | Twittens.xyz" 
-        description="Discover who are the most followed Twitter accounts within NFT collections."
-        image='https://twittens.xyz/leaderboard.jpg'
+      <HeadPage
+        title="Leaderboard for 𝕏 + ENS | xFrens.xyz"
+        description="Discover who are the most followed 𝕏 accounts within NFT collections."
+        image="https://xfrens.xyz/leaderboard.jpg"
       />
 
       <MainSlot>

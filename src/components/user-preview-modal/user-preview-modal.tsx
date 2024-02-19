@@ -5,7 +5,7 @@ import { ICollection, IUser } from '../../core/collection.interface';
 import { GENERIC_AVATAR, shortenedAddress } from '../../utils';
 import { AiFillLock, AiOutlineClose } from 'react-icons/ai';
 import { CopyButton } from '../copy-button/copy-button';
-import { BsTwitter } from 'react-icons/bs';
+import { FaXTwitter } from 'react-icons/fa6';
 import { WalletDropdownOptions } from '../wallet-dropdown-options/wallet-dropdown-options';
 import { FaWallet } from 'react-icons/fa';
 import { GoVerified } from 'react-icons/go';
@@ -202,13 +202,12 @@ const FooterButtons = ({
 }) => (
   <div className="mt-5 sm:mt-4 flex gap-2">
     <Link
-      href={`https://www.twitter.com/${twitterUsername}`}
+      href={`https://x.com/${twitterUsername}`}
       target="_blank"
-      style={{ background: '#1DA1F2' }}
-      className="inline-flex gap-2 items-center rounded-md border border-transparent px-2.5 py-1.5 text-sm font-medium text-white shadow-sm hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+      className="inline-flex gap-2 border-gray-300 dark:border-gray-600 items-center rounded-md border border-transparent px-2.5 py-1.5 text-sm font-medium text-white shadow-sm bg-neutral:200 bg-black hover:bg-neutral-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
     >
-      <BsTwitter />
-      <span>Twitter</span>
+      <FaXTwitter className="" />
+      <span>Profile</span>
     </Link>
     <WalletDropdownOptions
       name={

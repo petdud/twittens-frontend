@@ -7,9 +7,13 @@ import { MainSlot } from '../../layouts/main-slot';
 import { Collections } from '../../components/collections/collections';
 
 export default function CollectionsPage() {
-  const { data: collections, isLoading, error } = useCollections({
-    status: "active", 
-    select: SELECT_FROM_COLLECTIONS,
+  const {
+    data: collections,
+    isLoading,
+    error
+  } = useCollections({
+    status: 'active',
+    select: SELECT_FROM_COLLECTIONS
   });
 
   if (error || (!isLoading && collections.length === 0)) {
@@ -17,14 +21,14 @@ export default function CollectionsPage() {
       <div className="py-6">
         <MainViewHeader title="Sorry, something went wrong 🫣" />
       </div>
-    )
+    );
   }
 
   return (
     <div>
-      <HeadPage 
-        title="All NFT collections on Twittens | Twittens.xyz" 
-        description="Discover all NFT collections on Twittens and find their twitter members."
+      <HeadPage
+        title="All NFT collections on xFrens | xFrens.xyz"
+        description="Discover all NFT collections on xFrens and find their members on 𝕏 social media."
       />
 
       <MainSlot>
