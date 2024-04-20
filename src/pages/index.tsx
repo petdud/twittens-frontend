@@ -38,8 +38,8 @@ const RECOMMENDED_TWITTER_ACC = [
 const MAX_FEATURED_SECTION_LIST_ITEMS = 7;
 
 const FEATURED_COLLECTIONS = [
-  'winds-of-yawanawa',
   'cryptopunks',
+  'bitairt',
   'boredapeyachtclub',
   'pudgypenguins',
   'world-of-women-nft',
@@ -59,7 +59,7 @@ const ART_COLLECTIONS = [
   'vv-checks',
   'world-of-women-nft',
   'thememes6529',
-  'proof-moonbirds'
+  'bitairt'
 ];
 
 export default function Home() {
