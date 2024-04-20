@@ -16,9 +16,9 @@ export const HeadPage = ({ children, title, description, image }: IHeadPageProps
       <meta property="og:title" content={title} />
       <meta
         property="og:description"
-        content="Twittens helps you to find twitter frens in your favorite NFT collections."
+        content="xFrens helps you to find frens on 𝕏 social network in your favorite NFT collections."
       />
-      <meta property="og:site_name" content="Twittens" />
+      <meta property="og:site_name" content="xFrens" />
       <meta property="og:image" content={imageUrl} />
       <meta property="twitter:site" content="@xfrensxyz" />
       <meta property="twitter:card" content="summary_large_image" />
@@ -27,7 +27,7 @@ export const HeadPage = ({ children, title, description, image }: IHeadPageProps
       <meta property="twitter:title" content={title} />
       <meta
         property="twitter:description"
-        content="Twittens helps you to find twitter frens in your favorite NFT collections."
+        content="xFrens helps you to find frens on 𝕏 social network in your favorite NFT collections."
       />
       <meta name="twitter:creator" content="petrdu" />
       <link

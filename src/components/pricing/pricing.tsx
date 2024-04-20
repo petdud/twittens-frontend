@@ -99,7 +99,7 @@ export const Pricing = () => {
                 <span className="font-bold text-neutral-800 dark:text-neutral-100">
                   NFT community
                 </span>{' '}
-                and get listed on Twittens.
+                and get listed on xFrens.
               </p>
             </div>
             <a
@@ -118,8 +118,8 @@ export const Pricing = () => {
                   className="h-8 w-auto"
                   width="81"
                   height="25"
-                  src="/twittens_symbol.png"
-                  alt="Twittens"
+                  src="/xfrens_symbol.png"
+                  alt="xFrens"
                 />
                 <span>ENS + 𝕏 = xFrens </span>
               </div>

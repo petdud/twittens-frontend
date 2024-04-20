@@ -7,29 +7,29 @@ import { MainSlot } from '../layouts/main-slot';
 import { HeadPage } from '../layouts/head-page';
 
 export default function GetListedPage() {
-  const router = useRouter()
-  const redirectToGoogleForm = !FEATURE_FLAGS.ENABLE_PAID_LISTING
+  const router = useRouter();
+  const redirectToGoogleForm = !FEATURE_FLAGS.ENABLE_PAID_LISTING;
 
-  React.useEffect(() => { 
+  React.useEffect(() => {
     if (redirectToGoogleForm) {
       // redirect on google form
-     router.push(GOOGLE_FORM_GET_LISTED) 
+      router.push(GOOGLE_FORM_GET_LISTED);
     }
-  }, [redirectToGoogleForm, router])
+  }, [redirectToGoogleForm, router]);
 
   if (redirectToGoogleForm) {
-    return null
+    return null;
   }
 
   return (
     <>
-      <HeadPage 
-        title="Get listed on Twittens!" 
-        description="Learn how to get your NFT collection listed on Twittens and what are the benefits of being listed here."
+      <HeadPage
+        title="Get listed on xFrens!"
+        description="Learn how to get your NFT collection listed on xFrens and what are the benefits of being listed here."
       />
       <MainSlot>
         <Pricing />
       </MainSlot>
     </>
-  )
+  );
 }

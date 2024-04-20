@@ -3,7 +3,7 @@ export const BASE_API_URL =
     ? process.env.NEXT_PUBLIC_API_BACKEND_PROD
     : 'http://localhost:3333/';
 
-// paths in this application (twittens.xyz)
+// paths in this application (xfrens.xyz)
 export const LOCAL_API_PATHS = {
   UPDATE_COLLECTION_STATUS: '/api/collections/update-status', // provide collection's slug and new status
   GET_COLLECTIONS: '/api/collections', // get all collections; provide status in query (active, hidden)
@@ -29,7 +29,7 @@ export const LOCAL_API_PATHS = {
   GET_COLLECTION_FROM_OPENSEA: (slug: string) => `/api/collections/${slug}/opensea`
 };
 
-// paths outside of this application (api.twittens.xyz)
+// paths outside of this application (api.xfrens.xyz)
 export const API_PATHS = {
   UPDATE_COLLECTION_STATUS: 'collections/update-status', // provide collection's slug and new status
   GET_COLLECTION_OWNERS: 'collections/get-owners', // provide collection's contract address

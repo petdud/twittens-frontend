@@ -6,12 +6,13 @@ import { TabMenuButtons, TabMenuButtonsItem } from '../tab-menu-buttons/tab-menu
 import { LeaderboardUsers } from './leaderboard-users';
 import { LeaderboardCollections } from './leaderboard-collections';
 import { useRouter } from 'next/router';
-import { FaXTwitter } from 'react-icons/fa6';
+import { useThemeContext } from '../../core/theme-provider';
 
 const LEADERBOARD_TITLE_ID = 'leaderboard-title-panel';
 
 export const Leaderboard = () => {
   const router = useRouter();
+  const { theme } = useThemeContext();
   const [tab, setTab] = useState<'Users' | 'Collections'>();
   const onTabSelect = (value: string) => {
     window.location.hash = value.toLowerCase();
@@ -31,7 +32,13 @@ export const Leaderboard = () => {
       <div className="sm:flex sm:items-center">
         <div className="sm:flex-auto">
           <div className="flex items-center gap-2">
-            <FaXTwitter />
+            <Image
+              className="h-8 w-auto"
+              width="81"
+              height="25"
+              src={theme === 'light' ? '/xfrens_symbol.png' : '/xfrens_symbol_dark.png'}
+              alt="xFrens"
+            />
             <h1
               className="text-3xl font-semibold text-gray-900 dark:text-white"
               id={LEADERBOARD_TITLE_ID}

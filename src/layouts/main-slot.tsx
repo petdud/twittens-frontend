@@ -239,8 +239,8 @@ const MessageBanner = () => {
         className="hover:underline"
       >
         <p className="font-medium">
-          <strong>Twittens.xyz</strong> has been accepted into the Gitcoin Grant Program
-          for funding. Please support our project! 🙏
+          <strong>xFrens.xyz</strong> has been accepted into the Gitcoin Grant Program for
+          funding. Please support our project! 🙏
         </p>
       </a>
       <button className="text-yellow-800" onClick={handleDismiss}>

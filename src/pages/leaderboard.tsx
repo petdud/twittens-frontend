@@ -9,7 +9,7 @@ export default function LeaderboardPage() {
       <HeadPage
         title="Leaderboard for 𝕏 + ENS | xFrens.xyz"
         description="Discover who are the most followed 𝕏 accounts within NFT collections."
-        image="https://xfrens.xyz/leaderboard.jpg"
+        image="https://xfrens.xyz/sharing.jpg"
       />
 
       <MainSlot>

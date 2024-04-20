@@ -6,6 +6,7 @@ import { useCallback, useState } from 'react';
 import { Input } from '../../components/controllers/input/input';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/router';
+import { Logo } from '../../components/logo/logo';
 
 export default function Login() {
   return (
@@ -44,13 +45,7 @@ const LoginWidget = () => {
       <div className="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
           <Link href={'/'}>
-            <Image
-              className="h-8 w-auto m-auto"
-              width="163"
-              height="50"
-              src="/twittens_logo.png"
-              alt="Twittens"
-            />
+            <Logo />
           </Link>
         </div>
         <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">

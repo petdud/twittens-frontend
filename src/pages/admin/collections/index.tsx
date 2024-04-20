@@ -11,37 +11,40 @@ export default function Admin() {
   const { status, data } = useSession({
     required: true,
     onUnauthenticated() {
-      router.push("/admin/login");
-    },
-  })
+      router.push('/admin/login');
+    }
+  });
 
-  const isLoading = status === "loading";
+  const isLoading = status === 'loading';
 
   return (
     <div>
-      <HeadPage 
-        title="Twittens - Admin panel" 
-        description="Twittens helps you to find your twitter frens in your favorite NFT collections."
+      <HeadPage
+        title="xFrens - Admin panel"
+        description="xFrens helps you to find your twitter frens in your favorite NFT collections."
       >
         <>
           <meta name="robots" content="noindex,follow" />
-          <script src="https://upload-widget.cloudinary.com/global/all.js" async type="text/javascript" />
+          <script
+            src="https://upload-widget.cloudinary.com/global/all.js"
+            async
+            type="text/javascript"
+          />
         </>
       </HeadPage>
 
       <MainSlot>
         <>
-          {isLoading ?
-              <MainViewHeader title="Loading..." />
-            : !data ?
-              <MainViewHeader title="Error" />
-            : (
+          {isLoading ? (
+            <MainViewHeader title="Loading..." />
+          ) : !data ? (
+            <MainViewHeader title="Error" />
+          ) : (
             <div className="mx-auto max-w-3xl sm:px-6 lg:px-8 my-12 px-4">
               <AdminAddCollection />
               <AdminCollectionList />
             </div>
-          ) 
-        }
+          )}
         </>
       </MainSlot>
     </div>

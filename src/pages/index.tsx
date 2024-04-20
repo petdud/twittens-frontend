@@ -312,6 +312,7 @@ const FeaturedSection = ({ collections, isLoading }: IFeaturedSectionProps) => {
 };
 
 const LeaderboardSection = () => {
+  const { theme } = useThemeContext();
   if (!FEATURE_FLAGS.ENABLE_LEADERBOARD) {
     return null;
   }
@@ -324,8 +325,8 @@ const LeaderboardSection = () => {
             className="h-8 w-auto"
             width="81"
             height="25"
-            src="/twittens_symbol.png"
-            alt="Twittens"
+            src={theme === 'light' ? '/xfrens_symbol.png' : '/xfrens_symbol_dark.png'}
+            alt="xFrens"
           />
           <MainViewHeader title="Leaderboard" />
         </div>
@@ -348,7 +349,7 @@ const Footer = () => {
           <p className="text-xs leading-5 text-gray-500 hover:underline">
             &copy; {currentYear}{' '}
             <Link href="https://twitter.com/petrdu" target="_blank">
-              petrdu & twittens.xyz
+              petrdu & xFrens.xyz
             </Link>
           </p>
           <FooterAlchemyLogo />
