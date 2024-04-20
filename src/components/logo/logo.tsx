@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useThemeContext } from '../../core/theme-provider';
 
-export const Logo = ({ withLink }: { withLink: boolean }) =>
+export const Logo = ({ withLink }: { withLink?: boolean }) =>
   withLink ? (
     <Link href={'/'}>
       <RenderLogo />
