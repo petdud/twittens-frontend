@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import { MainSlot } from '../../layouts/main-slot';
 import { HeadPage } from '../../layouts/head-page';
 import { useCallback, useState } from 'react';
