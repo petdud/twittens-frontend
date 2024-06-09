@@ -1,6 +1,6 @@
 export const BASE_API_URL =
   process.env.NODE_ENV === 'production'
-    ? process.env.NEXT_PUBLIC_API_BACKEND_PROD
+    ? 'https://api.xfrens.xyz/'
     : 'http://localhost:3333/';
 
 // paths in this application (xfrens.xyz)
