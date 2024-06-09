@@ -9,7 +9,6 @@ import {
 } from '@heroicons/react/24/outline';
 import { classNames } from '../utils';
 import Link from 'next/link';
-import Image from 'next/image';
 import { SearchBar } from '../components/search-bar/search-bar';
 import { AiOutlineClose, AiOutlineRight } from 'react-icons/ai';
 import { FaXTwitter } from 'react-icons/fa6';
@@ -243,7 +242,12 @@ const MessageBanner = () => {
           funding. Please support our project! 🙏
         </p>
       </a>
-      <button className="text-yellow-800" onClick={handleDismiss}>
+      <button
+        type="button"
+        title="Close"
+        className="text-yellow-800"
+        onClick={handleDismiss}
+      >
         <AiOutlineClose />
       </button>
     </div>
@@ -374,7 +378,7 @@ const Footer = () => (
           href="https://www.twitter.com/petrdu"
           className="cursor-pointer text-gray-600 dark:text-gray-300 underline hover:dark:text-gray-50"
           target="_blank"
-          rel="noreferrer"
+          rel="noreferrer noopener"
         >
           petrdu
         </a>

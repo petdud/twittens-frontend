@@ -19,7 +19,6 @@ import {
   ProfileListByCollectionTag
 } from '../components/profile-list/profile-list';
 
-const BADGE_ID = 'Dk4MTI3Njc5MzI2N';
 export const SELECT_FROM_COLLECTIONS =
   'name,slug,image.url,ownersWithTwitterCount,ownersWithLensCount,isFeatured,tags,createdAt';
 
@@ -352,77 +351,9 @@ const Footer = () => {
               petrdu & xFrens.xyz
             </Link>
           </p>
-          <FooterAlchemyLogo />
         </div>
       </div>
     </footer>
-  );
-};
-
-const FooterAlchemyLogo = () => {
-  const { theme } = useThemeContext();
-  let ALCHEMY_URL = `https://alchemyapi.io/?r=badge:${BADGE_ID}`;
-  const ALCHEMY_ANALYTICS_URL = `https://analytics.alchemyapi.io/analytics`;
-  const imageUrl =
-    theme === 'dark'
-      ? 'https://static.alchemyapi.io/images/marketing/badge.png'
-      : 'https://static.alchemyapi.io/images/marketing/badgeLight.png';
-
-  const logBadgeClick = () => {
-    fetch(`${ALCHEMY_ANALYTICS_URL}/badge-click`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        badge_id: BADGE_ID
-      })
-    });
-    window.open(ALCHEMY_URL, '_blank')?.focus();
-  };
-
-  const logBadgeView = () => {
-    fetch(`${ALCHEMY_ANALYTICS_URL}/badge-view`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        badge_id: BADGE_ID
-      })
-    });
-  };
-
-  const isBadgeInViewpoint = (bounding: any) => {
-    return (
-      bounding.top >= 0 &&
-      bounding.left >= 0 &&
-      bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-      bounding.right <= (window.innerWidth || document.documentElement.clientWidth)
-    );
-  };
-
-  React.useEffect(() => {
-    var intervalId = setInterval(() => {
-      const badge = document.getElementById('badge-button');
-      if (badge && isBadgeInViewpoint(badge.getBoundingClientRect())) {
-        logBadgeView();
-        clearInterval(intervalId);
-      }
-    }, 2000);
-  });
-
-  return (
-    <a href="#">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        onClick={logBadgeClick}
-        id="badge-button"
-        style={{ width: '180px', height: 'auto' }}
-        src={imageUrl}
-        alt="Alchemy Supercharged"
-      />
-    </a>
   );
 };
 
