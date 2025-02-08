@@ -51,7 +51,7 @@ export const AvatarGroup = ({
       >
         {((maxItems && items.slice(0, maxItems)) || items).map(
           ({ imageUrl, link, name }) =>
-            link ? (
+            link && !disableLinks ? (
               <WithLink key={name} link={link}>
                 <AvatarItem
                   imageUrl={imageUrl}
