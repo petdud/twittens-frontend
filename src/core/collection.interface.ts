@@ -59,6 +59,8 @@ export interface IUser {
   name: string | undefined;
   ens: IUserEns | null;
   twitter: ITwitter | null;
+  lens: ILensProfile | null;
+  farcaster: IFarcasterProfile | null;
   activeCommunities: ICollection[];
   isPromoted: boolean;
   createdAt: string;
@@ -81,6 +83,7 @@ export interface ICollection {
   numberOfOwners: number;
   ownersWithTwitterCount: number;
   ownersWithLensCount: number;
+  ownersWithFarcasterCount: number;
   twitterUsername: string | null;
   discordUrl: string | null;
   externalUrl: string | null;
@@ -117,6 +120,44 @@ export interface ITwitter {
   creationDate: string;
 }
 
+interface ILensMediaSetFragment {
+  __typename: 'MediaSet';
+  original: {
+    __typename: 'Media';
+    url: string;
+    mimeType: string | null;
+  };
+}
+
+interface ILensNftPicture {
+  __typename: 'NftImage';
+  contractAddress: string;
+  tokenId: string;
+  uri: string;
+  verified: boolean;
+}
+
+export type ILensPicture = ILensNftPicture | ILensMediaSetFragment | null;
+
+export interface IProfileStats {
+  __typename: 'ProfileStats';
+  totalFollowers: number;
+  totalFollowing: number;
+  totalPosts: number;
+}
+
+export interface ILensProfile {
+  id: string;
+  name: string | null;
+  bio: string | null;
+  handle: string;
+  interests: string[] | null;
+  picture: ILensPicture;
+  coverPicture: ILensPicture;
+  stats: IProfileStats;
+  attributes: Array<any> | null;
+}
+
 export interface IUserCommunity {
   user: IUser;
   community: ICollection;
@@ -124,4 +165,23 @@ export interface IUserCommunity {
   leavedAt?: Date;
   rejoined?: boolean;
   isActive: boolean;
+}
+
+export interface IFarcasterProfile {
+  object: string;
+  address: string;
+  fid: number;
+  custodyAddress: string;
+  username: string;
+  displayName: string;
+  pfpUrl: string;
+  profile: {
+    bio: {
+      text: string;
+    };
+  };
+  followerCount: number;
+  followingCount: number;
+  activeStatus: string;
+  verifications: string[];
 }

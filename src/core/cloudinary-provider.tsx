@@ -10,15 +10,17 @@ CloudinaryContext.displayName = 'CloudinaryContext';
 
 export const CloudinaryProvider = ({ children }: ICloudinaryProviderProps) => {
   const myCld = new Cloudinary({
-    cloud: { 
-      cloudName: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME 
+    cloud: {
+      cloudName: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME
     },
     url: {
-      secure: true 
+      secure: true
     }
   });
 
-  return <CloudinaryContext.Provider value={myCld}>{children}</CloudinaryContext.Provider>;
+  return (
+    <CloudinaryContext.Provider value={myCld}>{children}</CloudinaryContext.Provider>
+  );
 };
 
 export function useCloudinaryContext() {

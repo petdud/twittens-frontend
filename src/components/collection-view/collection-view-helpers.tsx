@@ -1,4 +1,4 @@
-import { IUser } from "../../core/collection.interface";
+import { IUser } from '../../core/collection.interface';
 
 export interface ICommonCollections {
   name: string;
@@ -7,7 +7,10 @@ export interface ICommonCollections {
   slug: string;
 }
 
-export const getCommonCollections = (slug: string, users: IUser[]): ICommonCollections[] => {
+export const getCommonCollections = (
+  slug: string,
+  users: IUser[]
+): ICommonCollections[] => {
   const communityMap = new Map<string, ICommonCollections>();
 
   users.forEach(user => {
@@ -22,12 +25,12 @@ export const getCommonCollections = (slug: string, users: IUser[]): ICommonColle
         communityMap.set(community.name, {
           name: community.name,
           count: 1,
-          imageUrl: community.image?.thumbnailUrl || "",
-          slug: community.slug,
+          imageUrl: community.image?.thumbnailUrl || '',
+          slug: community.slug
         });
       }
     });
   });
 
-  return Array.from(communityMap.values()).sort((a, b) => b.count - a.count);;
+  return Array.from(communityMap.values()).sort((a, b) => b.count - a.count);
 };

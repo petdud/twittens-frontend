@@ -1,5 +1,5 @@
-import { Switch as SwitchComponent} from '@headlessui/react'
-import { classNames } from '../../../utils'
+import { Switch as SwitchComponent } from '@headlessui/react';
+import { classNames } from '../../../utils';
 
 interface ISwitchProps {
   label: string;
@@ -8,13 +8,13 @@ interface ISwitchProps {
   onChange?: (value: boolean) => void;
 }
 
-export const Switch = ({label, hideLabel, onChange, value}: ISwitchProps) => (
+export const Switch = ({ label, hideLabel, onChange, value }: ISwitchProps) => (
   <SwitchComponent.Group as="div" className="flex items-center">
-    {!hideLabel && 
+    {!hideLabel && (
       <SwitchComponent.Label as="span" className="ml-3 mr-3">
         <span className="text-sm font-medium text-gray-900 dark:text-white">{label}</span>
       </SwitchComponent.Label>
-    } 
+    )}
     <SwitchComponent
       checked={value}
       onChange={onChange}
@@ -33,4 +33,4 @@ export const Switch = ({label, hideLabel, onChange, value}: ISwitchProps) => (
       />
     </SwitchComponent>
   </SwitchComponent.Group>
-)
+);

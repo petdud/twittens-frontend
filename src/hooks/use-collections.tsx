@@ -1,17 +1,14 @@
-import axios from "axios";
-import { useCallback, useEffect, useState } from "react";
-import { ICollection, statusTypes } from "../core/collection.interface";
-import { LOCAL_API_PATHS } from "../core/routes";
+import axios from 'axios';
+import { useCallback, useEffect, useState } from 'react';
+import { ICollection, statusTypes } from '../core/collection.interface';
+import { LOCAL_API_PATHS } from '../core/routes';
 
 interface IUseCollectionsProps {
   select?: string; // string separated by commas
-  status?: statusTypes,
+  status?: statusTypes;
 }
 
-export const useCollections = ({
-  select,
-  status,
-}: IUseCollectionsProps) => {
+export const useCollections = ({ select, status }: IUseCollectionsProps) => {
   const [data, setData] = useState<ICollection[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -20,17 +17,17 @@ export const useCollections = ({
     try {
       const { data } = await axios.get(LOCAL_API_PATHS.GET_COLLECTIONS, {
         params: {
-          ...(status && {status}),
-          ...(select && {select}),
+          ...(status && { status }),
+          ...(select && { select })
         }
       });
       data && setData(data);
       setIsLoading(false);
-    } catch(err) {
+    } catch (err) {
       setIsLoading(false);
       setError(true);
     }
-  }, [select, status])
+  }, [select, status]);
 
   useEffect(() => {
     fetchCollections();
@@ -41,4 +38,4 @@ export const useCollections = ({
     isLoading,
     error
   };
-}
+};

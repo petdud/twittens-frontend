@@ -1,25 +1,37 @@
-import React, { useCallback, useEffect, useRef } from "react";
-import { classNames } from "../../utils";
-import { TabMenuButtonsProvider, useTabMenuButtonsContext } from "./tab-menu-buttons-provider";
+import React, { useCallback, useEffect, useRef } from 'react';
+import { classNames } from '../../utils';
+import {
+  TabMenuButtonsProvider,
+  useTabMenuButtonsContext
+} from './tab-menu-buttons-provider';
 
 interface IGroupButtonTabMenuProps {
   defaultSelectedValue?: string;
   onTabSelect: (value: string) => void;
-  children: JSX.Element|JSX.Element[];
+  children: JSX.Element | JSX.Element[];
   ariaLabelledBy: string;
 }
 
-export const TabMenuButtons = ({children, defaultSelectedValue, onTabSelect, ...rest}: IGroupButtonTabMenuProps) => {
+export const TabMenuButtons = ({
+  children,
+  defaultSelectedValue,
+  onTabSelect,
+  ...rest
+}: IGroupButtonTabMenuProps) => {
   return (
-    <TabMenuButtonsProvider onTabSelect={onTabSelect} defaultSelectedValue={defaultSelectedValue}>
-      <TabMenuButtonsComponent {...rest} >
-        {children}
-      </TabMenuButtonsComponent>
+    <TabMenuButtonsProvider
+      onTabSelect={onTabSelect}
+      defaultSelectedValue={defaultSelectedValue}
+    >
+      <TabMenuButtonsComponent {...rest}>{children}</TabMenuButtonsComponent>
     </TabMenuButtonsProvider>
-  ) 
-}
+  );
+};
 
-const TabMenuButtonsComponent = ({ariaLabelledBy, children}: Pick<IGroupButtonTabMenuProps, "ariaLabelledBy" | "children">) => {
+const TabMenuButtonsComponent = ({
+  ariaLabelledBy,
+  children
+}: Pick<IGroupButtonTabMenuProps, 'ariaLabelledBy' | 'children'>) => {
   const { selectedTab, setSelectedTab, getRegisteredTabs } = useTabMenuButtonsContext();
 
   const setFirstTab = useCallback(() => {
@@ -36,10 +48,10 @@ const TabMenuButtonsComponent = ({ariaLabelledBy, children}: Pick<IGroupButtonTa
     let prevKey: string;
     if (selectedTab) {
       const index = keys.indexOf(selectedTab as any);
-      const prevIndex = index === 0 ? keys.length-1 : index - 1;
+      const prevIndex = index === 0 ? keys.length - 1 : index - 1;
       prevKey = keys[prevIndex];
     } else {
-      prevKey = keys[keys.length-1];
+      prevKey = keys[keys.length - 1];
     }
     setSelectedTab(prevKey);
     registeredTabs[prevKey].ref.current?.focus();
@@ -51,7 +63,7 @@ const TabMenuButtonsComponent = ({ariaLabelledBy, children}: Pick<IGroupButtonTa
     let nextKey: string;
     if (selectedTab) {
       const index = keys.indexOf(selectedTab as any);
-      const nextIndex = index >= keys.length -1 ? 0 : index + 1;
+      const nextIndex = index >= keys.length - 1 ? 0 : index + 1;
       nextKey = keys[nextIndex];
     } else {
       nextKey = keys[0];
@@ -63,46 +75,49 @@ const TabMenuButtonsComponent = ({ariaLabelledBy, children}: Pick<IGroupButtonTa
   const setLastTab = useCallback(() => {
     const registeredTabs = getRegisteredTabs();
     const keys = Object.keys(registeredTabs);
-    const lastKey = keys[keys.length-1];
+    const lastKey = keys[keys.length - 1];
     setSelectedTab(lastKey);
     registeredTabs[lastKey].ref.current?.focus();
   }, [getRegisteredTabs, setSelectedTab]);
 
-  const onKeyDown = useCallback((event: React.KeyboardEvent) => {
-    switch (event.key) {
-      case 'ArrowLeft':
-        setPreviousTab();
-        event.preventDefault();
-        break;
-      case 'ArrowRight':
-        setNextTab();
-        event.preventDefault();
-        break;
-      case 'Home':
-        setFirstTab();
-        event.preventDefault();
-        break;
-      case 'End':
-        setLastTab();
-        event.preventDefault();
-        break;
-      default:
-        break;
-    }
-  }, [setPreviousTab, setFirstTab, setNextTab, setLastTab])
+  const onKeyDown = useCallback(
+    (event: React.KeyboardEvent) => {
+      switch (event.key) {
+        case 'ArrowLeft':
+          setPreviousTab();
+          event.preventDefault();
+          break;
+        case 'ArrowRight':
+          setNextTab();
+          event.preventDefault();
+          break;
+        case 'Home':
+          setFirstTab();
+          event.preventDefault();
+          break;
+        case 'End':
+          setLastTab();
+          event.preventDefault();
+          break;
+        default:
+          break;
+      }
+    },
+    [setPreviousTab, setFirstTab, setNextTab, setLastTab]
+  );
 
-  return ( 
-    <div 
+  return (
+    <div
       className="flex space-x-1 rounded-lg bg-slate-200 dark:bg-zinc-700 p-0.5"
       role="tablist"
       aria-orientation="horizontal"
       aria-labelledby={ariaLabelledBy}
       onKeyDown={onKeyDown}
-    >    
+    >
       {children}
     </div>
   );
-}
+};
 
 interface IGroupButtonTabMenuItemProps {
   ariaControl: string;
@@ -111,8 +126,14 @@ interface IGroupButtonTabMenuItemProps {
   icon?: JSX.Element;
 }
 
-export const TabMenuButtonsItem = ({icon, id, value, ariaControl}: IGroupButtonTabMenuItemProps) => {
-  const { selectedTab, setSelectedTab, onRegister, onUnregister } = useTabMenuButtonsContext();
+export const TabMenuButtonsItem = ({
+  icon,
+  id,
+  value,
+  ariaControl
+}: IGroupButtonTabMenuItemProps) => {
+  const { selectedTab, setSelectedTab, onRegister, onUnregister } =
+    useTabMenuButtonsContext();
   const isSelected = selectedTab === value;
   const buttonRef = useRef<HTMLButtonElement>(null);
 
@@ -125,31 +146,37 @@ export const TabMenuButtonsItem = ({icon, id, value, ariaControl}: IGroupButtonT
 
     return () => {
       onUnregister({ value, ref: buttonRef });
-    };    
+    };
   }, [onRegister, onUnregister, value]);
 
   return (
-    <button 
+    <button
       className={classNames(
-        "flex items-center rounded-md py-[0.4375rem] pl-2 pr-3 w-full justify-center",
-        isSelected ? "text-base font-semibold bg-white dark:bg-black shadow" : "text-sm hover:bg-slate-100 hover:dark:bg-zinc-800"
+        'flex items-center rounded-md py-[0.4375rem] pl-2 pr-3 w-full justify-center',
+        isSelected
+          ? 'text-base font-semibold bg-white dark:bg-black shadow'
+          : 'text-sm hover:bg-slate-100 hover:dark:bg-zinc-800'
       )}
       id={id}
-      role="tab" 
+      role="tab"
       ref={buttonRef}
       onClick={onClick}
-      type="button" 
+      type="button"
       aria-selected={isSelected ? true : false}
       tabIndex={isSelected ? 0 : -1}
       aria-controls={ariaControl}
     >
       {icon}
-      <span className={classNames(
-        "ml-2",
-        isSelected ? "text-slate-900 dark:text-white" : "text-slate-400 dark:text-neutral-300"
-      )}>
+      <span
+        className={classNames(
+          'ml-2',
+          isSelected
+            ? 'text-slate-900 dark:text-white'
+            : 'text-slate-400 dark:text-neutral-300'
+        )}
+      >
         {value}
       </span>
     </button>
-  )
-}
+  );
+};

@@ -7,7 +7,7 @@ interface IInputProps {
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
   required?: boolean;
-  type?: "text" | "number" | "password" | "email";
+  type?: 'text' | 'number' | 'password' | 'email';
   value: string | number;
 }
 
@@ -20,11 +20,14 @@ export const Input = ({
   onChange,
   placeholder,
   required,
-  type = "text",
-  value,
+  type = 'text',
+  value
 }: IInputProps) => (
   <>
-    <label htmlFor={id} className="block text-sm font-medium text-gray-700 dark:text-gray-400 pb-2">
+    <label
+      htmlFor={id}
+      className="block text-sm font-medium text-gray-700 dark:text-gray-400 pb-2"
+    >
       {label}
     </label>
     <input

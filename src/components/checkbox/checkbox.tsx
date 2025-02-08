@@ -5,11 +5,14 @@ interface ICheckboxProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export const Checkbox = ({id, label, checked, onChange}: ICheckboxProps) => {
+export const Checkbox = ({ id, label, checked, onChange }: ICheckboxProps) => {
   return (
     <div className="relative flex items-start">
       <div className="flex h-5 items-center flex-row-reverse">
-        <label htmlFor={id} className="cursor-pointer font-light text-gray-700 dark:text-gray-500 px-1">
+        <label
+          htmlFor={id}
+          className="cursor-pointer font-light text-gray-700 dark:text-gray-500 px-1"
+        >
           {label}
         </label>
         <input
@@ -22,5 +25,5 @@ export const Checkbox = ({id, label, checked, onChange}: ICheckboxProps) => {
         />
       </div>
     </div>
-  )
-}
+  );
+};

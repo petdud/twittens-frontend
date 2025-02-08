@@ -33,7 +33,7 @@ export const CollectionHeaderSocial = ({
       )}
       {twitter && (
         <Link
-          href={`https://www.twitter.com/${twitter}`}
+          href={`https://x.com/${twitter}`}
           target="_blank"
           className="p-2 hover:bg-gray-200 rounded-md dark:hover:bg-gray-700"
         >

@@ -1,5 +1,5 @@
-import { Fragment } from 'react'
-import { Dialog, Transition } from '@headlessui/react'
+import { Fragment } from 'react';
+import { Dialog, Transition } from '@headlessui/react';
 
 interface IModal {
   actionButtonContent: string;
@@ -11,7 +11,15 @@ interface IModal {
   setOpen: (open: boolean) => void;
 }
 
-export const Modal = ({actionButtonContent, actionCallback, content, icon, title, open, setOpen}: IModal) => {
+export const Modal = ({
+  actionButtonContent,
+  actionCallback,
+  content,
+  icon,
+  title,
+  open,
+  setOpen
+}: IModal) => {
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={setOpen}>
@@ -40,19 +48,26 @@ export const Modal = ({actionButtonContent, actionCallback, content, icon, title
             >
               <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white dark:bg-neutral-900 px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-md sm:p-6">
                 <div>
-                  {icon && <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-green-100">
-                    {/* <CheckIcon className="h-6 w-6 text-green-600" aria-hidden="true" /> */}
-                    {icon}
-                  </div>}
+                  {icon && (
+                    <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-green-100">
+                      {/* <CheckIcon className="h-6 w-6 text-green-600" aria-hidden="true" /> */}
+                      {icon}
+                    </div>
+                  )}
                   <div className="mt-3 text-center sm:mt-5">
-                    {title && <Dialog.Title as="h3" className="text-xl font-medium leading-6 text-gray-900 dark:text-white">
-                      {title}
-                    </Dialog.Title>}
-                    {content && <div className="mt-2">
-                      <div className="text-sm text-gray-500">
-                        {content}
+                    {title && (
+                      <Dialog.Title
+                        as="h3"
+                        className="text-xl font-medium leading-6 text-gray-900 dark:text-white"
+                      >
+                        {title}
+                      </Dialog.Title>
+                    )}
+                    {content && (
+                      <div className="mt-2">
+                        <div className="text-sm text-gray-500">{content}</div>
                       </div>
-                    </div>}
+                    )}
                   </div>
                 </div>
                 <div className="mt-5 sm:mt-6">
@@ -70,5 +85,5 @@ export const Modal = ({actionButtonContent, actionCallback, content, icon, title
         </div>
       </Dialog>
     </Transition.Root>
-  )
-}
+  );
+};
