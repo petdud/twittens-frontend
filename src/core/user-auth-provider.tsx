@@ -1,3 +1,5 @@
+export const UserAuthProvider = () => null;
+
 // import React from 'react';
 // import {
 //   useWalletLogin,

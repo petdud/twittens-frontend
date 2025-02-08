@@ -1,3 +1,7 @@
+export const FollowButton = () => {
+  return null;
+};
+
 // import React from 'react';
 // // import {
 // //   Profile,
