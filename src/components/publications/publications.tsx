@@ -1,3 +1,5 @@
+export const Publications = () => null;
+
 // import React from 'react';
 // import { ProfileId, usePublications } from '@lens-protocol/react-web';
 // import ReactMarkdown from 'react-markdown';
