@@ -1,7 +1,7 @@
-import axios from "axios";
-import { useCallback, useEffect, useState } from "react";
-import { IUser } from "../core/collection.interface";
-import { LOCAL_API_PATHS } from "../core/routes";
+import axios from 'axios';
+import { useCallback, useEffect, useState } from 'react';
+import { IUser } from '../core/collection.interface';
+import { LOCAL_API_PATHS } from '../core/routes';
 
 const LIMIT = 100;
 
@@ -13,24 +13,27 @@ export const useMostFollowedUsers = () => {
 
   const fetchMostFollowedUsers = useCallback(async () => {
     try {
-      const { data: responseData } = await axios.get(LOCAL_API_PATHS.GET_MOST_FOLLOWED_USERS, {
-        params: {
-          page,
-          limit: LIMIT,
-        },
-      });
+      const { data: responseData } = await axios.get(
+        LOCAL_API_PATHS.GET_MOST_FOLLOWED_USERS,
+        {
+          params: {
+            page,
+            limit: LIMIT
+          }
+        }
+      );
       responseData && setData(prevData => [...prevData, ...responseData]);
       setIsLoading(false);
-    } catch(err) {
+    } catch (err) {
       setIsLoading(false);
       setError(true);
     }
-  }, [page])
+  }, [page]);
 
   useEffect(() => {
-      fetchMostFollowedUsers();
+    fetchMostFollowedUsers();
   }, [fetchMostFollowedUsers]);
-  
+
   const fetchMore = () => {
     setPage(prevPage => prevPage + 1);
   };
@@ -41,4 +44,4 @@ export const useMostFollowedUsers = () => {
     error,
     fetchMore
   };
-}
+};
