@@ -118,8 +118,8 @@ export const MainSlot = ({ children }: IMainSlot) => {
                           </a>
                         )
                     )}
-                    <LensensLink />
-                    <CastFrensLink />
+                    {/* <LensensLink /> */}
+                    {/* <CastFrensLink /> */}
                   </nav>
                   <Divider wrapperClass="my-6" />
                   <JoinCommunitySection />
@@ -172,8 +172,8 @@ export const MainSlot = ({ children }: IMainSlot) => {
                       </Link>
                     )
                 )}
-                <LensensLink />
-                <CastFrensLink />
+                {/* <LensensLink /> */}
+                {/* <CastFrensLink /> */}
               </nav>
               <Divider wrapperClass="mt-3" />
               <div className="mt-6">
